@@ -697,17 +697,9 @@ function updateSubtitle() {
     return;
   }
 
-  // Loop: rewind 0.4s before end to avoid YouTube end-cards
-  if (loopSub && !loopPausing && t >= loopSub.e - 0.2) {
-    loopPausing = true;
-    player.pauseVideo();
-    loopPauseTimer = setTimeout(function() {
-      if (loopSub) {
-        player.seekTo(loopSub.s, true);
-        player.playVideo();
-        loopPausing = false;
-      }
-    }, 700);
+  // Loop: immediately seek back at segment end (no pause gap)
+  if (loopSub && t >= loopSub.e) {
+    player.seekTo(loopSub.s, true);
     return;
   }
 
