@@ -547,6 +547,13 @@ function onSubClick(id) {
   var el = document.getElementById('detail-' + id);
   if (el) el.classList.add('open');
 
+  // Scroll to top of list
+  var item = document.getElementById('sub-' + id);
+  if (item) {
+    var list = document.getElementById('sub-list');
+    list.scrollTop = item.offsetTop - list.offsetTop;
+  }
+
   // Show bar with repeat button
   showBar('once');
 
