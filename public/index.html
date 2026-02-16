@@ -74,6 +74,60 @@
       flex-direction: column;
       justify-content: center;
       gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: border-radius 0.3s;
+    }
+
+    .subtitle-box.open {
+      border-radius: 12px 12px 0 0;
+    }
+
+    .subtitle-toggle {
+      font-size: 0.75rem;
+      color: #bbb;
+      margin-top: 4px;
+      transition: opacity 0.2s;
+    }
+
+    /* ── Detail Panel ── */
+    .detail-panel {
+      background: #fff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+
+    .detail-panel.open {
+      max-height: 400px;
+    }
+
+    .detail-inner {
+      padding: 0 24px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .detail-section {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: left;
+    }
+
+    .detail-section .label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    .detail-section .value {
+      font-size: 0.85rem;
+      color: #999;
     }
 
     .subtitle-ko {
@@ -103,6 +157,7 @@
       .subtitle-box { padding: 16px; }
       .subtitle-ko { font-size: 1.05rem; }
       .subtitle-ne { font-size: 0.95rem; }
+      .detail-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -116,10 +171,32 @@
       <div id="player"></div>
     </div>
 
-    <div class="subtitle-box">
+    <div class="subtitle-box" id="subtitle-box" onclick="toggleDetail()">
       <div class="subtitle-ko" id="subtitle-ko"></div>
       <div class="subtitle-ne" id="subtitle-ne"></div>
       <div class="subtitle-placeholder" id="subtitle-placeholder">영상을 재생하면 자막이 표시됩니다</div>
+      <div class="subtitle-toggle" id="subtitle-toggle">&#9660; 자막을 클릭하면 상세 설명</div>
+    </div>
+
+    <div class="detail-panel" id="detail-panel">
+      <div class="detail-inner">
+        <div class="detail-section">
+          <div class="label">💡 팁 (북한식 → 표준어)</div>
+          <div class="value" id="detail-tip">준비 중...</div>
+        </div>
+        <div class="detail-section">
+          <div class="label">📝 문법</div>
+          <div class="value" id="detail-grammar">준비 중...</div>
+        </div>
+        <div class="detail-section">
+          <div class="label">📊 TOPIK 레벨</div>
+          <div class="value" id="detail-topik">준비 중...</div>
+        </div>
+        <div class="detail-section">
+          <div class="label">📖 어휘</div>
+          <div class="value" id="detail-vocab">준비 중...</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -197,6 +274,15 @@ function updateSubtitle() {
     document.getElementById('subtitle-ko').textContent = '';
     document.getElementById('subtitle-ne').textContent = '';
   }
+}
+
+function toggleDetail() {
+  var box = document.getElementById('subtitle-box');
+  var panel = document.getElementById('detail-panel');
+  var toggle = document.getElementById('subtitle-toggle');
+  var isOpen = panel.classList.toggle('open');
+  box.classList.toggle('open', isOpen);
+  toggle.innerHTML = isOpen ? '&#9650; 접기' : '&#9660; 자막을 클릭하면 상세 설명';
 }
 </script>
 </body>
