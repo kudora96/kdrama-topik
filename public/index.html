@@ -157,7 +157,7 @@
       border-radius: 12px;
       background: #fff;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -602,12 +602,8 @@ function onSubClick(id) {
   var el = document.getElementById('detail-' + id);
   if (el) el.classList.add('open');
 
-  // Scroll to top of list
-  var item = document.getElementById('sub-' + id);
-  if (item) {
-    var list = document.getElementById('sub-list');
-    list.scrollTop = item.offsetTop - list.offsetTop;
-  }
+  // Scroll to page group
+  scrollToPage(id);
 
   // Show bar with repeat button
   showBar('once');
@@ -814,16 +810,29 @@ function updateSubtitle() {
   }
 }
 
+var PAGE_SIZE = 4;
+
+function scrollToPage(id) {
+  var idx = -1;
+  for (var i = 0; i < subtitles.length; i++) {
+    if (subtitles[i].id === id) { idx = i; break; }
+  }
+  if (idx === -1) return;
+  var pageStart = Math.floor(idx / PAGE_SIZE) * PAGE_SIZE;
+  var firstEl = document.getElementById('sub-' + subtitles[pageStart].id);
+  if (firstEl) {
+    var list = document.getElementById('sub-list');
+    list.scrollTop = firstEl.offsetTop - list.offsetTop;
+  }
+}
+
 function highlightSub(id) {
   clearHighlight();
   var el = document.getElementById('sub-' + id);
   if (el) {
     el.classList.add('active');
-    // Auto-scroll only when not looping (avoid scroll jump during loop)
     if (!loopSub) {
-      var list = document.getElementById('sub-list');
-      var top = el.offsetTop - list.offsetTop;
-      list.scrollTop = Math.max(0, top);
+      scrollToPage(id);
     }
   }
 }
