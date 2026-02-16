@@ -697,9 +697,17 @@ function updateSubtitle() {
     return;
   }
 
-  // Loop: immediately seek back at segment end (no pause gap)
-  if (loopSub && t >= loopSub.e) {
+  // Loop: seek to start immediately, then pause 0.7s before playing
+  if (loopSub && !loopPausing && t >= loopSub.e) {
+    loopPausing = true;
     player.seekTo(loopSub.s, true);
+    player.pauseVideo();
+    loopPauseTimer = setTimeout(function() {
+      if (loopSub) {
+        player.playVideo();
+        loopPausing = false;
+      }
+    }, 700);
     return;
   }
 
