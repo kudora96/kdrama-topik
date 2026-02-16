@@ -369,6 +369,11 @@
       color: #fff;
     }
 
+    .btn-speed {
+      background: #607d8b;
+      color: #fff;
+    }
+
     .btn-stop {
       background: #e94560;
       color: #fff;
@@ -400,6 +405,7 @@
   <div class="loop-bar" id="loop-bar">
     <div class="loop-info" id="loop-info"></div>
     <button class="btn-action btn-repeat" id="btn-repeat" onclick="startLoop()">🔁 반복</button>
+    <button class="btn-action btn-speed" id="btn-speed" onclick="toggleSpeed()" style="display:none">🐢1x</button>
     <button class="btn-action btn-stop" id="btn-stop" onclick="stopLoop()" style="display:none">⏹ 중지</button>
   </div>
 
@@ -422,6 +428,8 @@ var currentSub = null;
 var loopSub = null;
 var loopPausing = false;
 var loopPauseTimer = null;
+var speedSteps = [1, 0.7, 0.5];
+var speedIndex = 0;
 
 var topikCls = {1:'topik-1',2:'topik-2',3:'topik-3',4:'topik-4',5:'topik-5',6:'topik-6'};
 
@@ -580,8 +588,26 @@ function startLoop() {
   showBar('loop');
 }
 
+function toggleSpeed() {
+  speedIndex = (speedIndex + 1) % speedSteps.length;
+  var rate = speedSteps[speedIndex];
+  if (player && player.setPlaybackRate) {
+    player.setPlaybackRate(rate);
+  }
+  document.getElementById('btn-speed').textContent = '🐢' + rate + 'x';
+}
+
+function resetSpeed() {
+  speedIndex = 0;
+  if (player && player.setPlaybackRate) {
+    player.setPlaybackRate(1);
+  }
+  document.getElementById('btn-speed').textContent = '🐢1x';
+}
+
 function stopLoop() {
   cancelLoop();
+  resetSpeed();
 
   // Close detail
   if (openDetailId !== -1) {
@@ -618,6 +644,7 @@ function showBar(mode) {
   var bar = document.getElementById('loop-bar');
   var info = document.getElementById('loop-info');
   var btnRepeat = document.getElementById('btn-repeat');
+  var btnSpeed = document.getElementById('btn-speed');
   var btnStop = document.getElementById('btn-stop');
   var sub = currentSub;
   if (!sub) return;
@@ -628,10 +655,12 @@ function showBar(mode) {
   if (mode === 'once') {
     info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
     btnRepeat.style.display = '';
+    btnSpeed.style.display = 'none';
     btnStop.style.display = 'none';
   } else {
     info.innerHTML = '<strong>🔁 반복 재생 중</strong> ' + label;
     btnRepeat.style.display = 'none';
+    btnSpeed.style.display = '';
     btnStop.style.display = '';
   }
 }
