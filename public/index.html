@@ -73,11 +73,12 @@
       border-radius: 10px;
       padding: 14px 16px;
       text-align: center;
-      min-height: 60px;
+      height: 80px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 4px;
+      overflow: hidden;
     }
 
     .now-ko {
@@ -832,11 +833,14 @@ function scrollToPage(id) {
   }
 }
 
+var activeEl = null;
+
 function highlightSub(id) {
-  clearHighlight();
+  if (activeEl) activeEl.classList.remove('active');
   var el = document.getElementById('sub-' + id);
   if (el) {
     el.classList.add('active');
+    activeEl = el;
     if (!loopSub) {
       scrollToPage(id);
     }
@@ -844,8 +848,10 @@ function highlightSub(id) {
 }
 
 function clearHighlight() {
-  var prev = document.querySelector('.sub-item.active');
-  if (prev) prev.classList.remove('active');
+  if (activeEl) {
+    activeEl.classList.remove('active');
+    activeEl = null;
+  }
 }
 
 /* ── Service Worker ── */
