@@ -811,14 +811,20 @@ function updateSubtitle() {
 }
 
 var PAGE_SIZE = 4;
+var currentPage = -1;
+
+function getPage(id) {
+  for (var i = 0; i < subtitles.length; i++) {
+    if (subtitles[i].id === id) return Math.floor(i / PAGE_SIZE);
+  }
+  return -1;
+}
 
 function scrollToPage(id) {
-  var idx = -1;
-  for (var i = 0; i < subtitles.length; i++) {
-    if (subtitles[i].id === id) { idx = i; break; }
-  }
-  if (idx === -1) return;
-  var pageStart = Math.floor(idx / PAGE_SIZE) * PAGE_SIZE;
+  var page = getPage(id);
+  if (page === -1 || page === currentPage) return;
+  currentPage = page;
+  var pageStart = page * PAGE_SIZE;
   var firstEl = document.getElementById('sub-' + subtitles[pageStart].id);
   if (firstEl) {
     var list = document.getElementById('sub-list');
