@@ -697,8 +697,8 @@ function updateSubtitle() {
     return;
   }
 
-  // Loop: pause 1.5s then replay
-  if (loopSub && !loopPausing && t >= loopSub.e) {
+  // Loop: rewind 0.4s before end to avoid YouTube end-cards
+  if (loopSub && !loopPausing && t >= loopSub.e - 0.4) {
     loopPausing = true;
     player.pauseVideo();
     loopPauseTimer = setTimeout(function() {
