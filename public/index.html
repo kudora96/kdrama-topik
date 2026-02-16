@@ -739,7 +739,7 @@ function highlightSub(id) {
     // Auto-scroll only when not looping (avoid scroll jump during loop)
     if (!loopSub) {
       var list = document.getElementById('sub-list');
-      var top = el.offsetTop - list.offsetTop - list.clientHeight / 2 + el.clientHeight / 2;
+      var top = el.offsetTop - list.offsetTop;
       list.scrollTop = Math.max(0, top);
     }
   }
