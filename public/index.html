@@ -101,7 +101,7 @@
     }
 
     .detail-panel.open {
-      max-height: 400px;
+      max-height: 600px;
     }
 
     .detail-inner {
@@ -127,7 +127,49 @@
 
     .detail-section .value {
       font-size: 0.85rem;
-      color: #999;
+      color: #555;
+    }
+
+    .detail-section.hidden {
+      display: none;
+    }
+
+    .topik-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .topik-1 { background: #4caf50; }
+    .topik-2 { background: #2196f3; }
+    .topik-3 { background: #ff9800; }
+    .topik-4 { background: #f44336; }
+    .topik-5 { background: #9c27b0; }
+    .topik-6 { background: #333; }
+
+    .vocab-item {
+      margin-bottom: 4px;
+    }
+
+    .vocab-item .vocab-ko {
+      font-weight: 700;
+    }
+
+    .vocab-item .vocab-ne {
+      color: #888;
+    }
+
+    .vocab-item .vocab-topik {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+      color: #fff;
+      margin-left: 4px;
+      vertical-align: middle;
     }
 
     .subtitle-ko {
@@ -180,21 +222,21 @@
 
     <div class="detail-panel" id="detail-panel">
       <div class="detail-inner">
-        <div class="detail-section">
+        <div class="detail-section" id="section-tip">
           <div class="label">💡 팁 (북한식 → 표준어)</div>
-          <div class="value" id="detail-tip">준비 중...</div>
+          <div class="value" id="detail-tip">-</div>
         </div>
         <div class="detail-section">
           <div class="label">📝 문법</div>
-          <div class="value" id="detail-grammar">준비 중...</div>
+          <div class="value" id="detail-grammar">-</div>
         </div>
         <div class="detail-section">
           <div class="label">📊 TOPIK 레벨</div>
-          <div class="value" id="detail-topik">준비 중...</div>
+          <div class="value" id="detail-topik">-</div>
         </div>
-        <div class="detail-section">
+        <div class="detail-section" id="section-vocab">
           <div class="label">📖 어휘</div>
-          <div class="value" id="detail-vocab">준비 중...</div>
+          <div class="value" id="detail-vocab">-</div>
         </div>
       </div>
     </div>
@@ -203,12 +245,19 @@
 <script>
 var player;
 var subtitles = [];
+var analysisMap = {};
 var subtitleTimer = null;
 var lastSubId = -1;
 
 fetch('../data/subtitles.json')
   .then(function(res) { return res.json(); })
   .then(function(data) { subtitles = data; });
+
+fetch('../data/analysis.json')
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    data.forEach(function(item) { analysisMap[item.id] = item; });
+  });
 
 var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
@@ -269,10 +318,60 @@ function updateSubtitle() {
     document.getElementById('subtitle-ko').textContent = found.ko;
     document.getElementById('subtitle-ne').textContent = found.ne;
     document.getElementById('subtitle-placeholder').style.display = 'none';
+    updateDetail(found.id);
   } else if (!found && lastSubId !== -1) {
     lastSubId = -1;
     document.getElementById('subtitle-ko').textContent = '';
     document.getElementById('subtitle-ne').textContent = '';
+  }
+}
+
+var topikColors = { 1: 'topik-1', 2: 'topik-2', 3: 'topik-3', 4: 'topik-4', 5: 'topik-5', 6: 'topik-6' };
+
+function updateDetail(id) {
+  var a = analysisMap[id];
+  var tipSection = document.getElementById('section-tip');
+  var vocabSection = document.getElementById('section-vocab');
+
+  if (!a) {
+    tipSection.classList.add('hidden');
+    document.getElementById('detail-grammar').textContent = '-';
+    document.getElementById('detail-topik').innerHTML = '-';
+    vocabSection.classList.add('hidden');
+    return;
+  }
+
+  // Tip
+  if (a.tip) {
+    tipSection.classList.remove('hidden');
+    document.getElementById('detail-tip').textContent = a.tip;
+  } else {
+    tipSection.classList.add('hidden');
+  }
+
+  // Grammar
+  document.getElementById('detail-grammar').textContent = a.grammar;
+
+  // TOPIK level
+  var cls = topikColors[a.topik] || 'topik-2';
+  document.getElementById('detail-topik').innerHTML =
+    '<span class="topik-badge ' + cls + '">TOPIK ' + a.topik + '</span>';
+
+  // Vocab
+  if (a.vocab && a.vocab.length > 0) {
+    vocabSection.classList.remove('hidden');
+    var html = '';
+    a.vocab.forEach(function(v) {
+      var vcls = topikColors[v.topik] || 'topik-2';
+      html += '<div class="vocab-item">' +
+        '<span class="vocab-ko">' + v.ko + '</span> ' +
+        '<span class="vocab-ne">' + v.ne + '</span>' +
+        '<span class="vocab-topik ' + vcls + '">' + v.topik + '</span>' +
+        '</div>';
+    });
+    document.getElementById('detail-vocab').innerHTML = html;
+  } else {
+    vocabSection.classList.add('hidden');
   }
 }
 
