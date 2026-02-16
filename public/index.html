@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K-Drama TOPIK</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -12,23 +16,26 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: #f5f5f5;
+      background: #f0f2f5;
       color: #222;
       min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* ── Header ── */
     header {
-      background: #fff;
-      padding: 14px 20px;
+      background: #1a1a2e;
+      padding: 12px 16px;
       text-align: center;
-      border-bottom: 2px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      color: #1a1a2e;
+      color: #fff;
       letter-spacing: 1px;
     }
 
@@ -36,9 +43,9 @@
 
     /* ── Main ── */
     .container {
-      max-width: 720px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 24px 16px;
+      padding: 12px;
     }
 
     /* ── Player ── */
@@ -49,97 +56,207 @@
       background: #000;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
     .player-wrap iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: 0;
     }
 
-    /* ── Subtitle ── */
-    .subtitle-box {
-      margin-top: 16px;
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px 24px;
+    /* ── Current subtitle overlay ── */
+    .now-playing {
+      margin-top: 10px;
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 14px 16px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-      min-height: 88px;
+      min-height: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: border-radius 0.3s;
+      gap: 4px;
     }
 
-    .subtitle-box.open {
-      border-radius: 12px 12px 0 0;
-    }
-
-    .subtitle-toggle {
-      font-size: 0.75rem;
-      color: #bbb;
-      margin-top: 4px;
-      transition: opacity 0.2s;
-    }
-
-    /* ── Detail Panel ── */
-    .detail-panel {
-      background: #fff;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.35s ease;
-    }
-
-    .detail-panel.open {
-      max-height: 600px;
-    }
-
-    .detail-inner {
-      padding: 0 24px 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .detail-section {
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 14px;
-      text-align: left;
-    }
-
-    .detail-section .label {
-      font-size: 0.8rem;
+    .now-ko {
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 6px;
-      color: #444;
+      color: #fff;
+      line-height: 1.5;
     }
 
-    .detail-section .value {
+    .now-ne {
+      font-size: 0.9rem;
+      color: #aab;
+      line-height: 1.4;
+    }
+
+    .now-placeholder {
+      color: #667;
       font-size: 0.85rem;
+    }
+
+    /* ── Subtitle List ── */
+    .sub-list-header {
+      margin-top: 14px;
+      padding: 0 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sub-list-header h2 {
+      font-size: 0.85rem;
+      font-weight: 700;
       color: #555;
     }
 
-    .detail-section.hidden {
-      display: none;
+    .sub-count {
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    .sub-list {
+      margin-top: 8px;
+      max-height: 55vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Subtitle Item ── */
+    .sub-item {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s;
+    }
+
+    .sub-item:last-child { border-bottom: none; }
+
+    .sub-row {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 14px;
+      cursor: pointer;
+      gap: 10px;
+    }
+
+    .sub-row:active {
+      background: #f5f5f5;
+    }
+
+    .sub-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .sub-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sub-ko {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .sub-ne {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    .sub-time {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: #bbb;
+      margin-top: 4px;
+    }
+
+    /* Active subtitle */
+    .sub-item.active {
+      background: #eef4ff;
+    }
+
+    .sub-item.active .sub-num {
+      background: #2196f3;
+      color: #fff;
+    }
+
+    .sub-item.active .sub-ko {
+      color: #1565c0;
+    }
+
+    /* ── Detail (accordion) ── */
+    .sub-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f8f9fb;
+    }
+
+    .sub-detail.open {
+      max-height: 500px;
+    }
+
+    .detail-grid {
+      padding: 4px 14px 14px 52px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .d-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border-left: 3px solid #ddd;
+    }
+
+    .d-card.tip-card { border-left-color: #ff9800; }
+    .d-card.grammar-card { border-left-color: #2196f3; }
+    .d-card.topik-card { border-left-color: #9c27b0; }
+    .d-card.vocab-card { border-left-color: #4caf50; }
+
+    .d-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .d-value {
+      font-size: 0.82rem;
+      color: #333;
+      line-height: 1.5;
     }
 
     .topik-badge {
       display: inline-block;
       padding: 2px 10px;
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #fff;
     }
 
@@ -150,97 +267,66 @@
     .topik-5 { background: #9c27b0; }
     .topik-6 { background: #333; }
 
-    .vocab-item {
-      margin-bottom: 4px;
+    .vocab-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 0;
     }
 
-    .vocab-item .vocab-ko {
-      font-weight: 700;
-    }
+    .vocab-row .v-ko { font-weight: 700; }
+    .vocab-row .v-ne { color: #777; }
 
-    .vocab-item .vocab-ne {
-      color: #888;
-    }
-
-    .vocab-item .vocab-topik {
-      display: inline-block;
-      font-size: 0.7rem;
+    .vocab-row .v-lvl {
+      font-size: 0.65rem;
       padding: 1px 6px;
-      border-radius: 8px;
+      border-radius: 6px;
       color: #fff;
-      margin-left: 4px;
-      vertical-align: middle;
-    }
-
-    .subtitle-ko {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #1a1a2e;
-      line-height: 1.6;
-    }
-
-    .subtitle-ne {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: #666;
-      line-height: 1.6;
-    }
-
-    .subtitle-placeholder {
-      color: #bbb;
-      font-size: 0.95rem;
+      flex-shrink: 0;
     }
 
     /* ── Responsive ── */
-    @media (max-width: 480px) {
-      header { padding: 12px 16px; }
-      .logo { font-size: 1.25rem; }
-      .container { padding: 16px 12px; }
-      .subtitle-box { padding: 16px; }
-      .subtitle-ko { font-size: 1.05rem; }
-      .subtitle-ne { font-size: 0.95rem; }
-      .detail-inner { grid-template-columns: 1fr; }
+    @media (min-width: 480px) {
+      .container { padding: 16px; }
+      .detail-grid { grid-template-columns: 1fr 1fr; }
+      .now-ko { font-size: 1.2rem; }
     }
+
+    @media (min-width: 640px) {
+      header { padding: 14px 20px; }
+      .logo { font-size: 1.5rem; }
+    }
+
+    /* scrollbar */
+    .sub-list::-webkit-scrollbar { width: 4px; }
+    .sub-list::-webkit-scrollbar-track { background: transparent; }
+    .sub-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">K<span class="play">▶</span>Drama TOPIK</div>
-  </header>
 
-  <div class="container">
-    <div class="player-wrap">
-      <div id="player"></div>
-    </div>
+<header>
+  <div class="logo">K<span class="play">&#9654;</span>Drama TOPIK</div>
+</header>
 
-    <div class="subtitle-box" id="subtitle-box" onclick="toggleDetail()">
-      <div class="subtitle-ko" id="subtitle-ko"></div>
-      <div class="subtitle-ne" id="subtitle-ne"></div>
-      <div class="subtitle-placeholder" id="subtitle-placeholder">영상을 재생하면 자막이 표시됩니다</div>
-      <div class="subtitle-toggle" id="subtitle-toggle">&#9660; 자막을 클릭하면 상세 설명</div>
-    </div>
-
-    <div class="detail-panel" id="detail-panel">
-      <div class="detail-inner">
-        <div class="detail-section" id="section-tip">
-          <div class="label">💡 팁 (북한식 → 표준어)</div>
-          <div class="value" id="detail-tip">-</div>
-        </div>
-        <div class="detail-section">
-          <div class="label">📝 문법</div>
-          <div class="value" id="detail-grammar">-</div>
-        </div>
-        <div class="detail-section">
-          <div class="label">📊 TOPIK 레벨</div>
-          <div class="value" id="detail-topik">-</div>
-        </div>
-        <div class="detail-section" id="section-vocab">
-          <div class="label">📖 어휘</div>
-          <div class="value" id="detail-vocab">-</div>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <div class="player-wrap">
+    <div id="player"></div>
   </div>
+
+  <div class="now-playing" id="now-playing">
+    <div class="now-placeholder" id="now-placeholder">영상을 재생하면 자막이 표시됩니다</div>
+    <div class="now-ko" id="now-ko"></div>
+    <div class="now-ne" id="now-ne"></div>
+  </div>
+
+  <div class="sub-list-header">
+    <h2>자막 목록</h2>
+    <span class="sub-count" id="sub-count"></span>
+  </div>
+
+  <div class="sub-list" id="sub-list"></div>
+</div>
 
 <script>
 var player;
@@ -248,17 +334,139 @@ var subtitles = [];
 var analysisMap = {};
 var subtitleTimer = null;
 var lastSubId = -1;
+var openDetailId = -1;
+var isPlaying = false;
 
-fetch('../data/subtitles.json')
-  .then(function(res) { return res.json(); })
-  .then(function(data) { subtitles = data; });
+var topikCls = {1:'topik-1',2:'topik-2',3:'topik-3',4:'topik-4',5:'topik-5',6:'topik-6'};
 
-fetch('../data/analysis.json')
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    data.forEach(function(item) { analysisMap[item.id] = item; });
+function formatTime(sec) {
+  var m = Math.floor(sec / 60);
+  var s = Math.floor(sec % 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function escHtml(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+Promise.all([
+  fetch('../data/subtitles.json').then(function(r){return r.json();}),
+  fetch('../data/analysis.json').then(function(r){return r.json();})
+]).then(function(results) {
+  subtitles = results[0];
+  results[1].forEach(function(a){ analysisMap[a.id] = a; });
+  renderList();
+});
+
+function renderList() {
+  var list = document.getElementById('sub-list');
+  document.getElementById('sub-count').textContent = subtitles.length + '개';
+  var html = '';
+  subtitles.forEach(function(sub) {
+    html += '<div class="sub-item" id="sub-' + sub.id + '">' +
+      '<div class="sub-row" onclick="onSubClick(' + sub.id + ',' + sub.s + ')">' +
+        '<div class="sub-num">' + sub.id + '</div>' +
+        '<div class="sub-text">' +
+          '<div class="sub-ko">' + escHtml(sub.ko) + '</div>' +
+          '<div class="sub-ne">' + escHtml(sub.ne) + '</div>' +
+        '</div>' +
+        '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
+      '</div>' +
+      '<div class="sub-detail" id="detail-' + sub.id + '">' +
+        buildDetail(sub.id) +
+      '</div>' +
+    '</div>';
   });
+  list.innerHTML = html;
+}
 
+function buildDetail(id) {
+  var a = analysisMap[id];
+  if (!a) return '<div class="detail-grid"><div class="d-card"><div class="d-value" style="color:#999">분석 데이터 없음</div></div></div>';
+
+  var html = '<div class="detail-grid">';
+
+  if (a.tip) {
+    html += '<div class="d-card tip-card">' +
+      '<div class="d-label">💡 팁 (북한식 → 표준어)</div>' +
+      '<div class="d-value">' + escHtml(a.tip) + '</div></div>';
+  }
+
+  html += '<div class="d-card grammar-card">' +
+    '<div class="d-label">📝 문법</div>' +
+    '<div class="d-value">' + escHtml(a.grammar) + '</div></div>';
+
+  var cls = topikCls[a.topik] || 'topik-2';
+  html += '<div class="d-card topik-card">' +
+    '<div class="d-label">📊 TOPIK 레벨</div>' +
+    '<div class="d-value"><span class="topik-badge ' + cls + '">TOPIK ' + a.topik + '</span></div></div>';
+
+  if (a.vocab && a.vocab.length > 0) {
+    html += '<div class="d-card vocab-card">' +
+      '<div class="d-label">📖 어휘</div><div class="d-value">';
+    a.vocab.forEach(function(v) {
+      var vc = topikCls[v.topik] || 'topik-2';
+      html += '<div class="vocab-row">' +
+        '<span class="v-ko">' + escHtml(v.ko) + '</span> ' +
+        '<span class="v-ne">' + escHtml(v.ne) + '</span>' +
+        '<span class="v-lvl ' + vc + '">' + v.topik + '</span></div>';
+    });
+    html += '</div></div>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function onSubClick(id, startTime) {
+  if (player && player.pauseVideo) {
+    player.pauseVideo();
+    player.seekTo(startTime, true);
+  }
+
+  if (openDetailId === id) {
+    closeDetail(id);
+    openDetailId = -1;
+    return;
+  }
+
+  if (openDetailId !== -1) {
+    closeDetail(openDetailId);
+  }
+
+  openDetailId = id;
+  var el = document.getElementById('detail-' + id);
+  if (el) el.classList.add('open');
+
+  updateNowPlaying(id);
+}
+
+function closeDetail(id) {
+  var el = document.getElementById('detail-' + id);
+  if (el) el.classList.remove('open');
+}
+
+function closeAllDetails() {
+  if (openDetailId !== -1) {
+    closeDetail(openDetailId);
+    openDetailId = -1;
+  }
+}
+
+function updateNowPlaying(id) {
+  var sub = null;
+  for (var i = 0; i < subtitles.length; i++) {
+    if (subtitles[i].id === id) { sub = subtitles[i]; break; }
+  }
+  if (!sub) return;
+  document.getElementById('now-ko').textContent = sub.ko;
+  document.getElementById('now-ne').textContent = sub.ne;
+  document.getElementById('now-placeholder').style.display = 'none';
+}
+
+/* ── YouTube ── */
 var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -267,25 +475,20 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     videoId: 'srN85EUD1kI',
-    playerVars: {
-      rel: 0,
-      modestbranding: 1
-    },
+    playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
     events: {
-      onReady: onPlayerReady,
       onStateChange: onPlayerStateChange
     }
   });
 }
 
-function onPlayerReady(event) {
-  // Player is ready
-}
-
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
+    isPlaying = true;
+    closeAllDetails();
     startSubtitleSync();
   } else {
+    isPlaying = false;
     stopSubtitleSync();
   }
 }
@@ -305,7 +508,6 @@ function stopSubtitleSync() {
 function updateSubtitle() {
   var t = player.getCurrentTime();
   var found = null;
-
   for (var i = 0; i < subtitles.length; i++) {
     if (t >= subtitles[i].s && t < subtitles[i].e) {
       found = subtitles[i];
@@ -315,73 +517,35 @@ function updateSubtitle() {
 
   if (found && found.id !== lastSubId) {
     lastSubId = found.id;
-    document.getElementById('subtitle-ko').textContent = found.ko;
-    document.getElementById('subtitle-ne').textContent = found.ne;
-    document.getElementById('subtitle-placeholder').style.display = 'none';
-    updateDetail(found.id);
+    updateNowPlaying(found.id);
+    highlightSub(found.id);
   } else if (!found && lastSubId !== -1) {
     lastSubId = -1;
-    document.getElementById('subtitle-ko').textContent = '';
-    document.getElementById('subtitle-ne').textContent = '';
+    document.getElementById('now-ko').textContent = '';
+    document.getElementById('now-ne').textContent = '';
+    clearHighlight();
   }
 }
 
-var topikColors = { 1: 'topik-1', 2: 'topik-2', 3: 'topik-3', 4: 'topik-4', 5: 'topik-5', 6: 'topik-6' };
-
-function updateDetail(id) {
-  var a = analysisMap[id];
-  var tipSection = document.getElementById('section-tip');
-  var vocabSection = document.getElementById('section-vocab');
-
-  if (!a) {
-    tipSection.classList.add('hidden');
-    document.getElementById('detail-grammar').textContent = '-';
-    document.getElementById('detail-topik').innerHTML = '-';
-    vocabSection.classList.add('hidden');
-    return;
-  }
-
-  // Tip
-  if (a.tip) {
-    tipSection.classList.remove('hidden');
-    document.getElementById('detail-tip').textContent = a.tip;
-  } else {
-    tipSection.classList.add('hidden');
-  }
-
-  // Grammar
-  document.getElementById('detail-grammar').textContent = a.grammar;
-
-  // TOPIK level
-  var cls = topikColors[a.topik] || 'topik-2';
-  document.getElementById('detail-topik').innerHTML =
-    '<span class="topik-badge ' + cls + '">TOPIK ' + a.topik + '</span>';
-
-  // Vocab
-  if (a.vocab && a.vocab.length > 0) {
-    vocabSection.classList.remove('hidden');
-    var html = '';
-    a.vocab.forEach(function(v) {
-      var vcls = topikColors[v.topik] || 'topik-2';
-      html += '<div class="vocab-item">' +
-        '<span class="vocab-ko">' + v.ko + '</span> ' +
-        '<span class="vocab-ne">' + v.ne + '</span>' +
-        '<span class="vocab-topik ' + vcls + '">' + v.topik + '</span>' +
-        '</div>';
-    });
-    document.getElementById('detail-vocab').innerHTML = html;
-  } else {
-    vocabSection.classList.add('hidden');
+function highlightSub(id) {
+  clearHighlight();
+  var el = document.getElementById('sub-' + id);
+  if (el) {
+    el.classList.add('active');
+    var list = document.getElementById('sub-list');
+    var top = el.offsetTop - list.offsetTop - list.clientHeight / 2 + el.clientHeight / 2;
+    list.scrollTop = Math.max(0, top);
   }
 }
 
-function toggleDetail() {
-  var box = document.getElementById('subtitle-box');
-  var panel = document.getElementById('detail-panel');
-  var toggle = document.getElementById('subtitle-toggle');
-  var isOpen = panel.classList.toggle('open');
-  box.classList.toggle('open', isOpen);
-  toggle.innerHTML = isOpen ? '&#9650; 접기' : '&#9660; 자막을 클릭하면 상세 설명';
+function clearHighlight() {
+  var prev = document.querySelector('.sub-item.active');
+  if (prev) prev.classList.remove('active');
+}
+
+/* ── Service Worker ── */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
 </script>
 </body>
