@@ -297,6 +297,75 @@
       .logo { font-size: 1.5rem; }
     }
 
+    /* ── Loop state ── */
+    .sub-item.looping {
+      background: #fff8e1;
+    }
+
+    .sub-item.looping .sub-num {
+      background: #ff9800;
+      color: #fff;
+    }
+
+    .sub-item.looping .sub-ko {
+      color: #e65100;
+    }
+
+    .loop-badge {
+      font-size: 0.7rem;
+      color: #ff9800;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* ── Loop control bar ── */
+    .loop-bar {
+      display: none;
+      margin-top: 8px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .loop-bar.active {
+      display: flex;
+    }
+
+    .loop-bar .loop-info {
+      flex: 1;
+      font-size: 0.8rem;
+      color: #555;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .loop-bar .loop-info strong {
+      color: #ff9800;
+    }
+
+    .btn-continue {
+      flex-shrink: 0;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-continue:active {
+      opacity: 0.8;
+    }
+
     /* scrollbar */
     .sub-list::-webkit-scrollbar { width: 4px; }
     .sub-list::-webkit-scrollbar-track { background: transparent; }
@@ -320,6 +389,11 @@
     <div class="now-ne" id="now-ne"></div>
   </div>
 
+  <div class="loop-bar" id="loop-bar">
+    <div class="loop-info" id="loop-info"></div>
+    <button class="btn-continue" onclick="stopLoop()">이어서 재생 &#9654;</button>
+  </div>
+
   <div class="sub-list-header">
     <h2>자막 목록</h2>
     <span class="sub-count" id="sub-count"></span>
@@ -335,8 +409,7 @@ var analysisMap = {};
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
-var isPlaying = false;
-var pendingPause = false;
+var loopSub = null;
 
 var topikCls = {1:'topik-1',2:'topik-2',3:'topik-3',4:'topik-4',5:'topik-5',6:'topik-6'};
 
@@ -350,6 +423,13 @@ function escHtml(str) {
   var d = document.createElement('div');
   d.textContent = str;
   return d.innerHTML;
+}
+
+function findSub(id) {
+  for (var i = 0; i < subtitles.length; i++) {
+    if (subtitles[i].id === id) return subtitles[i];
+  }
+  return null;
 }
 
 Promise.all([
@@ -367,12 +447,13 @@ function renderList() {
   var html = '';
   subtitles.forEach(function(sub) {
     html += '<div class="sub-item" id="sub-' + sub.id + '">' +
-      '<div class="sub-row" onclick="onSubClick(' + sub.id + ',' + sub.s + ')">' +
+      '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
         '<div class="sub-num">' + sub.id + '</div>' +
         '<div class="sub-text">' +
           '<div class="sub-ko">' + escHtml(sub.ko) + '</div>' +
           '<div class="sub-ne">' + escHtml(sub.ne) + '</div>' +
         '</div>' +
+        '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
         '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
       '</div>' +
       '<div class="sub-detail" id="detail-' + sub.id + '">' +
@@ -421,28 +502,75 @@ function buildDetail(id) {
   return html;
 }
 
-function onSubClick(id, startTime) {
-  pendingPause = true;
-  if (player && player.seekTo) {
-    player.seekTo(startTime, true);
-    player.pauseVideo();
-  }
+/* ── Subtitle Click ── */
+function onSubClick(id) {
+  var sub = findSub(id);
+  if (!sub) return;
 
+  // Toggle detail
   if (openDetailId === id) {
     closeDetail(id);
     openDetailId = -1;
-    return;
+  } else {
+    if (openDetailId !== -1) closeDetail(openDetailId);
+    openDetailId = id;
+    var el = document.getElementById('detail-' + id);
+    if (el) el.classList.add('open');
   }
 
+  // Start loop
+  startLoop(sub);
+  updateNowPlaying(id);
+}
+
+function startLoop(sub) {
+  // Clear previous loop
+  clearLoopUI();
+
+  loopSub = sub;
+
+  // Seek and play
+  if (player && player.seekTo) {
+    player.seekTo(sub.s, true);
+    player.playVideo();
+  }
+
+  // Show loop UI
+  var icon = document.getElementById('loop-icon-' + sub.id);
+  if (icon) icon.textContent = '🔁';
+  var item = document.getElementById('sub-' + sub.id);
+  if (item) item.classList.add('looping');
+
+  var bar = document.getElementById('loop-bar');
+  bar.classList.add('active');
+  document.getElementById('loop-info').innerHTML =
+    '<strong>🔁 반복 재생 중</strong> #' + sub.id + ' ' + escHtml(sub.ko.substring(0, 25)) + (sub.ko.length > 25 ? '...' : '');
+}
+
+function stopLoop() {
+  clearLoopUI();
+  loopSub = null;
+
+  // Close detail
   if (openDetailId !== -1) {
     closeDetail(openDetailId);
+    openDetailId = -1;
   }
 
-  openDetailId = id;
-  var el = document.getElementById('detail-' + id);
-  if (el) el.classList.add('open');
+  // Continue playing
+  if (player && player.playVideo) {
+    player.playVideo();
+  }
+}
 
-  updateNowPlaying(id);
+function clearLoopUI() {
+  if (loopSub) {
+    var icon = document.getElementById('loop-icon-' + loopSub.id);
+    if (icon) icon.textContent = '';
+    var item = document.getElementById('sub-' + loopSub.id);
+    if (item) item.classList.remove('looping');
+  }
+  document.getElementById('loop-bar').classList.remove('active');
 }
 
 function closeDetail(id) {
@@ -458,10 +586,7 @@ function closeAllDetails() {
 }
 
 function updateNowPlaying(id) {
-  var sub = null;
-  for (var i = 0; i < subtitles.length; i++) {
-    if (subtitles[i].id === id) { sub = subtitles[i]; break; }
-  }
+  var sub = findSub(id);
   if (!sub) return;
   document.getElementById('now-ko').textContent = sub.ko;
   document.getElementById('now-ne').textContent = sub.ne;
@@ -486,23 +611,19 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
-    if (pendingPause) {
-      pendingPause = false;
-      player.pauseVideo();
-      return;
+    // If not looping, close details and do normal sync
+    if (!loopSub) {
+      closeAllDetails();
     }
-    isPlaying = true;
-    closeAllDetails();
     startSubtitleSync();
-  } else {
-    isPlaying = false;
+  } else if (event.data === YT.PlayerState.PAUSED) {
     stopSubtitleSync();
   }
 }
 
 function startSubtitleSync() {
   stopSubtitleSync();
-  subtitleTimer = setInterval(updateSubtitle, 250);
+  subtitleTimer = setInterval(updateSubtitle, 200);
 }
 
 function stopSubtitleSync() {
@@ -514,6 +635,13 @@ function stopSubtitleSync() {
 
 function updateSubtitle() {
   var t = player.getCurrentTime();
+
+  // Loop: if past end of looped subtitle, seek back to start
+  if (loopSub && t >= loopSub.e) {
+    player.seekTo(loopSub.s, true);
+    return;
+  }
+
   var found = null;
   for (var i = 0; i < subtitles.length; i++) {
     if (t >= subtitles[i].s && t < subtitles[i].e) {
@@ -539,9 +667,12 @@ function highlightSub(id) {
   var el = document.getElementById('sub-' + id);
   if (el) {
     el.classList.add('active');
-    var list = document.getElementById('sub-list');
-    var top = el.offsetTop - list.offsetTop - list.clientHeight / 2 + el.clientHeight / 2;
-    list.scrollTop = Math.max(0, top);
+    // Auto-scroll only when not looping (avoid scroll jump during loop)
+    if (!loopSub) {
+      var list = document.getElementById('sub-list');
+      var top = el.offsetTop - list.offsetTop - list.clientHeight / 2 + el.clientHeight / 2;
+      list.scrollTop = Math.max(0, top);
+    }
   }
 }
 
