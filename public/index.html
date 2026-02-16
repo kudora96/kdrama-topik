@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Drama TOPIK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #fff;
+      padding: 14px 20px;
+      text-align: center;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #1a1a2e;
+      letter-spacing: 1px;
+    }
+
+    .logo .play { color: #e94560; }
+
+    /* ── Main ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    /* ── Player ── */
+    .player-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .player-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ── Subtitle ── */
+    .subtitle-box {
+      margin-top: 16px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      min-height: 88px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .subtitle-ko {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    .subtitle-ne {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .subtitle-placeholder {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      header { padding: 12px 16px; }
+      .logo { font-size: 1.25rem; }
+      .container { padding: 16px 12px; }
+      .subtitle-box { padding: 16px; }
+      .subtitle-ko { font-size: 1.05rem; }
+      .subtitle-ne { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">K<span class="play">▶</span>Drama TOPIK</div>
+  </header>
+
+  <div class="container">
+    <div class="player-wrap">
+      <div id="player"></div>
+    </div>
+
+    <div class="subtitle-box">
+      <div class="subtitle-ko" id="subtitle-ko"></div>
+      <div class="subtitle-ne" id="subtitle-ne"></div>
+      <div class="subtitle-placeholder" id="subtitle-placeholder">영상을 재생하면 자막이 표시됩니다</div>
+    </div>
+  </div>
+
+<script>
+var player;
+var subtitles = [];
+var subtitleTimer = null;
+var lastSubId = -1;
+
+fetch('../data/subtitles.json')
+  .then(function(res) { return res.json(); })
+  .then(function(data) { subtitles = data; });
+
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    videoId: 'srN85EUD1kI',
+    playerVars: {
+      rel: 0,
+      modestbranding: 1
+    },
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  // Player is ready
+}
+
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.PLAYING) {
+    startSubtitleSync();
+  } else {
+    stopSubtitleSync();
+  }
+}
+
+function startSubtitleSync() {
+  stopSubtitleSync();
+  subtitleTimer = setInterval(updateSubtitle, 250);
+}
+
+function stopSubtitleSync() {
+  if (subtitleTimer) {
+    clearInterval(subtitleTimer);
+    subtitleTimer = null;
+  }
+}
+
+function updateSubtitle() {
+  var t = player.getCurrentTime();
+  var found = null;
+
+  for (var i = 0; i < subtitles.length; i++) {
+    if (t >= subtitles[i].s && t < subtitles[i].e) {
+      found = subtitles[i];
+      break;
+    }
+  }
+
+  if (found && found.id !== lastSubId) {
+    lastSubId = found.id;
+    document.getElementById('subtitle-ko').textContent = found.ko;
+    document.getElementById('subtitle-ne').textContent = found.ne;
+    document.getElementById('subtitle-placeholder').style.display = 'none';
+  } else if (!found && lastSubId !== -1) {
+    lastSubId = -1;
+    document.getElementById('subtitle-ko').textContent = '';
+    document.getElementById('subtitle-ne').textContent = '';
+  }
+}
+</script>
+</body>
+</html>
