@@ -349,10 +349,8 @@
       color: #ff9800;
     }
 
-    .btn-continue {
+    .btn-action {
       flex-shrink: 0;
-      background: #1a1a2e;
-      color: #fff;
       border: none;
       border-radius: 20px;
       padding: 7px 16px;
@@ -362,8 +360,18 @@
       font-family: inherit;
     }
 
-    .btn-continue:active {
+    .btn-action:active {
       opacity: 0.8;
+    }
+
+    .btn-repeat {
+      background: #ff9800;
+      color: #fff;
+    }
+
+    .btn-stop {
+      background: #e94560;
+      color: #fff;
     }
 
     /* scrollbar */
@@ -391,7 +399,8 @@
 
   <div class="loop-bar" id="loop-bar">
     <div class="loop-info" id="loop-info"></div>
-    <button class="btn-continue" onclick="stopLoop()">이어서 재생 &#9654;</button>
+    <button class="btn-action btn-repeat" id="btn-repeat" onclick="startLoop()">🔁 반복</button>
+    <button class="btn-action btn-stop" id="btn-stop" onclick="stopLoop()" style="display:none">⏹ 중지</button>
   </div>
 
   <div class="sub-list-header">
@@ -409,7 +418,10 @@ var analysisMap = {};
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
+var currentSub = null;
 var loopSub = null;
+var loopPausing = false;
+var loopPauseTimer = null;
 
 var topikCls = {1:'topik-1',2:'topik-2',3:'topik-3',4:'topik-4',5:'topik-5',6:'topik-6'};
 
@@ -518,39 +530,51 @@ function onSubClick(id) {
     closeDetail(openDetailId);
   }
 
-  // Always open detail (not toggle — prevents double-tap close)
+  // Cancel any existing loop
+  cancelLoop();
+
+  // Set current subtitle for play-once
+  currentSub = sub;
   openDetailId = id;
 
-  // Set loopSub BEFORE player calls so state change handler sees it
-  clearLoopUI();
-  loopSub = sub;
-
-  // Seek + play
+  // Seek + play (single play)
   if (player && player.seekTo) {
     player.seekTo(sub.s, true);
     player.playVideo();
   }
 
-  // Open detail after loop state is fully set
+  // Open detail
   var el = document.getElementById('detail-' + id);
   if (el) el.classList.add('open');
 
-  // Loop UI
-  var icon = document.getElementById('loop-icon-' + sub.id);
-  if (icon) icon.textContent = '🔁';
-  var item = document.getElementById('sub-' + sub.id);
-  if (item) item.classList.add('looping');
-  var bar = document.getElementById('loop-bar');
-  bar.classList.add('active');
-  document.getElementById('loop-info').innerHTML =
-    '<strong>🔁 반복 재생 중</strong> #' + sub.id + ' ' + escHtml(sub.ko.substring(0, 25)) + (sub.ko.length > 25 ? '...' : '');
+  // Show bar with repeat button
+  showBar('once');
 
   updateNowPlaying(id);
 }
 
+function startLoop() {
+  if (!currentSub) return;
+  loopSub = currentSub;
+  loopPausing = false;
+
+  // Seek to start and play
+  if (player && player.seekTo) {
+    player.seekTo(loopSub.s, true);
+    player.playVideo();
+  }
+
+  // Loop visual on subtitle item
+  var icon = document.getElementById('loop-icon-' + loopSub.id);
+  if (icon) icon.textContent = '🔁';
+  var item = document.getElementById('sub-' + loopSub.id);
+  if (item) item.classList.add('looping');
+
+  showBar('loop');
+}
+
 function stopLoop() {
-  clearLoopUI();
-  loopSub = null;
+  cancelLoop();
 
   // Close detail
   if (openDetailId !== -1) {
@@ -558,20 +582,51 @@ function stopLoop() {
     openDetailId = -1;
   }
 
+  currentSub = null;
+  document.getElementById('loop-bar').classList.remove('active');
+
   // Continue playing
   if (player && player.playVideo) {
     player.playVideo();
   }
 }
 
-function clearLoopUI() {
+function cancelLoop() {
+  if (loopPauseTimer) {
+    clearTimeout(loopPauseTimer);
+    loopPauseTimer = null;
+  }
+  loopPausing = false;
+
   if (loopSub) {
     var icon = document.getElementById('loop-icon-' + loopSub.id);
     if (icon) icon.textContent = '';
     var item = document.getElementById('sub-' + loopSub.id);
     if (item) item.classList.remove('looping');
+    loopSub = null;
   }
-  document.getElementById('loop-bar').classList.remove('active');
+}
+
+function showBar(mode) {
+  var bar = document.getElementById('loop-bar');
+  var info = document.getElementById('loop-info');
+  var btnRepeat = document.getElementById('btn-repeat');
+  var btnStop = document.getElementById('btn-stop');
+  var sub = currentSub;
+  if (!sub) return;
+
+  bar.classList.add('active');
+  var label = '#' + sub.id + ' ' + escHtml(sub.ko.substring(0, 25)) + (sub.ko.length > 25 ? '...' : '');
+
+  if (mode === 'once') {
+    info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
+    btnRepeat.style.display = '';
+    btnStop.style.display = 'none';
+  } else {
+    info.innerHTML = '<strong>🔁 반복 재생 중</strong> ' + label;
+    btnRepeat.style.display = 'none';
+    btnStop.style.display = '';
+  }
 }
 
 function closeDetail(id) {
@@ -633,9 +688,26 @@ function stopSubtitleSync() {
 function updateSubtitle() {
   var t = player.getCurrentTime();
 
-  // Loop: if past end of looped subtitle, seek back to start
-  if (loopSub && t >= loopSub.e) {
-    player.seekTo(loopSub.s, true);
+  // Play-once: pause at end of segment
+  if (currentSub && !loopSub && t >= currentSub.e) {
+    player.pauseVideo();
+    var info = document.getElementById('loop-info');
+    var label = '#' + currentSub.id + ' ' + escHtml(currentSub.ko.substring(0, 25)) + (currentSub.ko.length > 25 ? '...' : '');
+    info.innerHTML = '<strong>✓ 재생 완료</strong> ' + label;
+    return;
+  }
+
+  // Loop: pause 1.5s then replay
+  if (loopSub && !loopPausing && t >= loopSub.e) {
+    loopPausing = true;
+    player.pauseVideo();
+    loopPauseTimer = setTimeout(function() {
+      if (loopSub) {
+        player.seekTo(loopSub.s, true);
+        player.playVideo();
+        loopPausing = false;
+      }
+    }, 1500);
     return;
   }
 
