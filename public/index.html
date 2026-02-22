@@ -447,6 +447,11 @@
       color: #fff;
     }
 
+    .btn-play-all {
+      background: #2196f3;
+      color: #fff;
+    }
+
     .btn-stop {
       background: #e94560;
       color: #fff;
@@ -488,6 +493,7 @@
   <div class="loop-bar" id="loop-bar">
     <div class="loop-info" id="loop-info"></div>
     <button class="btn-action btn-repeat" id="btn-repeat" onclick="startLoop()">🔁 반복</button>
+    <button class="btn-action btn-play-all" id="btn-play-all" onclick="playAll()" style="display:none">▶ 전체</button>
     <button class="btn-action btn-speed" id="btn-speed" onclick="toggleSpeed()" style="display:none">🐢1x</button>
     <button class="btn-action btn-stop" id="btn-stop" onclick="stopLoop()" style="display:none">⏹ 중지</button>
   </div>
@@ -810,10 +816,29 @@ function cancelLoop() {
   }
 }
 
+function playAll() {
+  // Close explain overlay
+  closeExplainOverlay();
+  // Cancel loop
+  cancelLoop();
+  resetSpeed();
+  // Close detail panel
+  if (openDetailId !== -1) {
+    closeDetail(openDetailId);
+    openDetailId = -1;
+  }
+  // Enter free play mode
+  currentSub = null;
+  document.getElementById('loop-bar').classList.remove('active');
+  // Play from current position
+  if (player && player.playVideo) player.playVideo();
+}
+
 function showBar(mode) {
   var bar = document.getElementById('loop-bar');
   var info = document.getElementById('loop-info');
   var btnRepeat = document.getElementById('btn-repeat');
+  var btnPlayAll = document.getElementById('btn-play-all');
   var btnSpeed = document.getElementById('btn-speed');
   var btnStop = document.getElementById('btn-stop');
   var sub = currentSub;
@@ -825,11 +850,13 @@ function showBar(mode) {
   if (mode === 'once') {
     info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
     btnRepeat.style.display = '';
+    btnPlayAll.style.display = '';
     btnSpeed.style.display = 'none';
     btnStop.style.display = 'none';
   } else {
     info.innerHTML = '<strong>🔁 반복 재생 중</strong> ' + label;
     btnRepeat.style.display = 'none';
+    btnPlayAll.style.display = 'none';
     btnSpeed.style.display = '';
     btnStop.style.display = '';
   }
@@ -979,6 +1006,21 @@ function clearHighlight() {
     activeEl = null;
   }
 }
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', function(e) {
+  if (e.code === 'Space' && e.target === document.body) {
+    e.preventDefault();
+    if (!player || !player.getPlayerState) return;
+    var state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      player.pauseVideo();
+    } else {
+      // Switch to free play mode
+      playAll();
+    }
+  }
+});
 
 /* ── Service Worker ── */
 if ('serviceWorker' in navigator) {
