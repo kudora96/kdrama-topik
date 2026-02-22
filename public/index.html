@@ -1134,12 +1134,9 @@ function updateSubtitle() {
   if (userPaused) return;
   var t = player.getCurrentTime();
 
-  // Play-once: pause at end of segment
+  // Detail open: stay within current segment, loop back to start
   if (currentSub && !loopSub && t >= currentSub.e) {
-    player.pauseVideo();
-    var info = document.getElementById('loop-info');
-    var label = '#' + currentSub.id + ' ' + escHtml(currentSub.ko.substring(0, 25)) + (currentSub.ko.length > 25 ? '...' : '');
-    info.innerHTML = '<strong>✓ 재생 완료</strong> ' + label;
+    player.seekTo(currentSub.s, true);
     return;
   }
 
