@@ -626,7 +626,6 @@ var explainParas = [];
 var explainHighlightTimer = null;
 var explainActivePara = -1;
 var eoSeeking = false;
-var userAction = false;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -923,7 +922,6 @@ function onSubClick(id) {
   cancelLoop();
 
   // Set current subtitle for play-once
-  userAction = false;
   currentSub = sub;
   openDetailId = id;
 
@@ -953,7 +951,6 @@ function startLoop() {
   // Close explain overlay first (pause audio, keep position)
   closeExplainOverlay();
 
-  userAction = false;
   loopSub = currentSub;
   loopPausing = false;
 
@@ -1103,17 +1100,9 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
-    // User manually resumed: clear custom state so playback is free
-    if (userAction) {
-      userAction = false;
-      resetAllState();
-    }
     startSubtitleSync();
     showTouchOverlay(true);
   } else if (event.data === YT.PlayerState.PAUSED) {
-    if (userAction) {
-      userAction = false;
-    }
     stopSubtitleSync();
     showTouchOverlay(true);
   }
@@ -1244,16 +1233,26 @@ function clearHighlight() {
   });
 })();
 
-/* ── Player touch overlay click ── */
-document.getElementById('player-touch-overlay').addEventListener('click', function() {
+/* ── User play/pause toggle ── */
+function userTogglePlay() {
   if (!player || !player.getPlayerState) return;
-  userAction = true;
   var state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) {
+    // Always just pause, keep all state
     player.pauseVideo();
   } else {
+    // Inside a subtitle: just resume, keep loop/sub state
+    // Outside: free play
+    if (!currentSub && !loopSub) {
+      // No custom state, just play
+    }
     player.playVideo();
   }
+}
+
+/* ── Player touch overlay click ── */
+document.getElementById('player-touch-overlay').addEventListener('click', function() {
+  userTogglePlay();
 });
 
 /* ── Blur YouTube iframe to prevent spacebar conflict ── */
@@ -1271,14 +1270,7 @@ document.addEventListener('keydown', function(e) {
   var tag = e.target.tagName;
   if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return;
   e.preventDefault();
-  if (!player || !player.getPlayerState) return;
-  userAction = true;
-  var state = player.getPlayerState();
-  if (state === YT.PlayerState.PLAYING) {
-    player.pauseVideo();
-  } else {
-    player.playVideo();
-  }
+  userTogglePlay();
 });
 
 /* ── Tip banner ── */
