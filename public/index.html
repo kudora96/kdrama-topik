@@ -509,6 +509,8 @@ var player;
 var subtitles = [];
 var explanationsMap = {};
 var explainAudio = null;
+var explainAudioId = null;
+var explainAudioLang = null;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -625,14 +627,25 @@ function openExplainOverlay(id, lang) {
   document.getElementById('eo-title').textContent = title;
   document.getElementById('eo-text').textContent = data[lang];
 
-  // Show overlay (hides video beneath)
+  // Show overlay
   document.getElementById('explain-overlay').classList.add('open');
 
-  // Start audio
-  stopExplainAudio();
+  var playBtn = document.getElementById('eo-play-btn');
+
+  // Same id+lang: resume from where we left off
+  if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
+    explainAudio.play();
+    playBtn.textContent = '⏸';
+    playBtn.classList.add('playing');
+    return;
+  }
+
+  // Different id or lang: destroy old, start fresh
+  destroyExplainAudio();
+  explainAudioId = id;
+  explainAudioLang = lang;
   var path = '../audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
   explainAudio = new Audio(path);
-  var playBtn = document.getElementById('eo-play-btn');
   playBtn.textContent = '⏸';
   playBtn.classList.add('playing');
 
@@ -649,7 +662,13 @@ function openExplainOverlay(id, lang) {
 
 function closeExplainOverlay() {
   document.getElementById('explain-overlay').classList.remove('open');
-  stopExplainAudio();
+  // Pause only, keep position
+  if (explainAudio && !explainAudio.paused) {
+    explainAudio.pause();
+  }
+  var playBtn = document.getElementById('eo-play-btn');
+  playBtn.textContent = '▶';
+  playBtn.classList.remove('playing');
 }
 
 function toggleModalAudio() {
@@ -666,11 +685,13 @@ function toggleModalAudio() {
   }
 }
 
-function stopExplainAudio() {
+function destroyExplainAudio() {
   if (explainAudio) {
     explainAudio.pause();
     explainAudio = null;
   }
+  explainAudioId = null;
+  explainAudioLang = null;
 }
 
 /* ── Subtitle Click ── */
@@ -689,7 +710,7 @@ function onSubClick(id) {
     closeDetail(openDetailId);
   }
 
-  // Close explain overlay if open
+  // Close explain overlay (pauses audio, keeps position)
   closeExplainOverlay();
 
   // Cancel any existing loop
