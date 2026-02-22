@@ -784,18 +784,13 @@ function stopLoop() {
   cancelLoop();
   resetSpeed();
 
-  // Close detail
-  if (openDetailId !== -1) {
-    closeDetail(openDetailId);
-    openDetailId = -1;
-  }
-
-  currentSub = null;
-  document.getElementById('loop-bar').classList.remove('active');
-
-  // Continue playing
-  if (player && player.playVideo) {
-    player.playVideo();
+  // Stay on current subtitle, show play-once bar
+  if (currentSub) {
+    showBar('once');
+    // Pause at current position
+    if (player && player.pauseVideo) player.pauseVideo();
+  } else {
+    document.getElementById('loop-bar').classList.remove('active');
   }
 }
 
