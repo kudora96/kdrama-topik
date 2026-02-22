@@ -415,6 +415,35 @@
       border-left: 3px solid #ffc107;
     }
 
+    /* ── Tip banner ── */
+    .tip-banner {
+      margin-top: 8px;
+      background: #e3f2fd;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #1565c0;
+      line-height: 1.5;
+    }
+
+    .tip-banner-text {
+      flex: 1;
+    }
+
+    .tip-banner-close {
+      flex-shrink: 0;
+      border: none;
+      background: none;
+      color: #1565c0;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0 4px;
+      font-family: inherit;
+    }
+
     /* ── Responsive ── */
     @media (min-width: 480px) {
       .container { padding: 16px; }
@@ -543,6 +572,11 @@
         <div id="eo-text"></div>
       </div>
     </div>
+  </div>
+
+  <div class="tip-banner" id="tip-banner" style="display:none">
+    <div class="tip-banner-text">💡 영상 위에 '동영상 더보기'가 뜨면 ✕를 한번 눌러주세요. 같은 문장에서는 다시 나타나지 않습니다.</div>
+    <button class="tip-banner-close" onclick="closeTipBanner()">✕</button>
   </div>
 
   <div class="now-playing" id="now-playing">
@@ -1194,6 +1228,15 @@ document.addEventListener('keydown', function(e) {
     }
   }
 });
+
+/* ── Tip banner ── */
+if (!localStorage.getItem('tipBannerClosed')) {
+  document.getElementById('tip-banner').style.display = '';
+}
+function closeTipBanner() {
+  document.getElementById('tip-banner').style.display = 'none';
+  localStorage.setItem('tipBannerClosed', '1');
+}
 
 /* ── Service Worker ── */
 if ('serviceWorker' in navigator) {
