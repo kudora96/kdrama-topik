@@ -66,6 +66,15 @@
       border: 0;
     }
 
+    .player-touch-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 5;
+      cursor: pointer;
+    }
+
     /* ── Current subtitle overlay ── */
     .now-playing {
       margin-top: 10px;
@@ -557,6 +566,7 @@
 <div class="container">
   <div class="player-wrap" id="player-wrap">
     <div id="player"></div>
+    <div class="player-touch-overlay" id="player-touch-overlay"></div>
     <div class="explain-overlay" id="explain-overlay">
       <div class="eo-header">
         <div class="eo-title" id="eo-title"></div>
@@ -616,6 +626,7 @@ var explainParas = [];
 var explainHighlightTimer = null;
 var explainActivePara = -1;
 var eoSeeking = false;
+var userAction = false;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -912,6 +923,7 @@ function onSubClick(id) {
   cancelLoop();
 
   // Set current subtitle for play-once
+  userAction = false;
   currentSub = sub;
   openDetailId = id;
 
@@ -920,6 +932,7 @@ function onSubClick(id) {
     player.seekTo(sub.s, true);
     player.playVideo();
   }
+  showTouchOverlay(true);
 
   // Open detail
   var el = document.getElementById('detail-' + id);
@@ -940,6 +953,7 @@ function startLoop() {
   // Close explain overlay first (pause audio, keep position)
   closeExplainOverlay();
 
+  userAction = false;
   loopSub = currentSub;
   loopPausing = false;
 
@@ -1008,6 +1022,7 @@ function resetAllState() {
   currentSub = null;
   loopPausing = false;
   document.getElementById('loop-bar').classList.remove('active');
+  showTouchOverlay(false);
 }
 
 function playAll() {
@@ -1082,10 +1097,26 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
+    // User manually resumed: clear custom state so playback is free
+    if (userAction) {
+      userAction = false;
+      resetAllState();
+    }
     startSubtitleSync();
+    showTouchOverlay(true);
   } else if (event.data === YT.PlayerState.PAUSED) {
+    if (userAction) {
+      userAction = false;
+    }
     stopSubtitleSync();
+    showTouchOverlay(true);
   }
+}
+
+function showTouchOverlay(show) {
+  var ov = document.getElementById('player-touch-overlay');
+  // Show overlay when in custom mode (currentSub or loopSub active)
+  ov.style.display = (currentSub || loopSub) && show ? 'block' : 'none';
 }
 
 function startSubtitleSync() {
@@ -1207,6 +1238,18 @@ function clearHighlight() {
   });
 })();
 
+/* ── Player touch overlay click ── */
+document.getElementById('player-touch-overlay').addEventListener('click', function() {
+  if (!player || !player.getPlayerState) return;
+  userAction = true;
+  var state = player.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+  } else {
+    player.playVideo();
+  }
+});
+
 /* ── Blur YouTube iframe to prevent spacebar conflict ── */
 window.addEventListener('blur', function() {
   setTimeout(function() {
@@ -1223,6 +1266,7 @@ document.addEventListener('keydown', function(e) {
   if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return;
   e.preventDefault();
   if (!player || !player.getPlayerState) return;
+  userAction = true;
   var state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) {
     player.pauseVideo();
