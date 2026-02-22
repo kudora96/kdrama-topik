@@ -1214,34 +1214,9 @@ function clearHighlight() {
   });
 })();
 
-/* ── Keyboard shortcuts ── */
-document.addEventListener('keydown', function(e) {
-  if (e.code !== 'Space') return;
-  // Ignore when YouTube iframe or input elements have focus
-  var tag = e.target.tagName;
-  if (tag === 'IFRAME' || tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return;
-  e.preventDefault();
-  if (!player || !player.getPlayerState) return;
-  var state = player.getPlayerState();
-  if (state === YT.PlayerState.PLAYING) {
-    player.pauseVideo();
-  } else {
-    // Resume: cancel loop/detail but keep current speed
-    closeExplainOverlay();
-    cancelLoop();
-    if (openDetailId !== -1) {
-      closeDetail(openDetailId);
-      openDetailId = -1;
-    }
-    currentSub = null;
-    document.getElementById('loop-bar').classList.remove('active');
-    player.playVideo();
-  }
-});
-
 /* ── Tip banner ── */
 if (!localStorage.getItem('tipBannerClosed')) {
-  document.getElementById('tip-banner').style.display = '';
+  document.getElementById('tip-banner').style.display = 'flex';
 }
 function closeTipBanner() {
   document.getElementById('tip-banner').style.display = 'none';
