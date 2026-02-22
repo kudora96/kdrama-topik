@@ -307,7 +307,7 @@
       flex-shrink: 0;
     }
 
-    /* ── Explanation audio & toggle ── */
+    /* ── Explanation buttons ── */
     .explain-section {
       padding: 0 14px 10px 52px;
     }
@@ -315,7 +315,6 @@
     .explain-btns {
       display: flex;
       gap: 8px;
-      margin-bottom: 8px;
     }
 
     .btn-explain {
@@ -353,77 +352,78 @@
       opacity: 0.8;
     }
 
-    .btn-explain.playing {
-      animation: pulse-btn 1s infinite;
-    }
-
-    @keyframes pulse-btn {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .btn-explain-toggle {
-      width: 100%;
-      border: 1px solid #e0e0e0;
-      background: #fff;
-      border-radius: 8px;
-      padding: 9px 12px;
-      font-size: calc(0.78rem * var(--font-scale, 1));
-      font-weight: 700;
-      color: #555;
-      cursor: pointer;
-      font-family: inherit;
-      text-align: center;
-    }
-
-    .btn-explain-toggle:active {
-      background: #f5f5f5;
-    }
-
-    .explain-content {
+    /* ── Explain Modal ── */
+    .explain-modal {
       display: none;
-      margin-top: 8px;
-      background: #fff;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      overflow: hidden;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10, 10, 20, 0.97);
+      z-index: 1000;
+      flex-direction: column;
     }
 
-    .explain-content.open {
-      display: block;
-    }
-
-    .explain-tab-bar {
+    .explain-modal.open {
       display: flex;
-      border-bottom: 1px solid #e0e0e0;
     }
 
-    .explain-tab {
-      flex: 1;
-      border: none;
-      background: #f8f8f8;
-      padding: 8px;
-      font-size: calc(0.75rem * var(--font-scale, 1));
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .modal-title {
+      font-size: 1rem;
       font-weight: 700;
-      color: #888;
+      color: #fff;
+    }
+
+    .modal-header-btns {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .modal-btn {
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: inherit;
     }
 
-    .explain-tab.active {
-      background: #fff;
-      color: #333;
-      border-bottom: 2px solid #2196f3;
+    .modal-btn:active {
+      background: rgba(255,255,255,0.3);
     }
 
-    .explain-text {
-      padding: 12px;
-      font-size: calc(0.8rem * var(--font-scale, 1));
-      color: #333;
-      line-height: 1.7;
-      white-space: pre-wrap;
-      max-height: 300px;
+    .modal-btn.playing {
+      background: #2196f3;
+    }
+
+    .modal-body {
+      flex: 1;
       overflow-y: auto;
+      padding: 20px 18px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-text {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 2;
+      white-space: pre-wrap;
+      word-break: keep-all;
     }
 
     /* ── Responsive ── */
@@ -560,6 +560,19 @@
   </div>
 
   <div class="sub-list" id="sub-list"></div>
+</div>
+
+<div class="explain-modal" id="explain-modal">
+  <div class="modal-header">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-header-btns">
+      <button class="modal-btn" id="modal-play-btn" onclick="toggleModalAudio()">▶</button>
+      <button class="modal-btn" onclick="closeExplainModal()">✕</button>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="modal-text" id="modal-text"></div>
+  </div>
 </div>
 
 <script>
@@ -703,67 +716,73 @@ function buildExplainSection(id) {
   var disabled = hasData ? '' : ' disabled';
   var html = '<div class="explain-section">';
   html += '<div class="explain-btns">';
-  html += '<button class="btn-explain btn-explain-kr" id="btn-exkr-' + id + '" onclick="playExplainAudio(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
-  html += '<button class="btn-explain btn-explain-ne" id="btn-exne-' + id + '" onclick="playExplainAudio(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
+  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainModal(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
+  html += '<button class="btn-explain btn-explain-ne" onclick="openExplainModal(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
   html += '</div>';
-  if (hasData) {
-    html += '<button class="btn-explain-toggle" onclick="toggleExplanation(' + id + ')">📖 설명 보기</button>';
-    html += '<div class="explain-content" id="explain-content-' + id + '">';
-    html += '<div class="explain-tab-bar">';
-    html += '<button class="explain-tab active" id="extab-kr-' + id + '" onclick="switchExplainTab(' + id + ',\'kr\')">한국어</button>';
-    html += '<button class="explain-tab" id="extab-ne-' + id + '" onclick="switchExplainTab(' + id + ',\'ne\')">नेपाली</button>';
-    html += '</div>';
-    html += '<div class="explain-text" id="explain-text-' + id + '">' + escHtml(hasData.kr) + '</div>';
-    html += '</div>';
-  }
   html += '</div>';
   return html;
 }
 
-function playExplainAudio(id, lang) {
-  // Stop YouTube player
+function openExplainModal(id, lang) {
+  var data = explanationsMap[String(id)];
+  if (!data) return;
+
+  // Pause YouTube
   if (player && player.pauseVideo) player.pauseVideo();
 
-  // Stop previous explain audio
-  if (explainAudio) {
-    explainAudio.pause();
-    explainAudio = null;
-    // Remove playing class from all buttons
-    var allBtns = document.querySelectorAll('.btn-explain.playing');
-    for (var i = 0; i < allBtns.length; i++) allBtns[i].classList.remove('playing');
-  }
+  // Set modal content
+  var title = lang === 'kr' ? '🎧 한국어 설명 #' + id : '🎧 네팔어 설명 #' + id;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-text').textContent = data[lang];
 
+  // Show modal
+  document.getElementById('explain-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Start audio
+  stopExplainAudio();
   var path = '../audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
   explainAudio = new Audio(path);
-
-  var btn = document.getElementById('btn-ex' + lang + '-' + id);
-  if (btn) btn.classList.add('playing');
+  var playBtn = document.getElementById('modal-play-btn');
+  playBtn.textContent = '⏸';
+  playBtn.classList.add('playing');
 
   explainAudio.onended = function() {
-    if (btn) btn.classList.remove('playing');
-    explainAudio = null;
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('playing');
   };
   explainAudio.onerror = function() {
-    if (btn) btn.classList.remove('playing');
-    explainAudio = null;
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('playing');
   };
   explainAudio.play();
 }
 
-function toggleExplanation(id) {
-  var el = document.getElementById('explain-content-' + id);
-  if (el) el.classList.toggle('open');
+function closeExplainModal() {
+  document.getElementById('explain-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  stopExplainAudio();
 }
 
-function switchExplainTab(id, lang) {
-  var data = explanationsMap[String(id)];
-  if (!data) return;
-  var textEl = document.getElementById('explain-text-' + id);
-  if (textEl) textEl.textContent = data[lang];
-  var tabKr = document.getElementById('extab-kr-' + id);
-  var tabNe = document.getElementById('extab-ne-' + id);
-  if (tabKr) tabKr.classList.toggle('active', lang === 'kr');
-  if (tabNe) tabNe.classList.toggle('active', lang === 'ne');
+function toggleModalAudio() {
+  if (!explainAudio) return;
+  var playBtn = document.getElementById('modal-play-btn');
+  if (explainAudio.paused) {
+    explainAudio.play();
+    playBtn.textContent = '⏸';
+    playBtn.classList.add('playing');
+  } else {
+    explainAudio.pause();
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('playing');
+  }
+}
+
+function stopExplainAudio() {
+  if (explainAudio) {
+    explainAudio.pause();
+    explainAudio = null;
+  }
 }
 
 /* ── Subtitle Click ── */
@@ -783,12 +802,7 @@ function onSubClick(id) {
   }
 
   // Stop explain audio if playing
-  if (explainAudio) {
-    explainAudio.pause();
-    explainAudio = null;
-    var allBtns = document.querySelectorAll('.btn-explain.playing');
-    for (var b = 0; b < allBtns.length; b++) allBtns[b].classList.remove('playing');
-  }
+  stopExplainAudio();
 
   // Cancel any existing loop
   cancelLoop();
