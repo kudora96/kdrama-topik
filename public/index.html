@@ -349,14 +349,24 @@
       overflow-y: auto;
       padding: 10px 14px;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
-    .eo-text {
+    .eo-para {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255,255,255,0.6);
       line-height: 1.8;
-      white-space: pre-wrap;
       word-break: keep-all;
+      padding: 6px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      transition: color 0.3s, background 0.3s;
+    }
+
+    .eo-para.active {
+      color: #fff;
+      background: rgba(255, 193, 7, 0.2);
+      border-left: 3px solid #ffc107;
     }
 
     /* ── Responsive ── */
@@ -478,8 +488,8 @@
         <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">▶</button>
         <button class="eo-btn" onclick="closeExplainOverlay()">✕</button>
       </div>
-      <div class="eo-body">
-        <div class="eo-text" id="eo-text"></div>
+      <div class="eo-body" id="eo-body">
+        <div id="eo-text"></div>
       </div>
     </div>
   </div>
@@ -517,6 +527,9 @@ var explanationsMap = {};
 var explainAudio = null;
 var explainAudioId = null;
 var explainAudioLang = null;
+var explainParas = [];
+var explainHighlightTimer = null;
+var explainActivePara = -1;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -621,6 +634,65 @@ function buildExplainSection(id) {
   return html;
 }
 
+function renderExplainParas(text) {
+  var parts = text.split('\n\n');
+  explainParas = parts;
+  explainActivePara = -1;
+  var container = document.getElementById('eo-text');
+  var html = '';
+  for (var i = 0; i < parts.length; i++) {
+    html += '<div class="eo-para" id="eo-para-' + i + '">' + escHtml(parts[i]) + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function startExplainHighlight() {
+  stopExplainHighlight();
+  explainHighlightTimer = setInterval(updateExplainHighlight, 200);
+}
+
+function stopExplainHighlight() {
+  if (explainHighlightTimer) {
+    clearInterval(explainHighlightTimer);
+    explainHighlightTimer = null;
+  }
+}
+
+function updateExplainHighlight() {
+  if (!explainAudio || explainAudio.paused || !explainAudio.duration) return;
+  var t = explainAudio.currentTime;
+  var dur = explainAudio.duration;
+  // Calculate paragraph start times by character count ratio
+  var totalChars = 0;
+  for (var i = 0; i < explainParas.length; i++) totalChars += explainParas[i].length;
+  var cumChars = 0;
+  var idx = explainParas.length - 1;
+  for (var i = 0; i < explainParas.length; i++) {
+    var paraStart = (cumChars / totalChars) * dur;
+    var paraEnd = ((cumChars + explainParas[i].length) / totalChars) * dur;
+    if (t >= paraStart && t < paraEnd) { idx = i; break; }
+    cumChars += explainParas[i].length;
+  }
+  if (idx !== explainActivePara) {
+    // Remove old highlight
+    if (explainActivePara >= 0) {
+      var old = document.getElementById('eo-para-' + explainActivePara);
+      if (old) old.classList.remove('active');
+    }
+    explainActivePara = idx;
+    var el = document.getElementById('eo-para-' + idx);
+    if (el) {
+      el.classList.add('active');
+      // Auto-scroll
+      var body = document.getElementById('eo-body');
+      if (body) {
+        var top = el.offsetTop - body.offsetTop;
+        body.scrollTop = top - 10;
+      }
+    }
+  }
+}
+
 function openExplainOverlay(id, lang) {
   var data = explanationsMap[String(id)];
   if (!data) return;
@@ -628,10 +700,9 @@ function openExplainOverlay(id, lang) {
   // Pause YouTube
   if (player && player.pauseVideo) player.pauseVideo();
 
-  // Set overlay content
+  // Set title
   var title = lang === 'kr' ? '🎧 한국어 설명 #' + id : '🎧 네팔어 설명 #' + id;
   document.getElementById('eo-title').textContent = title;
-  document.getElementById('eo-text').textContent = data[lang];
 
   // Show overlay
   document.getElementById('explain-overlay').classList.add('open');
@@ -640,14 +711,17 @@ function openExplainOverlay(id, lang) {
 
   // Same id+lang: resume from where we left off
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
+    renderExplainParas(data[lang]);
     explainAudio.play();
     playBtn.textContent = '⏸';
     playBtn.classList.add('playing');
+    startExplainHighlight();
     return;
   }
 
   // Different id or lang: destroy old, start fresh
   destroyExplainAudio();
+  renderExplainParas(data[lang]);
   explainAudioId = id;
   explainAudioLang = lang;
   var path = '../audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
@@ -658,16 +732,20 @@ function openExplainOverlay(id, lang) {
   explainAudio.onended = function() {
     playBtn.textContent = '▶';
     playBtn.classList.remove('playing');
+    stopExplainHighlight();
   };
   explainAudio.onerror = function() {
     playBtn.textContent = '▶';
     playBtn.classList.remove('playing');
+    stopExplainHighlight();
   };
   explainAudio.play();
+  startExplainHighlight();
 }
 
 function closeExplainOverlay() {
   document.getElementById('explain-overlay').classList.remove('open');
+  stopExplainHighlight();
   // Pause only, keep position
   if (explainAudio && !explainAudio.paused) {
     explainAudio.pause();
@@ -684,20 +762,25 @@ function toggleModalAudio() {
     explainAudio.play();
     playBtn.textContent = '⏸';
     playBtn.classList.add('playing');
+    startExplainHighlight();
   } else {
     explainAudio.pause();
     playBtn.textContent = '▶';
     playBtn.classList.remove('playing');
+    stopExplainHighlight();
   }
 }
 
 function destroyExplainAudio() {
+  stopExplainHighlight();
   if (explainAudio) {
     explainAudio.pause();
     explainAudio = null;
   }
   explainAudioId = null;
   explainAudioLang = null;
+  explainParas = [];
+  explainActivePara = -1;
 }
 
 /* ── Subtitle Click ── */
