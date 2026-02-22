@@ -741,6 +741,10 @@ function onSubClick(id) {
 
 function startLoop() {
   if (!currentSub) return;
+
+  // Close explain overlay first (pause audio, keep position)
+  closeExplainOverlay();
+
   loopSub = currentSub;
   loopPausing = false;
 
