@@ -307,6 +307,125 @@
       flex-shrink: 0;
     }
 
+    /* ── Explanation audio & toggle ── */
+    .explain-section {
+      padding: 0 14px 10px 52px;
+    }
+
+    .explain-btns {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn-explain {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: calc(0.78rem * var(--font-scale, 1));
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-explain-kr {
+      background: #2196f3;
+      color: #fff;
+    }
+
+    .btn-explain-ne {
+      background: #4caf50;
+      color: #fff;
+    }
+
+    .btn-explain:disabled {
+      background: #ccc;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    .btn-explain:not(:disabled):active {
+      opacity: 0.8;
+    }
+
+    .btn-explain.playing {
+      animation: pulse-btn 1s infinite;
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .btn-explain-toggle {
+      width: 100%;
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: calc(0.78rem * var(--font-scale, 1));
+      font-weight: 700;
+      color: #555;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .btn-explain-toggle:active {
+      background: #f5f5f5;
+    }
+
+    .explain-content {
+      display: none;
+      margin-top: 8px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      overflow: hidden;
+    }
+
+    .explain-content.open {
+      display: block;
+    }
+
+    .explain-tab-bar {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .explain-tab {
+      flex: 1;
+      border: none;
+      background: #f8f8f8;
+      padding: 8px;
+      font-size: calc(0.75rem * var(--font-scale, 1));
+      font-weight: 700;
+      color: #888;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .explain-tab.active {
+      background: #fff;
+      color: #333;
+      border-bottom: 2px solid #2196f3;
+    }
+
+    .explain-text {
+      padding: 12px;
+      font-size: calc(0.8rem * var(--font-scale, 1));
+      color: #333;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
     /* ── Responsive ── */
     @media (min-width: 480px) {
       .container { padding: 16px; }
@@ -447,6 +566,8 @@
 var player;
 var subtitles = [];
 var analysisMap = {};
+var explanationsMap = {};
+var explainAudio = null;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -482,10 +603,12 @@ function findSub(id) {
 
 Promise.all([
   fetch('../data/subtitles.json').then(function(r){return r.json();}),
-  fetch('../data/analysis.json').then(function(r){return r.json();})
+  fetch('../data/analysis.json').then(function(r){return r.json();}),
+  fetch('../data/explanations.json').then(function(r){return r.json();})
 ]).then(function(results) {
   subtitles = results[0];
   results[1].forEach(function(a){ analysisMap[a.id] = a; });
+  explanationsMap = results[2];
   renderList();
 });
 
@@ -565,7 +688,82 @@ function buildDetail(id) {
   }
 
   html += '</div>';
+  html += buildExplainSection(id);
   return html;
+}
+
+function padId(id) {
+  var s = '' + id;
+  while (s.length < 3) s = '0' + s;
+  return s;
+}
+
+function buildExplainSection(id) {
+  var hasData = explanationsMap[String(id)];
+  var disabled = hasData ? '' : ' disabled';
+  var html = '<div class="explain-section">';
+  html += '<div class="explain-btns">';
+  html += '<button class="btn-explain btn-explain-kr" id="btn-exkr-' + id + '" onclick="playExplainAudio(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
+  html += '<button class="btn-explain btn-explain-ne" id="btn-exne-' + id + '" onclick="playExplainAudio(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
+  html += '</div>';
+  if (hasData) {
+    html += '<button class="btn-explain-toggle" onclick="toggleExplanation(' + id + ')">📖 설명 보기</button>';
+    html += '<div class="explain-content" id="explain-content-' + id + '">';
+    html += '<div class="explain-tab-bar">';
+    html += '<button class="explain-tab active" id="extab-kr-' + id + '" onclick="switchExplainTab(' + id + ',\'kr\')">한국어</button>';
+    html += '<button class="explain-tab" id="extab-ne-' + id + '" onclick="switchExplainTab(' + id + ',\'ne\')">नेपाली</button>';
+    html += '</div>';
+    html += '<div class="explain-text" id="explain-text-' + id + '">' + escHtml(hasData.kr) + '</div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function playExplainAudio(id, lang) {
+  // Stop YouTube player
+  if (player && player.pauseVideo) player.pauseVideo();
+
+  // Stop previous explain audio
+  if (explainAudio) {
+    explainAudio.pause();
+    explainAudio = null;
+    // Remove playing class from all buttons
+    var allBtns = document.querySelectorAll('.btn-explain.playing');
+    for (var i = 0; i < allBtns.length; i++) allBtns[i].classList.remove('playing');
+  }
+
+  var path = '../audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
+  explainAudio = new Audio(path);
+
+  var btn = document.getElementById('btn-ex' + lang + '-' + id);
+  if (btn) btn.classList.add('playing');
+
+  explainAudio.onended = function() {
+    if (btn) btn.classList.remove('playing');
+    explainAudio = null;
+  };
+  explainAudio.onerror = function() {
+    if (btn) btn.classList.remove('playing');
+    explainAudio = null;
+  };
+  explainAudio.play();
+}
+
+function toggleExplanation(id) {
+  var el = document.getElementById('explain-content-' + id);
+  if (el) el.classList.toggle('open');
+}
+
+function switchExplainTab(id, lang) {
+  var data = explanationsMap[String(id)];
+  if (!data) return;
+  var textEl = document.getElementById('explain-text-' + id);
+  if (textEl) textEl.textContent = data[lang];
+  var tabKr = document.getElementById('extab-kr-' + id);
+  var tabNe = document.getElementById('extab-ne-' + id);
+  if (tabKr) tabKr.classList.toggle('active', lang === 'kr');
+  if (tabNe) tabNe.classList.toggle('active', lang === 'ne');
 }
 
 /* ── Subtitle Click ── */
@@ -582,6 +780,14 @@ function onSubClick(id) {
   // Close previous detail (different subtitle)
   if (openDetailId !== -1 && openDetailId !== id) {
     closeDetail(openDetailId);
+  }
+
+  // Stop explain audio if playing
+  if (explainAudio) {
+    explainAudio.pause();
+    explainAudio = null;
+    var allBtns = document.querySelectorAll('.btn-explain.playing');
+    for (var b = 0; b < allBtns.length; b++) allBtns[b].classList.remove('playing');
   }
 
   // Cancel any existing loop
