@@ -976,17 +976,9 @@ function resetSpeed() {
 }
 
 function stopLoop() {
-  cancelLoop();
-  resetSpeed();
-
-  // Stay on current subtitle, show play-once bar
-  if (currentSub) {
-    showBar('once');
-    // Pause at current position
-    if (player && player.pauseVideo) player.pauseVideo();
-  } else {
-    document.getElementById('loop-bar').classList.remove('active');
-  }
+  resetAllState();
+  // Pause at current position
+  if (player && player.pauseVideo) player.pauseVideo();
 }
 
 function cancelLoop() {
@@ -1005,20 +997,21 @@ function cancelLoop() {
   }
 }
 
-function playAll() {
-  // Close explain overlay
+function resetAllState() {
   closeExplainOverlay();
-  // Cancel loop
   cancelLoop();
   resetSpeed();
-  // Close detail panel
   if (openDetailId !== -1) {
     closeDetail(openDetailId);
     openDetailId = -1;
   }
-  // Enter free play mode
   currentSub = null;
+  loopPausing = false;
   document.getElementById('loop-bar').classList.remove('active');
+}
+
+function playAll() {
+  resetAllState();
   // Play from current position
   if (player && player.playVideo) player.playVideo();
 }
@@ -1213,6 +1206,30 @@ function clearHighlight() {
     eoSeeking = false;
   });
 })();
+
+/* ── Blur YouTube iframe to prevent spacebar conflict ── */
+window.addEventListener('blur', function() {
+  setTimeout(function() {
+    if (document.activeElement && document.activeElement.tagName === 'IFRAME') {
+      document.activeElement.blur();
+    }
+  }, 0);
+});
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', function(e) {
+  if (e.code !== 'Space') return;
+  var tag = e.target.tagName;
+  if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return;
+  e.preventDefault();
+  if (!player || !player.getPlayerState) return;
+  var state = player.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+  } else {
+    player.playVideo();
+  }
+});
 
 /* ── Tip banner ── */
 if (!localStorage.getItem('tipBannerClosed')) {
