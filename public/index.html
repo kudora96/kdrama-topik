@@ -344,6 +344,52 @@
       background: #2196f3;
     }
 
+    .eo-seekbar {
+      flex-shrink: 0;
+      padding: 6px 12px 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eo-seek-time {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .eo-seek-input {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.2);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .eo-seek-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffc107;
+      cursor: pointer;
+    }
+
+    .eo-seek-input::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffc107;
+      border: none;
+      cursor: pointer;
+    }
+
     .eo-body {
       flex: 1;
       overflow-y: auto;
@@ -488,6 +534,11 @@
         <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">▶</button>
         <button class="eo-btn" onclick="closeExplainOverlay()">✕</button>
       </div>
+      <div class="eo-seekbar">
+        <span class="eo-seek-time" id="eo-cur-time">0:00</span>
+        <input type="range" class="eo-seek-input" id="eo-seek" min="0" max="100" value="0" step="0.1">
+        <span class="eo-seek-time" id="eo-dur-time">0:00</span>
+      </div>
       <div class="eo-body" id="eo-body">
         <div id="eo-text"></div>
       </div>
@@ -530,6 +581,7 @@ var explainAudioLang = null;
 var explainParas = [];
 var explainHighlightTimer = null;
 var explainActivePara = -1;
+var eoSeeking = false;
 var subtitleTimer = null;
 var lastSubId = -1;
 var openDetailId = -1;
@@ -658,38 +710,58 @@ function stopExplainHighlight() {
   }
 }
 
-function updateExplainHighlight() {
-  if (!explainAudio || explainAudio.paused || !explainAudio.duration) return;
-  var t = explainAudio.currentTime;
-  var dur = explainAudio.duration;
-  // Calculate paragraph start times by character count ratio
+function fmtAudioTime(sec) {
+  if (!sec || isNaN(sec)) return '0:00';
+  var m = Math.floor(sec / 60);
+  var s = Math.floor(sec % 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function getParaIndexAtTime(t, dur) {
   var totalChars = 0;
   for (var i = 0; i < explainParas.length; i++) totalChars += explainParas[i].length;
+  if (totalChars === 0) return 0;
   var cumChars = 0;
-  var idx = explainParas.length - 1;
   for (var i = 0; i < explainParas.length; i++) {
-    var paraStart = (cumChars / totalChars) * dur;
     var paraEnd = ((cumChars + explainParas[i].length) / totalChars) * dur;
-    if (t >= paraStart && t < paraEnd) { idx = i; break; }
+    if (t < paraEnd) return i;
     cumChars += explainParas[i].length;
   }
-  if (idx !== explainActivePara) {
-    // Remove old highlight
-    if (explainActivePara >= 0) {
-      var old = document.getElementById('eo-para-' + explainActivePara);
-      if (old) old.classList.remove('active');
-    }
-    explainActivePara = idx;
-    var el = document.getElementById('eo-para-' + idx);
-    if (el) {
-      el.classList.add('active');
-      // Auto-scroll
-      var body = document.getElementById('eo-body');
-      if (body) {
-        var top = el.offsetTop - body.offsetTop;
-        body.scrollTop = top - 10;
-      }
-    }
+  return explainParas.length - 1;
+}
+
+function highlightPara(idx) {
+  if (idx === explainActivePara) return;
+  if (explainActivePara >= 0) {
+    var old = document.getElementById('eo-para-' + explainActivePara);
+    if (old) old.classList.remove('active');
+  }
+  explainActivePara = idx;
+  var el = document.getElementById('eo-para-' + idx);
+  if (el) {
+    el.classList.add('active');
+    var body = document.getElementById('eo-body');
+    if (body) body.scrollTop = el.offsetTop - body.offsetTop - 10;
+  }
+}
+
+function updateExplainHighlight() {
+  if (!explainAudio || !explainAudio.duration) return;
+  var t = explainAudio.currentTime;
+  var dur = explainAudio.duration;
+
+  // Update seekbar
+  if (!eoSeeking) {
+    var seek = document.getElementById('eo-seek');
+    seek.max = dur;
+    seek.value = t;
+  }
+  document.getElementById('eo-cur-time').textContent = fmtAudioTime(t);
+  document.getElementById('eo-dur-time').textContent = fmtAudioTime(dur);
+
+  // Update paragraph highlight
+  if (!explainAudio.paused) {
+    highlightPara(getParaIndexAtTime(t, dur));
   }
 }
 
@@ -1089,6 +1161,24 @@ function clearHighlight() {
     activeEl = null;
   }
 }
+
+/* ── Seekbar events ── */
+(function() {
+  var seek = document.getElementById('eo-seek');
+  seek.addEventListener('input', function() {
+    eoSeeking = true;
+    if (explainAudio && explainAudio.duration) {
+      document.getElementById('eo-cur-time').textContent = fmtAudioTime(Number(seek.value));
+      highlightPara(getParaIndexAtTime(Number(seek.value), explainAudio.duration));
+    }
+  });
+  seek.addEventListener('change', function() {
+    if (explainAudio && explainAudio.duration) {
+      explainAudio.currentTime = Number(seek.value);
+    }
+    eoSeeking = false;
+  });
+})();
 
 /* ── Keyboard shortcuts ── */
 document.addEventListener('keydown', function(e) {
