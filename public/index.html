@@ -352,50 +352,51 @@
       opacity: 0.8;
     }
 
-    /* ── Explain Modal ── */
-    .explain-modal {
+    /* ── Explain Overlay (in player area) ── */
+    .explain-overlay {
       display: none;
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(10, 10, 20, 0.97);
-      z-index: 1000;
+      background: #1a1a2e;
+      z-index: 10;
       flex-direction: column;
+      border-radius: 12px;
     }
 
-    .explain-modal.open {
+    .explain-overlay.open {
       display: flex;
     }
 
-    .modal-header {
+    .eo-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 14px 16px;
+      padding: 8px 12px;
       flex-shrink: 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      gap: 8px;
     }
 
-    .modal-title {
-      font-size: 1rem;
+    .eo-title {
+      flex: 1;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #fff;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .modal-header-btns {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .modal-btn {
+    .eo-btn {
+      flex-shrink: 0;
       border: none;
       background: rgba(255,255,255,0.15);
       color: #fff;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -403,25 +404,25 @@
       font-family: inherit;
     }
 
-    .modal-btn:active {
+    .eo-btn:active {
       background: rgba(255,255,255,0.3);
     }
 
-    .modal-btn.playing {
+    .eo-btn.playing {
       background: #2196f3;
     }
 
-    .modal-body {
+    .eo-body {
       flex: 1;
       overflow-y: auto;
-      padding: 20px 18px;
+      padding: 10px 14px;
       -webkit-overflow-scrolling: touch;
     }
 
-    .modal-text {
-      font-size: 1.05rem;
+    .eo-text {
+      font-size: 0.85rem;
       color: rgba(255,255,255,0.92);
-      line-height: 2;
+      line-height: 1.8;
       white-space: pre-wrap;
       word-break: keep-all;
     }
@@ -533,8 +534,18 @@
 </header>
 
 <div class="container">
-  <div class="player-wrap">
+  <div class="player-wrap" id="player-wrap">
     <div id="player"></div>
+    <div class="explain-overlay" id="explain-overlay">
+      <div class="eo-header">
+        <div class="eo-title" id="eo-title"></div>
+        <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">▶</button>
+        <button class="eo-btn" onclick="closeExplainOverlay()">✕</button>
+      </div>
+      <div class="eo-body">
+        <div class="eo-text" id="eo-text"></div>
+      </div>
+    </div>
   </div>
 
   <div class="now-playing" id="now-playing">
@@ -560,19 +571,6 @@
   </div>
 
   <div class="sub-list" id="sub-list"></div>
-</div>
-
-<div class="explain-modal" id="explain-modal">
-  <div class="modal-header">
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-header-btns">
-      <button class="modal-btn" id="modal-play-btn" onclick="toggleModalAudio()">▶</button>
-      <button class="modal-btn" onclick="closeExplainModal()">✕</button>
-    </div>
-  </div>
-  <div class="modal-body">
-    <div class="modal-text" id="modal-text"></div>
-  </div>
 </div>
 
 <script>
@@ -716,34 +714,33 @@ function buildExplainSection(id) {
   var disabled = hasData ? '' : ' disabled';
   var html = '<div class="explain-section">';
   html += '<div class="explain-btns">';
-  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainModal(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
-  html += '<button class="btn-explain btn-explain-ne" onclick="openExplainModal(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
+  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
+  html += '<button class="btn-explain btn-explain-ne" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
   html += '</div>';
   html += '</div>';
   return html;
 }
 
-function openExplainModal(id, lang) {
+function openExplainOverlay(id, lang) {
   var data = explanationsMap[String(id)];
   if (!data) return;
 
   // Pause YouTube
   if (player && player.pauseVideo) player.pauseVideo();
 
-  // Set modal content
+  // Set overlay content
   var title = lang === 'kr' ? '🎧 한국어 설명 #' + id : '🎧 네팔어 설명 #' + id;
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-text').textContent = data[lang];
+  document.getElementById('eo-title').textContent = title;
+  document.getElementById('eo-text').textContent = data[lang];
 
-  // Show modal
-  document.getElementById('explain-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // Show overlay (hides video beneath)
+  document.getElementById('explain-overlay').classList.add('open');
 
   // Start audio
   stopExplainAudio();
   var path = '../audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
   explainAudio = new Audio(path);
-  var playBtn = document.getElementById('modal-play-btn');
+  var playBtn = document.getElementById('eo-play-btn');
   playBtn.textContent = '⏸';
   playBtn.classList.add('playing');
 
@@ -758,15 +755,14 @@ function openExplainModal(id, lang) {
   explainAudio.play();
 }
 
-function closeExplainModal() {
-  document.getElementById('explain-modal').classList.remove('open');
-  document.body.style.overflow = '';
+function closeExplainOverlay() {
+  document.getElementById('explain-overlay').classList.remove('open');
   stopExplainAudio();
 }
 
 function toggleModalAudio() {
   if (!explainAudio) return;
-  var playBtn = document.getElementById('modal-play-btn');
+  var playBtn = document.getElementById('eo-play-btn');
   if (explainAudio.paused) {
     explainAudio.play();
     playBtn.textContent = '⏸';
@@ -801,8 +797,8 @@ function onSubClick(id) {
     closeDetail(openDetailId);
   }
 
-  // Stop explain audio if playing
-  stopExplainAudio();
+  // Close explain overlay if open
+  closeExplainOverlay();
 
   // Cancel any existing loop
   cancelLoop();
