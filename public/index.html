@@ -990,9 +990,15 @@ function resetSpeed() {
 }
 
 function stopLoop() {
-  resetAllState();
+  cancelLoop();
+  resetSpeed();
   // Pause at current position
   if (player && player.pauseVideo) player.pauseVideo();
+  // Stay on current subtitle with once-mode bar
+  if (currentSub) {
+    showBar('once');
+    showTouchOverlay(true);
+  }
 }
 
 function cancelLoop() {
