@@ -632,6 +632,7 @@ var openDetailId = -1;
 var currentSub = null;
 var loopSub = null;
 var loopPausing = false;
+var userPaused = false;
 var loopPauseTimer = null;
 var speedSteps = [1, 0.7, 0.5];
 var speedIndex = 0;
@@ -922,6 +923,7 @@ function onSubClick(id) {
   cancelLoop();
 
   // Set current subtitle for play-once
+  userPaused = false;
   currentSub = sub;
   openDetailId = id;
 
@@ -951,6 +953,7 @@ function startLoop() {
   // Close explain overlay first (pause audio, keep position)
   closeExplainOverlay();
 
+  userPaused = false;
   loopSub = currentSub;
   loopPausing = false;
 
@@ -1024,6 +1027,7 @@ function resetAllState() {
   }
   currentSub = null;
   loopPausing = false;
+  userPaused = false;
   document.getElementById('loop-bar').classList.remove('active');
   showTouchOverlay(false);
 }
@@ -1127,6 +1131,7 @@ function stopSubtitleSync() {
 }
 
 function updateSubtitle() {
+  if (userPaused) return;
   var t = player.getCurrentTime();
 
   // Play-once: pause at end of segment
@@ -1144,7 +1149,7 @@ function updateSubtitle() {
     player.seekTo(loopSub.s, true);
     player.pauseVideo();
     loopPauseTimer = setTimeout(function() {
-      if (loopSub) {
+      if (loopSub && !userPaused) {
         player.playVideo();
         loopPausing = false;
       }
@@ -1238,14 +1243,10 @@ function userTogglePlay() {
   if (!player || !player.getPlayerState) return;
   var state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) {
-    // Always just pause, keep all state
+    userPaused = true;
     player.pauseVideo();
   } else {
-    // Inside a subtitle: just resume, keep loop/sub state
-    // Outside: free play
-    if (!currentSub && !loopSub) {
-      // No custom state, just play
-    }
+    userPaused = false;
     player.playVideo();
   }
 }
