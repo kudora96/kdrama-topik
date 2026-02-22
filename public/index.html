@@ -239,74 +239,6 @@
       max-height: calc(500px * var(--font-scale, 1));
     }
 
-    .detail-grid {
-      padding: 4px 14px 14px 52px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-
-    .d-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 10px 12px;
-      border-left: 3px solid #ddd;
-    }
-
-    .d-card.tip-card { border-left-color: #ff9800; }
-    .d-card.grammar-card { border-left-color: #2196f3; }
-    .d-card.topik-card { border-left-color: #9c27b0; }
-    .d-card.vocab-card { border-left-color: #4caf50; }
-
-    .d-label {
-      font-size: calc(0.7rem * var(--font-scale, 1));
-      font-weight: 700;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .d-value {
-      font-size: calc(0.82rem * var(--font-scale, 1));
-      color: #333;
-      line-height: 1.5;
-    }
-
-    .topik-badge {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: #fff;
-    }
-
-    .topik-1 { background: #4caf50; }
-    .topik-2 { background: #2196f3; }
-    .topik-3 { background: #ff9800; }
-    .topik-4 { background: #f44336; }
-    .topik-5 { background: #9c27b0; }
-    .topik-6 { background: #333; }
-
-    .vocab-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 0;
-    }
-
-    .vocab-row .v-ko { font-weight: 700; }
-    .vocab-row .v-ne { color: #777; }
-
-    .vocab-row .v-lvl {
-      font-size: 0.65rem;
-      padding: 1px 6px;
-      border-radius: 6px;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
     /* ── Explanation buttons ── */
     .explain-section {
       padding: 0 14px 10px 52px;
@@ -430,7 +362,6 @@
     /* ── Responsive ── */
     @media (min-width: 480px) {
       .container { padding: 16px; }
-      .detail-grid { grid-template-columns: 1fr 1fr; }
       .now-ko { font-size: 1.2rem; }
     }
 
@@ -576,7 +507,6 @@
 <script>
 var player;
 var subtitles = [];
-var analysisMap = {};
 var explanationsMap = {};
 var explainAudio = null;
 var subtitleTimer = null;
@@ -591,7 +521,6 @@ var speedIndex = 0;
 var fontScales = [0.85, 1, 1.2, 1.4, 1.7, 2];
 var fontLevel = 1; // index into fontScales, default=1 (1x)
 
-var topikCls = {1:'topik-1',2:'topik-2',3:'topik-3',4:'topik-4',5:'topik-5',6:'topik-6'};
 
 function formatTime(sec) {
   var m = Math.floor(sec / 60);
@@ -614,12 +543,10 @@ function findSub(id) {
 
 Promise.all([
   fetch('../data/subtitles.json').then(function(r){return r.json();}),
-  fetch('../data/analysis.json').then(function(r){return r.json();}),
   fetch('../data/explanations.json').then(function(r){return r.json();})
 ]).then(function(results) {
   subtitles = results[0];
-  results[1].forEach(function(a){ analysisMap[a.id] = a; });
-  explanationsMap = results[2];
+  explanationsMap = results[1];
   renderList();
 });
 
@@ -665,42 +592,7 @@ function renderList() {
 }
 
 function buildDetail(id) {
-  var a = analysisMap[id];
-  if (!a) return '<div class="detail-grid"><div class="d-card"><div class="d-value" style="color:#999">분석 데이터 없음</div></div></div>';
-
-  var html = '<div class="detail-grid">';
-
-  if (a.tip) {
-    html += '<div class="d-card tip-card">' +
-      '<div class="d-label">💡 팁 (북한식 → 표준어)</div>' +
-      '<div class="d-value">' + escHtml(a.tip) + '</div></div>';
-  }
-
-  html += '<div class="d-card grammar-card">' +
-    '<div class="d-label">📝 문법</div>' +
-    '<div class="d-value">' + escHtml(a.grammar) + '</div></div>';
-
-  var cls = topikCls[a.topik] || 'topik-2';
-  html += '<div class="d-card topik-card">' +
-    '<div class="d-label">📊 TOPIK 레벨</div>' +
-    '<div class="d-value"><span class="topik-badge ' + cls + '">TOPIK ' + a.topik + '</span></div></div>';
-
-  if (a.vocab && a.vocab.length > 0) {
-    html += '<div class="d-card vocab-card">' +
-      '<div class="d-label">📖 어휘</div><div class="d-value">';
-    a.vocab.forEach(function(v) {
-      var vc = topikCls[v.topik] || 'topik-2';
-      html += '<div class="vocab-row">' +
-        '<span class="v-ko">' + escHtml(v.ko) + '</span> ' +
-        '<span class="v-ne">' + escHtml(v.ne) + '</span>' +
-        '<span class="v-lvl ' + vc + '">' + v.topik + '</span></div>';
-    });
-    html += '</div></div>';
-  }
-
-  html += '</div>';
-  html += buildExplainSection(id);
-  return html;
+  return buildExplainSection(id);
 }
 
 function padId(id) {
@@ -714,8 +606,8 @@ function buildExplainSection(id) {
   var disabled = hasData ? '' : ' disabled';
   var html = '<div class="explain-section">';
   html += '<div class="explain-btns">';
-  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
   html += '<button class="btn-explain btn-explain-ne" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
+  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
   html += '</div>';
   html += '</div>';
   return html;
