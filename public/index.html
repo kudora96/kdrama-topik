@@ -581,36 +581,45 @@
     .qo-header {
       display: flex;
       align-items: center;
-      padding: 6px 8px;
+      padding: 6px 10px;
       flex-shrink: 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       gap: 6px;
     }
 
-    .qo-tabs {
+    .qo-header-title {
       flex: 1;
-      display: flex;
-      gap: 4px;
-    }
-
-    .qo-tab {
-      flex: 1;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 8px;
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-    }
-
-    .qo-tab.active {
-      background: #F39C12;
       color: #fff;
     }
+
+    /* ── Progress bar (dot per question) ── */
+    .qo-pbar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 3px;
+      padding: 6px 10px 4px;
+      justify-content: center;
+    }
+
+    .qo-dot {
+      flex: 1;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.15);
+      max-width: 28px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .qo-dot.current {
+      background: #F39C12;
+      box-shadow: 0 0 4px rgba(243,156,18,0.6);
+    }
+
+    .qo-dot.correct { background: #4caf50; }
+    .qo-dot.wrong { background: #e94560; }
 
     .qo-body {
       flex: 1;
@@ -624,10 +633,25 @@
     .qo-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
 
     .qo-progress {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 6px;
+      font-size: 0.92rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
+
+    .qo-progress-section {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .qo-progress-section.reading { background: #2196f3; }
+    .qo-progress-section.listening { background: #4caf50; }
 
     .qo-instruction {
       font-size: 0.82rem;
@@ -1009,12 +1033,10 @@
     </div>
     <div class="quiz-overlay" id="quiz-overlay">
       <div class="qo-header">
-        <div class="qo-tabs">
-          <button class="qo-tab active" id="qo-tab-reading" onclick="switchQuizTab('reading')">&#128214; 읽기</button>
-          <button class="qo-tab" id="qo-tab-listening" onclick="switchQuizTab('listening')">&#127911; 듣기</button>
-        </div>
+        <div class="qo-header-title">&#128221; EPS-TOPIK</div>
         <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
       </div>
+      <div class="qo-pbar" id="qo-pbar"></div>
       <div class="qo-body" id="qo-body"></div>
       <div class="qo-nav" id="qo-nav"></div>
     </div>
@@ -1075,7 +1097,7 @@ var speedIndex = 0;
 var fontScales = [0.85, 1, 1.2, 1.4, 1.7, 2];
 var fontLevel = 1; // index into fontScales, default=1 (1x)
 var quizData = null;
-var quizSection = 'reading';
+var quizAllQuestions = [];
 var quizIdx = 0;
 var quizSelected = -1;
 var quizChecked = false;
@@ -1355,11 +1377,26 @@ function destroyExplainAudio() {
 }
 
 /* ── Quiz Overlay ── */
+function buildQuizAllQuestions() {
+  if (!quizData) return [];
+  var r = quizData.reading || [];
+  var l = quizData.listening || [];
+  return r.concat(l);
+}
+
+function getQuizSection(q) {
+  if (!quizData) return 'reading';
+  var rIds = {};
+  var r = quizData.reading || [];
+  for (var i = 0; i < r.length; i++) rIds[r[i].id] = true;
+  return rIds[q.id] ? 'reading' : 'listening';
+}
+
 function openQuizOverlay() {
   closeExplainOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
 
-  quizSection = 'reading';
+  quizAllQuestions = buildQuizAllQuestions();
   quizIdx = 0;
   quizSelected = -1;
   quizChecked = false;
@@ -1374,28 +1411,12 @@ function closeQuizOverlay() {
   stopQuizAudio();
 }
 
-function switchQuizTab(sec) {
-  quizSection = sec;
-  quizIdx = 0;
-  quizSelected = -1;
-  quizChecked = false;
-  renderQuiz();
-}
-
-function getQuizQuestions() {
-  if (!quizData) return [];
-  return quizData[quizSection] || [];
-}
-
 function renderQuiz() {
-  var qs = getQuizQuestions();
+  var qs = quizAllQuestions;
   var total = qs.length;
 
-  // Update tabs
-  document.getElementById('qo-tab-reading').className = 'qo-tab' + (quizSection === 'reading' ? ' active' : '');
-  document.getElementById('qo-tab-listening').className = 'qo-tab' + (quizSection === 'listening' ? ' active' : '');
-
   if (total === 0) {
+    document.getElementById('qo-pbar').innerHTML = '';
     document.getElementById('qo-body').innerHTML = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.4)">문제가 없습니다.</div>';
     document.getElementById('qo-nav').innerHTML = '';
     return;
@@ -1408,8 +1429,24 @@ function renderQuiz() {
     quizChecked = true;
   }
 
+  renderQuizProgressBar(quizIdx, total);
   renderQuizQuestion(q, quizIdx, total);
   renderQuizNav(quizIdx, total);
+}
+
+function renderQuizProgressBar(idx, total) {
+  var pbar = document.getElementById('qo-pbar');
+  var html = '';
+  for (var i = 0; i < total; i++) {
+    var cls = 'qo-dot';
+    var a = quizAnswers[quizAllQuestions[i].id];
+    if (a) {
+      cls += a.correct ? ' correct' : ' wrong';
+    }
+    if (i === idx) cls += ' current';
+    html += '<div class="' + cls + '" onclick="jumpToQuiz(' + i + ')"></div>';
+  }
+  pbar.innerHTML = html;
 }
 
 function renderQuizQuestion(q, idx, total) {
@@ -1417,9 +1454,17 @@ function renderQuizQuestion(q, idx, total) {
   var body = document.getElementById('qo-body');
   var html = '';
   var nums = ['①', '②', '③', '④'];
+  var sec = getQuizSection(q);
 
-  // Progress
-  html += '<div class="qo-progress">문제 ' + (idx + 1) + '/' + total + '</div>';
+  // Progress with section label
+  html += '<div class="qo-progress">';
+  if (sec === 'reading') {
+    html += '<span class="qo-progress-section reading">📖 읽기</span>';
+  } else {
+    html += '<span class="qo-progress-section listening">🎧 듣기</span>';
+  }
+  html += '문제 ' + (idx + 1) + '/' + total;
+  html += '</div>';
 
   // Instruction
   html += '<div class="qo-instruction">' + escHtml(q.instruction) + '</div>';
@@ -1524,15 +1569,28 @@ function renderQuizNav(idx, total) {
   if (idx < total - 1) {
     html += '<button class="qo-nav-btn qo-next" onclick="quizNext()">다음 →</button>';
   } else {
-    var qs = getQuizQuestions();
     var allDone = true;
-    for (var i = 0; i < qs.length; i++) {
-      if (!quizAnswers[qs[i].id]) { allDone = false; break; }
+    for (var i = 0; i < quizAllQuestions.length; i++) {
+      if (!quizAnswers[quizAllQuestions[i].id]) { allDone = false; break; }
     }
     html += '<button class="qo-nav-btn qo-next" onclick="showQuizResults()"' + (allDone ? '' : ' disabled') + '>결과 보기</button>';
   }
 
   nav.innerHTML = html;
+}
+
+function jumpToQuiz(idx) {
+  quizIdx = idx;
+  var q = quizAllQuestions[quizIdx];
+  var answered = quizAnswers[q.id];
+  if (answered) {
+    quizSelected = answered.selected;
+    quizChecked = true;
+  } else {
+    quizSelected = -1;
+    quizChecked = false;
+  }
+  renderQuiz();
 }
 
 function selectQuizChoice(idx) {
@@ -1543,7 +1601,7 @@ function selectQuizChoice(idx) {
 
 function checkQuizAnswer() {
   if (quizSelected === -1) return;
-  var q = getQuizQuestions()[quizIdx];
+  var q = quizAllQuestions[quizIdx];
   quizChecked = true;
   quizAnswers[q.id] = { selected: quizSelected, correct: quizSelected === q.answer };
   renderQuiz();
@@ -1552,7 +1610,7 @@ function checkQuizAnswer() {
 function quizPrev() {
   if (quizIdx > 0) {
     quizIdx--;
-    var q = getQuizQuestions()[quizIdx];
+    var q = quizAllQuestions[quizIdx];
     var answered = quizAnswers[q.id];
     if (answered) {
       quizSelected = answered.selected;
@@ -1566,10 +1624,9 @@ function quizPrev() {
 }
 
 function quizNext() {
-  var qs = getQuizQuestions();
-  if (quizIdx < qs.length - 1) {
+  if (quizIdx < quizAllQuestions.length - 1) {
     quizIdx++;
-    var q = qs[quizIdx];
+    var q = quizAllQuestions[quizIdx];
     var answered = quizAnswers[q.id];
     if (answered) {
       quizSelected = answered.selected;
@@ -1586,6 +1643,7 @@ function showQuizResults() {
   stopQuizAudio();
   var body = document.getElementById('qo-body');
   var nav = document.getElementById('qo-nav');
+  var pbar = document.getElementById('qo-pbar');
 
   var rQs = quizData.reading || [];
   var lQs = quizData.listening || [];
@@ -1598,16 +1656,14 @@ function showQuizResults() {
     if (quizAnswers[lQs[i].id] && quizAnswers[lQs[i].id].correct) lCorrect++;
   }
 
-  var total = rQs.length + lQs.length;
+  var total = quizAllQuestions.length;
   var correct = rCorrect + lCorrect;
-  var answered = 0;
-  for (var k in quizAnswers) { if (quizAnswers.hasOwnProperty(k)) answered++; }
-  var pct = answered > 0 ? Math.round(correct / answered * 100) : 0;
+  var pct = total > 0 ? Math.round(correct / total * 100) : 0;
 
   var html = '<div class="qo-results-screen">';
   html += '<div class="qo-results-icon">🎉</div>';
   html += '<div class="qo-results-title">퀴즈 완료!</div>';
-  html += '<div class="qo-results-score">' + correct + '/' + answered + ' 문제 정답 (' + pct + '%)</div>';
+  html += '<div class="qo-results-score">' + correct + '/' + total + ' 문제 정답 (' + pct + '%)</div>';
   html += '<div class="qo-results-detail">';
   html += '<div class="qo-results-row">📖 읽기: ' + rCorrect + '/' + rQs.length + '</div>';
   html += '<div class="qo-results-row">🎧 듣기: ' + lCorrect + '/' + lQs.length + '</div>';
@@ -1621,6 +1677,7 @@ function showQuizResults() {
   body.innerHTML = html;
   body.scrollTop = 0;
   nav.innerHTML = '';
+  pbar.innerHTML = '';
 }
 
 function retryQuiz() {
@@ -1628,11 +1685,12 @@ function retryQuiz() {
   quizSelected = -1;
   quizChecked = false;
   quizAnswers = {};
+  quizAllQuestions = buildQuizAllQuestions();
   renderQuiz();
 }
 
 function toggleQuizAudio() {
-  var q = getQuizQuestions()[quizIdx];
+  var q = quizAllQuestions[quizIdx];
   if (!q || !q.audio) return;
 
   var btn = document.getElementById('qo-audio-btn');
