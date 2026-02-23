@@ -1722,6 +1722,14 @@ function renderQuizQuestion(q, idx, total) {
     html += '</div>';
 
     if (isCorrect) {
+      var rev = quizData && quizData.review && quizData.review[q.id];
+      if (rev) {
+        html += '<div class="qo-review-btns">';
+        html += '<button class="qo-review-btn ne" onclick="openReviewExplain(\'' + q.id + '\',\'ne\')">🇳🇵 네팔어 문제설명</button>';
+        html += '<button class="qo-review-btn ko" onclick="openReviewExplain(\'' + q.id + '\',\'ko\')">🇰🇷 한국어 문제설명</button>';
+        html += '</div>';
+      }
+
       html += '<div class="qo-explain">';
       html += '<div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div>';
       html += '<div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div>';
@@ -1729,14 +1737,6 @@ function renderQuizQuestion(q, idx, total) {
 
       if (q.audio_text) {
         html += '<div class="qo-transcript">🔈 ' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
-      }
-
-      var rev = quizData && quizData.review && quizData.review[q.id];
-      if (rev) {
-        html += '<div class="qo-review-btns">';
-        html += '<button class="qo-review-btn ne" onclick="openReviewExplain(\'' + q.id + '\',\'ne\')">🇳🇵 네팔어 문제설명</button>';
-        html += '<button class="qo-review-btn ko" onclick="openReviewExplain(\'' + q.id + '\',\'ko\')">🇰🇷 한국어 문제설명</button>';
-        html += '</div>';
       }
     } else {
       html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">&#128260; 다시 풀기</button>';
