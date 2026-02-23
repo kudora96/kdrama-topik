@@ -556,6 +556,7 @@
     .sub-list::-webkit-scrollbar { width: 4px; }
     .sub-list::-webkit-scrollbar-track { background: transparent; }
     .sub-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+    .sub-list.disabled { pointer-events: none; opacity: 0.4; }
 
     /* ── Quiz button ── */
     .btn-explain-quiz {
@@ -1887,6 +1888,7 @@ function openQuizOverlay() {
   quizAnswers = {};
 
   document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('sub-list').classList.add('disabled');
   document.getElementById('quiz-overlay').classList.add('open');
   applyQuizTheme();
   renderQuiz();
@@ -1897,6 +1899,7 @@ function closeQuizOverlay() {
   if (qrOpen) { destroyQrAudio(); qrOpen = false; }
   document.getElementById('quiz-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
+  document.getElementById('sub-list').classList.remove('disabled');
   stopQuizAudio();
 }
 
@@ -2916,6 +2919,7 @@ function openWritingOverlay() {
   if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
 
   document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('sub-list').classList.add('disabled');
   document.getElementById('writing-overlay').classList.add('open');
   applyWritingTheme();
   renderWriting();
@@ -2930,6 +2934,7 @@ function closeWritingOverlay() {
   stopSentenceAudio();
   document.getElementById('writing-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
+  document.getElementById('sub-list').classList.remove('disabled');
 }
 
 function applyWritingTheme() {
