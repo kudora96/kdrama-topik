@@ -2853,6 +2853,9 @@ var wrWordAudio = null;
 var wrSentenceAudio = null;
 var wrSentenceIdx = -1;
 var wrSentenceTimer = null;
+var wrSkipping = false;
+var wrSkipTarget = -1;
+var wrSkipTimer = null;
 
 var JAMO_AUDIO = {
   'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut',
@@ -2917,6 +2920,7 @@ function openWritingOverlay() {
 }
 
 function closeWritingOverlay() {
+  wrStopSkip();
   if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
   stopSentenceAudio();
@@ -3071,6 +3075,7 @@ function renderWriting() {
 function pressJamo(jamo) {
   if (!writingData) return;
   if (wrAdvanceTimer) return; // still in transition
+  if (wrSkipping) return;
   var words = writingData.words;
   if (wrWordIdx >= words.length) return;
   var curWord = words[wrWordIdx];
@@ -3232,30 +3237,107 @@ function stopSentenceAudio() {
 }
 
 function wrSkipWord() {
-  if (!writingData) return;
-  if (wrAdvanceTimer) return;
-  var words = writingData.words;
-  if (wrWordIdx >= words.length) return;
-  // Jump to word-done state
-  var curWord = words[wrWordIdx];
-  wrCharIdx = curWord.chars.length;
-  wrJamoIdx = 0;
-  wrEnteredJamo = [];
-  renderWriting();
+  if (!writingData || wrSkipping || wrAdvanceTimer) return;
+  if (wrWordIdx >= writingData.words.length) return;
+  wrSkipping = true;
+  wrSkipTarget = wrWordIdx;
+  wrAutoTypeNext();
 }
 
 function wrSkipAll() {
-  if (!writingData) return;
-  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
-  // Jump to sentence complete
-  wrWordIdx = writingData.words.length;
-  wrCharIdx = 0;
-  wrJamoIdx = 0;
-  wrEnteredJamo = [];
-  renderWriting();
+  if (!writingData || wrSkipping || wrAdvanceTimer) return;
+  if (wrWordIdx >= writingData.words.length) return;
+  wrSkipping = true;
+  wrSkipTarget = writingData.words.length - 1;
+  wrAutoTypeNext();
+}
+
+function wrStopSkip() {
+  wrSkipping = false;
+  wrSkipTarget = -1;
+  if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; }
+}
+
+function wrAutoTypeNext() {
+  if (!wrSkipping || !writingData) return;
+  var words = writingData.words;
+
+  // Past all words
+  if (wrWordIdx >= words.length) {
+    wrSkipping = false;
+    renderWriting();
+    return;
+  }
+
+  var curWord = words[wrWordIdx];
+
+  // Current word complete
+  if (wrCharIdx >= curWord.chars.length) {
+    if (wrWordIdx >= wrSkipTarget) {
+      wrSkipping = false;
+      renderWriting();
+      return;
+    }
+    // Skip-all: advance to next word
+    wrWordIdx++;
+    wrCharIdx = 0;
+    wrJamoIdx = 0;
+    wrEnteredJamo = [];
+    renderWriting();
+    wrSkipTimer = setTimeout(wrAutoTypeNext, 400);
+    return;
+  }
+
+  var curChar = curWord.chars[wrCharIdx];
+
+  // Type one jamo
+  var jamo = curChar.jamo[wrJamoIdx];
+  playJamoAudio(jamo);
+  flashJamoBtn(jamo, true);
+  wrEnteredJamo.push(jamo);
+  wrJamoIdx++;
+
+  var composedEl = document.getElementById('wr-composed');
+  if (composedEl) composedEl.textContent = composeHangul(wrEnteredJamo);
+  updateSlots(curChar.jamo.length);
+
+  if (wrJamoIdx >= curChar.jamo.length) {
+    // Char complete
+    if (composedEl) composedEl.classList.add('flash-correct');
+    var body = document.getElementById('wr-body');
+    var explDiv = document.createElement('div');
+    explDiv.className = 'wr-explain';
+    explDiv.textContent = curChar.explanation_ne;
+    body.appendChild(explDiv);
+
+    wrSkipTimer = setTimeout(function() {
+      wrCharIdx++;
+      wrJamoIdx = 0;
+      wrEnteredJamo = [];
+      if (wrCharIdx >= curWord.chars.length) {
+        // Word complete
+        if (wrWordIdx >= wrSkipTarget) {
+          wrSkipping = false;
+          renderWriting();
+          return;
+        }
+        wrWordIdx++;
+        wrCharIdx = 0;
+        renderWriting();
+        wrSkipTimer = setTimeout(wrAutoTypeNext, 400);
+      } else {
+        renderWriting();
+        wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
+      }
+    }, 500);
+  } else {
+    // More jamo in this char
+    wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
+  }
 }
 
 function retryWriting() {
+  wrStopSkip();
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
   stopSentenceAudio();
   wrWordIdx = 0;
