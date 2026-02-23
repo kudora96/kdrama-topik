@@ -181,6 +181,7 @@
         {
           "word": "왜",
           "meaning_ne": "किन (why)",
+          "audio": "audio/quiz/S001/word_01_wae.mp3",
           "chars": [
             { "char": "왜", "jamo": ["ㅇ", "ㅙ"], "explanation_ne": "ㅇ(silent) + ㅙ(wae) = 왜(wae)" }
           ]
@@ -188,6 +189,7 @@
         {
           "word": "리정혁",
           "meaning_ne": "रि जोङह्योक (Ri Jeong-hyeok)",
+          "audio": "audio/quiz/S001/word_02_rijeonghyeok.mp3",
           "chars": [
             { "char": "리", "jamo": ["ㄹ", "ㅣ"], "explanation_ne": "ㄹ(ri) + ㅣ(i) = 리(ri)" },
             { "char": "정", "jamo": ["ㅈ", "ㅓ", "ㅇ"], "explanation_ne": "ㅈ(ji) + ㅓ(eo) + ㅇ(ng batchim) = 정(jeong)" },
@@ -197,6 +199,7 @@
         {
           "word": "중대장만",
           "meaning_ne": "चुङदेजाङ मात्र (only the commander)",
+          "audio": "audio/quiz/S001/word_03_jungdaejangman.mp3",
           "chars": [
             { "char": "중", "jamo": ["ㅈ", "ㅜ", "ㅇ"], "explanation_ne": "ㅈ(ji) + ㅜ(u) + ㅇ(ng batchim) = 중(jung)" },
             { "char": "대", "jamo": ["ㄷ", "ㅐ"], "explanation_ne": "ㄷ(di) + ㅐ(ae) = 대(dae)" },
@@ -207,6 +210,7 @@
         {
           "word": "이렇게",
           "meaning_ne": "यसरी (like this)",
+          "audio": "audio/quiz/S001/word_04_ireoke.mp3",
           "chars": [
             { "char": "이", "jamo": ["ㅇ", "ㅣ"], "explanation_ne": "ㅇ(silent) + ㅣ(i) = 이(i)" },
             { "char": "렇", "jamo": ["ㄹ", "ㅓ", "ㅎ"], "explanation_ne": "ㄹ(ri) + ㅓ(eo) + ㅎ(h batchim) = 렇(reoh)" },
@@ -216,6 +220,7 @@
         {
           "word": "특별합니까",
           "meaning_ne": "विशेष हो? (is special?)",
+          "audio": "audio/quiz/S001/word_05_teukbyeolhamnikka.mp3",
           "chars": [
             { "char": "특", "jamo": ["ㅌ", "ㅡ", "ㄱ"], "explanation_ne": "ㅌ(ti) + ㅡ(eu) + ㄱ(k batchim) = 특(teuk)" },
             { "char": "별", "jamo": ["ㅂ", "ㅕ", "ㄹ"], "explanation_ne": "ㅂ(bi) + ㅕ(yeo) + ㄹ(l batchim) = 별(byeol)" },

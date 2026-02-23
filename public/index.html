@@ -1335,6 +1335,51 @@
       border-radius: 8px;
     }
 
+    .wr-word-btns {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .wr-repeat-btn {
+      flex-shrink: 0;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: #FF9800;
+      color: #fff;
+    }
+    .wr-repeat-btn:active { opacity: 0.8; }
+    .wr-next-btn {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: #2196F3;
+      color: #fff;
+    }
+    .wr-next-btn:active { opacity: 0.8; }
+
+    .wr-char-explain-list {
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: #F1F8E9;
+      border: 1px solid #C5E1A5;
+      border-radius: 8px;
+    }
+    .wr-char-explain-item {
+      font-size: 14px;
+      color: #33691E;
+      line-height: 1.7;
+    }
+
     /* ── Writing Dark Mode ── */
     .quiz-dark.writing-overlay { background: #1a1a2e; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
     .quiz-dark.writing-overlay .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
@@ -1362,6 +1407,10 @@
     .quiz-dark .wr-complete-sentence { color: #64B5F6; }
     .quiz-dark .wr-complete-ne { color: rgba(255,255,255,0.6); }
     .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
+    .quiz-dark .wr-repeat-btn { background: #F39C12; }
+    .quiz-dark .wr-next-btn { background: #64B5F6; }
+    .quiz-dark .wr-char-explain-list { background: rgba(76,175,80,0.15); border-color: transparent; }
+    .quiz-dark .wr-char-explain-item { color: #A5D6A7; }
   </style>
 </head>
 <body>
@@ -2758,6 +2807,7 @@ var wrCharIdx = 0;
 var wrJamoIdx = 0;
 var wrEnteredJamo = [];
 var wrAdvanceTimer = null;
+var wrWordAudio = null;
 
 var JAMO_AUDIO = {
   'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut',
@@ -2823,6 +2873,7 @@ function openWritingOverlay() {
 
 function closeWritingOverlay() {
   if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
   document.getElementById('writing-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
 }
@@ -2886,26 +2937,25 @@ function renderWriting() {
   var wordJustDone = wrCharIdx >= curChars.length;
   if (wordJustDone) {
     html += '<div class="wr-word-done">✅ ' + escHtml(curWord.word) + ' 완성! — ' + escHtml(curWord.meaning_ne) + '</div>';
+
+    // Char-by-char explanation list
+    html += '<div class="wr-char-explain-list">';
+    for (var ei = 0; ei < curChars.length; ei++) {
+      html += '<div class="wr-char-explain-item">' + escHtml(curChars[ei].explanation_ne) + '</div>';
+    }
+    html += '</div>';
+
+    // Repeat + Next buttons
+    html += '<div class="wr-word-btns">';
+    html += '<button class="wr-repeat-btn" onclick="playWordAudio()">🔁 반복</button>';
+    html += '<button class="wr-next-btn" onclick="wrNextWord()">다음 단어 →</button>';
+    html += '</div>';
+
     body.innerHTML = html;
     playQuizSound(true);
-    var ttsWord = curWord.word;
-    setTimeout(function() {
-      try {
-        var utterance = new SpeechSynthesisUtterance(ttsWord);
-        utterance.lang = 'ko-KR';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
-      } catch(e) {}
-    }, 500);
-    // Auto-advance to next word
-    wrAdvanceTimer = setTimeout(function() {
-      wrAdvanceTimer = null;
-      wrWordIdx++;
-      wrCharIdx = 0;
-      wrJamoIdx = 0;
-      wrEnteredJamo = [];
-      renderWriting();
-    }, 2500);
+
+    // Auto-play word audio after 0.5s
+    setTimeout(function() { playWordAudio(); }, 500);
     return;
   }
 
@@ -3035,7 +3085,30 @@ function updateSlots(total) {
   }
 }
 
+function playWordAudio() {
+  if (!writingData) return;
+  var words = writingData.words;
+  if (wrWordIdx >= words.length) return;
+  var curWord = words[wrWordIdx];
+  if (!curWord.audio) return;
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  wrWordAudio = new Audio('../' + curWord.audio);
+  wrWordAudio.play().catch(function(){});
+}
+
+function wrNextWord() {
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  wrWordIdx++;
+  wrCharIdx = 0;
+  wrJamoIdx = 0;
+  wrEnteredJamo = [];
+  renderWriting();
+  var el = document.getElementById('writing-overlay');
+  if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
+
 function retryWriting() {
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
   wrWordIdx = 0;
   wrCharIdx = 0;
   wrJamoIdx = 0;
