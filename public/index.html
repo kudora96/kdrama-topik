@@ -2899,6 +2899,7 @@ function renderWriting() {
     }, 500);
     // Auto-advance to next word
     wrAdvanceTimer = setTimeout(function() {
+      wrAdvanceTimer = null;
       wrWordIdx++;
       wrCharIdx = 0;
       wrJamoIdx = 0;
