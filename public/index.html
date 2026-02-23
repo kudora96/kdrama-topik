@@ -2856,6 +2856,7 @@ var wrSentenceTimer = null;
 var wrSkipping = false;
 var wrSkipTarget = -1;
 var wrSkipTimer = null;
+var wrSkipAudio = null;
 
 var JAMO_AUDIO = {
   'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut',
@@ -2890,11 +2891,12 @@ function composeHangul(jamoArr) {
 
 function playJamoAudio(jamo) {
   var file = JAMO_AUDIO[jamo];
-  if (!file) return;
+  if (!file) return null;
   try {
     var a = new Audio('../audio/jamo/' + file + '.mp3');
     a.play().catch(function(){});
-  } catch(e) {}
+    return a;
+  } catch(e) { return null; }
 }
 
 function openWritingOverlay() {
@@ -3256,6 +3258,7 @@ function wrStopSkip() {
   wrSkipping = false;
   wrSkipTarget = -1;
   if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; }
+  if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; }
 }
 
 function wrAutoTypeNext() {
@@ -3278,21 +3281,16 @@ function wrAutoTypeNext() {
       renderWriting();
       return;
     }
-    // Skip-all: advance to next word
-    wrWordIdx++;
-    wrCharIdx = 0;
-    wrJamoIdx = 0;
-    wrEnteredJamo = [];
-    renderWriting();
-    wrSkipTimer = setTimeout(wrAutoTypeNext, 400);
+    // Skip-all: play word audio then advance
+    wrAutoPlayWordThenNext(curWord);
     return;
   }
 
   var curChar = curWord.chars[wrCharIdx];
 
-  // Type one jamo
+  // Type one jamo — play audio, wait for it to end, then schedule next
   var jamo = curChar.jamo[wrJamoIdx];
-  playJamoAudio(jamo);
+  wrSkipAudio = playJamoAudio(jamo);
   flashJamoBtn(jamo, true);
   wrEnteredJamo.push(jamo);
   wrJamoIdx++;
@@ -3310,29 +3308,86 @@ function wrAutoTypeNext() {
     explDiv.textContent = curChar.explanation_ne;
     body.appendChild(explDiv);
 
-    wrSkipTimer = setTimeout(function() {
-      wrCharIdx++;
-      wrJamoIdx = 0;
-      wrEnteredJamo = [];
-      if (wrCharIdx >= curWord.chars.length) {
-        // Word complete
-        if (wrWordIdx >= wrSkipTarget) {
-          wrSkipping = false;
+    // Wait for jamo audio to end, then 1s pause before next char
+    wrAfterAudio(wrSkipAudio, function() {
+      wrSkipTimer = setTimeout(function() {
+        wrCharIdx++;
+        wrJamoIdx = 0;
+        wrEnteredJamo = [];
+        if (wrCharIdx >= curWord.chars.length) {
+          // Word complete
+          if (wrWordIdx >= wrSkipTarget) {
+            wrSkipping = false;
+            renderWriting();
+            return;
+          }
+          // Skip-all: play word audio then advance
+          wrAutoPlayWordThenNext(curWord);
+        } else {
           renderWriting();
-          return;
+          wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
         }
+      }, 1000);
+    });
+  } else {
+    // More jamo in this char — wait for audio end + 0.3s
+    wrAfterAudio(wrSkipAudio, function() {
+      wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
+    });
+  }
+}
+
+function wrAfterAudio(audio, cb) {
+  if (!audio || audio.ended) { cb(); return; }
+  var done = false;
+  var finish = function() {
+    if (done) return;
+    done = true;
+    audio.onended = null;
+    audio.onerror = null;
+    cb();
+  };
+  audio.onended = finish;
+  audio.onerror = finish;
+  // Fallback: if audio is very long or broken, proceed after 1.5s
+  wrSkipTimer = setTimeout(finish, 1500);
+}
+
+function wrAutoPlayWordThenNext(curWord) {
+  if (!wrSkipping) return;
+  // Play word audio, wait for end, then advance
+  if (curWord.audio) {
+    wrSkipTimer = setTimeout(function() {
+      wrSkipAudio = new Audio('../' + curWord.audio);
+      wrSkipAudio.onended = function() {
+        wrSkipAudio = null;
+        wrSkipTimer = setTimeout(function() {
+          wrWordIdx++;
+          wrCharIdx = 0;
+          wrJamoIdx = 0;
+          wrEnteredJamo = [];
+          renderWriting();
+          wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
+        }, 500);
+      };
+      wrSkipAudio.onerror = function() {
+        wrSkipAudio = null;
         wrWordIdx++;
         wrCharIdx = 0;
+        wrJamoIdx = 0;
+        wrEnteredJamo = [];
         renderWriting();
-        wrSkipTimer = setTimeout(wrAutoTypeNext, 400);
-      } else {
-        renderWriting();
-        wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
-      }
+        wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
+      };
+      wrSkipAudio.play().catch(function(){});
     }, 500);
   } else {
-    // More jamo in this char
-    wrSkipTimer = setTimeout(wrAutoTypeNext, 300);
+    wrWordIdx++;
+    wrCharIdx = 0;
+    wrJamoIdx = 0;
+    wrEnteredJamo = [];
+    renderWriting();
+    wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
   }
 }
 
