@@ -428,13 +428,13 @@
     .tip-banner {
       margin-top: 8px;
       background: #e3f2fd;
-      border-radius: 8px;
-      padding: 8px 12px;
+      border-radius: 10px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.75rem;
-      color: #1565c0;
+      font-size: 0.78rem;
+      color: #222;
       line-height: 1.5;
     }
 
@@ -446,8 +446,8 @@
       flex-shrink: 0;
       border: none;
       background: none;
-      color: #1565c0;
-      font-size: 1rem;
+      color: #555;
+      font-size: 1.1rem;
       cursor: pointer;
       padding: 0 4px;
       font-family: inherit;
@@ -1944,9 +1944,8 @@ function onPlayerStateChange(event) {
 }
 
 function showTouchOverlay(show) {
-  var ov = document.getElementById('player-touch-overlay');
-  // Show overlay when in custom mode (currentSub or loopSub active)
-  ov.style.display = (currentSub || loopSub) && show ? 'block' : 'none';
+  // Disabled: transparent overlay was blocking YouTube UI (✕ button on 동영상 더보기)
+  // Play/pause via spacebar and subtitle clicks still work without it
 }
 
 function startSubtitleSync() {
@@ -2103,12 +2102,12 @@ document.addEventListener('keydown', function(e) {
 });
 
 /* ── Tip banner ── */
-if (!localStorage.getItem('tipBannerClosed')) {
+if (!localStorage.getItem('tipBannerDismissed')) {
   document.getElementById('tip-banner').style.display = 'flex';
 }
 function closeTipBanner() {
   document.getElementById('tip-banner').style.display = 'none';
-  localStorage.setItem('tipBannerClosed', '1');
+  localStorage.setItem('tipBannerDismissed', '1');
 }
 
 /* ── Service Worker ── */
