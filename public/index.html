@@ -2863,14 +2863,11 @@ var JAMO_AUDIO = {
   'ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup',
   'ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung',
   'ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk',
-  'ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut'
-};
-
-var VOWEL_TTS = {
-  'ㅏ':'아','ㅑ':'야','ㅓ':'어','ㅕ':'여','ㅗ':'오','ㅛ':'요',
-  'ㅜ':'우','ㅠ':'유','ㅡ':'으','ㅣ':'이','ㅐ':'애','ㅒ':'얘',
-  'ㅔ':'에','ㅖ':'예','ㅘ':'와','ㅙ':'왜','ㅚ':'외','ㅝ':'워',
-  'ㅞ':'웨','ㅟ':'위','ㅢ':'의'
+  'ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut',
+  'ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e',
+  'ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe',
+  'ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu',
+  'ㅡ':'eu','ㅢ':'ui','ㅣ':'i'
 };
 
 var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
@@ -2893,28 +2890,12 @@ function composeHangul(jamoArr) {
 }
 
 function playJamoAudio(jamo) {
-  // Consonant: mp3 file
   var file = JAMO_AUDIO[jamo];
   if (file) {
     try {
       var a = new Audio('../audio/jamo/' + file + '.mp3');
       a.play().catch(function(){});
       return a;
-    } catch(e) { return null; }
-  }
-  // Vowel: Web Speech API TTS
-  var tts = VOWEL_TTS[jamo];
-  if (tts) {
-    try {
-      var u = new SpeechSynthesisUtterance(tts);
-      u.lang = 'ko-KR';
-      u.rate = 0.8;
-      // Wrap as audio-like object for wrAfterAudio compatibility
-      var fake = { ended: false, onended: null, onerror: null, pause: function() { speechSynthesis.cancel(); } };
-      u.onend = function() { fake.ended = true; if (fake.onended) fake.onended(); };
-      u.onerror = function() { fake.ended = true; if (fake.onerror) fake.onerror(); };
-      speechSynthesis.speak(u);
-      return fake;
     } catch(e) { return null; }
   }
   return null;
