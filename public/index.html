@@ -1794,11 +1794,48 @@ function selectQuizChoice(idx) {
   renderQuiz();
 }
 
+function playQuizSound(correct) {
+  try {
+    var ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (correct) {
+      // 띵동: C5 → E5
+      [523, 659].forEach(function(freq, i) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.3);
+      });
+    } else {
+      // 뚜뚜: low tones
+      [200, 180].forEach(function(freq, i) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.2);
+      });
+    }
+  } catch(e) {}
+}
+
 function checkQuizAnswer() {
   if (quizSelected === -1) return;
   var q = quizAllQuestions[quizIdx];
   quizChecked = true;
-  quizAnswers[q.id] = { selected: quizSelected, correct: quizSelected === q.answer };
+  var isCorrect = quizSelected === q.answer;
+  quizAnswers[q.id] = { selected: quizSelected, correct: isCorrect };
+  playQuizSound(isCorrect);
   renderQuiz();
 }
 
