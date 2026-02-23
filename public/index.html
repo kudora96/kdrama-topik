@@ -1345,6 +1345,23 @@
     .wr-cbtn-retry { background: #9C27B0; }
     .wr-cbtn-close { background: #E0E0E0; color: #333; width: 100%; margin-bottom: 10px; }
 
+    .wr-skip-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .wr-skip-btn {
+      border: none;
+      background: none;
+      color: #999;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+    .wr-skip-btn:active { color: #666; }
+
     .wr-word-done {
       text-align: center;
       padding: 14px;
@@ -1429,6 +1446,8 @@
     .quiz-dark .wr-complete-words .wr-cw-highlight { color: #64B5F6; }
     .quiz-dark .wr-complete-ne { color: rgba(255,255,255,0.6); }
     .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.35); }
+    .quiz-dark .wr-skip-btn:active { color: rgba(255,255,255,0.6); }
     .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
     .quiz-dark .wr-repeat-btn { background: #F39C12; }
     .quiz-dark .wr-next-btn { background: #64B5F6; }
@@ -3040,6 +3059,12 @@ function renderWriting() {
   html += '</div>';
   html += '</div>';
 
+  // Skip buttons
+  html += '<div class="wr-skip-row">';
+  html += '<button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ 건너뛰기</button>';
+  html += '<button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ 전체 건너뛰기</button>';
+  html += '</div>';
+
   body.innerHTML = html;
 }
 
@@ -3204,6 +3229,30 @@ function stopSentenceAudio() {
       if (el) el.classList.remove('wr-cw-highlight');
     }
   }
+}
+
+function wrSkipWord() {
+  if (!writingData) return;
+  if (wrAdvanceTimer) return;
+  var words = writingData.words;
+  if (wrWordIdx >= words.length) return;
+  // Jump to word-done state
+  var curWord = words[wrWordIdx];
+  wrCharIdx = curWord.chars.length;
+  wrJamoIdx = 0;
+  wrEnteredJamo = [];
+  renderWriting();
+}
+
+function wrSkipAll() {
+  if (!writingData) return;
+  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  // Jump to sentence complete
+  wrWordIdx = writingData.words.length;
+  wrCharIdx = 0;
+  wrJamoIdx = 0;
+  wrEnteredJamo = [];
+  renderWriting();
 }
 
 function retryWriting() {
