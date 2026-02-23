@@ -556,7 +556,7 @@
     .sub-list::-webkit-scrollbar { width: 4px; }
     .sub-list::-webkit-scrollbar-track { background: transparent; }
     .sub-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-    .sub-list.disabled { pointer-events: none; opacity: 0.4; }
+    .sub-list.disabled, .loop-bar.disabled, .sub-list-header.disabled { pointer-events: none; opacity: 0.4; }
 
     /* ── Quiz button ── */
     .btn-explain-quiz {
@@ -1889,6 +1889,8 @@ function openQuizOverlay() {
 
   document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('sub-list').classList.add('disabled');
+  document.getElementById('loop-bar').classList.add('disabled');
+  document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('quiz-overlay').classList.add('open');
   applyQuizTheme();
   renderQuiz();
@@ -1900,6 +1902,8 @@ function closeQuizOverlay() {
   document.getElementById('quiz-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
   document.getElementById('sub-list').classList.remove('disabled');
+  document.getElementById('loop-bar').classList.remove('disabled');
+  document.querySelector('.sub-list-header').classList.remove('disabled');
   stopQuizAudio();
 }
 
@@ -2920,6 +2924,8 @@ function openWritingOverlay() {
 
   document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('sub-list').classList.add('disabled');
+  document.getElementById('loop-bar').classList.add('disabled');
+  document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('writing-overlay').classList.add('open');
   applyWritingTheme();
   renderWriting();
@@ -2935,6 +2941,8 @@ function closeWritingOverlay() {
   document.getElementById('writing-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
   document.getElementById('sub-list').classList.remove('disabled');
+  document.getElementById('loop-bar').classList.remove('disabled');
+  document.querySelector('.sub-list-header').classList.remove('disabled');
 }
 
 function applyWritingTheme() {
