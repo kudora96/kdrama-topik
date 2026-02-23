@@ -1064,6 +1064,41 @@
     .qo-review-btn.ne { background: #4CAF50; }
     .qo-review-btn.ko { background: #2196F3; }
 
+    /* ── Quiz Inline Review ── */
+    .qr-inline-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .qr-inline-title {
+      flex: 1;
+      font-size: 18px;
+      font-weight: 700;
+      color: #333333;
+    }
+
+    .qr-inline-seek {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .qr-inline-body {
+      max-height: 400px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    .quiz-dark .qr-inline-title { color: #fff; }
+    .quiz-dark .qo-body .eo-para { color: rgba(255,255,255,0.6); }
+    .quiz-dark .qo-body .eo-para.active { color: #fff; background: rgba(255,193,7,0.2); border-left-color: #ffc107; }
+    .quiz-dark .qo-body .eo-seek-time { color: rgba(255,255,255,0.5); }
+    .quiz-dark .qo-body .eo-seek-input { background: rgba(255,255,255,0.2); }
+
     /* ── Quiz Dark Mode ── */
     .quiz-dark { background: #1a1a2e; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
     .quiz-dark .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
@@ -1454,14 +1489,7 @@ function openExplainOverlay(id, lang) {
 function closeExplainOverlay() {
   document.getElementById('explain-overlay').classList.remove('open');
   stopExplainHighlight();
-  // If opened from quiz, hide player-wrap again and destroy audio
-  if (reviewFromQuiz) {
-    document.getElementById('player-wrap').style.display = 'none';
-    reviewFromQuiz = false;
-    destroyExplainAudio();
-    return;
-  }
-  // Normal explain: pause only, keep position
+  // Pause only, keep position
   if (explainAudio && !explainAudio.paused) {
     explainAudio.pause();
   }
@@ -1552,12 +1580,8 @@ function openQuizOverlay() {
 }
 
 function closeQuizOverlay() {
-  // Close review explain if open
-  if (reviewFromQuiz) {
-    reviewFromQuiz = false;
-    document.getElementById('explain-overlay').classList.remove('open');
-    destroyExplainAudio();
-  }
+  if (qrOpen) destroyQrAudio();
+  qrOpen = false;
   document.getElementById('quiz-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
   stopQuizAudio();
@@ -1750,6 +1774,7 @@ function renderQuizNav(idx, total) {
 }
 
 function jumpToQuiz(idx) {
+  if (qrOpen) { destroyQrAudio(); qrOpen = false; document.getElementById('qo-nav').style.display = ''; }
   quizIdx = idx;
   var q = quizAllQuestions[quizIdx];
   var answered = quizAnswers[q.id];
@@ -1871,8 +1896,12 @@ function retryQuiz() {
   scrollQuizToTop();
 }
 
-/* ── Quiz Review (reuses existing explain overlay) ── */
-var reviewFromQuiz = false;
+/* ── Quiz Review (renders inside qo-body) ── */
+var qrAudio = null;
+var qrParas = [];
+var qrActivePara = -1;
+var qrTimer = null;
+var qrOpen = false;
 
 function openReviewExplain(qId, lang) {
   var rev = quizData && quizData.review && quizData.review[qId];
@@ -1883,53 +1912,148 @@ function openReviewExplain(qId, lang) {
   var title = lang === 'ko' ? '🇰🇷 한국어 문제설명' : '🇳🇵 네팔어 문제설명';
 
   stopQuizAudio();
+  closeReviewExplain();
+  qrOpen = true;
 
-  // Show player-wrap so explain-overlay is visible
-  document.getElementById('player-wrap').style.display = '';
-  reviewFromQuiz = true;
+  var parts = text ? text.split('\n\n') : [];
+  qrParas = parts;
+  qrActivePara = -1;
 
-  // Set title
-  document.getElementById('eo-title').textContent = title;
+  var body = document.getElementById('qo-body');
+  var html = '';
+  html += '<div class="qr-inline-header">';
+  html += '<div class="qr-inline-title">' + escHtml(title) + '</div>';
+  html += '<button class="eo-btn" id="qr-play" onclick="toggleQrAudio()">▶</button>';
+  html += '<button class="eo-btn" onclick="closeReviewExplain()">✕</button>';
+  html += '</div>';
+  html += '<div class="qr-inline-seek">';
+  html += '<span class="eo-seek-time" id="qr-cur">0:00</span>';
+  html += '<input type="range" class="eo-seek-input" id="qr-seek" min="0" max="100" value="0" step="0.1">';
+  html += '<span class="eo-seek-time" id="qr-dur">0:00</span>';
+  html += '</div>';
+  html += '<div class="qr-inline-body">';
+  for (var i = 0; i < parts.length; i++) {
+    html += '<div class="eo-para" id="qr-p-' + i + '">' + escHtml(parts[i]) + '</div>';
+  }
+  html += '</div>';
 
-  // Destroy previous audio, start fresh
-  destroyExplainAudio();
-  renderExplainParas(text || '');
+  body.innerHTML = html;
+  document.getElementById('qo-nav').style.display = 'none';
 
-  // Show overlay
-  document.getElementById('explain-overlay').classList.add('open');
+  // Bind seekbar
+  var seek = document.getElementById('qr-seek');
+  seek.addEventListener('input', function() {
+    if (qrAudio && qrAudio.duration) {
+      document.getElementById('qr-cur').textContent = fmtAudioTime(Number(seek.value));
+      qrHighlight(getQrParaAt(Number(seek.value), qrAudio.duration));
+    }
+  });
+  seek.addEventListener('change', function() {
+    if (qrAudio && qrAudio.duration) {
+      qrAudio.currentTime = Number(seek.value);
+    }
+  });
 
-  var playBtn = document.getElementById('eo-play-btn');
-
-  // Reset seekbar
-  var seekEl = document.getElementById('eo-seek');
-  seekEl.value = 0;
-  seekEl.max = 100;
-  document.getElementById('eo-cur-time').textContent = '0:00';
-  document.getElementById('eo-dur-time').textContent = '0:00';
-
+  // Start audio
+  var playBtn = document.getElementById('qr-play');
   if (audioSrc) {
-    explainAudio = new Audio('../' + audioSrc);
-    explainAudioId = 'review_' + qId;
-    explainAudioLang = lang;
+    qrAudio = new Audio('../' + audioSrc);
     playBtn.textContent = '⏸';
     playBtn.classList.add('playing');
-
-    explainAudio.onended = function() {
+    qrAudio.onended = function() {
       playBtn.textContent = '▶';
       playBtn.classList.remove('playing');
-      stopExplainHighlight();
+      stopQrTimer();
     };
-    explainAudio.onerror = function() {
+    qrAudio.onerror = function() {
       playBtn.textContent = '▶';
       playBtn.classList.remove('playing');
-      stopExplainHighlight();
+      stopQrTimer();
     };
-    explainAudio.play();
-    startExplainHighlight();
-  } else {
-    playBtn.textContent = '▶';
-    playBtn.classList.remove('playing');
+    qrAudio.play();
+    startQrTimer();
   }
+
+  scrollQuizToTop();
+}
+
+function closeReviewExplain() {
+  if (!qrOpen) return;
+  destroyQrAudio();
+  qrOpen = false;
+  document.getElementById('qo-nav').style.display = '';
+  renderQuiz();
+}
+
+function destroyQrAudio() {
+  stopQrTimer();
+  if (qrAudio) { qrAudio.pause(); qrAudio = null; }
+  qrParas = [];
+  qrActivePara = -1;
+}
+
+function toggleQrAudio() {
+  if (!qrAudio) return;
+  var btn = document.getElementById('qr-play');
+  if (qrAudio.paused) {
+    qrAudio.play();
+    btn.textContent = '⏸';
+    btn.classList.add('playing');
+    startQrTimer();
+  } else {
+    qrAudio.pause();
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+    stopQrTimer();
+  }
+}
+
+function startQrTimer() {
+  stopQrTimer();
+  qrTimer = setInterval(updateQrHighlight, 200);
+}
+
+function stopQrTimer() {
+  if (qrTimer) { clearInterval(qrTimer); qrTimer = null; }
+}
+
+function qrHighlight(idx) {
+  if (idx === qrActivePara) return;
+  if (qrActivePara >= 0) {
+    var old = document.getElementById('qr-p-' + qrActivePara);
+    if (old) old.classList.remove('active');
+  }
+  qrActivePara = idx;
+  var el = document.getElementById('qr-p-' + idx);
+  if (el) {
+    el.classList.add('active');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function getQrParaAt(t, dur) {
+  var total = 0;
+  for (var i = 0; i < qrParas.length; i++) total += qrParas[i].length;
+  if (total === 0) return 0;
+  var cum = 0;
+  for (var i = 0; i < qrParas.length; i++) {
+    if (t < ((cum + qrParas[i].length) / total) * dur) return i;
+    cum += qrParas[i].length;
+  }
+  return qrParas.length - 1;
+}
+
+function updateQrHighlight() {
+  if (!qrAudio || !qrAudio.duration) return;
+  var t = qrAudio.currentTime;
+  var dur = qrAudio.duration;
+  var seek = document.getElementById('qr-seek');
+  if (seek) { seek.max = dur; seek.value = t; }
+  var cur = document.getElementById('qr-cur');
+  var durEl = document.getElementById('qr-dur');
+  if (cur) cur.textContent = fmtAudioTime(t);
+  if (durEl) durEl.textContent = fmtAudioTime(dur);
+  if (!qrAudio.paused) qrHighlight(getQrParaAt(t, dur));
 }
 
 function toggleQuizAudio() {
