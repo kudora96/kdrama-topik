@@ -1804,7 +1804,7 @@ function playQuizSound(correct) {
         var gain = ctx.createGain();
         osc.type = 'sine';
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.6, ctx.currentTime + i * 0.15);
+        gain.gain.setValueAtTime(1.0, ctx.currentTime + i * 0.15);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.3);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -1818,7 +1818,7 @@ function playQuizSound(correct) {
         var gain = ctx.createGain();
         osc.type = 'sine';
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.6, ctx.currentTime + i * 0.15);
+        gain.gain.setValueAtTime(1.0, ctx.currentTime + i * 0.15);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.2);
         osc.connect(gain);
         gain.connect(ctx.destination);
