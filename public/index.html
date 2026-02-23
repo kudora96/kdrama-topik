@@ -1153,6 +1153,215 @@
     .quiz-overlay .eo-btn:active { background: #E0E0E0; }
     .quiz-dark .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .eo-btn:active { background: rgba(255,255,255,0.3); }
+
+    /* ── Writing button ── */
+    .btn-explain-writing { background: #9C27B0; color: #fff; }
+
+    /* ── Writing Overlay ── */
+    .writing-overlay {
+      display: none;
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 12px;
+      flex-direction: column;
+      margin-top: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .writing-overlay.open { display: flex; }
+    .writing-overlay .eo-btn { background: #F5F5F5; color: #333333; }
+    .writing-overlay .eo-btn:active { background: #E0E0E0; }
+
+    .wr-body { padding: 14px 16px; }
+
+    .wr-sentence {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px 10px;
+      border-bottom: 1px solid #EEEEEE;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .wr-sentence .wr-w { transition: color 0.2s; }
+    .wr-sentence .wr-w-done { color: #4CAF50; }
+    .wr-sentence .wr-w-active { color: #2196F3; text-decoration: underline; text-underline-offset: 4px; }
+
+    .wr-word-info {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #666;
+    }
+    .wr-word-info strong { color: #2196F3; font-size: 18px; }
+
+    .wr-char-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .wr-char-box {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wr-target-char {
+      font-size: 64px;
+      font-weight: 900;
+      color: #E0E0E0;
+      position: absolute;
+      user-select: none;
+    }
+    .wr-composed {
+      font-size: 64px;
+      font-weight: 900;
+      color: #333333;
+      position: absolute;
+      z-index: 1;
+      transition: color 0.2s;
+    }
+    .wr-composed.flash-correct { color: #4CAF50; }
+
+    .wr-jamo-slots {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      justify-content: center;
+    }
+    .wr-slot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #E0E0E0;
+      transition: background 0.2s;
+    }
+    .wr-slot.filled { background: #4CAF50; }
+    .wr-slot.current { background: #2196F3; box-shadow: 0 0 4px rgba(33,150,243,0.5); }
+
+    .wr-explain {
+      text-align: center;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      background: #F1F8E9;
+      border: 1px solid #C5E1A5;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #33691E;
+      line-height: 1.5;
+    }
+
+    .wr-keyboard { margin-top: 4px; }
+    .wr-kb-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #999;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .wr-kb-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+      justify-content: center;
+    }
+    .wr-kb-btn {
+      min-width: 40px;
+      height: 44px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .wr-kb-btn:active { transform: scale(0.93); }
+    .wr-kb-btn.consonant { background: #E3F2FD; color: #1565C0; }
+    .wr-kb-btn.vowel { background: #E8F5E9; color: #2E7D32; }
+
+    @keyframes wr-correct-flash {
+      0% { background: #4CAF50; color: #fff; }
+      100% { background: #E3F2FD; color: #1565C0; }
+    }
+    @keyframes wr-correct-flash-v {
+      0% { background: #4CAF50; color: #fff; }
+      100% { background: #E8F5E9; color: #2E7D32; }
+    }
+    @keyframes wr-wrong-shake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-4px); }
+      40%,80% { transform: translateX(4px); }
+    }
+    .wr-kb-btn.correct-anim.consonant { animation: wr-correct-flash 0.5s ease; }
+    .wr-kb-btn.correct-anim.vowel { animation: wr-correct-flash-v 0.5s ease; }
+    .wr-kb-btn.wrong-anim { animation: wr-wrong-shake 0.4s ease; background: #FFEBEE !important; color: #C62828 !important; }
+
+    .wr-complete {
+      text-align: center;
+      padding: 24px 14px;
+    }
+    .wr-complete-icon { font-size: 3rem; margin-bottom: 10px; }
+    .wr-complete-title { font-size: 22px; font-weight: 900; color: #333; margin-bottom: 8px; }
+    .wr-complete-sentence { font-size: 20px; color: #2196F3; font-weight: 700; margin-bottom: 4px; }
+    .wr-complete-ne { font-size: 16px; color: #666; margin-bottom: 18px; }
+    .wr-complete-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: #9C27B0;
+      color: #fff;
+    }
+    .wr-complete-btn:active { opacity: 0.8; }
+
+    .wr-word-done {
+      text-align: center;
+      padding: 14px;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2E7D32;
+      background: #E8F5E9;
+      border-radius: 8px;
+    }
+
+    /* ── Writing Dark Mode ── */
+    .quiz-dark.writing-overlay { background: #1a1a2e; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+    .quiz-dark.writing-overlay .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark.writing-overlay .qo-header-title { color: #fff; }
+    .quiz-dark.writing-overlay .qo-theme-btn { background: rgba(255,255,255,0.15); }
+    .quiz-dark.writing-overlay .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark.writing-overlay .eo-btn:active { background: rgba(255,255,255,0.3); }
+    .quiz-dark .wr-sentence { color: #fff; border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark .wr-sentence .wr-w-done { color: #66BB6A; }
+    .quiz-dark .wr-sentence .wr-w-active { color: #64B5F6; }
+    .quiz-dark .wr-word-info { color: rgba(255,255,255,0.6); }
+    .quiz-dark .wr-word-info strong { color: #64B5F6; }
+    .quiz-dark .wr-target-char { color: rgba(255,255,255,0.15); }
+    .quiz-dark .wr-composed { color: #fff; }
+    .quiz-dark .wr-composed.flash-correct { color: #66BB6A; }
+    .quiz-dark .wr-slot { background: rgba(255,255,255,0.15); }
+    .quiz-dark .wr-slot.filled { background: #66BB6A; }
+    .quiz-dark .wr-slot.current { background: #64B5F6; box-shadow: 0 0 4px rgba(100,181,246,0.5); }
+    .quiz-dark .wr-explain { background: rgba(76,175,80,0.15); border-color: transparent; color: #A5D6A7; }
+    .quiz-dark .wr-kb-btn.consonant { background: rgba(33,150,243,0.2); color: #90CAF9; }
+    .quiz-dark .wr-kb-btn.vowel { background: rgba(76,175,80,0.2); color: #A5D6A7; }
+    .quiz-dark .wr-kb-btn.wrong-anim { background: rgba(233,69,96,0.3) !important; color: #ef9a9a !important; }
+    .quiz-dark .wr-kb-label { color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-complete-title { color: #fff; }
+    .quiz-dark .wr-complete-sentence { color: #64B5F6; }
+    .quiz-dark .wr-complete-ne { color: rgba(255,255,255,0.6); }
+    .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
   </style>
 </head>
 <body>
@@ -1190,6 +1399,14 @@
     <div class="qo-pbar" id="qo-pbar"></div>
     <div class="qo-body" id="qo-body"></div>
     <div class="qo-nav" id="qo-nav"></div>
+  </div>
+  <div class="writing-overlay" id="writing-overlay">
+    <div class="qo-header">
+      <div class="qo-header-title">&#9997;&#65039; 쓰기연습</div>
+      <button class="qo-theme-btn" id="wr-theme-btn" onclick="toggleWritingTheme()">&#127769;</button>
+      <button class="eo-btn" onclick="closeWritingOverlay()">&#10005;</button>
+    </div>
+    <div class="wr-body" id="wr-body"></div>
   </div>
 
   <div class="tip-banner" id="tip-banner" style="display:none">
@@ -1340,14 +1557,20 @@ function buildExplainSection(id) {
   var hasData = explanationsMap[String(id)];
   var disabled = hasData ? '' : ' disabled';
   var hasQuiz = !!quizData;
+  var hasWriting = !!(quizData && quizData.writing);
   var html = '<div class="explain-section">';
   html += '<div class="explain-btns">';
   html += '<button class="btn-explain btn-explain-ne" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
   html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
   html += '</div>';
-  if (hasQuiz) {
+  if (hasQuiz || hasWriting) {
     html += '<div class="explain-btns" style="margin-top:8px">';
-    html += '<button class="btn-explain btn-explain-quiz" onclick="openQuizOverlay()">📝 EPS-TOPIK</button>';
+    if (hasQuiz) {
+      html += '<button class="btn-explain btn-explain-quiz" onclick="openQuizOverlay()">📝 EPS-TOPIK</button>';
+    }
+    if (hasWriting) {
+      html += '<button class="btn-explain btn-explain-writing" onclick="openWritingOverlay()">✍️ 쓰기연습</button>';
+    }
     html += '</div>';
   }
   html += '</div>';
@@ -2267,6 +2490,7 @@ function cancelLoop() {
 function resetAllState() {
   closeExplainOverlay();
   closeQuizOverlay();
+  closeWritingOverlay();
   cancelLoop();
   resetSpeed();
   if (openDetailId !== -1) {
@@ -2525,6 +2749,290 @@ if (!localStorage.getItem('tipBannerDismissed')) {
 function closeTipBanner() {
   document.getElementById('tip-banner').style.display = 'none';
   localStorage.setItem('tipBannerDismissed', '1');
+}
+
+/* ── Writing Practice ── */
+var writingData = null;
+var wrWordIdx = 0;
+var wrCharIdx = 0;
+var wrJamoIdx = 0;
+var wrEnteredJamo = [];
+var wrAdvanceTimer = null;
+
+var JAMO_AUDIO = {
+  'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut',
+  'ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup',
+  'ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung',
+  'ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk',
+  'ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut',
+  'ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e',
+  'ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe',
+  'ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu',
+  'ㅡ':'eu','ㅢ':'ui','ㅣ':'i'
+};
+
+var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
+var JONG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+
+function composeHangul(jamoArr) {
+  if (jamoArr.length === 0) return '';
+  if (jamoArr.length === 1) return jamoArr[0];
+  var choIdx = CHO.indexOf(jamoArr[0]);
+  if (choIdx < 0) return jamoArr.join('');
+  var jungIdx = JUNG.indexOf(jamoArr[1]);
+  if (jungIdx < 0) return jamoArr.join('');
+  if (jamoArr.length === 2) {
+    return String.fromCharCode(0xAC00 + (choIdx * 21 + jungIdx) * 28);
+  }
+  var jongIdx = JONG.indexOf(jamoArr[2]);
+  if (jongIdx < 0) return jamoArr.join('');
+  return String.fromCharCode(0xAC00 + (choIdx * 21 + jungIdx) * 28 + jongIdx);
+}
+
+function playJamoAudio(jamo) {
+  var file = JAMO_AUDIO[jamo];
+  if (!file) return;
+  try {
+    var a = new Audio('../audio/jamo/' + file + '.mp3');
+    a.play().catch(function(){});
+  } catch(e) {}
+}
+
+function openWritingOverlay() {
+  closeExplainOverlay();
+  closeQuizOverlay();
+  if (player && player.pauseVideo) player.pauseVideo();
+
+  writingData = quizData && quizData.writing ? quizData.writing : null;
+  if (!writingData) return;
+
+  wrWordIdx = 0;
+  wrCharIdx = 0;
+  wrJamoIdx = 0;
+  wrEnteredJamo = [];
+  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+
+  document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('writing-overlay').classList.add('open');
+  applyWritingTheme();
+  renderWriting();
+  var el = document.getElementById('writing-overlay');
+  if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
+
+function closeWritingOverlay() {
+  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  document.getElementById('writing-overlay').classList.remove('open');
+  document.getElementById('player-wrap').style.display = '';
+}
+
+function applyWritingTheme() {
+  var overlay = document.getElementById('writing-overlay');
+  var btn = document.getElementById('wr-theme-btn');
+  var saved = localStorage.getItem('quizTheme') || 'light';
+  if (saved === 'dark') {
+    overlay.classList.add('quiz-dark');
+    btn.innerHTML = '&#9728;&#65039;';
+  } else {
+    overlay.classList.remove('quiz-dark');
+    btn.innerHTML = '&#127769;';
+  }
+}
+
+function toggleWritingTheme() {
+  var current = localStorage.getItem('quizTheme') || 'light';
+  var next = current === 'light' ? 'dark' : 'light';
+  localStorage.setItem('quizTheme', next);
+  applyWritingTheme();
+}
+
+function renderWriting() {
+  if (!writingData) return;
+  var body = document.getElementById('wr-body');
+  var words = writingData.words;
+  var html = '';
+
+  // Check if sentence complete
+  var allWordsDone = wrWordIdx >= words.length;
+  if (allWordsDone) {
+    html += '<div class="wr-complete">';
+    html += '<div class="wr-complete-icon">🎉</div>';
+    html += '<div class="wr-complete-title">문장 완성!</div>';
+    html += '<div class="wr-complete-sentence">' + escHtml(writingData.sentence) + '</div>';
+    html += '<div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div>';
+    html += '<button class="wr-complete-btn" onclick="retryWriting()">🔄 다시 연습</button>';
+    html += '</div>';
+    body.innerHTML = html;
+    playQuizSound(true);
+    return;
+  }
+
+  // Sentence display
+  html += '<div class="wr-sentence">';
+  for (var wi = 0; wi < words.length; wi++) {
+    var cls = 'wr-w';
+    if (wi < wrWordIdx) cls += ' wr-w-done';
+    else if (wi === wrWordIdx) cls += ' wr-w-active';
+    html += '<span class="' + cls + '">' + escHtml(words[wi].word) + '</span>';
+    if (wi < words.length - 1) html += ' ';
+  }
+  html += '</div>';
+
+  var curWord = words[wrWordIdx];
+  var curChars = curWord.chars;
+
+  // Check if word just completed (wrCharIdx >= curChars.length)
+  var wordJustDone = wrCharIdx >= curChars.length;
+  if (wordJustDone) {
+    html += '<div class="wr-word-done">✅ ' + escHtml(curWord.word) + ' 완성! — ' + escHtml(curWord.meaning_ne) + '</div>';
+    body.innerHTML = html;
+    // Auto-advance to next word
+    wrAdvanceTimer = setTimeout(function() {
+      wrWordIdx++;
+      wrCharIdx = 0;
+      wrJamoIdx = 0;
+      wrEnteredJamo = [];
+      renderWriting();
+    }, 2000);
+    return;
+  }
+
+  // Word info
+  html += '<div class="wr-word-info"><strong>' + escHtml(curWord.word) + '</strong> — ' + escHtml(curWord.meaning_ne) + '</div>';
+
+  var curChar = curChars[wrCharIdx];
+  var totalJamo = curChar.jamo.length;
+
+  // Char area
+  html += '<div class="wr-char-area">';
+  html += '<div class="wr-char-box">';
+  html += '<div class="wr-target-char">' + escHtml(curChar.char) + '</div>';
+  html += '<div class="wr-composed" id="wr-composed">' + escHtml(composeHangul(wrEnteredJamo)) + '</div>';
+  html += '</div>';
+
+  // Jamo slots
+  html += '<div class="wr-jamo-slots">';
+  for (var si = 0; si < totalJamo; si++) {
+    var sCls = 'wr-slot';
+    if (si < wrJamoIdx) sCls += ' filled';
+    else if (si === wrJamoIdx) sCls += ' current';
+    html += '<div class="' + sCls + '"></div>';
+  }
+  html += '</div>';
+  html += '</div>';
+
+  // Explanation (shown when char is complete - wrJamoIdx >= totalJamo)
+  // This is handled in pressJamo auto-advance
+
+  // Keyboard
+  html += '<div class="wr-keyboard">';
+  html += '<div class="wr-kb-label">자음 Consonants</div>';
+  html += '<div class="wr-kb-row">';
+  for (var ci = 0; ci < CHO.length; ci++) {
+    html += '<button class="wr-kb-btn consonant" id="wr-btn-' + ci + '" onclick="pressJamo(\'' + CHO[ci] + '\')">' + CHO[ci] + '</button>';
+  }
+  html += '</div>';
+  html += '<div class="wr-kb-label">모음 Vowels</div>';
+  html += '<div class="wr-kb-row">';
+  for (var vi = 0; vi < JUNG.length; vi++) {
+    html += '<button class="wr-kb-btn vowel" id="wr-btn-v' + vi + '" onclick="pressJamo(\'' + JUNG[vi] + '\')">' + JUNG[vi] + '</button>';
+  }
+  html += '</div>';
+  html += '</div>';
+
+  body.innerHTML = html;
+}
+
+function pressJamo(jamo) {
+  if (!writingData) return;
+  if (wrAdvanceTimer) return; // still in transition
+  var words = writingData.words;
+  if (wrWordIdx >= words.length) return;
+  var curWord = words[wrWordIdx];
+  if (wrCharIdx >= curWord.chars.length) return;
+  var curChar = curWord.chars[wrCharIdx];
+  var expected = curChar.jamo[wrJamoIdx];
+
+  playJamoAudio(jamo);
+
+  if (jamo === expected) {
+    // Correct
+    wrEnteredJamo.push(jamo);
+    wrJamoIdx++;
+
+    // Flash the button green
+    flashJamoBtn(jamo, true);
+
+    // Update composed char
+    var composedEl = document.getElementById('wr-composed');
+    if (composedEl) composedEl.textContent = composeHangul(wrEnteredJamo);
+
+    // Update slots
+    updateSlots(curChar.jamo.length);
+
+    // Check if char complete
+    if (wrJamoIdx >= curChar.jamo.length) {
+      if (composedEl) composedEl.classList.add('flash-correct');
+      playQuizSound(true);
+
+      // Show explanation and auto-advance
+      wrAdvanceTimer = setTimeout(function() {
+        wrAdvanceTimer = null;
+        wrCharIdx++;
+        wrJamoIdx = 0;
+        wrEnteredJamo = [];
+        renderWriting();
+      }, 1500);
+
+      // Show explanation inline
+      var body = document.getElementById('wr-body');
+      var explDiv = document.createElement('div');
+      explDiv.className = 'wr-explain';
+      explDiv.textContent = curChar.explanation_ne;
+      body.appendChild(explDiv);
+    }
+  } else {
+    // Wrong
+    flashJamoBtn(jamo, false);
+    playQuizSound(false);
+  }
+}
+
+function flashJamoBtn(jamo, correct) {
+  // Find the button with this jamo text
+  var btns = document.querySelectorAll('.wr-kb-btn');
+  for (var i = 0; i < btns.length; i++) {
+    if (btns[i].textContent === jamo) {
+      var btn = btns[i];
+      var cls = correct ? 'correct-anim' : 'wrong-anim';
+      btn.classList.add(cls);
+      (function(b, c) {
+        setTimeout(function() { b.classList.remove(c); }, correct ? 500 : 400);
+      })(btn, cls);
+      break;
+    }
+  }
+}
+
+function updateSlots(total) {
+  var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot');
+  for (var i = 0; i < slots.length; i++) {
+    slots[i].className = 'wr-slot';
+    if (i < wrJamoIdx) slots[i].classList.add('filled');
+    else if (i === wrJamoIdx) slots[i].classList.add('current');
+  }
+}
+
+function retryWriting() {
+  wrWordIdx = 0;
+  wrCharIdx = 0;
+  wrJamoIdx = 0;
+  wrEnteredJamo = [];
+  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  renderWriting();
+  var el = document.getElementById('writing-overlay');
+  if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
 /* ── Service Worker ── */
