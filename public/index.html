@@ -1310,7 +1310,21 @@
     .wr-complete-icon { font-size: 3rem; margin-bottom: 10px; }
     .wr-complete-title { font-size: 22px; font-weight: 900; color: #333; margin-bottom: 8px; }
     .wr-complete-sentence { font-size: 20px; color: #2196F3; font-weight: 700; margin-bottom: 4px; }
-    .wr-complete-ne { font-size: 16px; color: #666; margin-bottom: 18px; }
+    .wr-complete-ne { font-size: 16px; color: #666; margin-bottom: 14px; }
+    .wr-complete-words {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    .wr-complete-words .wr-cw { transition: color 0.2s; }
+    .wr-complete-words .wr-cw-highlight { color: #2196F3; text-decoration: underline; text-underline-offset: 4px; }
+    .wr-complete-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
     .wr-complete-btn {
       border: none;
       border-radius: 8px;
@@ -1323,6 +1337,19 @@
       color: #fff;
     }
     .wr-complete-btn:active { opacity: 0.8; }
+    .wr-listen-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: #2196F3;
+      color: #fff;
+    }
+    .wr-listen-btn:active { opacity: 0.8; }
+    .wr-listen-btn.playing { background: #1565C0; }
 
     .wr-word-done {
       text-align: center;
@@ -1404,8 +1431,11 @@
     .quiz-dark .wr-kb-btn.wrong-anim { background: rgba(233,69,96,0.3) !important; color: #ef9a9a !important; }
     .quiz-dark .wr-kb-label { color: rgba(255,255,255,0.4); }
     .quiz-dark .wr-complete-title { color: #fff; }
-    .quiz-dark .wr-complete-sentence { color: #64B5F6; }
+    .quiz-dark .wr-complete-words { color: rgba(255,255,255,0.8); }
+    .quiz-dark .wr-complete-words .wr-cw-highlight { color: #64B5F6; }
     .quiz-dark .wr-complete-ne { color: rgba(255,255,255,0.6); }
+    .quiz-dark .wr-listen-btn { background: #64B5F6; }
+    .quiz-dark .wr-listen-btn.playing { background: #42A5F5; }
     .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
     .quiz-dark .wr-repeat-btn { background: #F39C12; }
     .quiz-dark .wr-next-btn { background: #64B5F6; }
@@ -2808,6 +2838,9 @@ var wrJamoIdx = 0;
 var wrEnteredJamo = [];
 var wrAdvanceTimer = null;
 var wrWordAudio = null;
+var wrSentenceAudio = null;
+var wrSentenceIdx = -1;
+var wrSentenceTimer = null;
 
 var JAMO_AUDIO = {
   'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut',
@@ -2874,6 +2907,7 @@ function openWritingOverlay() {
 function closeWritingOverlay() {
   if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  stopSentenceAudio();
   document.getElementById('writing-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
 }
@@ -2910,12 +2944,26 @@ function renderWriting() {
     html += '<div class="wr-complete">';
     html += '<div class="wr-complete-icon">🎉</div>';
     html += '<div class="wr-complete-title">문장 완성!</div>';
-    html += '<div class="wr-complete-sentence">' + escHtml(writingData.sentence) + '</div>';
+    html += '<div class="wr-complete-words" id="wr-complete-words">';
+    for (var cwi = 0; cwi < words.length; cwi++) {
+      html += '<span class="wr-cw" id="wr-cw-' + cwi + '">' + escHtml(words[cwi].word) + '</span>';
+      if (cwi < words.length - 1) html += ' ';
+    }
+    html += '</div>';
     html += '<div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div>';
+    html += '<div class="wr-complete-btns">';
+    html += '<button class="wr-listen-btn" id="wr-listen-btn" onclick="playSentenceAudio()">🔊 문장 듣기</button>';
+    html += '<button class="wr-listen-btn" onclick="playSentenceAudio()" style="background:#FF9800">🔁 반복</button>';
+    html += '</div>';
+    html += '<div class="wr-complete-btns">';
     html += '<button class="wr-complete-btn" onclick="retryWriting()">🔄 다시 연습</button>';
+    html += '<button class="wr-complete-btn" onclick="closeWritingOverlay()" style="background:#E0E0E0;color:#333">✕ 닫기</button>';
+    html += '</div>';
     html += '</div>';
     body.innerHTML = html;
     playQuizSound(true);
+    // Auto-play sentence after 0.8s
+    setTimeout(function() { playSentenceAudio(); }, 800);
     return;
   }
 
@@ -3107,8 +3155,70 @@ function wrNextWord() {
   if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
+function playSentenceAudio() {
+  stopSentenceAudio();
+  if (!writingData || !writingData.words.length) return;
+  wrSentenceIdx = 0;
+  playSentenceWord(0);
+}
+
+function playSentenceWord(idx) {
+  if (!writingData) return;
+  var words = writingData.words;
+  if (idx >= words.length) {
+    // Done — clear highlights
+    stopSentenceAudio();
+    return;
+  }
+  wrSentenceIdx = idx;
+
+  // Highlight current word
+  for (var h = 0; h < words.length; h++) {
+    var el = document.getElementById('wr-cw-' + h);
+    if (el) {
+      if (h === idx) el.classList.add('wr-cw-highlight');
+      else el.classList.remove('wr-cw-highlight');
+    }
+  }
+
+  var w = words[idx];
+  if (!w.audio) { playSentenceWord(idx + 1); return; }
+
+  wrSentenceAudio = new Audio('../' + w.audio);
+  wrSentenceAudio.onended = function() {
+    wrSentenceAudio = null;
+    // 0.3s gap then next word
+    wrSentenceTimer = setTimeout(function() {
+      wrSentenceTimer = null;
+      playSentenceWord(idx + 1);
+    }, 300);
+  };
+  wrSentenceAudio.onerror = function() {
+    wrSentenceAudio = null;
+    wrSentenceTimer = setTimeout(function() {
+      wrSentenceTimer = null;
+      playSentenceWord(idx + 1);
+    }, 300);
+  };
+  wrSentenceAudio.play().catch(function(){});
+}
+
+function stopSentenceAudio() {
+  if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; }
+  if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; }
+  wrSentenceIdx = -1;
+  // Clear all highlights
+  if (writingData) {
+    for (var h = 0; h < writingData.words.length; h++) {
+      var el = document.getElementById('wr-cw-' + h);
+      if (el) el.classList.remove('wr-cw-highlight');
+    }
+  }
+}
+
 function retryWriting() {
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  stopSentenceAudio();
   wrWordIdx = 0;
   wrCharIdx = 0;
   wrJamoIdx = 0;
