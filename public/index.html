@@ -1580,8 +1580,7 @@ function openQuizOverlay() {
 }
 
 function closeQuizOverlay() {
-  if (qrOpen) destroyQrAudio();
-  qrOpen = false;
+  if (qrOpen) { destroyQrAudio(); qrOpen = false; }
   document.getElementById('quiz-overlay').classList.remove('open');
   document.getElementById('player-wrap').style.display = '';
   stopQuizAudio();
@@ -1774,7 +1773,7 @@ function renderQuizNav(idx, total) {
 }
 
 function jumpToQuiz(idx) {
-  if (qrOpen) { destroyQrAudio(); qrOpen = false; document.getElementById('qo-nav').style.display = ''; }
+  if (qrOpen) { destroyQrAudio(); qrOpen = false; }
   quizIdx = idx;
   var q = quizAllQuestions[quizIdx];
   var answered = quizAnswers[q.id];
@@ -1902,6 +1901,8 @@ var qrParas = [];
 var qrActivePara = -1;
 var qrTimer = null;
 var qrOpen = false;
+var qrSavedBody = '';
+var qrSavedNav = '';
 
 function openReviewExplain(qId, lang) {
   var rev = quizData && quizData.review && quizData.review[qId];
@@ -1912,19 +1913,27 @@ function openReviewExplain(qId, lang) {
   var title = lang === 'ko' ? '🇰🇷 한국어 문제설명' : '🇳🇵 네팔어 문제설명';
 
   stopQuizAudio();
-  closeReviewExplain();
+  if (qrOpen) destroyQrAudio();
+
+  var body = document.getElementById('qo-body');
+  var nav = document.getElementById('qo-nav');
+
+  // Save current quiz content before overwriting
+  if (!qrOpen) {
+    qrSavedBody = body.innerHTML;
+    qrSavedNav = nav.innerHTML;
+  }
   qrOpen = true;
 
   var parts = text ? text.split('\n\n') : [];
   qrParas = parts;
   qrActivePara = -1;
 
-  var body = document.getElementById('qo-body');
   var html = '';
   html += '<div class="qr-inline-header">';
   html += '<div class="qr-inline-title">' + escHtml(title) + '</div>';
-  html += '<button class="eo-btn" id="qr-play" onclick="toggleQrAudio()">▶</button>';
-  html += '<button class="eo-btn" onclick="closeReviewExplain()">✕</button>';
+  html += '<button class="eo-btn" id="qr-play" onclick="toggleQrAudio()">&#9654;</button>';
+  html += '<button class="eo-btn" onclick="closeReviewExplain()">&#10005;</button>';
   html += '</div>';
   html += '<div class="qr-inline-seek">';
   html += '<span class="eo-seek-time" id="qr-cur">0:00</span>';
@@ -1938,7 +1947,7 @@ function openReviewExplain(qId, lang) {
   html += '</div>';
 
   body.innerHTML = html;
-  document.getElementById('qo-nav').style.display = 'none';
+  nav.innerHTML = '<button class="qo-nav-btn qo-prev" onclick="closeReviewExplain()">← 문제로 돌아가기</button>';
 
   // Bind seekbar
   var seek = document.getElementById('qr-seek');
@@ -1981,8 +1990,12 @@ function closeReviewExplain() {
   if (!qrOpen) return;
   destroyQrAudio();
   qrOpen = false;
-  document.getElementById('qo-nav').style.display = '';
-  renderQuiz();
+
+  // Restore saved quiz content
+  document.getElementById('qo-body').innerHTML = qrSavedBody;
+  document.getElementById('qo-nav').innerHTML = qrSavedNav;
+  qrSavedBody = '';
+  qrSavedNav = '';
 }
 
 function destroyQrAudio() {
