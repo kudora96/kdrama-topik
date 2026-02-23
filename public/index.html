@@ -1612,14 +1612,17 @@ function renderQuizQuestion(q, idx, total) {
     html += '<div class="qo-question">' + qText + '</div>';
   }
 
+  var isCorrect = quizChecked && quizSelected === q.answer;
+
   // Image choices (2x2 grid)
   if (q.image_choices) {
     html += '<div class="qo-img-choices">';
     for (var ic = 0; ic < q.image_choices.length; ic++) {
       var icCls = 'qo-img-choice';
-      if (quizChecked && ic === q.answer) icCls += ' correct';
-      else if (quizChecked && ic === quizSelected && ic !== q.answer) icCls += ' wrong';
+      if (quizChecked && isCorrect && ic === q.answer) icCls += ' correct';
+      else if (quizChecked && !isCorrect && ic === quizSelected) icCls += ' wrong';
       else if (!quizChecked && ic === quizSelected) icCls += ' selected';
+      if (quizChecked && ic !== quizSelected) icCls += ' dimmed';
 
       html += '<div class="' + icCls + '" onclick="selectQuizChoice(' + ic + ')">';
       html += '<img src="../' + escHtml(q.image_choices[ic]) + '" onload="this.style.display=\'\';this.nextElementSibling.style.display=\'none\'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style="display:none">';
@@ -1633,10 +1636,10 @@ function renderQuizQuestion(q, idx, total) {
     html += '<div class="qo-choices">';
     for (var i = 0; i < q.choices.length; i++) {
       var cls = 'qo-choice';
-      if (quizChecked && i === q.answer) cls += ' correct checked';
-      else if (quizChecked && i === quizSelected && i !== q.answer) cls += ' wrong checked';
+      if (quizChecked && isCorrect && i === q.answer) cls += ' correct checked';
+      else if (quizChecked && !isCorrect && i === quizSelected) cls += ' wrong checked';
       else if (!quizChecked && i === quizSelected) cls += ' selected';
-      if (quizChecked && i !== q.answer && i !== quizSelected) cls += ' dimmed checked';
+      if (quizChecked && i !== quizSelected) cls += ' dimmed checked';
 
       html += '<button class="' + cls + '" onclick="selectQuizChoice(' + i + ')">';
       html += '<span class="qo-choice-num">' + nums[i] + '</span>';
@@ -1653,21 +1656,22 @@ function renderQuizQuestion(q, idx, total) {
 
   // Result + Explanation (after checking)
   if (quizChecked) {
-    var isCorrect = quizSelected === q.answer;
     html += '<div class="qo-result ' + (isCorrect ? 'correct' : 'wrong') + '">';
     html += isCorrect ? '⭕ 정답!' : '❌ 오답!';
     html += '</div>';
 
-    html += '<div class="qo-explain">';
-    html += '<div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div>';
-    html += '<div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div>';
-    html += '</div>';
+    if (isCorrect) {
+      html += '<div class="qo-explain">';
+      html += '<div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div>';
+      html += '<div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div>';
+      html += '</div>';
 
-    if (q.audio_text) {
-      html += '<div class="qo-transcript">🔈 ' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+      if (q.audio_text) {
+        html += '<div class="qo-transcript">🔈 ' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+      }
+    } else {
+      html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">&#128260; 다시 풀기</button>';
     }
-
-    html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">&#128260; 다시 풀기</button>';
   }
 
   body.innerHTML = html;
