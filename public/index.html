@@ -1482,8 +1482,8 @@ function renderQuizQuestion(q, idx, total) {
   // Image
   if (q.image && !q.image_choices) {
     html += '<div class="qo-image-wrap">';
-    html += '<img class="qo-image" src="../' + escHtml(q.image) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">';
-    html += '<div class="qo-image-placeholder" style="display:none">🖼️ 이미지 준비 중</div>';
+    html += '<img class="qo-image" src="../' + escHtml(q.image) + '" onload="this.style.display=\'\';this.nextElementSibling.style.display=\'none\'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style="display:none">';
+    html += '<div class="qo-image-placeholder">🖼️ 이미지 준비 중</div>';
     html += '</div>';
   }
 
@@ -1508,8 +1508,8 @@ function renderQuizQuestion(q, idx, total) {
       else if (!quizChecked && ic === quizSelected) icCls += ' selected';
 
       html += '<div class="' + icCls + '" onclick="selectQuizChoice(' + ic + ')">';
-      html += '<img src="../' + escHtml(q.image_choices[ic]) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">';
-      html += '<div class="qo-img-placeholder" style="display:none">🖼️</div>';
+      html += '<img src="../' + escHtml(q.image_choices[ic]) + '" onload="this.style.display=\'\';this.nextElementSibling.style.display=\'none\'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style="display:none">';
+      html += '<div class="qo-img-placeholder">🖼️</div>';
       html += '<div class="qo-img-label">' + nums[ic] + ' ' + escHtml(q.choices_desc[ic]) + '</div>';
       html += '</div>';
     }
