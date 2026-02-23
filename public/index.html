@@ -555,13 +555,437 @@
     .sub-list::-webkit-scrollbar { width: 4px; }
     .sub-list::-webkit-scrollbar-track { background: transparent; }
     .sub-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    /* ── Quiz button ── */
+    .btn-explain-quiz {
+      background: #F39C12;
+      color: #fff;
+    }
+
+    /* ── Quiz Overlay (same pattern as explain-overlay) ── */
+    .quiz-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #1a1a2e;
+      z-index: 10;
+      flex-direction: column;
+      border-radius: 12px;
+    }
+
+    .quiz-overlay.open {
+      display: flex;
+    }
+
+    .qo-header {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      gap: 6px;
+    }
+
+    .qo-tabs {
+      flex: 1;
+      display: flex;
+      gap: 4px;
+    }
+
+    .qo-tab {
+      flex: 1;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+    }
+
+    .qo-tab.active {
+      background: #F39C12;
+      color: #fff;
+    }
+
+    .qo-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .qo-body::-webkit-scrollbar { width: 3px; }
+    .qo-body::-webkit-scrollbar-track { background: transparent; }
+    .qo-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+
+    .qo-progress {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+    }
+
+    .qo-instruction {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .qo-image-wrap { margin-bottom: 10px; }
+
+    .qo-image {
+      width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .qo-image-placeholder {
+      width: 100%;
+      height: 80px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .qo-passage {
+      background: #2a2a4a;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 10px;
+    }
+
+    .qo-question {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 10px;
+    }
+
+    .qo-blank {
+      border-bottom: 2px solid #F39C12;
+      padding: 0 8px;
+      color: #F39C12;
+    }
+
+    .qo-audio-wrap { margin-bottom: 10px; }
+
+    .qo-audio-btn {
+      display: block;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .qo-audio-btn:active { opacity: 0.8; }
+
+    .qo-audio-btn.playing {
+      background: rgba(76,175,80,0.3);
+      border-color: #4caf50;
+    }
+
+    .qo-audio-text {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 6px;
+      line-height: 1.5;
+      padding: 6px 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+    }
+
+    .qo-choices {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .qo-choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      width: 100%;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .qo-choice:active:not(.checked) { background: rgba(255,255,255,0.15); }
+
+    .qo-choice.selected {
+      border-color: #F39C12;
+      background: rgba(243,156,18,0.15);
+    }
+
+    .qo-choice.correct {
+      border-color: #4caf50;
+      background: rgba(76,175,80,0.2);
+      color: #fff;
+    }
+
+    .qo-choice.wrong {
+      border-color: #e94560;
+      background: rgba(233,69,96,0.2);
+      color: #fff;
+    }
+
+    .qo-choice.dimmed { opacity: 0.4; }
+
+    .qo-choice-num {
+      flex-shrink: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .qo-choice-text {
+      flex: 1;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .qo-img-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .qo-img-choice {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .qo-img-choice.selected { border-color: #F39C12; }
+    .qo-img-choice.correct { border-color: #4caf50; }
+    .qo-img-choice.wrong { border-color: #e94560; }
+
+    .qo-img-choice img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .qo-img-placeholder {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .qo-img-label {
+      padding: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .qo-check-btn {
+      display: block;
+      width: 100%;
+      background: #2196f3;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+
+    .qo-check-btn:active { opacity: 0.8; }
+
+    .qo-check-btn:disabled {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+    }
+
+    .qo-result {
+      text-align: center;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .qo-result.correct {
+      background: rgba(76,175,80,0.2);
+      color: #4caf50;
+    }
+
+    .qo-result.wrong {
+      background: rgba(233,69,96,0.2);
+      color: #e94560;
+    }
+
+    .qo-explain {
+      background: #2a2a4a;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .qo-explain-ko {
+      font-size: 0.75rem;
+      color: #90caf9;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .qo-explain-ne {
+      font-size: 0.75rem;
+      color: #a5d6a7;
+      line-height: 1.6;
+    }
+
+    .qo-transcript {
+      background: rgba(171,71,188,0.15);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      color: #ce93d8;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .qo-nav {
+      flex-shrink: 0;
+      display: flex;
+      gap: 8px;
+      padding: 8px 12px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .qo-nav:empty { display: none; }
+
+    .qo-nav-btn {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .qo-nav-btn:active { opacity: 0.8; }
+    .qo-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .qo-prev {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .qo-next {
+      background: #F39C12;
+      color: #fff;
+    }
+
+    .qo-results-screen {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .qo-results-icon { font-size: 2.5rem; margin-bottom: 8px; }
+
+    .qo-results-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .qo-results-score {
+      font-size: 0.9rem;
+      color: #F39C12;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .qo-results-detail {
+      background: #2a2a4a;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 16px;
+    }
+
+    .qo-results-row {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      padding: 4px 0;
+    }
+
+    .qo-results-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .qo-results-btn {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .qo-results-btn:active { opacity: 0.8; }
+
+    .qo-retry {
+      background: #F39C12;
+      color: #fff;
+    }
+
+    .qo-close {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="logo">K<span class="play">&#9654;</span>Drama TOPIK</div>
-  <a href="quiz.html" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:#e94560;color:#fff;text-decoration:none;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:20px;">Quiz</a>
 </header>
 
 <div class="container">
@@ -582,6 +1006,17 @@
       <div class="eo-body" id="eo-body">
         <div id="eo-text"></div>
       </div>
+    </div>
+    <div class="quiz-overlay" id="quiz-overlay">
+      <div class="qo-header">
+        <div class="qo-tabs">
+          <button class="qo-tab active" id="qo-tab-reading" onclick="switchQuizTab('reading')">&#128214; 읽기</button>
+          <button class="qo-tab" id="qo-tab-listening" onclick="switchQuizTab('listening')">&#127911; 듣기</button>
+        </div>
+        <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
+      </div>
+      <div class="qo-body" id="qo-body"></div>
+      <div class="qo-nav" id="qo-nav"></div>
     </div>
   </div>
 
@@ -639,6 +1074,13 @@ var speedSteps = [1, 0.7, 0.5];
 var speedIndex = 0;
 var fontScales = [0.85, 1, 1.2, 1.4, 1.7, 2];
 var fontLevel = 1; // index into fontScales, default=1 (1x)
+var quizData = null;
+var quizSection = 'reading';
+var quizIdx = 0;
+var quizSelected = -1;
+var quizChecked = false;
+var quizAnswers = {};
+var quizAudioEl = null;
 
 
 function formatTime(sec) {
@@ -662,10 +1104,12 @@ function findSub(id) {
 
 Promise.all([
   fetch('../data/subtitles.json').then(function(r){return r.json();}),
-  fetch('../data/explanations.json').then(function(r){return r.json();})
+  fetch('../data/explanations.json').then(function(r){return r.json();}),
+  fetch('../data/quiz.json').then(function(r){return r.json();}).catch(function(){return null;})
 ]).then(function(results) {
   subtitles = results[0];
   explanationsMap = results[1];
+  if (results[2]) quizData = results[2]['1'] || null;
   renderList();
 });
 
@@ -723,11 +1167,17 @@ function padId(id) {
 function buildExplainSection(id) {
   var hasData = explanationsMap[String(id)];
   var disabled = hasData ? '' : ' disabled';
+  var hasQuiz = !!quizData;
   var html = '<div class="explain-section">';
   html += '<div class="explain-btns">';
   html += '<button class="btn-explain btn-explain-ne" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어 설명</button>';
   html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어 설명</button>';
   html += '</div>';
+  if (hasQuiz) {
+    html += '<div class="explain-btns" style="margin-top:8px">';
+    html += '<button class="btn-explain btn-explain-quiz" onclick="openQuizOverlay()">📝 EPS-TOPIK</button>';
+    html += '</div>';
+  }
   html += '</div>';
   return html;
 }
@@ -815,6 +1265,9 @@ function openExplainOverlay(id, lang) {
   var data = explanationsMap[String(id)];
   if (!data) return;
 
+  // Close quiz if open
+  closeQuizOverlay();
+
   // Pause YouTube
   if (player && player.pauseVideo) player.pauseVideo();
 
@@ -899,6 +1352,324 @@ function destroyExplainAudio() {
   explainAudioLang = null;
   explainParas = [];
   explainActivePara = -1;
+}
+
+/* ── Quiz Overlay ── */
+function openQuizOverlay() {
+  closeExplainOverlay();
+  if (player && player.pauseVideo) player.pauseVideo();
+
+  quizSection = 'reading';
+  quizIdx = 0;
+  quizSelected = -1;
+  quizChecked = false;
+  quizAnswers = {};
+
+  document.getElementById('quiz-overlay').classList.add('open');
+  renderQuiz();
+}
+
+function closeQuizOverlay() {
+  document.getElementById('quiz-overlay').classList.remove('open');
+  stopQuizAudio();
+}
+
+function switchQuizTab(sec) {
+  quizSection = sec;
+  quizIdx = 0;
+  quizSelected = -1;
+  quizChecked = false;
+  renderQuiz();
+}
+
+function getQuizQuestions() {
+  if (!quizData) return [];
+  return quizData[quizSection] || [];
+}
+
+function renderQuiz() {
+  var qs = getQuizQuestions();
+  var total = qs.length;
+
+  // Update tabs
+  document.getElementById('qo-tab-reading').className = 'qo-tab' + (quizSection === 'reading' ? ' active' : '');
+  document.getElementById('qo-tab-listening').className = 'qo-tab' + (quizSection === 'listening' ? ' active' : '');
+
+  if (total === 0) {
+    document.getElementById('qo-body').innerHTML = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.4)">문제가 없습니다.</div>';
+    document.getElementById('qo-nav').innerHTML = '';
+    return;
+  }
+
+  var q = qs[quizIdx];
+  var answered = quizAnswers[q.id];
+  if (answered) {
+    quizSelected = answered.selected;
+    quizChecked = true;
+  }
+
+  renderQuizQuestion(q, quizIdx, total);
+  renderQuizNav(quizIdx, total);
+}
+
+function renderQuizQuestion(q, idx, total) {
+  stopQuizAudio();
+  var body = document.getElementById('qo-body');
+  var html = '';
+  var nums = ['①', '②', '③', '④'];
+
+  // Progress
+  html += '<div class="qo-progress">문제 ' + (idx + 1) + '/' + total + '</div>';
+
+  // Instruction
+  html += '<div class="qo-instruction">' + escHtml(q.instruction) + '</div>';
+
+  // Audio button (listening)
+  if (q.audio) {
+    html += '<div class="qo-audio-wrap">';
+    html += '<button class="qo-audio-btn" id="qo-audio-btn" onclick="toggleQuizAudio()">🔊 음성 듣기</button>';
+    if (q.audio_text) {
+      html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+    }
+    html += '</div>';
+  }
+
+  // Image
+  if (q.image && !q.image_choices) {
+    html += '<div class="qo-image-wrap">';
+    html += '<img class="qo-image" src="../' + escHtml(q.image) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">';
+    html += '<div class="qo-image-placeholder" style="display:none">🖼️ 이미지 준비 중</div>';
+    html += '</div>';
+  }
+
+  // Passage
+  if (q.passage) {
+    html += '<div class="qo-passage">' + escHtml(q.passage) + '</div>';
+  }
+
+  // Question text (fill-blank / vocab / story question)
+  if (q.question) {
+    var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\(          \)/g, '<span class="qo-blank">______</span>');
+    html += '<div class="qo-question">' + qText + '</div>';
+  }
+
+  // Image choices (2x2 grid)
+  if (q.image_choices) {
+    html += '<div class="qo-img-choices">';
+    for (var ic = 0; ic < q.image_choices.length; ic++) {
+      var icCls = 'qo-img-choice';
+      if (quizChecked && ic === q.answer) icCls += ' correct';
+      else if (quizChecked && ic === quizSelected && ic !== q.answer) icCls += ' wrong';
+      else if (!quizChecked && ic === quizSelected) icCls += ' selected';
+
+      html += '<div class="' + icCls + '" onclick="selectQuizChoice(' + ic + ')">';
+      html += '<img src="../' + escHtml(q.image_choices[ic]) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">';
+      html += '<div class="qo-img-placeholder" style="display:none">🖼️</div>';
+      html += '<div class="qo-img-label">' + nums[ic] + ' ' + escHtml(q.choices_desc[ic]) + '</div>';
+      html += '</div>';
+    }
+    html += '</div>';
+  } else {
+    // Text choices
+    html += '<div class="qo-choices">';
+    for (var i = 0; i < q.choices.length; i++) {
+      var cls = 'qo-choice';
+      if (quizChecked && i === q.answer) cls += ' correct checked';
+      else if (quizChecked && i === quizSelected && i !== q.answer) cls += ' wrong checked';
+      else if (!quizChecked && i === quizSelected) cls += ' selected';
+      if (quizChecked && i !== q.answer && i !== quizSelected) cls += ' dimmed checked';
+
+      html += '<button class="' + cls + '" onclick="selectQuizChoice(' + i + ')">';
+      html += '<span class="qo-choice-num">' + nums[i] + '</span>';
+      html += '<span class="qo-choice-text">' + escHtml(q.choices[i]) + '</span>';
+      html += '</button>';
+    }
+    html += '</div>';
+  }
+
+  // Check button (before answer)
+  if (!quizChecked) {
+    html += '<button class="qo-check-btn" id="qo-check" onclick="checkQuizAnswer()"' + (quizSelected === -1 ? ' disabled' : '') + '>정답 확인</button>';
+  }
+
+  // Result + Explanation (after checking)
+  if (quizChecked) {
+    var isCorrect = quizSelected === q.answer;
+    html += '<div class="qo-result ' + (isCorrect ? 'correct' : 'wrong') + '">';
+    html += isCorrect ? '⭕ 정답!' : '❌ 오답!';
+    html += '</div>';
+
+    html += '<div class="qo-explain">';
+    html += '<div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div>';
+    html += '<div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div>';
+    html += '</div>';
+
+    if (q.audio_text) {
+      html += '<div class="qo-transcript">🔈 ' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+    }
+  }
+
+  body.innerHTML = html;
+  body.scrollTop = 0;
+}
+
+function renderQuizNav(idx, total) {
+  var nav = document.getElementById('qo-nav');
+  var html = '';
+
+  if (idx > 0) {
+    html += '<button class="qo-nav-btn qo-prev" onclick="quizPrev()">← 이전</button>';
+  }
+
+  if (idx < total - 1) {
+    html += '<button class="qo-nav-btn qo-next" onclick="quizNext()">다음 →</button>';
+  } else {
+    var qs = getQuizQuestions();
+    var allDone = true;
+    for (var i = 0; i < qs.length; i++) {
+      if (!quizAnswers[qs[i].id]) { allDone = false; break; }
+    }
+    html += '<button class="qo-nav-btn qo-next" onclick="showQuizResults()"' + (allDone ? '' : ' disabled') + '>결과 보기</button>';
+  }
+
+  nav.innerHTML = html;
+}
+
+function selectQuizChoice(idx) {
+  if (quizChecked) return;
+  quizSelected = idx;
+  renderQuiz();
+}
+
+function checkQuizAnswer() {
+  if (quizSelected === -1) return;
+  var q = getQuizQuestions()[quizIdx];
+  quizChecked = true;
+  quizAnswers[q.id] = { selected: quizSelected, correct: quizSelected === q.answer };
+  renderQuiz();
+}
+
+function quizPrev() {
+  if (quizIdx > 0) {
+    quizIdx--;
+    var q = getQuizQuestions()[quizIdx];
+    var answered = quizAnswers[q.id];
+    if (answered) {
+      quizSelected = answered.selected;
+      quizChecked = true;
+    } else {
+      quizSelected = -1;
+      quizChecked = false;
+    }
+    renderQuiz();
+  }
+}
+
+function quizNext() {
+  var qs = getQuizQuestions();
+  if (quizIdx < qs.length - 1) {
+    quizIdx++;
+    var q = qs[quizIdx];
+    var answered = quizAnswers[q.id];
+    if (answered) {
+      quizSelected = answered.selected;
+      quizChecked = true;
+    } else {
+      quizSelected = -1;
+      quizChecked = false;
+    }
+    renderQuiz();
+  }
+}
+
+function showQuizResults() {
+  stopQuizAudio();
+  var body = document.getElementById('qo-body');
+  var nav = document.getElementById('qo-nav');
+
+  var rQs = quizData.reading || [];
+  var lQs = quizData.listening || [];
+  var rCorrect = 0, lCorrect = 0;
+
+  for (var i = 0; i < rQs.length; i++) {
+    if (quizAnswers[rQs[i].id] && quizAnswers[rQs[i].id].correct) rCorrect++;
+  }
+  for (var i = 0; i < lQs.length; i++) {
+    if (quizAnswers[lQs[i].id] && quizAnswers[lQs[i].id].correct) lCorrect++;
+  }
+
+  var total = rQs.length + lQs.length;
+  var correct = rCorrect + lCorrect;
+  var answered = 0;
+  for (var k in quizAnswers) { if (quizAnswers.hasOwnProperty(k)) answered++; }
+  var pct = answered > 0 ? Math.round(correct / answered * 100) : 0;
+
+  var html = '<div class="qo-results-screen">';
+  html += '<div class="qo-results-icon">🎉</div>';
+  html += '<div class="qo-results-title">퀴즈 완료!</div>';
+  html += '<div class="qo-results-score">' + correct + '/' + answered + ' 문제 정답 (' + pct + '%)</div>';
+  html += '<div class="qo-results-detail">';
+  html += '<div class="qo-results-row">📖 읽기: ' + rCorrect + '/' + rQs.length + '</div>';
+  html += '<div class="qo-results-row">🎧 듣기: ' + lCorrect + '/' + lQs.length + '</div>';
+  html += '</div>';
+  html += '<div class="qo-results-btns">';
+  html += '<button class="qo-results-btn qo-retry" onclick="retryQuiz()">🔄 다시 풀기</button>';
+  html += '<button class="qo-results-btn qo-close" onclick="closeQuizOverlay()">✕ 닫기</button>';
+  html += '</div>';
+  html += '</div>';
+
+  body.innerHTML = html;
+  body.scrollTop = 0;
+  nav.innerHTML = '';
+}
+
+function retryQuiz() {
+  quizIdx = 0;
+  quizSelected = -1;
+  quizChecked = false;
+  quizAnswers = {};
+  renderQuiz();
+}
+
+function toggleQuizAudio() {
+  var q = getQuizQuestions()[quizIdx];
+  if (!q || !q.audio) return;
+
+  var btn = document.getElementById('qo-audio-btn');
+
+  if (quizAudioEl && !quizAudioEl.paused) {
+    quizAudioEl.pause();
+    quizAudioEl.currentTime = 0;
+    if (btn) btn.classList.remove('playing');
+    return;
+  }
+
+  stopQuizAudio();
+  quizAudioEl = new Audio('../' + q.audio);
+  if (btn) btn.classList.add('playing');
+
+  quizAudioEl.onended = function() {
+    if (btn) btn.classList.remove('playing');
+  };
+  quizAudioEl.onerror = function() {
+    if (btn) {
+      btn.classList.remove('playing');
+      btn.textContent = '🔊 음성 파일 준비 중';
+    }
+  };
+  quizAudioEl.play().catch(function() {
+    if (btn) {
+      btn.classList.remove('playing');
+      btn.textContent = '🔊 음성 파일 준비 중';
+    }
+  });
+}
+
+function stopQuizAudio() {
+  if (quizAudioEl) {
+    quizAudioEl.pause();
+    quizAudioEl = null;
+  }
 }
 
 /* ── Subtitle Click ── */
@@ -1020,6 +1791,7 @@ function cancelLoop() {
 
 function resetAllState() {
   closeExplainOverlay();
+  closeQuizOverlay();
   cancelLoop();
   resetSpeed();
   if (openDetailId !== -1) {
