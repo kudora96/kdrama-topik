@@ -175,26 +175,53 @@
       }
     },
     "writing": {
-      "sentence": "저는 군인입니다",
-      "sentence_ne": "म सैनिक हुँ",
+      "sentence": "왜 리정혁 중대장만 이렇게 특별합니까?",
+      "sentence_ne": "किन रि जोङह्योक चुङदेजाङ मात्र यति विशेष छन्?",
       "words": [
         {
-          "word": "저는",
-          "meaning_ne": "म (I)",
+          "word": "왜",
+          "meaning_ne": "किन (why)",
           "chars": [
-            { "char": "저", "jamo": ["ㅈ", "ㅓ"], "explanation_ne": "ㅈ(ja) + ㅓ(eo) = 저(jeo)" },
-            { "char": "는", "jamo": ["ㄴ", "ㅡ", "ㄴ"], "explanation_ne": "ㄴ(na) + ㅡ(eu) + ㄴ(n batchim) = 는(neun)" }
+            { "char": "왜", "jamo": ["ㅇ", "ㅙ"], "explanation_ne": "ㅇ(silent) + ㅙ(wae) = 왜(wae)" }
           ]
         },
         {
-          "word": "군인입니다",
-          "meaning_ne": "सैनिक हुँ (am a soldier)",
+          "word": "리정혁",
+          "meaning_ne": "रि जोङह्योक (Ri Jeong-hyeok)",
           "chars": [
-            { "char": "군", "jamo": ["ㄱ", "ㅜ", "ㄴ"], "explanation_ne": "ㄱ(gi) + ㅜ(u) + ㄴ(n batchim) = 군(gun)" },
-            { "char": "인", "jamo": ["ㅇ", "ㅣ", "ㄴ"], "explanation_ne": "ㅇ(silent) + ㅣ(i) + ㄴ(n batchim) = 인(in)" },
-            { "char": "입", "jamo": ["ㅇ", "ㅣ", "ㅂ"], "explanation_ne": "ㅇ(silent) + ㅣ(i) + ㅂ(b batchim) = 입(ip)" },
-            { "char": "니", "jamo": ["ㄴ", "ㅣ"], "explanation_ne": "ㄴ(na) + ㅣ(i) = 니(ni)" },
-            { "char": "다", "jamo": ["ㄷ", "ㅏ"], "explanation_ne": "ㄷ(da) + ㅏ(a) = 다(da)" }
+            { "char": "리", "jamo": ["ㄹ", "ㅣ"], "explanation_ne": "ㄹ(ri) + ㅣ(i) = 리(ri)" },
+            { "char": "정", "jamo": ["ㅈ", "ㅓ", "ㅇ"], "explanation_ne": "ㅈ(ji) + ㅓ(eo) + ㅇ(ng batchim) = 정(jeong)" },
+            { "char": "혁", "jamo": ["ㅎ", "ㅕ", "ㄱ"], "explanation_ne": "ㅎ(hi) + ㅕ(yeo) + ㄱ(k batchim) = 혁(hyeok)" }
+          ]
+        },
+        {
+          "word": "중대장만",
+          "meaning_ne": "चुङदेजाङ मात्र (only the commander)",
+          "chars": [
+            { "char": "중", "jamo": ["ㅈ", "ㅜ", "ㅇ"], "explanation_ne": "ㅈ(ji) + ㅜ(u) + ㅇ(ng batchim) = 중(jung)" },
+            { "char": "대", "jamo": ["ㄷ", "ㅐ"], "explanation_ne": "ㄷ(di) + ㅐ(ae) = 대(dae)" },
+            { "char": "장", "jamo": ["ㅈ", "ㅏ", "ㅇ"], "explanation_ne": "ㅈ(ji) + ㅏ(a) + ㅇ(ng batchim) = 장(jang)" },
+            { "char": "만", "jamo": ["ㅁ", "ㅏ", "ㄴ"], "explanation_ne": "ㅁ(mi) + ㅏ(a) + ㄴ(n batchim) = 만(man)" }
+          ]
+        },
+        {
+          "word": "이렇게",
+          "meaning_ne": "यसरी (like this)",
+          "chars": [
+            { "char": "이", "jamo": ["ㅇ", "ㅣ"], "explanation_ne": "ㅇ(silent) + ㅣ(i) = 이(i)" },
+            { "char": "렇", "jamo": ["ㄹ", "ㅓ", "ㅎ"], "explanation_ne": "ㄹ(ri) + ㅓ(eo) + ㅎ(h batchim) = 렇(reoh)" },
+            { "char": "게", "jamo": ["ㄱ", "ㅔ"], "explanation_ne": "ㄱ(gi) + ㅔ(e) = 게(ge)" }
+          ]
+        },
+        {
+          "word": "특별합니까",
+          "meaning_ne": "विशेष हो? (is special?)",
+          "chars": [
+            { "char": "특", "jamo": ["ㅌ", "ㅡ", "ㄱ"], "explanation_ne": "ㅌ(ti) + ㅡ(eu) + ㄱ(k batchim) = 특(teuk)" },
+            { "char": "별", "jamo": ["ㅂ", "ㅕ", "ㄹ"], "explanation_ne": "ㅂ(bi) + ㅕ(yeo) + ㄹ(l batchim) = 별(byeol)" },
+            { "char": "합", "jamo": ["ㅎ", "ㅏ", "ㅂ"], "explanation_ne": "ㅎ(hi) + ㅏ(a) + ㅂ(b batchim) = 합(hap)" },
+            { "char": "니", "jamo": ["ㄴ", "ㅣ"], "explanation_ne": "ㄴ(ni) + ㅣ(i) = 니(ni)" },
+            { "char": "까", "jamo": ["ㄲ", "ㅏ"], "explanation_ne": "ㄲ(kki) + ㅏ(a) = 까(kka)" }
           ]
         }
       ]

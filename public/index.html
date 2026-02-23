@@ -2887,6 +2887,16 @@ function renderWriting() {
   if (wordJustDone) {
     html += '<div class="wr-word-done">✅ ' + escHtml(curWord.word) + ' 완성! — ' + escHtml(curWord.meaning_ne) + '</div>';
     body.innerHTML = html;
+    playQuizSound(true);
+    var ttsWord = curWord.word;
+    setTimeout(function() {
+      try {
+        var utterance = new SpeechSynthesisUtterance(ttsWord);
+        utterance.lang = 'ko-KR';
+        utterance.rate = 0.8;
+        speechSynthesis.speak(utterance);
+      } catch(e) {}
+    }, 500);
     // Auto-advance to next word
     wrAdvanceTimer = setTimeout(function() {
       wrWordIdx++;
@@ -2894,7 +2904,7 @@ function renderWriting() {
       wrJamoIdx = 0;
       wrEnteredJamo = [];
       renderWriting();
-    }, 2000);
+    }, 2500);
     return;
   }
 
