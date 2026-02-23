@@ -562,16 +562,14 @@
       color: #fff;
     }
 
-    /* ── Quiz Overlay (same pattern as explain-overlay) ── */
+    /* ── Quiz Overlay (flows outside player-wrap) ── */
     .quiz-overlay {
       display: none;
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
       background: #1a1a2e;
-      z-index: 10;
-      flex-direction: column;
       border-radius: 12px;
+      flex-direction: column;
+      margin-top: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
 
     .quiz-overlay.open {
@@ -581,15 +579,15 @@
     .qo-header {
       display: flex;
       align-items: center;
-      padding: 6px 10px;
+      padding: 10px 14px;
       flex-shrink: 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      gap: 6px;
+      gap: 8px;
     }
 
     .qo-header-title {
       flex: 1;
-      font-size: 0.82rem;
+      font-size: 20px;
       font-weight: 700;
       color: #fff;
     }
@@ -599,16 +597,16 @@
       flex-shrink: 0;
       display: flex;
       gap: 3px;
-      padding: 6px 10px 4px;
+      padding: 8px 14px 6px;
       justify-content: center;
     }
 
     .qo-dot {
       flex: 1;
-      height: 5px;
-      border-radius: 3px;
+      height: 8px;
+      border-radius: 4px;
       background: rgba(255,255,255,0.15);
-      max-width: 28px;
+      max-width: 32px;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -622,30 +620,23 @@
     .qo-dot.wrong { background: #e94560; }
 
     .qo-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px 12px;
-      -webkit-overflow-scrolling: touch;
+      padding: 14px 16px;
     }
 
-    .qo-body::-webkit-scrollbar { width: 3px; }
-    .qo-body::-webkit-scrollbar-track { background: transparent; }
-    .qo-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
-
     .qo-progress {
-      font-size: 0.92rem;
+      font-size: 20px;
       font-weight: 900;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .qo-progress-section {
-      font-size: 0.7rem;
+      font-size: 13px;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 10px;
       color: #fff;
     }
@@ -654,50 +645,55 @@
     .qo-progress-section.listening { background: #4caf50; }
 
     .qo-instruction {
-      font-size: 0.82rem;
+      font-size: 18px;
       font-weight: 700;
       color: #fff;
       line-height: 1.6;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .qo-image-wrap { margin-bottom: 10px; }
+    .qo-image-wrap {
+      margin-bottom: 12px;
+      text-align: center;
+    }
 
     .qo-image {
-      width: 100%;
-      max-height: 120px;
+      max-width: 80%;
+      max-height: 250px;
       object-fit: contain;
       border-radius: 8px;
       background: rgba(255,255,255,0.05);
     }
 
     .qo-image-placeholder {
-      width: 100%;
-      height: 80px;
+      width: 80%;
+      max-height: 250px;
+      height: 120px;
+      margin: 0 auto;
       background: rgba(255,255,255,0.05);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 16px;
       color: rgba(255,255,255,0.3);
     }
 
     .qo-passage {
       background: #2a2a4a;
       border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 0.78rem;
+      padding: 12px 14px;
+      font-size: 17px;
       line-height: 1.7;
       color: rgba(255,255,255,0.8);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .qo-question {
-      font-size: 0.8rem;
+      font-size: 18px;
       line-height: 1.7;
       color: rgba(255,255,255,0.85);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .qo-blank {
@@ -706,7 +702,7 @@
       color: #F39C12;
     }
 
-    .qo-audio-wrap { margin-bottom: 10px; }
+    .qo-audio-wrap { margin-bottom: 12px; }
 
     .qo-audio-btn {
       display: block;
@@ -714,8 +710,8 @@
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 8px;
-      padding: 10px;
-      font-size: 0.8rem;
+      padding: 12px;
+      font-size: 18px;
       font-weight: 700;
       color: #fff;
       cursor: pointer;
@@ -730,11 +726,11 @@
     }
 
     .qo-audio-text {
-      font-size: 0.68rem;
+      font-size: 14px;
       color: rgba(255,255,255,0.35);
       margin-top: 6px;
       line-height: 1.5;
-      padding: 6px 8px;
+      padding: 8px 10px;
       background: rgba(255,255,255,0.05);
       border-radius: 6px;
     }
@@ -742,18 +738,18 @@
     .qo-choices {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .qo-choice {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 10px;
       background: rgba(255,255,255,0.08);
       border: 2px solid rgba(255,255,255,0.15);
       border-radius: 8px;
-      padding: 10px;
+      padding: 14px 16px;
       cursor: pointer;
       font-family: inherit;
       text-align: left;
@@ -784,21 +780,21 @@
 
     .qo-choice-num {
       flex-shrink: 0;
-      font-size: 0.78rem;
+      font-size: 18px;
       font-weight: 700;
     }
 
     .qo-choice-text {
       flex: 1;
-      font-size: 0.78rem;
+      font-size: 18px;
       line-height: 1.5;
     }
 
     .qo-img-choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-bottom: 10px;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .qo-img-choice {
@@ -816,23 +812,23 @@
 
     .qo-img-choice img {
       width: 100%;
-      height: 60px;
+      height: 80px;
       object-fit: contain;
     }
 
     .qo-img-placeholder {
       width: 100%;
-      height: 60px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: rgba(255,255,255,0.2);
     }
 
     .qo-img-label {
-      padding: 4px;
-      font-size: 0.65rem;
+      padding: 6px;
+      font-size: 14px;
       font-weight: 700;
       color: rgba(255,255,255,0.6);
     }
@@ -843,13 +839,13 @@
       background: #2196f3;
       border: none;
       border-radius: 8px;
-      padding: 10px;
-      font-size: 0.82rem;
+      padding: 14px;
+      font-size: 18px;
       font-weight: 700;
       color: #fff;
       cursor: pointer;
       font-family: inherit;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .qo-check-btn:active { opacity: 0.8; }
@@ -862,11 +858,11 @@
 
     .qo-result {
       text-align: center;
-      padding: 8px;
+      padding: 10px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .qo-result.correct {
@@ -882,19 +878,19 @@
     .qo-explain {
       background: #2a2a4a;
       border-radius: 8px;
-      padding: 10px 12px;
-      margin-bottom: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
     }
 
     .qo-explain-ko {
-      font-size: 0.75rem;
+      font-size: 16px;
       color: #90caf9;
       line-height: 1.6;
       margin-bottom: 6px;
     }
 
     .qo-explain-ne {
-      font-size: 0.75rem;
+      font-size: 16px;
       color: #a5d6a7;
       line-height: 1.6;
     }
@@ -902,18 +898,18 @@
     .qo-transcript {
       background: rgba(171,71,188,0.15);
       border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 0.72rem;
+      padding: 10px 14px;
+      font-size: 15px;
       color: #ce93d8;
       line-height: 1.6;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .qo-nav {
       flex-shrink: 0;
       display: flex;
       gap: 8px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
@@ -923,8 +919,8 @@
       flex: 1;
       border: none;
       border-radius: 8px;
-      padding: 10px;
-      font-size: 0.8rem;
+      padding: 14px;
+      font-size: 18px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
@@ -945,34 +941,34 @@
 
     .qo-results-screen {
       text-align: center;
-      padding: 20px 10px;
+      padding: 24px 14px;
     }
 
-    .qo-results-icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .qo-results-icon { font-size: 3rem; margin-bottom: 10px; }
 
     .qo-results-title {
-      font-size: 1.1rem;
+      font-size: 22px;
       font-weight: 900;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .qo-results-score {
-      font-size: 0.9rem;
+      font-size: 18px;
       color: #F39C12;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .qo-results-detail {
       background: #2a2a4a;
       border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 16px;
+      padding: 12px;
+      margin-bottom: 18px;
     }
 
     .qo-results-row {
-      font-size: 0.8rem;
+      font-size: 16px;
       color: rgba(255,255,255,0.7);
       padding: 4px 0;
     }
@@ -986,8 +982,8 @@
       flex: 1;
       border: none;
       border-radius: 8px;
-      padding: 10px;
-      font-size: 0.82rem;
+      padding: 14px;
+      font-size: 18px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
@@ -1031,15 +1027,15 @@
         <div id="eo-text"></div>
       </div>
     </div>
-    <div class="quiz-overlay" id="quiz-overlay">
-      <div class="qo-header">
-        <div class="qo-header-title">&#128221; EPS-TOPIK</div>
-        <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
-      </div>
-      <div class="qo-pbar" id="qo-pbar"></div>
-      <div class="qo-body" id="qo-body"></div>
-      <div class="qo-nav" id="qo-nav"></div>
+  </div>
+  <div class="quiz-overlay" id="quiz-overlay">
+    <div class="qo-header">
+      <div class="qo-header-title">&#128221; EPS-TOPIK</div>
+      <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
     </div>
+    <div class="qo-pbar" id="qo-pbar"></div>
+    <div class="qo-body" id="qo-body"></div>
+    <div class="qo-nav" id="qo-nav"></div>
   </div>
 
   <div class="tip-banner" id="tip-banner" style="display:none">
@@ -1402,12 +1398,15 @@ function openQuizOverlay() {
   quizChecked = false;
   quizAnswers = {};
 
+  document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('quiz-overlay').classList.add('open');
   renderQuiz();
+  scrollQuizToTop();
 }
 
 function closeQuizOverlay() {
   document.getElementById('quiz-overlay').classList.remove('open');
+  document.getElementById('player-wrap').style.display = '';
   stopQuizAudio();
 }
 
@@ -1558,8 +1557,8 @@ function renderQuizQuestion(q, idx, total) {
 }
 
 function scrollQuizToTop() {
-  var body = document.getElementById('qo-body');
-  if (body) body.scrollTop = 0;
+  var el = document.getElementById('quiz-overlay');
+  if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
 function renderQuizNav(idx, total) {
