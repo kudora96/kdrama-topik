@@ -1325,31 +1325,25 @@
       justify-content: center;
       margin-bottom: 10px;
     }
-    .wr-complete-btn {
+    .wr-cbtn {
+      width: 48%;
+      height: 48px;
       border: none;
       border-radius: 8px;
-      padding: 14px 28px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      background: #9C27B0;
-      color: #fff;
-    }
-    .wr-complete-btn:active { opacity: 0.8; }
-    .wr-listen-btn {
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      background: #2196F3;
       color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
-    .wr-listen-btn:active { opacity: 0.8; }
-    .wr-listen-btn.playing { background: #1565C0; }
+    .wr-cbtn:active { opacity: 0.8; }
+    .wr-cbtn-repeat { background: #FF9800; }
+    .wr-cbtn-retry { background: #9C27B0; }
+    .wr-cbtn-close { background: #E0E0E0; color: #333; width: 100%; margin-bottom: 10px; }
 
     .wr-word-done {
       text-align: center;
@@ -1434,8 +1428,7 @@
     .quiz-dark .wr-complete-words { color: rgba(255,255,255,0.8); }
     .quiz-dark .wr-complete-words .wr-cw-highlight { color: #64B5F6; }
     .quiz-dark .wr-complete-ne { color: rgba(255,255,255,0.6); }
-    .quiz-dark .wr-listen-btn { background: #64B5F6; }
-    .quiz-dark .wr-listen-btn.playing { background: #42A5F5; }
+    .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
     .quiz-dark .wr-repeat-btn { background: #F39C12; }
     .quiz-dark .wr-next-btn { background: #64B5F6; }
@@ -2952,13 +2945,10 @@ function renderWriting() {
     html += '</div>';
     html += '<div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div>';
     html += '<div class="wr-complete-btns">';
-    html += '<button class="wr-listen-btn" id="wr-listen-btn" onclick="playSentenceAudio()">🔊 문장 듣기</button>';
-    html += '<button class="wr-listen-btn" onclick="playSentenceAudio()" style="background:#FF9800">🔁 반복</button>';
+    html += '<button class="wr-cbtn wr-cbtn-repeat" onclick="playSentenceAudio()">🔁 반복</button>';
+    html += '<button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 다시 연습</button>';
     html += '</div>';
-    html += '<div class="wr-complete-btns">';
-    html += '<button class="wr-complete-btn" onclick="retryWriting()">🔄 다시 연습</button>';
-    html += '<button class="wr-complete-btn" onclick="closeWritingOverlay()" style="background:#E0E0E0;color:#333">✕ 닫기</button>';
-    html += '</div>';
+    html += '<button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ 닫기</button>';
     html += '</div>';
     body.innerHTML = html;
     playQuizSound(true);
