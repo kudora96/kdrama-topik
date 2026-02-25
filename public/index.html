@@ -1990,7 +1990,7 @@ function renderQuizQuestion(q, idx, total) {
 
   // Question text (fill-blank / vocab / story question)
   if (q.question) {
-    var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\(          \)/g, '<span class="qo-blank">(          )</span>');
+    var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\(          \)/g, '<span class="qo-blank">(      )</span>');
     html += '<div class="qo-question">' + qText + '</div>';
   }
 
