@@ -718,9 +718,9 @@
     }
 
     .qo-blank {
-      border-bottom: 2px solid #2196F3;
-      padding: 0 8px;
-      color: #2196F3;
+      padding: 0 2px;
+      color: #888;
+      font-weight: normal;
     }
 
     .qo-audio-wrap { margin-bottom: 12px; }
@@ -1116,7 +1116,7 @@
     .quiz-dark .qo-image-placeholder { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); }
     .quiz-dark .qo-passage { background: #2a2a4a; border-color: transparent; color: rgba(255,255,255,0.8); }
     .quiz-dark .qo-question { color: rgba(255,255,255,0.85); }
-    .quiz-dark .qo-blank { border-bottom-color: #F39C12; color: #F39C12; }
+    .quiz-dark .qo-blank { color: rgba(255,255,255,0.5); }
     .quiz-dark .qo-audio-btn { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
     .quiz-dark .qo-audio-btn.playing { background: rgba(76,175,80,0.3); border-color: #4caf50; color: #fff; }
     .quiz-dark .qo-audio-text { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
@@ -1990,7 +1990,7 @@ function renderQuizQuestion(q, idx, total) {
 
   // Question text (fill-blank / vocab / story question)
   if (q.question) {
-    var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\(          \)/g, '<span class="qo-blank">______</span>');
+    var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\(          \)/g, '<span class="qo-blank">(          )</span>');
     html += '<div class="qo-question">' + qText + '</div>';
   }
 
