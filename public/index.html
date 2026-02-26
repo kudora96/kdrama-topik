@@ -760,15 +760,22 @@
       margin-top: 6px;
     }
     .qo-toggle-text-btn:active { opacity: 0.8; }
+    .qo-toggle-hint {
+      font-size: 11px;
+      color: #AAAAAA;
+      text-align: center;
+      margin-top: 4px;
+    }
 
     .qo-audio-text {
-      font-size: 14px;
-      color: #999999;
-      margin-top: 6px;
-      line-height: 1.5;
-      padding: 8px 10px;
-      background: #FAFAFA;
-      border-radius: 6px;
+      font-size: 15px;
+      color: #444444;
+      margin-top: 8px;
+      line-height: 1.8;
+      padding: 12px 14px;
+      background: #F0F4FF;
+      border-radius: 8px;
+      border-left: 3px solid #5C6BC0;
     }
 
     .qo-choices {
@@ -1134,7 +1141,8 @@
     .quiz-dark .qo-audio-btn { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
     .quiz-dark .qo-audio-btn.playing { background: rgba(76,175,80,0.3); border-color: #4caf50; color: #fff; }
     .quiz-dark .qo-toggle-text-btn { background: rgba(255,179,0,0.15); border-color: rgba(255,179,0,0.4); color: #FFB300; }
-    .quiz-dark .qo-audio-text { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
+    .quiz-dark .qo-toggle-hint { color: rgba(255,255,255,0.3); }
+    .quiz-dark .qo-audio-text { color: rgba(255,255,255,0.75); background: rgba(92,107,192,0.15); border-left-color: #7986CB; }
     .quiz-dark .qo-choice { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
     .quiz-dark .qo-choice:active:not(.checked) { background: rgba(255,255,255,0.15); }
     .quiz-dark .qo-choice.selected { border-color: #F39C12; background: rgba(243,156,18,0.15); }
@@ -1991,7 +1999,8 @@ function renderQuizQuestion(q, idx, total) {
       if (sec === 'listening') {
         var showText = isCorrect || quizShowAudioText;
         html += '<button class="qo-toggle-text-btn" onclick="toggleQuizAudioText()">' + (showText ? '📝 대화 숨기기' : '📝 대화 보기') + '</button>';
-        html += '<div class="qo-audio-text" style="' + (showText ? '' : 'display:none') + '">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+        html += '<div class="qo-toggle-hint">(실제 시험에서는 대화 내용이 보이지 않습니다)</div>';
+        html += '<div class="qo-audio-text" style="' + (showText ? '' : 'display:none') + '">' + formatAudioText(q.audio_text) + '</div>';
       } else {
         html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
       }
@@ -2448,6 +2457,10 @@ function updateQrHighlight() {
   if (cur) cur.textContent = fmtAudioTime(t);
   if (durEl) durEl.textContent = fmtAudioTime(dur);
   if (!qrAudio.paused) qrHighlight(getQrParaAt(t, dur));
+}
+
+function formatAudioText(text) {
+  return escHtml(text).replace(/\n/g, '<br>').replace(/(여자|남자|가|나):/g, '<b>$1:</b>');
 }
 
 function toggleQuizAudioText() {
