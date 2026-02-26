@@ -745,6 +745,22 @@
       color: #2E7D32;
     }
 
+    .qo-toggle-text-btn {
+      display: block;
+      width: 100%;
+      background: #FFF8E1;
+      border: 1px dashed #FFB300;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #F57F17;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 6px;
+    }
+    .qo-toggle-text-btn:active { opacity: 0.8; }
+
     .qo-audio-text {
       font-size: 14px;
       color: #999999;
@@ -1117,6 +1133,7 @@
     .quiz-dark .qo-blank { color: rgba(255,255,255,0.5); }
     .quiz-dark .qo-audio-btn { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
     .quiz-dark .qo-audio-btn.playing { background: rgba(76,175,80,0.3); border-color: #4caf50; color: #fff; }
+    .quiz-dark .qo-toggle-text-btn { background: rgba(255,179,0,0.15); border-color: rgba(255,179,0,0.4); color: #FFB300; }
     .quiz-dark .qo-audio-text { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
     .quiz-dark .qo-choice { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
     .quiz-dark .qo-choice:active:not(.checked) { background: rgba(255,255,255,0.15); }
@@ -1560,6 +1577,7 @@ var quizSelected = -1;
 var quizChecked = false;
 var quizAnswers = {};
 var quizAudioEl = null;
+var quizShowAudioText = false;
 
 
 function formatTime(sec) {
@@ -1963,12 +1981,20 @@ function renderQuizQuestion(q, idx, total) {
   // Instruction
   html += '<div class="qo-instruction">' + escHtml(q.instruction) + '</div>';
 
+  var isCorrect = quizChecked && quizSelected === q.answer;
+
   // Audio button (listening)
   if (q.audio) {
     html += '<div class="qo-audio-wrap">';
     html += '<button class="qo-audio-btn" id="qo-audio-btn" onclick="toggleQuizAudio()">🔊 음성 듣기</button>';
     if (q.audio_text) {
-      html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+      if (sec === 'listening') {
+        var showText = isCorrect || quizShowAudioText;
+        html += '<button class="qo-toggle-text-btn" onclick="toggleQuizAudioText()">' + (showText ? '📝 대화 숨기기' : '📝 대화 보기') + '</button>';
+        html += '<div class="qo-audio-text" style="' + (showText ? '' : 'display:none') + '">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+      } else {
+        html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
+      }
     }
     html += '</div>';
   }
@@ -1991,8 +2017,6 @@ function renderQuizQuestion(q, idx, total) {
     var qText = escHtml(q.question).replace(/\n/g, '<br>').replace(/\( {2,10}\)/g, '<span class="qo-blank">(      )</span>');
     html += '<div class="qo-question">' + qText + '</div>';
   }
-
-  var isCorrect = quizChecked && quizSelected === q.answer;
 
   // Image choices (2x2 grid)
   if (q.image_choices) {
@@ -2054,7 +2078,7 @@ function renderQuizQuestion(q, idx, total) {
       html += '<div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div>';
       html += '</div>';
 
-      if (q.audio_text) {
+      if (q.audio_text && sec !== 'listening') {
         html += '<div class="qo-transcript">🔈 ' + escHtml(q.audio_text).replace(/\n/g, '<br>') + '</div>';
       }
     } else {
@@ -2094,6 +2118,7 @@ function renderQuizNav(idx, total) {
 function jumpToQuiz(idx) {
   if (qrOpen) { destroyQrAudio(); qrOpen = false; }
   quizIdx = idx;
+  quizShowAudioText = false;
   var q = quizAllQuestions[quizIdx];
   var answered = quizAnswers[q.id];
   if (answered) {
@@ -2423,6 +2448,11 @@ function updateQrHighlight() {
   if (cur) cur.textContent = fmtAudioTime(t);
   if (durEl) durEl.textContent = fmtAudioTime(dur);
   if (!qrAudio.paused) qrHighlight(getQrParaAt(t, dur));
+}
+
+function toggleQuizAudioText() {
+  quizShowAudioText = !quizShowAudioText;
+  renderQuiz();
 }
 
 function toggleQuizAudio() {
