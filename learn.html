@@ -41,6 +41,36 @@
     .empty-state h3 { font-size: 1rem; margin-bottom: 6px; color: #1A1A1A; }
     .empty-state p { font-size: 0.8rem; line-height: 1.6; }
 
+    /* ── Next clip banner ── */
+    .next-clip-banner { display:none; position:fixed; bottom:0; left:0; right:0; z-index:900; background:rgba(0,0,0,0.92); backdrop-filter:blur(8px); padding:14px 20px; animation: slideUp .3s ease; }
+    .next-clip-inner { max-width:500px; margin:0 auto; display:flex; align-items:center; gap:12px; }
+    .next-clip-banner .ncb-info { flex:1; min-width:0; }
+    .next-clip-banner .ncb-label { font-size:0.65rem; color:#9CA3AF; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
+    .next-clip-banner .ncb-title { font-size:0.85rem; color:#fff; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .next-clip-banner .ncb-btn { background:#4A9EFF; color:#fff; border:none; border-radius:8px; padding:10px 18px; font-size:0.8rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .next-clip-banner .ncb-btn:active { transform:scale(0.96); }
+    .next-clip-banner .ncb-close { background:none; border:none; color:#6B7280; font-size:1.2rem; cursor:pointer; padding:4px 8px; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    /* ── Lock overlay ── */
+    .lock-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); justify-content:center; align-items:center; }
+    .lock-overlay.show { display:flex; }
+    .lock-sheet { background:#fff; border-radius:16px; padding:28px 24px; max-width:340px; width:90%; text-align:center; animation: slideUp .3s ease; }
+    .lock-sheet .lock-icon { font-size:2.2rem; margin-bottom:8px; }
+    .lock-sheet h3 { font-size:1rem; font-weight:800; margin-bottom:6px; }
+    .lock-sheet .lock-clip { font-family:'Space Mono'; font-size:0.75rem; color:#4A9EFF; margin-bottom:8px; }
+    .lock-sheet p { font-size:0.78rem; color:#6B7280; line-height:1.6; margin-bottom:16px; }
+    .lock-sheet .lock-btn { display:block; width:100%; padding:12px; border:none; border-radius:10px; font-size:0.82rem; font-weight:700; cursor:pointer; margin-bottom:8px; }
+    .lock-sheet .lock-btn-ad { background:#FFF3CD; color:#92400E; }
+    .lock-sheet .lock-btn-ad:active { background:#FDE68A; }
+    .lock-sheet .lock-btn-pro { background:#4A9EFF; color:#fff; }
+    .lock-sheet .lock-btn-pro:active { background:#3B82F6; }
+    .lock-sheet .lock-btn-close { background:#F3F4F6; color:#6B7280; }
+    .lock-sheet .lock-btn-close:active { background:#E5E7EB; }
+
+    /* ── Lock badge on subtitle ── */
+    .lock-badge { display:inline-block; background:#F3F4F6; color:#9CA3AF; font-size:0.6rem; padding:2px 6px; border-radius:4px; margin-left:6px; vertical-align:middle; }
+
     /* ── Subtitle List ── */
     .sub-list-header { margin-top: 14px; padding: 0 4px; display: flex; justify-content: space-between; align-items: center; }
     .sub-list-header h2 { font-size: 0.85rem; font-weight: 700; color: #6B7280; }
@@ -456,6 +486,31 @@
   </div>
 </div>
 
+<!-- Lock overlay -->
+<div class="lock-overlay" id="lock-overlay" onclick="closeLockOverlay()">
+  <div class="lock-sheet" onclick="event.stopPropagation()">
+    <div class="lock-icon">&#128274;</div>
+    <h3>PREMIUM CONTENT</h3>
+    <div class="lock-clip" id="lock-clip-id"></div>
+    <p>자막 해설 · EPS-TOPIK 퀴즈 · 쓰기 연습<br>EP1 이후 학습 기능은 잠금 상태입니다</p>
+    <button class="lock-btn lock-btn-ad" onclick="doAdUnlock()">&#127916; 광고 보고 24시간 해제</button>
+    <button class="lock-btn lock-btn-pro" onclick="closeLockOverlay();openProSheet()">&#128081; PRO — 전체 무제한</button>
+    <button class="lock-btn lock-btn-close" onclick="closeLockOverlay()">닫기</button>
+  </div>
+</div>
+
+<!-- Next clip banner -->
+<div class="next-clip-banner" id="next-clip-banner">
+  <div class="next-clip-inner">
+    <div class="ncb-info">
+      <div class="ncb-label">NEXT CLIP</div>
+      <div class="ncb-title" id="ncb-title"></div>
+    </div>
+    <button class="ncb-btn" onclick="goNextClip()">다음 클립 &#9654;</button>
+    <button class="ncb-close" onclick="hideNextBanner()">&times;</button>
+  </div>
+</div>
+
 <script>
 /* ══════════════════════════════════════════
    K▶T Learn Page — Dynamic Clip Loading
@@ -501,6 +556,7 @@ var quizAudioEl = null;
 var quizShowAudioText = false;
 var activeEl = null;
 var clickLock = false;
+var isLocked = false;
 
 // ── Data Loading ──
 Promise.all([
@@ -518,12 +574,25 @@ Promise.all([
   quizData = clipData.quiz || null;
 
   // Update nav
-  document.getElementById('nav-clip-id').textContent = CLIP_ID + ' · ' + (clipData.episode || '') + '화';
+  var epLabel = CLIP_ID + ' · ' + (clipData.episode || '') + '화';
+  document.getElementById('nav-clip-id').textContent = epLabel;
   document.getElementById('nav-clip-name').textContent = clipData.title || CLIP_ID;
   document.title = 'K▶T — ' + CLIP_ID;
 
   // Setup clip navigation
   setupClipNav();
+
+  // Check lock: EP1 = free, EP2+ = locked (unless ad-unlocked or PRO)
+  isLocked = checkLocked(clipData.episode);
+  if (isLocked) {
+    document.getElementById('lock-clip-id').textContent = CLIP_ID;
+  }
+
+  // Show lock badge on header
+  if (isLocked) {
+    var hdr = document.querySelector('.sub-list-header h2');
+    if (hdr) hdr.innerHTML = '자막 목록 <span class="lock-badge">&#128274; PREMIUM</span>';
+  }
 
   // Render
   if (subtitles.length > 0) {
@@ -565,9 +634,32 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerStateChange(event) {
   if (event.data === YT.PlayerState.PLAYING) {
     startSubtitleSync();
+    hideNextBanner();
   } else if (event.data === YT.PlayerState.PAUSED) {
     stopSubtitleSync();
+  } else if (event.data === YT.PlayerState.ENDED) {
+    stopSubtitleSync();
+    showNextBanner();
   }
+}
+
+function showNextBanner() {
+  if (!nextClipId) return;
+  var title = nextClipId;
+  if (episodesData) {
+    var eps = episodesData.episodes;
+    for (var i = 0; i < eps.length; i++) {
+      for (var j = 0; j < eps[i].clips.length; j++) {
+        if (eps[i].clips[j].id === nextClipId) { title = nextClipId + ' — ' + eps[i].clips[j].title; break; }
+      }
+    }
+  }
+  document.getElementById('ncb-title').textContent = title;
+  document.getElementById('next-clip-banner').style.display = 'block';
+}
+
+function hideNextBanner() {
+  document.getElementById('next-clip-banner').style.display = 'none';
 }
 
 // ── Clip Navigation ──
@@ -594,6 +686,44 @@ function setupClipNav() {
 function goPrevClip() { if (prevClipId) location.href = 'learn.html?clip=' + prevClipId; }
 function goNextClip() { if (nextClipId) location.href = 'learn.html?clip=' + nextClipId; }
 function goBack() { location.href = 'index.html'; }
+
+// ── Lock / Unlock ──
+function checkLocked(episode) {
+  if (episode <= 1) return false;
+  // Check PRO subscription
+  try { if (localStorage.getItem('kt-pro') === '1') return false; } catch(e) {}
+  // Check ad unlock (24h)
+  try {
+    var adExpiry = parseInt(localStorage.getItem('kt-ad-unlock') || '0');
+    if (adExpiry > Date.now()) return false;
+  } catch(e) {}
+  return true;
+}
+
+function showLockOverlay() {
+  document.getElementById('lock-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLockOverlay() {
+  document.getElementById('lock-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function doAdUnlock() {
+  // Set 24h unlock
+  try { localStorage.setItem('kt-ad-unlock', String(Date.now() + 24*60*60*1000)); } catch(e) {}
+  isLocked = false;
+  closeLockOverlay();
+  // Re-render subtitles without lock
+  if (subtitles.length > 0) renderList();
+  alert('🎬 24시간 학습 기능 해제!');
+}
+
+function openProSheet() {
+  // Redirect to index.html subscription sheet
+  location.href = 'index.html#pro';
+}
 
 // ── Helpers ──
 function formatTime(sec) { var m = Math.floor(sec / 60); var s = Math.floor(sec % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
@@ -641,6 +771,15 @@ function renderList() {
 }
 
 function buildDetail(id) {
+  if (isLocked) {
+    var html = '<div class="learn-bar">';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명 &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">한국어 설명 &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">쓰기 &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#128221;</span><span class="lb-label">EPS-TOPIK &#128274;</span></button>';
+    html += '</div>';
+    return html;
+  }
   var hasData = explanationsMap[String(id)];
   var disabled = hasData ? '' : ' disabled';
   var hasQuiz = !!quizData;
@@ -828,6 +967,7 @@ function updateExplainHighlight() {
 function padId(id) { var s = '' + id; while (s.length < 3) s = '0' + s; return s; }
 
 function openExplainOverlay(id, lang) {
+  if (isLocked) { showLockOverlay(); return; }
   var data = explanationsMap[String(id)]; if (!data) return;
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
@@ -874,6 +1014,7 @@ function applyQuizTheme() {
 function toggleQuizTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyQuizTheme(); }
 
 function openQuizOverlay() {
+  if (isLocked) { showLockOverlay(); return; }
   closeExplainOverlay(); if (player && player.pauseVideo) player.pauseVideo();
   quizAllQuestions = buildQuizAllQuestions(); quizIdx = 0; quizSelected = -1; quizChecked = false; quizAnswers = {};
   document.getElementById('player-wrap').style.display = 'none';
@@ -1013,6 +1154,7 @@ function composeHangul(j) { if (j.length === 0) return ''; if (j.length === 1) r
 function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
 
 function openWritingOverlay() {
+  if (isLocked) { showLockOverlay(); return; }
   closeExplainOverlay(); closeQuizOverlay(); if (player && player.pauseVideo) player.pauseVideo();
   writingData = quizData && quizData.writing ? quizData.writing : null; if (!writingData) return;
   wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
