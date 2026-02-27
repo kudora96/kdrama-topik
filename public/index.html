@@ -1684,7 +1684,7 @@ function findSub(id) {
 
 Promise.all([
   fetch('../data/subtitles.json').then(function(r){return r.json();}),
-  fetch('../data/explanations.json').then(function(r){return r.json();}),
+  fetch('../data/explanations.json').then(function(r){return r.json();}).catch(function(){return {};}),
   fetch('../data/quiz.json').then(function(r){return r.json();}).catch(function(){return null;})
 ]).then(function(results) {
   subtitles = results[0];
@@ -1692,6 +1692,8 @@ Promise.all([
   if (results[2]) quizData = results[2]['1'] || null;
   renderList();
   showLearnTip();
+}).catch(function(e) {
+  console.error('Data load error:', e);
 });
 
 function changeFontSize(dir) {

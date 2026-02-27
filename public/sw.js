@@ -1,10 +1,12 @@
-var CACHE_NAME = 'kdrama-topik-v5';
+var CACHE_NAME = 'kdrama-topik-v6';
 var ASSETS = [
   './',
   './index.html',
   './manifest.json',
   '../data/subtitles.json',
   '../data/analysis.json',
+  '../data/explanations.json',
+  '../data/quiz.json',
   'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap'
 ];
 
