@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K-Drama TOPIK</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1683,9 +1683,9 @@ function findSub(id) {
 }
 
 Promise.all([
-  fetch('../data/subtitles.json').then(function(r){return r.json();}),
-  fetch('../data/explanations.json').then(function(r){return r.json();}).catch(function(){return {};}),
-  fetch('../data/quiz.json').then(function(r){return r.json();}).catch(function(){return null;})
+  fetch('../data/S001/subtitles.json').then(function(r){return r.json();}),
+  fetch('../data/S001/explanations.json').then(function(r){return r.json();}).catch(function(){return {};}),
+  fetch('../data/S001/quiz.json').then(function(r){return r.json();}).catch(function(){return null;})
 ]).then(function(results) {
   subtitles = results[0];
   explanationsMap = results[1];
@@ -3551,7 +3551,7 @@ function retryWriting() {
 
 /* ── Service Worker ── */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('../sw.js');
 }
 </script>
 </body>
