@@ -1,14 +1,18 @@
-var CACHE_NAME = 'kdrama-topik-v7';
+var CACHE_NAME = 'kdrama-topik-v8';
 var ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './shared/style.css',
+  './shared/app.js',
+  './data/cloy/episodes.json',
+  './data/dramas.json',
   './S001/index.html',
   './data/S001/subtitles.json',
   './data/S001/analysis.json',
   './data/S001/explanations.json',
   './data/S001/quiz.json',
-  'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap'
+  'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap'
 ];
 
 self.addEventListener('install', function(event) {
