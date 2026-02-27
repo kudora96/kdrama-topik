@@ -1,4 +1,4 @@
-var CACHE_NAME = 'kdrama-topik-v4';
+var CACHE_NAME = 'kdrama-topik-v5';
 var ASSETS = [
   './',
   './index.html',
