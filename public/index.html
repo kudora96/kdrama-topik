@@ -75,19 +75,9 @@
       cursor: pointer;
     }
 
-    /* ── Current subtitle overlay ── */
+    /* ── Current subtitle overlay (hidden - integrated into list) ── */
     .now-playing {
-      margin-top: 10px;
-      background: #1a1a2e;
-      border-radius: 10px;
-      padding: 14px 16px;
-      text-align: center;
-      height: 80px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      overflow: hidden;
+      display: none;
     }
 
     .now-ko {
@@ -151,12 +141,12 @@
 
     .sub-list {
       margin-top: 8px;
-      max-height: calc(280px * var(--font-scale, 1));
+      max-height: calc(160px * var(--font-scale, 1));
       overflow-y: auto;
       border-radius: 12px;
       background: #fff;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      scroll-behavior: auto;
+      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -224,7 +214,8 @@
 
     /* Active subtitle */
     .sub-item.active {
-      background: #eef4ff;
+      background: #e3f0ff;
+      border-left: 3px solid #2196f3;
     }
 
     .sub-item.active .sub-num {
@@ -1623,16 +1614,11 @@ function changeFontSize(dir) {
   if (next < 0 || next >= fontScales.length) return;
   fontLevel = next;
   document.documentElement.style.setProperty('--font-scale', fontScales[fontLevel]);
-  // Re-scroll to current page since item heights changed
-  if (currentPage !== -1) {
-    var pageStart = currentPage * PAGE_SIZE;
-    if (pageStart < subtitles.length) {
-      var firstEl = document.getElementById('sub-' + subtitles[pageStart].id);
-      if (firstEl) {
-        var list = document.getElementById('sub-list');
-        list.scrollTop = firstEl.offsetTop - list.offsetTop;
-      }
-    }
+  // Re-scroll to active subtitle since item heights changed
+  if (activeEl) {
+    var list = document.getElementById('sub-list');
+    var top = activeEl.offsetTop - list.offsetTop;
+    list.scrollTop = Math.max(0, top - list.clientHeight / 2 + activeEl.offsetHeight / 2);
   }
 }
 
@@ -2555,8 +2541,8 @@ function onSubClick(id) {
   var el = document.getElementById('detail-' + id);
   if (el) el.classList.add('open');
 
-  // Scroll to page group
-  scrollToPage(id);
+  // Scroll active into view
+  highlightSub(id);
 
   // Show bar with repeat button
   showBar('once');
@@ -2823,7 +2809,10 @@ function highlightSub(id) {
     el.classList.add('active');
     activeEl = el;
     if (!loopSub) {
-      scrollToPage(id);
+      var list = document.getElementById('sub-list');
+      var top = el.offsetTop - list.offsetTop;
+      var center = top - list.clientHeight / 2 + el.offsetHeight / 2;
+      list.scrollTop = Math.max(0, center);
     }
   }
 }
