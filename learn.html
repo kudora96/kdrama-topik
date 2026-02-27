@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K▶T — 학습</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700&family=Noto+Sans+KR:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #FFFFFF; color: #1A1A1A; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
+
+    /* ── Nav ── */
+    .learn-nav { background: #FFFFFF; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #E5E7EB; display: flex; align-items: center; gap: 10px; max-width: 640px; margin: 0 auto; }
+    .nav-back { border: none; background: #F8F9FA; border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-back:active { background: #E5E7EB; }
+    .nav-title { flex: 1; min-width: 0; }
+    .nav-clip-id { font-family: 'Space Mono'; font-size: 0.7rem; color: #4A9EFF; font-weight: 700; }
+    .nav-clip-name { font-size: 0.75rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-btns { display: flex; gap: 4px; flex-shrink: 0; }
+    .nav-arrow { border: none; background: #F8F9FA; border-radius: 8px; padding: 6px 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; color: #1A1A1A; }
+    .nav-arrow:active { background: #E5E7EB; }
+    .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ── Container ── */
+    .container { max-width: 640px; margin: 0 auto; padding: 12px; }
+
+    /* ── Player ── */
+    .player-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid #E5E7EB; }
+    .player-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .now-playing { display: none; }
+
+    /* ── Empty state ── */
+    .empty-state { text-align: center; padding: 40px 20px; color: #6B7280; }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 10px; }
+    .empty-state h3 { font-size: 1rem; margin-bottom: 6px; color: #1A1A1A; }
+    .empty-state p { font-size: 0.8rem; line-height: 1.6; }
+
+    /* ── Subtitle List ── */
+    .sub-list-header { margin-top: 14px; padding: 0 4px; display: flex; justify-content: space-between; align-items: center; }
+    .sub-list-header h2 { font-size: 0.85rem; font-weight: 700; color: #6B7280; }
+    .sub-count { font-size: 0.75rem; color: #6B7280; }
+    .font-controls { display: flex; gap: 4px; }
+    .btn-font { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: #1A1A1A; cursor: pointer; font-family: inherit; }
+    .btn-font:active { background: #E5E7EB; }
+    .sub-list { margin-top: 8px; max-height: calc(240px * var(--font-scale, 1)); overflow-y: auto; border-radius: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+    .sub-list::-webkit-scrollbar { width: 4px; }
+    .sub-list::-webkit-scrollbar-track { background: transparent; }
+    .sub-list::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 4px; }
+    .sub-list.disabled, .loop-bar.disabled, .sub-list-header.disabled { pointer-events: none; opacity: 0.4; }
+
+    /* ── Subtitle Item ── */
+    .sub-item { border-bottom: 1px solid #E5E7EB; transition: background 0.2s; }
+    .sub-item:last-child { border-bottom: none; }
+    .sub-row { display: flex; align-items: flex-start; padding: 12px 14px; cursor: pointer; gap: 10px; }
+    .sub-row:active { background: #F8F9FA; }
+    .sub-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #6B7280; margin-top: 2px; }
+    .sub-text { flex: 1; min-width: 0; }
+    .sub-ko { font-size: calc(0.9rem * var(--font-scale, 1)); font-weight: 700; color: #1A1A1A; line-height: 1.5; word-break: keep-all; }
+    .sub-ne { font-size: calc(0.8rem * var(--font-scale, 1)); color: #6B7280; line-height: 1.4; margin-top: 2px; }
+    .sub-time { flex-shrink: 0; font-size: 0.7rem; color: #6B7280; margin-top: 4px; }
+    .sub-item.active { background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
+    .sub-item.active .sub-num { background: #4A9EFF; color: #fff; }
+    .sub-item.active .sub-ko { color: #4A9EFF; }
+
+    /* ── Detail (accordion) ── */
+    .sub-detail { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #F8F9FA; }
+    .sub-detail.open { max-height: calc(200px * var(--font-scale, 1)); }
+
+    /* ── Learn icon bar ── */
+    .learn-bar { display: flex; justify-content: space-around; padding: 8px 14px 10px 42px; gap: 4px; }
+    .learn-bar-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: none; border-radius: 10px; padding: 8px 2px 6px; cursor: pointer; font-family: inherit; background: #FFFFFF; border: 1px solid #E5E7EB; transition: background 0.15s; }
+    .learn-bar-btn .lb-icon { font-size: 1.2rem; line-height: 1; }
+    .learn-bar-btn .lb-label { font-size: calc(0.62rem * var(--font-scale, 1)); font-weight: 700; color: #1A1A1A; white-space: nowrap; }
+    .learn-bar-btn:not(:disabled):active { background: #F8F9FA; }
+    .learn-bar-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ── Learn tip ── */
+    .learn-tip { margin: 10px 4px 0; padding: 10px 14px; background: #4A9EFF; color: #fff; font-size: 0.78rem; line-height: 1.5; border-radius: 10px; position: relative; cursor: pointer; animation: tipPulse 2s ease-in-out infinite; }
+    .learn-tip::after { content: ''; position: absolute; bottom: -7px; left: 24px; width: 14px; height: 14px; background: #4A9EFF; transform: rotate(45deg); border-radius: 2px; }
+    .learn-tip-close { float: right; margin-left: 8px; opacity: 0.6; font-size: 0.85rem; }
+    @keyframes tipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+
+    /* ── Explain Overlay ── */
+    .explain-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #FFFFFF; z-index: 10; flex-direction: column; border-radius: 12px; }
+    .explain-overlay.open { display: flex; }
+    .eo-header { display: flex; align-items: center; padding: 8px 12px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; }
+    .eo-title { flex: 1; font-size: 0.85rem; font-weight: 700; color: #1A1A1A; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .eo-btn { flex-shrink: 0; border: none; background: #F8F9FA; color: #1A1A1A; border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; }
+    .eo-btn:active { background: #E5E7EB; }
+    .eo-btn.playing { background: #4A9EFF; color: #fff; }
+    .eo-seekbar { flex-shrink: 0; padding: 6px 12px 2px; display: flex; align-items: center; gap: 8px; }
+    .eo-seek-time { font-size: 0.7rem; color: #6B7280; flex-shrink: 0; min-width: 32px; text-align: center; }
+    .eo-seek-input { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: #E5E7EB; outline: none; cursor: pointer; }
+    .eo-seek-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; cursor: pointer; }
+    .eo-seek-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; border: none; cursor: pointer; }
+    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+    .eo-para { font-size: 0.85rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
+    .eo-para.active { color: #1A1A1A; background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
+
+    /* ── Tip banner ── */
+    .tip-banner { margin-top: 8px; background: rgba(74,158,255,0.08); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #1A1A1A; line-height: 1.5; }
+    .tip-banner-text { flex: 1; }
+    .tip-banner-close { flex-shrink: 0; border: none; background: none; color: #6B7280; font-size: 1.1rem; cursor: pointer; padding: 0 4px; font-family: inherit; }
+
+    /* ── Loop state ── */
+    .sub-item.looping { background: rgba(74,158,255,0.06); }
+    .sub-item.looping .sub-num { background: #4A9EFF; color: #fff; }
+    .sub-item.looping .sub-ko { color: #4A9EFF; }
+    .loop-badge { font-size: 0.7rem; color: #4A9EFF; font-weight: 700; flex-shrink: 0; margin-top: 4px; }
+
+    /* ── Loop control bar ── */
+    .loop-bar { display: none; margin-top: 8px; background: #F8F9FA; border-radius: 10px; padding: 10px 14px; align-items: center; gap: 10px; border: 1px solid #E5E7EB; }
+    .loop-bar.active { display: flex; }
+    .loop-bar .loop-info { flex: 1; font-size: 0.8rem; color: #6B7280; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .loop-bar .loop-info strong { color: #4A9EFF; }
+    .btn-action { flex-shrink: 0; border: none; border-radius: 20px; padding: 7px 16px; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .btn-action:active { opacity: 0.8; }
+    .btn-repeat { background: #4A9EFF; color: #fff; }
+    .btn-speed { background: #6B7280; color: #fff; }
+    .btn-play-all { background: #4A9EFF; color: #fff; }
+    .btn-stop { background: #6B7280; color: #fff; }
+
+    /* ── Quiz Overlay ── */
+    .quiz-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; }
+    .quiz-overlay.open { display: flex; }
+    .qo-header { display: flex; align-items: center; padding: 10px 14px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; }
+    .qo-header-title { flex: 1; font-size: 20px; font-weight: 700; color: #1A1A1A; }
+    .qo-theme-btn { flex-shrink: 0; border: none; background: #F8F9FA; border-radius: 50%; width: 32px; height: 32px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+    .qo-theme-btn:active { opacity: 0.7; }
+    .qo-pbar { flex-shrink: 0; display: flex; gap: 3px; padding: 8px 14px 6px; justify-content: center; }
+    .qo-dot { flex: 1; height: 8px; border-radius: 4px; background: #E5E7EB; max-width: 32px; cursor: pointer; transition: background 0.2s; }
+    .qo-dot.current { background: #4A9EFF; box-shadow: 0 0 4px rgba(74,158,255,0.4); }
+    .qo-dot.correct { background: #4CAF50; }
+    .qo-dot.wrong { background: #F44336; }
+    .qo-body { padding: 14px 16px; }
+    .qo-progress { font-size: 20px; font-weight: 900; color: #1A1A1A; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .qo-progress-section { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 10px; color: #fff; }
+    .qo-progress-section.reading { background: #4A9EFF; }
+    .qo-progress-section.listening { background: #4A9EFF; }
+    .qo-instruction { font-size: 18px; font-weight: 700; color: #1A1A1A; line-height: 1.6; margin-bottom: 12px; }
+    .qo-passage { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px 14px; font-size: 17px; line-height: 1.7; color: #1A1A1A; margin-bottom: 12px; }
+    .qo-question { font-size: 18px; line-height: 1.7; color: #1A1A1A; margin-bottom: 12px; }
+    .qo-blank { letter-spacing: 0.3em; }
+    .qo-audio-wrap { margin-bottom: 12px; }
+    .qo-audio-btn { display: block; width: 100%; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px; font-size: 18px; font-weight: 700; color: #1A1A1A; cursor: pointer; font-family: inherit; }
+    .qo-audio-btn:active { opacity: 0.8; }
+    .qo-audio-btn.playing { background: rgba(74,158,255,0.08); border-color: #4A9EFF; color: #4A9EFF; }
+    .qo-toggle-text-btn { display: block; width: 100%; background: rgba(74,158,255,0.06); border: 1px dashed #4A9EFF; border-radius: 8px; padding: 8px; font-size: 14px; font-weight: 600; color: #4A9EFF; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .qo-toggle-text-btn:active { opacity: 0.8; }
+    .qo-toggle-hint { font-size: 11px; color: #6B7280; text-align: center; margin-top: 4px; }
+    .qo-audio-text { font-size: 15px; color: #1A1A1A; margin-top: 8px; line-height: 1.8; padding: 12px 14px; background: #F8F9FA; border-radius: 8px; border-left: 3px solid #4A9EFF; }
+    .qo-choices { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .qo-choice { display: flex; align-items: flex-start; gap: 10px; background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 8px; padding: 14px 16px; cursor: pointer; font-family: inherit; text-align: left; width: 100%; color: #1A1A1A; }
+    .qo-choice:active:not(.checked) { background: rgba(74,158,255,0.08); }
+    .qo-choice.selected { border-color: #4A9EFF; background: rgba(74,158,255,0.08); }
+    .qo-choice.correct { border-color: #4CAF50; background: #E8F5E9; color: #1B5E20; }
+    .qo-choice.wrong { border-color: #F44336; background: #FFEBEE; color: #B71C1C; }
+    .qo-choice.dimmed { opacity: 0.4; }
+    .qo-choice-num { flex-shrink: 0; font-size: 18px; font-weight: 700; }
+    .qo-choice-text { flex: 1; font-size: 18px; line-height: 1.5; }
+    .qo-image-wrap { margin-bottom: 12px; text-align: center; }
+    .qo-image { max-width: 80%; max-height: 250px; object-fit: contain; border-radius: 8px; background: #F8F9FA; }
+    .qo-image-placeholder { width: 80%; max-height: 250px; height: 120px; margin: 0 auto; background: #F8F9FA; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #6B7280; }
+    .qo-img-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .qo-img-choice { background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 8px; cursor: pointer; overflow: hidden; text-align: center; }
+    .qo-img-choice.selected { border-color: #4A9EFF; }
+    .qo-img-choice.correct { border-color: #4CAF50; }
+    .qo-img-choice.wrong { border-color: #F44336; }
+    .qo-img-choice img { width: 100%; height: 80px; object-fit: contain; }
+    .qo-img-placeholder { width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #6B7280; }
+    .qo-img-label { padding: 6px; font-size: 14px; font-weight: 700; color: #6B7280; }
+    .qo-check-btn { display: block; width: 100%; background: #4A9EFF; border: none; border-radius: 8px; padding: 14px; font-size: 18px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; margin-bottom: 10px; }
+    .qo-check-btn:active { opacity: 0.8; }
+    .qo-check-btn:disabled { background: #E5E7EB; color: #6B7280; cursor: not-allowed; }
+    .qo-result { text-align: center; padding: 10px; border-radius: 8px; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .qo-result.correct { background: #E8F5E9; color: #2E7D32; }
+    .qo-result.wrong { background: #FFEBEE; color: #C62828; }
+    .qo-explain { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+    .qo-explain-ko { font-size: 16px; color: #4A9EFF; line-height: 1.6; margin-bottom: 6px; }
+    .qo-explain-ne { font-size: 16px; color: #6B7280; line-height: 1.6; }
+    .qo-transcript { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 10px 14px; font-size: 15px; color: #6B7280; line-height: 1.6; margin-bottom: 10px; }
+    .qo-retry-one { display: block; margin: 0 auto 6px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #6B7280; cursor: pointer; font-family: inherit; }
+    .qo-retry-one:active { opacity: 0.7; }
+    .qo-nav { flex-shrink: 0; display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #E5E7EB; }
+    .qo-nav:empty { display: none; }
+    .qo-nav-btn { flex: 1; border: none; border-radius: 8px; padding: 14px; font-size: 18px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .qo-nav-btn:active { opacity: 0.8; }
+    .qo-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .qo-prev { background: #F8F9FA; color: #1A1A1A; }
+    .qo-next { background: #4A9EFF; color: #fff; }
+    .qo-results-screen { text-align: center; padding: 24px 14px; }
+    .qo-results-icon { font-size: 3rem; margin-bottom: 10px; }
+    .qo-results-title { font-size: 22px; font-weight: 900; color: #1A1A1A; margin-bottom: 10px; }
+    .qo-results-score { font-size: 18px; color: #4A9EFF; font-weight: 700; margin-bottom: 14px; }
+    .qo-results-detail { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px; margin-bottom: 18px; }
+    .qo-results-row { font-size: 16px; color: #6B7280; padding: 4px 0; }
+    .qo-results-btns { display: flex; gap: 8px; }
+    .qo-results-btn { flex: 1; border: none; border-radius: 8px; padding: 14px; font-size: 18px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .qo-results-btn:active { opacity: 0.8; }
+    .qo-retry { background: #4A9EFF; color: #fff; }
+    .qo-close { background: #F8F9FA; color: #1A1A1A; }
+    .qo-review-btns { display: flex; gap: 8px; margin-top: 10px; }
+    .qo-review-btn { flex: 1; border: none; border-radius: 8px; padding: 10px 8px; font-size: 13px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; }
+    .qo-review-btn:active { opacity: 0.8; }
+    .qo-review-btn.ne { background: #4A9EFF; }
+    .qo-review-btn.ko { background: #4A9EFF; }
+    .quiz-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
+    .quiz-overlay .eo-btn:active { background: #E5E7EB; }
+
+    /* ── Quiz Dark Mode ── */
+    .quiz-dark { background: #1a1a2e; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+    .quiz-dark .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark .qo-header-title { color: #fff; }
+    .quiz-dark .qo-theme-btn { background: rgba(255,255,255,0.15); }
+    .quiz-dark .qo-dot { background: rgba(255,255,255,0.15); }
+    .quiz-dark .qo-dot.current { background: #F39C12; box-shadow: 0 0 4px rgba(243,156,18,0.6); }
+    .quiz-dark .qo-dot.correct { background: #4caf50; }
+    .quiz-dark .qo-dot.wrong { background: #e94560; }
+    .quiz-dark .qo-progress { color: #fff; }
+    .quiz-dark .qo-progress-section.listening { background: #4caf50; }
+    .quiz-dark .qo-instruction { color: #fff; }
+    .quiz-dark .qo-passage { background: #2a2a4a; border-color: transparent; color: rgba(255,255,255,0.8); }
+    .quiz-dark .qo-question { color: rgba(255,255,255,0.85); }
+    .quiz-dark .qo-blank { color: rgba(255,255,255,0.5); }
+    .quiz-dark .qo-audio-btn { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
+    .quiz-dark .qo-audio-btn.playing { background: rgba(76,175,80,0.3); border-color: #4caf50; color: #fff; }
+    .quiz-dark .qo-toggle-text-btn { background: rgba(255,179,0,0.15); border-color: rgba(255,179,0,0.4); color: #FFB300; }
+    .quiz-dark .qo-toggle-hint { color: rgba(255,255,255,0.3); }
+    .quiz-dark .qo-audio-text { color: rgba(255,255,255,0.75); background: rgba(92,107,192,0.15); border-left-color: #7986CB; }
+    .quiz-dark .qo-choice { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+    .quiz-dark .qo-choice:active:not(.checked) { background: rgba(255,255,255,0.15); }
+    .quiz-dark .qo-choice.selected { border-color: #F39C12; background: rgba(243,156,18,0.15); }
+    .quiz-dark .qo-choice.correct { border-color: #4caf50; background: rgba(76,175,80,0.2); color: #fff; }
+    .quiz-dark .qo-choice.wrong { border-color: #e94560; background: rgba(233,69,96,0.2); color: #fff; }
+    .quiz-dark .qo-img-choice { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); }
+    .quiz-dark .qo-img-choice.selected { border-color: #F39C12; }
+    .quiz-dark .qo-img-choice.correct { border-color: #4caf50; }
+    .quiz-dark .qo-img-choice.wrong { border-color: #e94560; }
+    .quiz-dark .qo-img-placeholder { color: rgba(255,255,255,0.2); }
+    .quiz-dark .qo-img-label { color: rgba(255,255,255,0.6); }
+    .quiz-dark .qo-check-btn:disabled { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.3); }
+    .quiz-dark .qo-result.correct { background: rgba(76,175,80,0.2); color: #4caf50; }
+    .quiz-dark .qo-result.wrong { background: rgba(233,69,96,0.2); color: #e94560; }
+    .quiz-dark .qo-explain { background: #2a2a4a; border-color: transparent; }
+    .quiz-dark .qo-explain-ko { color: #90caf9; }
+    .quiz-dark .qo-explain-ne { color: #a5d6a7; }
+    .quiz-dark .qo-transcript { background: rgba(171,71,188,0.15); border-color: transparent; color: #ce93d8; }
+    .quiz-dark .qo-retry-one { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
+    .quiz-dark .qo-nav { border-top-color: rgba(255,255,255,0.1); }
+    .quiz-dark .qo-prev { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .qo-next { background: #F39C12; }
+    .quiz-dark .qo-results-title { color: #fff; }
+    .quiz-dark .qo-results-score { color: #F39C12; }
+    .quiz-dark .qo-results-detail { background: #2a2a4a; border-color: transparent; }
+    .quiz-dark .qo-results-row { color: rgba(255,255,255,0.7); }
+    .quiz-dark .qo-retry { background: #F39C12; }
+    .quiz-dark .qo-close { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .eo-btn:active { background: rgba(255,255,255,0.3); }
+    .quiz-dark .qr-inline-title { color: #fff; }
+    .quiz-dark .qo-body .eo-para { color: rgba(255,255,255,0.6); }
+    .quiz-dark .qo-body .eo-para.active { color: #fff; background: rgba(255,193,7,0.2); border-left-color: #ffc107; }
+    .quiz-dark .qo-body .eo-seek-time { color: rgba(255,255,255,0.5); }
+    .quiz-dark .qo-body .eo-seek-input { background: rgba(255,255,255,0.2); }
+
+    /* ── Writing Overlay ── */
+    .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; }
+    .writing-overlay.open { display: flex; }
+    .writing-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
+    .writing-overlay .eo-btn:active { background: #E5E7EB; }
+    .wr-body { padding: 14px 16px; }
+    .wr-sentence { font-size: 20px; font-weight: 700; text-align: center; padding: 12px 10px; border-bottom: 1px solid #E5E7EB; margin-bottom: 14px; line-height: 1.6; }
+    .wr-sentence .wr-w { transition: color 0.2s; }
+    .wr-sentence .wr-w-done { color: #4A9EFF; }
+    .wr-sentence .wr-w-active { color: #4A9EFF; text-decoration: underline; text-underline-offset: 4px; }
+    .wr-word-info { text-align: center; margin-bottom: 12px; font-size: 16px; color: #6B7280; }
+    .wr-word-info strong { color: #4A9EFF; font-size: 18px; }
+    .wr-char-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; }
+    .wr-char-box { position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .wr-target-char { font-size: 48px; color: #E5E7EB; position: absolute; font-weight: 700; }
+    .wr-composed { font-size: 48px; color: #1A1A1A; position: relative; font-weight: 700; transition: color 0.2s; }
+    .wr-composed.flash-correct { color: #4CAF50; }
+    .wr-jamo-slots { display: flex; gap: 6px; }
+    .wr-slot { width: 10px; height: 10px; border-radius: 50%; background: #E5E7EB; }
+    .wr-slot.filled { background: #4CAF50; }
+    .wr-slot.current { background: #4A9EFF; box-shadow: 0 0 4px rgba(74,158,255,0.5); }
+    .wr-explain { padding: 8px 14px; margin-top: 8px; background: rgba(74,158,255,0.08); border-radius: 8px; font-size: 14px; color: #4A9EFF; line-height: 1.6; }
+    .wr-keyboard { margin-bottom: 12px; }
+    .wr-kb-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; justify-content: center; }
+    .wr-kb-label { font-size: 0.6rem; color: #6B7280; text-align: center; margin-bottom: 3px; }
+    .wr-kb-btn { border: none; border-radius: 8px; padding: 8px 0; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; min-width: 32px; text-align: center; transition: background 0.15s; }
+    .wr-kb-btn.consonant { background: rgba(74,158,255,0.1); color: #4A9EFF; }
+    .wr-kb-btn.vowel { background: rgba(76,175,80,0.1); color: #4CAF50; }
+    .wr-kb-btn:active { opacity: 0.7; }
+    .wr-kb-btn.correct-anim { background: #4CAF50 !important; color: #fff !important; }
+    .wr-kb-btn.wrong-anim { background: #F44336 !important; color: #fff !important; }
+    .wr-skip-row { display: flex; justify-content: center; gap: 16px; margin-top: 8px; }
+    .wr-skip-btn { border: none; background: none; color: #6B7280; font-size: 0.75rem; cursor: pointer; font-family: inherit; padding: 4px; }
+    .wr-skip-btn:active { color: #1A1A1A; }
+    .wr-word-done { text-align: center; padding: 12px; margin-bottom: 12px; background: rgba(76,175,80,0.1); border-radius: 10px; font-size: 16px; font-weight: 700; color: #4CAF50; }
+    .wr-word-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+    .wr-repeat-btn, .wr-next-btn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; }
+    .wr-repeat-btn { background: #4A9EFF; }
+    .wr-next-btn { background: #4A9EFF; }
+    .wr-repeat-btn:active, .wr-next-btn:active { opacity: 0.8; }
+    .wr-char-explain-list { margin-bottom: 12px; padding: 10px 14px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; }
+    .wr-char-explain-item { font-size: 14px; color: #6B7280; line-height: 1.7; }
+    .wr-complete { text-align: center; padding: 20px 10px; }
+    .wr-complete-icon { font-size: 3rem; margin-bottom: 8px; }
+    .wr-complete-title { font-size: 20px; font-weight: 900; margin-bottom: 10px; }
+    .wr-complete-words { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .wr-complete-words .wr-cw-highlight { color: #4A9EFF; }
+    .wr-complete-ne { font-size: 14px; color: #6B7280; margin-bottom: 14px; }
+    .wr-complete-btns { display: flex; gap: 8px; margin-bottom: 8px; }
+    .wr-cbtn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .wr-cbtn:active { opacity: 0.8; }
+    .wr-cbtn-repeat { background: #4A9EFF; color: #fff; }
+    .wr-cbtn-retry { background: #4A9EFF; color: #fff; }
+    .wr-cbtn-close { background: #F8F9FA; color: #1A1A1A; margin-top: 4px; }
+
+    /* ── Writing Dark Mode ── */
+    .quiz-dark.writing-overlay { background: #1a1a2e; }
+    .quiz-dark.writing-overlay .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark.writing-overlay .qo-header-title { color: #fff; }
+    .quiz-dark.writing-overlay .qo-theme-btn { background: rgba(255,255,255,0.15); }
+    .quiz-dark.writing-overlay .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .wr-sentence { color: #fff; border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark .wr-sentence .wr-w-done { color: #66BB6A; }
+    .quiz-dark .wr-sentence .wr-w-active { color: #64B5F6; }
+    .quiz-dark .wr-word-info { color: rgba(255,255,255,0.6); }
+    .quiz-dark .wr-word-info strong { color: #64B5F6; }
+    .quiz-dark .wr-target-char { color: rgba(255,255,255,0.15); }
+    .quiz-dark .wr-composed { color: #fff; }
+    .quiz-dark .wr-composed.flash-correct { color: #66BB6A; }
+    .quiz-dark .wr-slot { background: rgba(255,255,255,0.15); }
+    .quiz-dark .wr-slot.filled { background: #66BB6A; }
+    .quiz-dark .wr-slot.current { background: #64B5F6; }
+    .quiz-dark .wr-explain { background: rgba(76,175,80,0.15); color: #A5D6A7; }
+    .quiz-dark .wr-kb-btn.consonant { background: rgba(33,150,243,0.2); color: #90CAF9; }
+    .quiz-dark .wr-kb-btn.vowel { background: rgba(76,175,80,0.2); color: #A5D6A7; }
+    .quiz-dark .wr-kb-btn.wrong-anim { background: rgba(233,69,96,0.3) !important; color: #ef9a9a !important; }
+    .quiz-dark .wr-kb-label { color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-complete-title { color: #fff; }
+    .quiz-dark .wr-complete-words { color: rgba(255,255,255,0.8); }
+    .quiz-dark .wr-word-done { background: rgba(76,175,80,0.2); color: #66BB6A; }
+    .quiz-dark .wr-char-explain-list { background: rgba(76,175,80,0.15); border-color: transparent; }
+    .quiz-dark .wr-char-explain-item { color: #A5D6A7; }
+    .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.35); }
+
+    /* ── Responsive ── */
+    @media (max-width: 400px) {
+      .learn-bar { padding: 6px 10px 8px 36px; gap: 2px; }
+      .learn-bar-btn { padding: 6px 1px 4px; border-radius: 8px; }
+      .learn-bar-btn .lb-icon { font-size: 1rem; }
+      .learn-bar-btn .lb-label { font-size: calc(0.56rem * var(--font-scale, 1)); }
+      .btn-action { padding: 6px 10px; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="learn-nav">
+  <button class="nav-back" onclick="goBack()" title="뒤로">&#8592;</button>
+  <div class="nav-title">
+    <div class="nav-clip-id" id="nav-clip-id">...</div>
+    <div class="nav-clip-name" id="nav-clip-name">로딩 중...</div>
+  </div>
+  <div class="nav-btns">
+    <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
+    <button class="nav-arrow" id="btn-next-clip" onclick="goNextClip()" disabled>&#9654;</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="player-wrap" id="player-wrap">
+    <div id="player"></div>
+    <div class="explain-overlay" id="explain-overlay">
+      <div class="eo-header">
+        <div class="eo-title" id="eo-title"></div>
+        <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">&#9654;</button>
+        <button class="eo-btn" onclick="closeExplainOverlay()">&#10005;</button>
+      </div>
+      <div class="eo-seekbar">
+        <span class="eo-seek-time" id="eo-cur-time">0:00</span>
+        <input type="range" class="eo-seek-input" id="eo-seek" min="0" max="100" value="0" step="0.1">
+        <span class="eo-seek-time" id="eo-dur-time">0:00</span>
+      </div>
+      <div class="eo-body" id="eo-body"><div id="eo-text"></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-overlay" id="quiz-overlay">
+    <div class="qo-header">
+      <div class="qo-header-title">&#128221; EPS-TOPIK</div>
+      <button class="qo-theme-btn" id="qo-theme-btn" onclick="toggleQuizTheme()">&#9788;&#65039;</button>
+      <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
+    </div>
+    <div class="qo-pbar" id="qo-pbar"></div>
+    <div class="qo-body" id="qo-body"></div>
+    <div class="qo-nav" id="qo-nav"></div>
+  </div>
+
+  <div class="writing-overlay" id="writing-overlay">
+    <div class="qo-header">
+      <div class="qo-header-title">&#9997;&#65039; 쓰기연습</div>
+      <button class="qo-theme-btn" id="wr-theme-btn" onclick="toggleWritingTheme()">&#127769;</button>
+      <button class="eo-btn" onclick="closeWritingOverlay()">&#10005;</button>
+    </div>
+    <div class="wr-body" id="wr-body"></div>
+  </div>
+
+  <div class="tip-banner" id="tip-banner" style="display:none">
+    <div class="tip-banner-text">&#128161; 영상 위에 '동영상 더보기'가 뜨면 &#10005;를 한번 눌러주세요.</div>
+    <button class="tip-banner-close" onclick="closeTipBanner()">&#10005;</button>
+  </div>
+
+  <div class="now-playing" id="now-playing">
+    <div class="now-ko" id="now-ko"></div>
+    <div class="now-ne" id="now-ne"></div>
+  </div>
+
+  <div class="loop-bar" id="loop-bar">
+    <div class="loop-info" id="loop-info"></div>
+    <button class="btn-action btn-repeat" id="btn-repeat" onclick="startLoop()">&#128257; 반복</button>
+    <button class="btn-action btn-play-all" id="btn-play-all" onclick="playAll()" style="display:none">&#9654; 전체</button>
+    <button class="btn-action btn-speed" id="btn-speed" onclick="toggleSpeed()" style="display:none">&#128034;1x</button>
+    <button class="btn-action btn-stop" id="btn-stop" onclick="stopLoop()" style="display:none">&#9209; 중지</button>
+  </div>
+
+  <div class="sub-list-header">
+    <h2>자막 목록</h2>
+    <div class="font-controls">
+      <button class="btn-font" onclick="changeFontSize(-1)">A-</button>
+      <button class="btn-font" onclick="changeFontSize(1)">A+</button>
+    </div>
+    <span class="sub-count" id="sub-count"></span>
+  </div>
+
+  <div class="learn-tip" id="learn-tip" style="display:none" onclick="dismissLearnTip()">
+    <span class="learn-tip-close">&#10005;</span>
+    &#128161; 자막을 눌러보세요! 선택한 문장과 관련된 실전 EPS-TOPIK 문제, 네팔어·한국어 설명, 쓰기 연습까지!
+  </div>
+  <div class="sub-list" id="sub-list"></div>
+
+  <div class="empty-state" id="empty-state" style="display:none">
+    <div class="icon">&#127916;</div>
+    <h3>자막 데이터 준비 중</h3>
+    <p>이 클립의 SRT 자막이 아직 변환되지 않았습니다.<br>영상은 재생할 수 있습니다!</p>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   K▶T Learn Page — Dynamic Clip Loading
+   ══════════════════════════════════════════ */
+
+// ── URL params ──
+var params = new URLSearchParams(location.search);
+var CLIP_ID = params.get('clip') || 'E01-C01';
+var DRAMA = params.get('drama') || 'cloy';
+
+// ── State ──
+var clipData = null;
+var episodesData = null;
+var player;
+var subtitles = [];
+var explanationsMap = {};
+var explainAudio = null;
+var explainAudioId = null;
+var explainAudioLang = null;
+var explainParas = [];
+var explainHighlightTimer = null;
+var explainActivePara = -1;
+var eoSeeking = false;
+var subtitleTimer = null;
+var lastSubId = -1;
+var openDetailId = -1;
+var currentSub = null;
+var loopSub = null;
+var loopPausing = false;
+var userPaused = false;
+var loopPauseTimer = null;
+var speedSteps = [1, 0.7, 0.5];
+var speedIndex = 0;
+var fontScales = [0.85, 1, 1.2, 1.4, 1.7, 2];
+var fontLevel = 1;
+var quizData = null;
+var quizAllQuestions = [];
+var quizIdx = 0;
+var quizSelected = -1;
+var quizChecked = false;
+var quizAnswers = {};
+var quizAudioEl = null;
+var quizShowAudioText = false;
+var activeEl = null;
+var clickLock = false;
+
+// ── Data Loading ──
+Promise.all([
+  fetch('data/' + DRAMA + '/' + CLIP_ID + '.json').then(function(r) { return r.json(); }),
+  fetch('data/' + DRAMA + '/episodes.json').then(function(r) { return r.json(); }).catch(function() { return null; })
+]).then(function(results) {
+  clipData = results[0];
+  episodesData = results[1];
+
+  // Map subtitles format (start/end → s/e for compatibility)
+  subtitles = (clipData.subtitles || []).map(function(sub) {
+    return { id: sub.id, s: sub.start, e: sub.end, ko: sub.ko, ne: sub.ne || '' };
+  });
+  explanationsMap = clipData.explanations || {};
+  quizData = clipData.quiz || null;
+
+  // Update nav
+  document.getElementById('nav-clip-id').textContent = CLIP_ID + ' · ' + (clipData.episode || '') + '화';
+  document.getElementById('nav-clip-name').textContent = clipData.title || CLIP_ID;
+  document.title = 'K▶T — ' + CLIP_ID;
+
+  // Setup clip navigation
+  setupClipNav();
+
+  // Render
+  if (subtitles.length > 0) {
+    renderList();
+    showLearnTip();
+  } else {
+    document.getElementById('empty-state').style.display = '';
+    document.querySelector('.sub-list-header').style.display = 'none';
+  }
+
+  // Save last clip for dashboard
+  try { localStorage.setItem('kt-last-clip', CLIP_ID); } catch(e) {}
+
+  // Init YouTube
+  initYouTube(clipData.youtube_id);
+}).catch(function(e) {
+  console.error('Clip data load error:', e);
+  document.getElementById('nav-clip-id').textContent = CLIP_ID;
+  document.getElementById('nav-clip-name').textContent = '데이터를 불러올 수 없습니다';
+});
+
+// ── YouTube ──
+function initYouTube(videoId) {
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var first = document.getElementsByTagName('script')[0];
+  first.parentNode.insertBefore(tag, first);
+  window._ytVideoId = videoId;
+}
+
+window.onYouTubeIframeAPIReady = function() {
+  player = new YT.Player('player', {
+    videoId: window._ytVideoId,
+    playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+    events: { onStateChange: onPlayerStateChange }
+  });
+};
+
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.PLAYING) {
+    startSubtitleSync();
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    stopSubtitleSync();
+  }
+}
+
+// ── Clip Navigation ──
+var prevClipId = null;
+var nextClipId = null;
+
+function setupClipNav() {
+  if (!episodesData) return;
+  var allClips = [];
+  episodesData.episodes.forEach(function(ep) {
+    ep.clips.forEach(function(c) { allClips.push(c.id); });
+  });
+  var idx = allClips.indexOf(CLIP_ID);
+  if (idx > 0) {
+    prevClipId = allClips[idx - 1];
+    document.getElementById('btn-prev-clip').disabled = false;
+  }
+  if (idx >= 0 && idx < allClips.length - 1) {
+    nextClipId = allClips[idx + 1];
+    document.getElementById('btn-next-clip').disabled = false;
+  }
+}
+
+function goPrevClip() { if (prevClipId) location.href = 'learn.html?clip=' + prevClipId; }
+function goNextClip() { if (nextClipId) location.href = 'learn.html?clip=' + nextClipId; }
+function goBack() { location.href = 'index.html'; }
+
+// ── Helpers ──
+function formatTime(sec) { var m = Math.floor(sec / 60); var s = Math.floor(sec % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
+function escHtml(str) { var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function findSub(id) { for (var i = 0; i < subtitles.length; i++) { if (subtitles[i].id === id) return subtitles[i]; } return null; }
+function fmtAudioTime(sec) { if (!sec || isNaN(sec)) return '0:00'; var m = Math.floor(sec / 60); var s = Math.floor(sec % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
+
+// ── Font Size ──
+function changeFontSize(dir) {
+  var next = fontLevel + dir;
+  if (next < 0 || next >= fontScales.length) return;
+  fontLevel = next;
+  document.documentElement.style.setProperty('--font-scale', fontScales[fontLevel]);
+  if (activeEl) {
+    var list = document.getElementById('sub-list');
+    var top = activeEl.offsetTop - list.offsetTop;
+    list.scrollTop = Math.max(0, top - list.clientHeight / 2 + activeEl.offsetHeight / 2);
+  }
+}
+
+// ── Learn Tip ──
+function showLearnTip() { if (localStorage.getItem('learnTipSeen')) return; var tip = document.getElementById('learn-tip'); if (tip) tip.style.display = ''; }
+function dismissLearnTip() { var tip = document.getElementById('learn-tip'); if (tip) tip.style.display = 'none'; localStorage.setItem('learnTipSeen', '1'); }
+
+// ── Render Subtitle List ──
+function renderList() {
+  var list = document.getElementById('sub-list');
+  document.getElementById('sub-count').textContent = subtitles.length + '개';
+  var html = '';
+  subtitles.forEach(function(sub) {
+    html += '<div class="sub-item" id="sub-' + sub.id + '">' +
+      '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
+        '<div class="sub-num">' + sub.id + '</div>' +
+        '<div class="sub-text">' +
+          '<div class="sub-ko">' + escHtml(sub.ko) + '</div>' +
+          '<div class="sub-ne">' + escHtml(sub.ne) + '</div>' +
+        '</div>' +
+        '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
+        '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
+      '</div>' +
+      '<div class="sub-detail" id="detail-' + sub.id + '">' + buildDetail(sub.id) + '</div>' +
+    '</div>';
+  });
+  list.innerHTML = html;
+}
+
+function buildDetail(id) {
+  var hasData = explanationsMap[String(id)];
+  var disabled = hasData ? '' : ' disabled';
+  var hasQuiz = !!quizData;
+  var hasWriting = !!(quizData && quizData.writing);
+  var html = '<div class="learn-bar">';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">한국어 설명</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openWritingOverlay()"' + (hasWriting ? '' : ' disabled') + '><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">쓰기</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openQuizOverlay()"' + (hasQuiz ? '' : ' disabled') + '><span class="lb-icon">&#128221;</span><span class="lb-label">EPS-TOPIK</span></button>';
+  html += '</div>';
+  return html;
+}
+
+// ── Subtitle Click ──
+function onSubClick(id) {
+  if (clickLock) return;
+  clickLock = true;
+  setTimeout(function(){ clickLock = false; }, 300);
+  dismissLearnTip();
+  var sub = findSub(id);
+  if (!sub) return;
+  if (openDetailId !== -1 && openDetailId !== id) closeDetail(openDetailId);
+  closeExplainOverlay();
+  cancelLoop();
+  userPaused = false;
+  currentSub = sub;
+  openDetailId = id;
+  if (player && player.seekTo) { player.seekTo(sub.s, true); player.playVideo(); }
+  var el = document.getElementById('detail-' + id);
+  if (el) el.classList.add('open');
+  highlightSub(id);
+  showBar('once');
+}
+
+// ── Highlight ──
+function highlightSub(id) {
+  if (activeEl) activeEl.classList.remove('active');
+  var el = document.getElementById('sub-' + id);
+  if (el) {
+    el.classList.add('active');
+    activeEl = el;
+    if (!loopSub) {
+      var list = document.getElementById('sub-list');
+      var top = el.offsetTop - list.offsetTop;
+      list.scrollTop = Math.max(0, top - list.clientHeight / 2 + el.offsetHeight / 2);
+    }
+  }
+}
+
+function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } }
+
+// ── Subtitle Sync ──
+function startSubtitleSync() { stopSubtitleSync(); subtitleTimer = setInterval(updateSubtitle, 200); }
+function stopSubtitleSync() { if (subtitleTimer) { clearInterval(subtitleTimer); subtitleTimer = null; } }
+
+function updateSubtitle() {
+  if (userPaused) return;
+  var t = player.getCurrentTime();
+  if (currentSub && !loopSub && t >= currentSub.e) { player.seekTo(currentSub.s, true); return; }
+  if (loopSub && !loopPausing && t >= loopSub.e) {
+    loopPausing = true;
+    player.seekTo(loopSub.s, true);
+    player.pauseVideo();
+    loopPauseTimer = setTimeout(function() { if (loopSub && !userPaused) { player.playVideo(); loopPausing = false; } }, 700);
+    return;
+  }
+  var found = null;
+  for (var i = 0; i < subtitles.length; i++) { if (t >= subtitles[i].s && t < subtitles[i].e) { found = subtitles[i]; break; } }
+  if (found && found.id !== lastSubId) { lastSubId = found.id; highlightSub(found.id); }
+  else if (!found && lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+}
+
+// ── Loop ──
+function startLoop() {
+  if (!currentSub) return;
+  closeExplainOverlay();
+  userPaused = false;
+  loopSub = currentSub;
+  loopPausing = false;
+  if (player && player.seekTo) { player.seekTo(loopSub.s, true); player.playVideo(); }
+  var icon = document.getElementById('loop-icon-' + loopSub.id);
+  if (icon) icon.textContent = '🔁';
+  var item = document.getElementById('sub-' + loopSub.id);
+  if (item) item.classList.add('looping');
+  showBar('loop');
+}
+
+function toggleSpeed() {
+  speedIndex = (speedIndex + 1) % speedSteps.length;
+  var rate = speedSteps[speedIndex];
+  if (player && player.setPlaybackRate) player.setPlaybackRate(rate);
+  document.getElementById('btn-speed').textContent = '🐢' + rate + 'x';
+}
+
+function resetSpeed() { speedIndex = 0; if (player && player.setPlaybackRate) player.setPlaybackRate(1); document.getElementById('btn-speed').textContent = '🐢1x'; }
+
+function stopLoop() {
+  cancelLoop();
+  resetSpeed();
+  if (player && player.pauseVideo) player.pauseVideo();
+  if (currentSub) showBar('once');
+}
+
+function cancelLoop() {
+  if (loopPauseTimer) { clearTimeout(loopPauseTimer); loopPauseTimer = null; }
+  loopPausing = false;
+  if (loopSub) {
+    var icon = document.getElementById('loop-icon-' + loopSub.id);
+    if (icon) icon.textContent = '';
+    var item = document.getElementById('sub-' + loopSub.id);
+    if (item) item.classList.remove('looping');
+    loopSub = null;
+  }
+}
+
+function playAll() { resetAllState(); if (player && player.playVideo) player.playVideo(); }
+
+function showBar(mode) {
+  var bar = document.getElementById('loop-bar');
+  var info = document.getElementById('loop-info');
+  var sub = currentSub;
+  if (!sub) return;
+  bar.classList.add('active');
+  var label = '#' + sub.id + ' ' + escHtml(sub.ko.substring(0, 25)) + (sub.ko.length > 25 ? '...' : '');
+  if (mode === 'once') {
+    info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
+    document.getElementById('btn-repeat').style.display = '';
+    document.getElementById('btn-play-all').style.display = '';
+    document.getElementById('btn-speed').style.display = 'none';
+    document.getElementById('btn-stop').style.display = 'none';
+  } else {
+    info.innerHTML = '<strong>🔁 반복 재생 중</strong> ' + label;
+    document.getElementById('btn-repeat').style.display = 'none';
+    document.getElementById('btn-play-all').style.display = 'none';
+    document.getElementById('btn-speed').style.display = '';
+    document.getElementById('btn-stop').style.display = '';
+  }
+}
+
+function closeDetail(id) { var el = document.getElementById('detail-' + id); if (el) el.classList.remove('open'); }
+
+function resetAllState() {
+  closeExplainOverlay(); closeQuizOverlay(); closeWritingOverlay();
+  cancelLoop(); resetSpeed();
+  if (openDetailId !== -1) { closeDetail(openDetailId); openDetailId = -1; }
+  currentSub = null; loopPausing = false; userPaused = false;
+  document.getElementById('loop-bar').classList.remove('active');
+}
+
+// ── Explain Overlay ──
+function renderExplainParas(text) {
+  var parts = text.split('\n\n'); explainParas = parts; explainActivePara = -1;
+  var container = document.getElementById('eo-text'); var html = '';
+  for (var i = 0; i < parts.length; i++) html += '<div class="eo-para" id="eo-para-' + i + '">' + escHtml(parts[i]) + '</div>';
+  container.innerHTML = html;
+}
+
+function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer = setInterval(updateExplainHighlight, 200); }
+function stopExplainHighlight() { if (explainHighlightTimer) { clearInterval(explainHighlightTimer); explainHighlightTimer = null; } }
+
+function getParaIndexAtTime(t, dur) {
+  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParas[i].length;
+  if (total === 0) return 0; var cum = 0;
+  for (var i = 0; i < explainParas.length; i++) { if (t < ((cum + explainParas[i].length) / total) * dur) return i; cum += explainParas[i].length; }
+  return explainParas.length - 1;
+}
+
+function highlightPara(idx) {
+  if (idx === explainActivePara) return;
+  if (explainActivePara >= 0) { var old = document.getElementById('eo-para-' + explainActivePara); if (old) old.classList.remove('active'); }
+  explainActivePara = idx;
+  var el = document.getElementById('eo-para-' + idx);
+  if (el) { el.classList.add('active'); var body = document.getElementById('eo-body'); if (body) body.scrollTop = el.offsetTop - body.offsetTop - 10; }
+}
+
+function updateExplainHighlight() {
+  if (!explainAudio || !explainAudio.duration) return;
+  var t = explainAudio.currentTime; var dur = explainAudio.duration;
+  if (!eoSeeking) { var seek = document.getElementById('eo-seek'); seek.max = dur; seek.value = t; }
+  document.getElementById('eo-cur-time').textContent = fmtAudioTime(t);
+  document.getElementById('eo-dur-time').textContent = fmtAudioTime(dur);
+  if (!explainAudio.paused) highlightPara(getParaIndexAtTime(t, dur));
+}
+
+function padId(id) { var s = '' + id; while (s.length < 3) s = '0' + s; return s; }
+
+function openExplainOverlay(id, lang) {
+  var data = explanationsMap[String(id)]; if (!data) return;
+  closeQuizOverlay();
+  if (player && player.pauseVideo) player.pauseVideo();
+  document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 한국어 설명 #' : '🎧 네팔어 설명 #') + id;
+  document.getElementById('explain-overlay').classList.add('open');
+  var playBtn = document.getElementById('eo-play-btn');
+  if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
+    renderExplainParas(data[lang]); explainAudio.play(); playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
+  }
+  destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
+  var path = 'audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
+  explainAudio = new Audio(path); playBtn.textContent = '⏸'; playBtn.classList.add('playing');
+  explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
+  explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
+  explainAudio.play(); startExplainHighlight();
+}
+
+function closeExplainOverlay() {
+  document.getElementById('explain-overlay').classList.remove('open'); stopExplainHighlight();
+  if (explainAudio && !explainAudio.paused) explainAudio.pause();
+  var playBtn = document.getElementById('eo-play-btn'); playBtn.textContent = '▶'; playBtn.classList.remove('playing');
+}
+
+function toggleModalAudio() {
+  if (!explainAudio) return; var playBtn = document.getElementById('eo-play-btn');
+  if (explainAudio.paused) { explainAudio.play(); playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); }
+  else { explainAudio.pause(); playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); }
+}
+
+function destroyExplainAudio() {
+  stopExplainHighlight(); if (explainAudio) { explainAudio.pause(); explainAudio = null; }
+  explainAudioId = null; explainAudioLang = null; explainParas = []; explainActivePara = -1;
+}
+
+// ── Quiz ──
+function buildQuizAllQuestions() { if (!quizData) return []; return (quizData.reading || []).concat(quizData.listening || []); }
+function getQuizSection(q) { if (!quizData) return 'reading'; var r = quizData.reading || []; for (var i = 0; i < r.length; i++) { if (r[i].id === q.id) return 'reading'; } return 'listening'; }
+
+function applyQuizTheme() {
+  var o = document.getElementById('quiz-overlay'); var b = document.getElementById('qo-theme-btn');
+  var s = localStorage.getItem('quizTheme') || 'light';
+  if (s === 'dark') { o.classList.add('quiz-dark'); b.innerHTML = '&#9728;&#65039;'; } else { o.classList.remove('quiz-dark'); b.innerHTML = '&#127769;'; }
+}
+function toggleQuizTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyQuizTheme(); }
+
+function openQuizOverlay() {
+  closeExplainOverlay(); if (player && player.pauseVideo) player.pauseVideo();
+  quizAllQuestions = buildQuizAllQuestions(); quizIdx = 0; quizSelected = -1; quizChecked = false; quizAnswers = {};
+  document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('sub-list').classList.add('disabled');
+  document.getElementById('loop-bar').classList.add('disabled');
+  document.querySelector('.sub-list-header').classList.add('disabled');
+  document.getElementById('quiz-overlay').classList.add('open');
+  applyQuizTheme(); renderQuiz(); scrollQuizToTop();
+}
+
+function closeQuizOverlay() {
+  document.getElementById('quiz-overlay').classList.remove('open');
+  document.getElementById('player-wrap').style.display = '';
+  document.getElementById('sub-list').classList.remove('disabled');
+  document.getElementById('loop-bar').classList.remove('disabled');
+  document.querySelector('.sub-list-header').classList.remove('disabled');
+  stopQuizAudio();
+}
+
+function renderQuiz() {
+  var qs = quizAllQuestions; var total = qs.length;
+  if (total === 0) { document.getElementById('qo-pbar').innerHTML = ''; document.getElementById('qo-body').innerHTML = '<div style="text-align:center;padding:40px;color:#6B7280">문제가 없습니다.</div>'; document.getElementById('qo-nav').innerHTML = ''; return; }
+  var q = qs[quizIdx]; var answered = quizAnswers[q.id];
+  if (answered) { quizSelected = answered.selected; quizChecked = true; }
+  renderQuizProgressBar(quizIdx, total); renderQuizQuestion(q, quizIdx, total); renderQuizNav(quizIdx, total);
+}
+
+function renderQuizProgressBar(idx, total) {
+  var pbar = document.getElementById('qo-pbar'); var html = '';
+  for (var i = 0; i < total; i++) { var cls = 'qo-dot'; var a = quizAnswers[quizAllQuestions[i].id]; if (a) cls += a.correct ? ' correct' : ' wrong'; if (i === idx) cls += ' current'; html += '<div class="' + cls + '" onclick="jumpToQuiz(' + i + ')"></div>'; }
+  pbar.innerHTML = html;
+}
+
+function renderQuizQuestion(q, idx, total) {
+  stopQuizAudio(); var body = document.getElementById('qo-body'); var html = ''; var nums = ['①','②','③','④']; var sec = getQuizSection(q);
+  html += '<div class="qo-progress">' + (sec === 'reading' ? '<span class="qo-progress-section reading">📖 읽기</span>' : '<span class="qo-progress-section listening">🎧 듣기</span>') + '문제 ' + (idx+1) + '/' + total + '</div>';
+  html += '<div class="qo-instruction">' + escHtml(q.instruction) + '</div>';
+  var isCorrect = quizChecked && quizSelected === q.answer;
+  if (q.audio) {
+    html += '<div class="qo-audio-wrap"><button class="qo-audio-btn" id="qo-audio-btn" onclick="toggleQuizAudio()">🔊 음성 듣기</button>';
+    if (q.audio_text) {
+      if (sec === 'listening') {
+        var showText = isCorrect || quizShowAudioText;
+        html += '<button class="qo-toggle-text-btn" onclick="toggleQuizAudioText()">' + (showText ? '📝 대화 숨기기' : '📝 대화 보기') + '</button>';
+        html += '<div class="qo-toggle-hint">(실제 시험에서는 대화 내용이 보이지 않습니다)</div>';
+        html += '<div class="qo-audio-text" style="' + (showText ? '' : 'display:none') + '">' + formatAudioText(q.audio_text) + '</div>';
+      } else { html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g,'<br>') + '</div>'; }
+    }
+    html += '</div>';
+  }
+  if (q.image && !q.image_choices) { html += '<div class="qo-image-wrap"><img class="qo-image" src="' + escHtml(q.image) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style=""><div class="qo-image-placeholder" style="display:none">🖼️ 이미지 준비 중</div></div>'; }
+  if (q.passage) { html += '<div class="qo-passage">' + escHtml(q.passage) + '</div>'; }
+  if (q.question) { html += '<div class="qo-question">' + escHtml(q.question).replace(/\n/g,'<br>').replace(/\( {2,10}\)/g,'<span class="qo-blank">(      )</span>') + '</div>'; }
+  if (q.image_choices) {
+    html += '<div class="qo-img-choices">';
+    for (var ic = 0; ic < q.image_choices.length; ic++) {
+      var icCls = 'qo-img-choice'; if (quizChecked && isCorrect && ic === q.answer) icCls += ' correct'; else if (quizChecked && !isCorrect && ic === quizSelected) icCls += ' wrong'; else if (!quizChecked && ic === quizSelected) icCls += ' selected'; if (quizChecked && ic !== quizSelected) icCls += ' dimmed';
+      html += '<div class="' + icCls + '" onclick="selectQuizChoice(' + ic + ')"><img src="' + escHtml(q.image_choices[ic]) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="qo-img-placeholder" style="display:none">🖼️</div><div class="qo-img-label">' + nums[ic] + ' ' + escHtml(q.choices_desc[ic]) + '</div></div>';
+    }
+    html += '</div>';
+  } else {
+    html += '<div class="qo-choices">';
+    for (var i = 0; i < q.choices.length; i++) {
+      var cls = 'qo-choice'; if (quizChecked && isCorrect && i === q.answer) cls += ' correct checked'; else if (quizChecked && !isCorrect && i === quizSelected) cls += ' wrong checked'; else if (!quizChecked && i === quizSelected) cls += ' selected'; if (quizChecked && i !== quizSelected) cls += ' dimmed checked';
+      html += '<button class="' + cls + '" onclick="selectQuizChoice(' + i + ')"><span class="qo-choice-num">' + nums[i] + '</span><span class="qo-choice-text">' + escHtml(q.choices[i]) + '</span></button>';
+    }
+    html += '</div>';
+  }
+  if (!quizChecked) html += '<button class="qo-check-btn" id="qo-check" onclick="checkQuizAnswer()"' + (quizSelected === -1 ? ' disabled' : '') + '>정답 확인</button>';
+  if (quizChecked) {
+    html += '<div class="qo-result ' + (isCorrect ? 'correct' : 'wrong') + '">' + (isCorrect ? '⭕ 정답!' : '❌ 오답!') + '</div>';
+    if (isCorrect) { html += '<div class="qo-explain"><div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div><div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div></div>'; }
+    else { html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">🔄 다시 풀기</button>'; }
+  }
+  body.innerHTML = html;
+}
+
+function scrollQuizToTop() { var el = document.getElementById('quiz-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+
+function renderQuizNav(idx, total) {
+  var nav = document.getElementById('qo-nav'); var html = '';
+  if (idx > 0) html += '<button class="qo-nav-btn qo-prev" onclick="quizPrev()">← 이전</button>';
+  if (idx < total - 1) html += '<button class="qo-nav-btn qo-next" onclick="quizNext()">다음 →</button>';
+  else { var allDone = true; for (var i = 0; i < quizAllQuestions.length; i++) { if (!quizAnswers[quizAllQuestions[i].id]) { allDone = false; break; } } html += '<button class="qo-nav-btn qo-next" onclick="showQuizResults()"' + (allDone ? '' : ' disabled') + '>결과 보기</button>'; }
+  nav.innerHTML = html;
+}
+
+function jumpToQuiz(idx) { quizIdx = idx; quizShowAudioText = false; var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a) { quizSelected = a.selected; quizChecked = true; } else { quizSelected = -1; quizChecked = false; } renderQuiz(); scrollQuizToTop(); }
+function selectQuizChoice(idx) { if (quizChecked) return; quizSelected = idx; renderQuiz(); }
+
+function playQuizSound(correct) {
+  try { var ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (correct) { [523,659].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(1,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.3); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.3); }); }
+    else { [200,180].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(1,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.2); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.2); }); }
+  } catch(e) {}
+}
+
+function checkQuizAnswer() { if (quizSelected === -1) return; var q = quizAllQuestions[quizIdx]; quizChecked = true; var c = quizSelected === q.answer; quizAnswers[q.id] = { selected: quizSelected, correct: c }; playQuizSound(c); renderQuiz(); }
+function quizPrev() { if (quizIdx > 0) { quizIdx--; quizShowAudioText = false; var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a) { quizSelected = a.selected; quizChecked = true; } else { quizSelected = -1; quizChecked = false; } renderQuiz(); scrollQuizToTop(); } }
+function quizNext() { if (quizIdx < quizAllQuestions.length - 1) { quizIdx++; quizShowAudioText = false; var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a) { quizSelected = a.selected; quizChecked = true; } else { quizSelected = -1; quizChecked = false; } renderQuiz(); scrollQuizToTop(); } }
+
+function showQuizResults() {
+  stopQuizAudio(); var body = document.getElementById('qo-body'); var rQs = quizData.reading || []; var lQs = quizData.listening || []; var rC = 0, lC = 0;
+  for (var i = 0; i < rQs.length; i++) { if (quizAnswers[rQs[i].id] && quizAnswers[rQs[i].id].correct) rC++; }
+  for (var i = 0; i < lQs.length; i++) { if (quizAnswers[lQs[i].id] && quizAnswers[lQs[i].id].correct) lC++; }
+  var total = quizAllQuestions.length; var correct = rC + lC; var pct = total > 0 ? Math.round(correct / total * 100) : 0;
+  body.innerHTML = '<div class="qo-results-screen"><div class="qo-results-icon">🎉</div><div class="qo-results-title">퀴즈 완료!</div><div class="qo-results-score">' + correct + '/' + total + ' 문제 정답 (' + pct + '%)</div><div class="qo-results-detail"><div class="qo-results-row">📖 읽기: ' + rC + '/' + rQs.length + '</div><div class="qo-results-row">🎧 듣기: ' + lC + '/' + lQs.length + '</div></div><div class="qo-results-btns"><button class="qo-results-btn qo-retry" onclick="retryQuiz()">🔄 다시 풀기</button><button class="qo-results-btn qo-close" onclick="closeQuizOverlay()">✕ 닫기</button></div></div>';
+  document.getElementById('qo-nav').innerHTML = ''; document.getElementById('qo-pbar').innerHTML = '';
+}
+
+function retryCurrentQuiz() { var q = quizAllQuestions[quizIdx]; if (q) delete quizAnswers[q.id]; quizSelected = -1; quizChecked = false; renderQuiz(); }
+function retryQuiz() { quizIdx = 0; quizSelected = -1; quizChecked = false; quizAnswers = {}; quizAllQuestions = buildQuizAllQuestions(); renderQuiz(); scrollQuizToTop(); }
+
+function formatAudioText(text) { return escHtml(text).replace(/\n/g,'<br>').replace(/(여자|남자|가|나):/g,'<b>$1:</b>'); }
+function toggleQuizAudioText() { var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a && a.correct) return; quizShowAudioText = !quizShowAudioText; var t = document.querySelector('.qo-audio-text'); var b = document.querySelector('.qo-toggle-text-btn'); if (t) t.style.display = quizShowAudioText ? '' : 'none'; if (b) b.innerHTML = quizShowAudioText ? '📝 대화 숨기기' : '📝 대화 보기'; }
+
+function toggleQuizAudio() {
+  var q = quizAllQuestions[quizIdx]; if (!q || !q.audio) return; var btn = document.getElementById('qo-audio-btn');
+  if (quizAudioEl && !quizAudioEl.paused) { quizAudioEl.pause(); quizAudioEl.currentTime = 0; if (btn) btn.classList.remove('playing'); return; }
+  stopQuizAudio(); quizAudioEl = new Audio(q.audio); if (btn) btn.classList.add('playing');
+  quizAudioEl.onended = function() { if (btn) btn.classList.remove('playing'); };
+  quizAudioEl.onerror = function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 음성 파일 준비 중'; } };
+  quizAudioEl.play().catch(function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 음성 파일 준비 중'; } });
+}
+
+function stopQuizAudio() { if (quizAudioEl) { quizAudioEl.pause(); quizAudioEl = null; } }
+
+// ── Writing Practice ──
+var writingData = null, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null;
+
+var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
+var JONG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var JAMO_AUDIO = {'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut','ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup','ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung','ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk','ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut','ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e','ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe','ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu','ㅡ':'eu','ㅢ':'ui','ㅣ':'i'};
+
+function composeHangul(j) { if (j.length === 0) return ''; if (j.length === 1) return j[0]; var ci = CHO.indexOf(j[0]); if (ci < 0) return j.join(''); var ji = JUNG.indexOf(j[1]); if (ji < 0) return j.join(''); if (j.length === 2) return String.fromCharCode(0xAC00 + (ci*21+ji)*28); var ki = JONG.indexOf(j[2]); if (ki < 0) return j.join(''); return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki); }
+function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
+
+function openWritingOverlay() {
+  closeExplainOverlay(); closeQuizOverlay(); if (player && player.pauseVideo) player.pauseVideo();
+  writingData = quizData && quizData.writing ? quizData.writing : null; if (!writingData) return;
+  wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('sub-list').classList.add('disabled');
+  document.getElementById('loop-bar').classList.add('disabled');
+  document.querySelector('.sub-list-header').classList.add('disabled');
+  document.getElementById('writing-overlay').classList.add('open');
+  applyWritingTheme(); renderWriting();
+  var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
+
+function closeWritingOverlay() {
+  wrStopSkip(); if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio();
+  document.getElementById('writing-overlay').classList.remove('open');
+  document.getElementById('player-wrap').style.display = '';
+  document.getElementById('sub-list').classList.remove('disabled');
+  document.getElementById('loop-bar').classList.remove('disabled');
+  document.querySelector('.sub-list-header').classList.remove('disabled');
+}
+
+function applyWritingTheme() { var o = document.getElementById('writing-overlay'); var b = document.getElementById('wr-theme-btn'); var s = localStorage.getItem('quizTheme') || 'light'; if (s === 'dark') { o.classList.add('quiz-dark'); b.innerHTML = '&#9728;&#65039;'; } else { o.classList.remove('quiz-dark'); b.innerHTML = '&#127769;'; } }
+function toggleWritingTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyWritingTheme(); }
+
+function renderWriting() {
+  if (!writingData) return; var body = document.getElementById('wr-body'); var words = writingData.words; var html = '';
+  var allDone = wrWordIdx >= words.length;
+  if (allDone) {
+    html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">문장 완성!</div><div class="wr-complete-words" id="wr-complete-words">';
+    for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; }
+    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" onclick="playSentenceAudio()">🔁 반복</button><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 다시 연습</button></div><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ 닫기</button></div>';
+    body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudio(); }, 800); return;
+  }
+  html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (i < wrWordIdx) cls += ' wr-w-done'; else if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
+  var cw = words[wrWordIdx]; var cc = cw.chars;
+  if (wrCharIdx >= cc.length) {
+    html += '<div class="wr-word-done">✅ ' + escHtml(cw.word) + ' 완성! — ' + escHtml(cw.meaning_ne) + '</div>';
+    html += '<div class="wr-char-explain-list">'; for (var i = 0; i < cc.length; i++) html += '<div class="wr-char-explain-item">' + escHtml(cc[i].explanation_ne) + '</div>'; html += '</div>';
+    html += '<div class="wr-word-btns"><button class="wr-repeat-btn" onclick="playWordAudio()">🔁 반복</button><button class="wr-next-btn" onclick="wrNextWord()">다음 단어 →</button></div>';
+    body.innerHTML = html; playQuizSound(true); setTimeout(function() { playWordAudio(); }, 500); return;
+  }
+  html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
+  var ch = cc[wrCharIdx]; var tJ = ch.jamo.length;
+  html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeHangul(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
+  for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '"></div>'; }
+  html += '</div></div>';
+  html += '<div class="wr-keyboard"><div class="wr-kb-label">자음 Consonants</div><div class="wr-kb-row">';
+  for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
+  html += '</div><div class="wr-kb-label">모음 Vowels</div><div class="wr-kb-row">';
+  for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
+  html += '</div></div>';
+  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ 건너뛰기</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ 전체 건너뛰기</button></div>';
+  body.innerHTML = html;
+}
+
+function pressJamo(jamo) {
+  if (!writingData || wrAdvanceTimer || wrSkipping) return; var words = writingData.words; if (wrWordIdx >= words.length) return;
+  var cw = words[wrWordIdx]; if (wrCharIdx >= cw.chars.length) return; var ch = cw.chars[wrCharIdx]; var exp = ch.jamo[wrJamoIdx];
+  playJamoAudio(jamo);
+  if (jamo === exp) { wrEnteredJamo.push(jamo); wrJamoIdx++; flashJamoBtn(jamo, true);
+    var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeHangul(wrEnteredJamo); updateSlots(ch.jamo.length);
+    if (wrJamoIdx >= ch.jamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
+      wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1500);
+      var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
+  } else { flashJamoBtn(jamo, false); playQuizSound(false); }
+}
+
+function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr-kb-btn'); for (var i = 0; i < btns.length; i++) { if (btns[i].textContent === jamo) { var b = btns[i]; var c = correct ? 'correct-anim' : 'wrong-anim'; b.classList.add(c); (function(bb,cc) { setTimeout(function() { bb.classList.remove(cc); }, correct ? 500 : 400); })(b,c); break; } } }
+function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) slots[i].classList.add('filled'); else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
+
+function playWordAudio() { if (!writingData) return; var w = writingData.words; if (wrWordIdx >= w.length) return; var cw = w[wrWordIdx]; if (!cw.audio) return; if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }
+function wrNextWord() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+
+function playSentenceAudio() { stopSentenceAudio(); if (!writingData || !writingData.words.length) return; wrSentenceIdx = 0; playSentenceWord(0); }
+function playSentenceWord(idx) { if (!writingData) return; var words = writingData.words; if (idx >= words.length) { stopSentenceAudio(); return; } wrSentenceIdx = idx;
+  for (var h = 0; h < words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) { if (h === idx) el.classList.add('wr-cw-highlight'); else el.classList.remove('wr-cw-highlight'); } }
+  var w = words[idx]; if (!w.audio) { playSentenceWord(idx + 1); return; }
+  wrSentenceAudio = new Audio(w.audio); wrSentenceAudio.onended = function() { wrSentenceAudio = null; wrSentenceTimer = setTimeout(function() { wrSentenceTimer = null; playSentenceWord(idx + 1); }, 300); };
+  wrSentenceAudio.onerror = function() { wrSentenceAudio = null; wrSentenceTimer = setTimeout(function() { wrSentenceTimer = null; playSentenceWord(idx + 1); }, 300); };
+  wrSentenceAudio.play().catch(function(){});
+}
+function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1; if (writingData) { for (var h = 0; h < writingData.words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.classList.remove('wr-cw-highlight'); } } }
+
+function wrSkipWord() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = wrWordIdx; wrAutoTypeNext(); }
+function wrSkipAll() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrAutoTypeNext(); }
+function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
+
+function wrAutoTypeNext() {
+  if (!wrSkipping || !writingData) return; var words = writingData.words;
+  if (wrWordIdx >= words.length) { wrSkipping = false; renderWriting(); return; }
+  var cw = words[wrWordIdx];
+  if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); return; }
+  var ch = cw.chars[wrCharIdx]; var jamo = ch.jamo[wrJamoIdx]; wrSkipAudio = playJamoAudio(jamo); flashJamoBtn(jamo, true); wrEnteredJamo.push(jamo); wrJamoIdx++;
+  var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeHangul(wrEnteredJamo); updateSlots(ch.jamo.length);
+  if (wrJamoIdx >= ch.jamo.length) { if (cel) cel.classList.add('flash-correct'); var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv);
+    wrAfterAudio(wrSkipAudio, function() { wrSkipTimer = setTimeout(function() { wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 300); } }, 1000); });
+  } else { wrAfterAudio(wrSkipAudio, function() { wrSkipTimer = setTimeout(wrAutoTypeNext, 300); }); }
+}
+
+function wrAfterAudio(audio, cb) { if (!audio || audio.ended) { cb(); return; } var done = false; var finish = function() { if (done) return; done = true; audio.onended = null; audio.onerror = null; cb(); }; audio.onended = finish; audio.onerror = finish; wrSkipTimer = setTimeout(finish, 1500); }
+
+function wrAutoPlayWordThenNext(cw) {
+  if (!wrSkipping) return;
+  if (cw.audio) { wrSkipTimer = setTimeout(function() { wrSkipAudio = new Audio(cw.audio);
+    wrSkipAudio.onended = function() { wrSkipAudio = null; wrSkipTimer = setTimeout(function() { wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 500); };
+    wrSkipAudio.onerror = function() { wrSkipAudio = null; wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); };
+    wrSkipAudio.play().catch(function(){}); }, 500);
+  } else { wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }
+}
+
+function retryWriting() { wrStopSkip(); if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+
+// ── Seekbar events ──
+(function() {
+  var seek = document.getElementById('eo-seek');
+  seek.addEventListener('input', function() { eoSeeking = true; if (explainAudio && explainAudio.duration) { document.getElementById('eo-cur-time').textContent = fmtAudioTime(Number(seek.value)); highlightPara(getParaIndexAtTime(Number(seek.value), explainAudio.duration)); } });
+  seek.addEventListener('change', function() { if (explainAudio && explainAudio.duration) explainAudio.currentTime = Number(seek.value); eoSeeking = false; });
+})();
+
+// ── Keyboard shortcuts ──
+document.addEventListener('keydown', function(e) { if (e.code !== 'Space') return; var tag = e.target.tagName; if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return; e.preventDefault(); if (!player || !player.getPlayerState) return; var s = player.getPlayerState(); if (s === YT.PlayerState.PLAYING) { userPaused = true; player.pauseVideo(); } else { userPaused = false; player.playVideo(); } });
+
+// ── Iframe blur ──
+window.addEventListener('blur', function() { setTimeout(function() { if (document.activeElement && document.activeElement.tagName === 'IFRAME') document.activeElement.blur(); }, 0); });
+
+// ── Tip banner ──
+if (!localStorage.getItem('tipBannerDismissed')) { document.getElementById('tip-banner').style.display = 'flex'; }
+function closeTipBanner() { document.getElementById('tip-banner').style.display = 'none'; localStorage.setItem('tipBannerDismissed', '1'); }
+
+// ── Service Worker ──
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+</script>
+</body>
+</html>
