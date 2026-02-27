@@ -2195,6 +2195,7 @@ function checkQuizAnswer() {
 function quizPrev() {
   if (quizIdx > 0) {
     quizIdx--;
+    quizShowAudioText = false;
     var q = quizAllQuestions[quizIdx];
     var answered = quizAnswers[q.id];
     if (answered) {
@@ -2212,6 +2213,7 @@ function quizPrev() {
 function quizNext() {
   if (quizIdx < quizAllQuestions.length - 1) {
     quizIdx++;
+    quizShowAudioText = false;
     var q = quizAllQuestions[quizIdx];
     var answered = quizAnswers[q.id];
     if (answered) {
@@ -2464,8 +2466,14 @@ function formatAudioText(text) {
 }
 
 function toggleQuizAudioText() {
+  var q = quizAllQuestions[quizIdx];
+  var answered = quizAnswers[q.id];
+  if (answered && answered.correct) return;
   quizShowAudioText = !quizShowAudioText;
-  renderQuiz();
+  var textEl = document.querySelector('.qo-audio-text');
+  var btnEl = document.querySelector('.qo-toggle-text-btn');
+  if (textEl) textEl.style.display = quizShowAudioText ? '' : 'none';
+  if (btnEl) btnEl.innerHTML = quizShowAudioText ? '📝 대화 숨기기' : '📝 대화 보기';
 }
 
 function toggleQuizAudio() {
