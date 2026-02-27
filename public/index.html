@@ -456,6 +456,48 @@
       .logo { font-size: 1.5rem; }
     }
 
+    /* ── Mobile ≤400px optimization ── */
+    @media (max-width: 400px) {
+      /* Subtitle explain buttons */
+      .explain-section { padding: 0 10px 8px 36px; }
+      .explain-btns { gap: 6px; }
+      .btn-explain { padding: 8px 4px; font-size: calc(0.68rem * var(--font-scale, 1)); gap: 2px; }
+
+      /* Loop bar action buttons */
+      .btn-action { padding: 6px 10px; font-size: 0.72rem; }
+
+      /* Quiz overlay buttons */
+      .qo-audio-btn { padding: 10px; font-size: 15px; }
+      .qo-toggle-text-btn { padding: 6px; font-size: 13px; }
+      .qo-choice { padding: 10px 12px; gap: 8px; }
+      .qo-choice-num { font-size: 15px; }
+      .qo-choice-text { font-size: 15px; }
+      .qo-check-btn { padding: 12px; font-size: 15px; }
+      .qo-result { font-size: 15px; padding: 8px; }
+
+      /* Quiz nav buttons */
+      .qo-nav { padding: 8px 10px; gap: 6px; }
+      .qo-nav-btn { padding: 11px 8px; font-size: 15px; }
+
+      /* Quiz results screen */
+      .qo-results-screen { padding: 18px 10px; }
+      .qo-results-title { font-size: 19px; }
+      .qo-results-score { font-size: 16px; }
+      .qo-results-row { font-size: 14px; }
+      .qo-results-btns { gap: 6px; }
+      .qo-results-btn { padding: 11px 6px; font-size: 15px; }
+
+      /* Quiz review buttons */
+      .qo-review-btns { gap: 6px; }
+      .qo-review-btn { padding: 8px 6px; font-size: 12px; }
+
+      /* Quiz inline review */
+      .qr-inline-title { font-size: 16px; }
+
+      /* Quiz retry button */
+      .qo-retry-one { padding: 6px 12px; font-size: 13px; }
+    }
+
     /* ── Loop state ── */
     .sub-item.looping {
       background: #fff8e1;
@@ -2063,8 +2105,8 @@ function renderQuizQuestion(q, idx, total) {
       var rev = quizData && quizData.review && quizData.review[q.id];
       if (rev) {
         html += '<div class="qo-review-btns">';
-        html += '<button class="qo-review-btn ne" onclick="openReviewExplain(\'' + q.id + '\',\'ne\')">🇳🇵 네팔어 설명</button>';
-        html += '<button class="qo-review-btn ko" onclick="openReviewExplain(\'' + q.id + '\',\'ko\')">🇰🇷 한국어 설명</button>';
+        html += '<button class="qo-review-btn ne" onclick="openReviewExplain(\'' + q.id + '\',\'ne\')">🇳🇵 네팔어</button>';
+        html += '<button class="qo-review-btn ko" onclick="openReviewExplain(\'' + q.id + '\',\'ko\')">🇰🇷 한국어</button>';
         html += '</div>';
       }
 
@@ -2325,7 +2367,7 @@ function openReviewExplain(qId, lang) {
   html += '</div>';
 
   body.innerHTML = html;
-  nav.innerHTML = '<button class="qo-nav-btn qo-prev" onclick="closeReviewExplain()">← 문제로 돌아가기</button>';
+  nav.innerHTML = '<button class="qo-nav-btn qo-prev" onclick="closeReviewExplain()">← 돌아가기</button>';
 
   // Bind seekbar
   var seek = document.getElementById('qr-seek');
