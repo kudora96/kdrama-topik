@@ -35,6 +35,19 @@
     .player-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .now-playing { display: none; }
 
+    /* ── Video lock overlay ── */
+    .video-lock { display:none; position:absolute; top:0; left:0; right:0; bottom:0; z-index:10; background:rgba(0,0,0,0.7); backdrop-filter:blur(3px); flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; padding:16px; }
+    .video-lock.show { display:flex; }
+    .video-lock .vl-icon { font-size:2rem; }
+    .video-lock .vl-title { color:#fff; font-size:0.85rem; font-weight:700; }
+    .video-lock .vl-desc { color:rgba(255,255,255,0.7); font-size:0.7rem; line-height:1.5; }
+    .video-lock .vl-btns { display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; justify-content:center; }
+    .video-lock .vl-btn { border:none; border-radius:8px; padding:8px 14px; font-size:0.72rem; font-weight:700; cursor:pointer; }
+    .video-lock .vl-btn-ad { background:#FCD34D; color:#92400E; }
+    .video-lock .vl-btn-ad:active { background:#FBBF24; }
+    .video-lock .vl-btn-pro { background:#4A9EFF; color:#fff; }
+    .video-lock .vl-btn-pro:active { background:#3B82F6; }
+
     /* ── Empty state ── */
     .empty-state { text-align: center; padding: 40px 20px; color: #6B7280; }
     .empty-state .icon { font-size: 3rem; margin-bottom: 10px; }
@@ -411,6 +424,15 @@
 <div class="container">
   <div class="player-wrap" id="player-wrap">
     <div id="player"></div>
+    <div class="video-lock" id="video-lock">
+      <div class="vl-icon">&#128274;</div>
+      <div class="vl-title">PREMIUM CLIP</div>
+      <div class="vl-desc">EP2 이후 클립은 잠금 상태입니다</div>
+      <div class="vl-btns">
+        <button class="vl-btn vl-btn-ad" onclick="doAdUnlock()">&#127916; 광고 보고 24h 해제</button>
+        <button class="vl-btn vl-btn-pro" onclick="openProSheet()">&#128081; PRO 구독</button>
+      </div>
+    </div>
     <div class="explain-overlay" id="explain-overlay">
       <div class="eo-header">
         <div class="eo-title" id="eo-title"></div>
@@ -586,6 +608,7 @@ Promise.all([
   isLocked = checkLocked(clipData.episode);
   if (isLocked) {
     document.getElementById('lock-clip-id').textContent = CLIP_ID;
+    document.getElementById('video-lock').classList.add('show');
   }
 
   // Show lock badge on header
@@ -715,8 +738,12 @@ function doAdUnlock() {
   try { localStorage.setItem('kt-ad-unlock', String(Date.now() + 24*60*60*1000)); } catch(e) {}
   isLocked = false;
   closeLockOverlay();
+  document.getElementById('video-lock').classList.remove('show');
   // Re-render subtitles without lock
   if (subtitles.length > 0) renderList();
+  // Reset header badge
+  var hdr = document.querySelector('.sub-list-header h2');
+  if (hdr) hdr.innerHTML = '자막 목록';
   alert('🎬 24시간 학습 기능 해제!');
 }
 
