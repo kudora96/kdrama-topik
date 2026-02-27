@@ -236,52 +236,90 @@
     }
 
     .sub-detail.open {
-      max-height: calc(500px * var(--font-scale, 1));
+      max-height: calc(200px * var(--font-scale, 1));
     }
 
-    /* ── Explanation buttons ── */
-    .explain-section {
-      padding: 0 14px 10px 42px;
-    }
-
-    .explain-btns {
+    /* ── Learn icon bar ── */
+    .learn-bar {
       display: flex;
-      gap: 8px;
-    }
-
-    .btn-explain {
-      flex: 1;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 6px;
-      font-size: calc(0.73rem * var(--font-scale, 1));
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      justify-content: space-around;
+      padding: 8px 14px 10px 42px;
       gap: 4px;
     }
 
-    .btn-explain-kr {
-      background: #2196f3;
-      color: #fff;
+    .learn-bar-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 2px 6px;
+      cursor: pointer;
+      font-family: inherit;
+      background: #f0f2f5;
+      transition: background 0.15s;
     }
 
-    .btn-explain-ne {
-      background: #4caf50;
-      color: #fff;
+    .learn-bar-btn .lb-icon {
+      font-size: 1.2rem;
+      line-height: 1;
     }
 
-    .btn-explain:disabled {
-      background: #ccc;
-      color: #999;
+    .learn-bar-btn .lb-label {
+      font-size: calc(0.62rem * var(--font-scale, 1));
+      font-weight: 700;
+      color: #444;
+      white-space: nowrap;
+    }
+
+    .learn-bar-btn:not(:disabled):active {
+      background: #dde3ea;
+    }
+
+    .learn-bar-btn:disabled {
+      opacity: 0.35;
       cursor: not-allowed;
     }
 
-    .btn-explain:not(:disabled):active {
-      opacity: 0.8;
+    /* ── Learn tip tooltip ── */
+    .learn-tip {
+      margin: 10px 4px 0;
+      padding: 10px 14px;
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      animation: tipPulse 2s ease-in-out infinite;
+    }
+
+    .learn-tip::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      left: 24px;
+      width: 14px;
+      height: 14px;
+      background: #1a1a2e;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .learn-tip-close {
+      float: right;
+      margin-left: 8px;
+      opacity: 0.6;
+      font-size: 0.85rem;
+    }
+
+    @keyframes tipPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
     }
 
     /* ── Explain Overlay (in player area) ── */
@@ -458,10 +496,11 @@
 
     /* ── Mobile ≤400px optimization ── */
     @media (max-width: 400px) {
-      /* Subtitle explain buttons */
-      .explain-section { padding: 0 10px 8px 36px; }
-      .explain-btns { gap: 6px; }
-      .btn-explain { padding: 8px 4px; font-size: calc(0.68rem * var(--font-scale, 1)); gap: 2px; }
+      /* Learn icon bar */
+      .learn-bar { padding: 6px 10px 8px 36px; gap: 2px; }
+      .learn-bar-btn { padding: 6px 1px 4px; border-radius: 8px; }
+      .learn-bar-btn .lb-icon { font-size: 1rem; }
+      .learn-bar-btn .lb-label { font-size: calc(0.56rem * var(--font-scale, 1)); }
 
       /* Loop bar action buttons */
       .btn-action { padding: 6px 10px; font-size: 0.72rem; }
@@ -591,11 +630,7 @@
     .sub-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
     .sub-list.disabled, .loop-bar.disabled, .sub-list-header.disabled { pointer-events: none; opacity: 0.4; }
 
-    /* ── Quiz button ── */
-    .btn-explain-quiz {
-      background: #F39C12;
-      color: #fff;
-    }
+    /* (quiz/writing button colors now handled by learn-bar) */
 
     /* ── Quiz Overlay (flows outside player-wrap) ── */
     .quiz-overlay {
@@ -1211,8 +1246,7 @@
     .quiz-dark .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .eo-btn:active { background: rgba(255,255,255,0.3); }
 
-    /* ── Writing button ── */
-    .btn-explain-writing { background: #9C27B0; color: #fff; }
+    /* (writing button color now handled by learn-bar) */
 
     /* ── Writing Overlay ── */
     .writing-overlay {
@@ -1585,6 +1619,10 @@
     <span class="sub-count" id="sub-count"></span>
   </div>
 
+  <div class="learn-tip" id="learn-tip" style="display:none" onclick="dismissLearnTip()">
+    <span class="learn-tip-close">✕</span>
+    💡 자막을 눌러보세요! 네팔어 설명, 쓰기 연습 등 학습 기능이 있어요
+  </div>
   <div class="sub-list" id="sub-list"></div>
 </div>
 
@@ -1649,6 +1687,7 @@ Promise.all([
   explanationsMap = results[1];
   if (results[2]) quizData = results[2]['1'] || null;
   renderList();
+  showLearnTip();
 });
 
 function changeFontSize(dir) {
@@ -1662,6 +1701,18 @@ function changeFontSize(dir) {
     var top = activeEl.offsetTop - list.offsetTop;
     list.scrollTop = Math.max(0, top - list.clientHeight / 2 + activeEl.offsetHeight / 2);
   }
+}
+
+function showLearnTip() {
+  if (localStorage.getItem('learnTipSeen')) return;
+  var tip = document.getElementById('learn-tip');
+  if (tip) tip.style.display = '';
+}
+
+function dismissLearnTip() {
+  var tip = document.getElementById('learn-tip');
+  if (tip) tip.style.display = 'none';
+  localStorage.setItem('learnTipSeen', '1');
 }
 
 function renderList() {
@@ -1702,21 +1753,11 @@ function buildExplainSection(id) {
   var disabled = hasData ? '' : ' disabled';
   var hasQuiz = !!quizData;
   var hasWriting = !!(quizData && quizData.writing);
-  var html = '<div class="explain-section">';
-  html += '<div class="explain-btns">';
-  html += '<button class="btn-explain btn-explain-ne" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '>🎧 네팔어</button>';
-  html += '<button class="btn-explain btn-explain-kr" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '>🎧 한국어</button>';
-  html += '</div>';
-  if (hasQuiz || hasWriting) {
-    html += '<div class="explain-btns" style="margin-top:8px">';
-    if (hasQuiz) {
-      html += '<button class="btn-explain btn-explain-quiz" onclick="openQuizOverlay()">📝 EPS-TOPIK</button>';
-    }
-    if (hasWriting) {
-      html += '<button class="btn-explain btn-explain-writing" onclick="openWritingOverlay()">✍️ 쓰기연습</button>';
-    }
-    html += '</div>';
-  }
+  var html = '<div class="learn-bar">';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '><span class="lb-icon">🇳🇵</span><span class="lb-label">설명</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '><span class="lb-icon">🇰🇷</span><span class="lb-label">설명</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openWritingOverlay()"' + (hasWriting ? '' : ' disabled') + '><span class="lb-icon">✏️</span><span class="lb-label">쓰기</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openQuizOverlay()"' + (hasQuiz ? '' : ' disabled') + '><span class="lb-icon">📝</span><span class="lb-label">퀴즈</span></button>';
   html += '</div>';
   return html;
 }
@@ -2552,6 +2593,8 @@ function onSubClick(id) {
   if (clickLock) return;
   clickLock = true;
   setTimeout(function(){ clickLock = false; }, 300);
+
+  dismissLearnTip();
 
   var sub = findSub(id);
   if (!sub) return;
