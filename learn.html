@@ -592,7 +592,9 @@ Promise.all([
   subtitles = (clipData.subtitles || []).map(function(sub) {
     return { id: sub.id, s: sub.start, e: sub.end, ko: sub.ko, ne: sub.ne || '' };
   });
-  explanationsMap = clipData.explanations || {};
+  var explArr = clipData.explanations || [];
+  if (Array.isArray(explArr)) { for (var i = 0; i < explArr.length; i++) explanationsMap[String(explArr[i].sub_id)] = explArr[i]; }
+  else { explanationsMap = explArr; }
   quizData = clipData.quiz || null;
 
   // Update nav
@@ -812,7 +814,7 @@ function buildDetail(id) {
   var hasQuiz = !!quizData;
   var hasWriting = !!(quizData && quizData.writing);
   var html = '<div class="learn-bar">';
-  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'ne\')"' + disabled + '><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'np\')"' + disabled + '><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명</span></button>';
   html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">한국어 설명</span></button>';
   html += '<button class="learn-bar-btn" onclick="openWritingOverlay()"' + (hasWriting ? '' : ' disabled') + '><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">쓰기</span></button>';
   html += '<button class="learn-bar-btn" onclick="openQuizOverlay()"' + (hasQuiz ? '' : ' disabled') + '><span class="lb-icon">&#128221;</span><span class="lb-label">EPS-TOPIK</span></button>';
@@ -1005,7 +1007,8 @@ function openExplainOverlay(id, lang) {
     renderExplainParas(data[lang]); explainAudio.play(); playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
-  var path = 'audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
+  var audioFile = data['audio_' + lang];
+  var path = audioFile ? 'audio/' + lang + '/' + audioFile : 'audio/' + lang + '/S01E01_' + padId(id) + '_' + lang + '.mp3';
   explainAudio = new Audio(path); playBtn.textContent = '⏸'; playBtn.classList.add('playing');
   explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
   explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
