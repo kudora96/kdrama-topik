@@ -582,8 +582,8 @@ var isLocked = false;
 
 // ── Data Loading ──
 Promise.all([
-  fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260302').then(function(r) { return r.json(); }),
-  fetch('data/' + DRAMA + '/episodes.json?v=20260302').then(function(r) { return r.json(); }).catch(function() { return null; })
+  fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260302b').then(function(r) { return r.json(); }),
+  fetch('data/' + DRAMA + '/episodes.json?v=20260302b').then(function(r) { return r.json(); }).catch(function() { return null; })
 ]).then(function(results) {
   clipData = results[0];
   episodesData = results[1];
@@ -1008,7 +1008,7 @@ function openExplainOverlay(id, lang) {
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
   var audioFile = data['audio_' + lang];
-  var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260302';
+  var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260302b';
   explainAudio = new Audio(path); playBtn.textContent = '⏸'; playBtn.classList.add('playing');
   explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
   explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
@@ -1181,7 +1181,7 @@ var JONG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ'
 var JAMO_AUDIO = {'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut','ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup','ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung','ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk','ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut','ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e','ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe','ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu','ㅡ':'eu','ㅢ':'ui','ㅣ':'i'};
 
 function composeHangul(j) { if (j.length === 0) return ''; if (j.length === 1) return j[0]; var ci = CHO.indexOf(j[0]); if (ci < 0) return j.join(''); var ji = JUNG.indexOf(j[1]); if (ji < 0) return j.join(''); if (j.length === 2) return String.fromCharCode(0xAC00 + (ci*21+ji)*28); var ki = JONG.indexOf(j[2]); if (ki < 0) return j.join(''); return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki); }
-function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260302'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
+function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260302b'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
 
 function openWritingOverlay() {
   if (isLocked) { showLockOverlay(); return; }
