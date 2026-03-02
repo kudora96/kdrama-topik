@@ -1004,15 +1004,16 @@ function openExplainOverlay(id, lang) {
   document.getElementById('explain-overlay').classList.add('open');
   var playBtn = document.getElementById('eo-play-btn');
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
-    renderExplainParas(data[lang]); explainAudio.play(); playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
+    renderExplainParas(data[lang]); try { explainAudio.play().catch(function(){}); } catch(e) {} playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
   var audioFile = data['audio_' + lang];
   var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260302b';
-  explainAudio = new Audio(path); playBtn.textContent = '⏸'; playBtn.classList.add('playing');
+  try { explainAudio = new Audio(path); } catch(e) { return; }
+  playBtn.textContent = '⏸'; playBtn.classList.add('playing');
   explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
   explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
-  explainAudio.play(); startExplainHighlight();
+  try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight();
 }
 
 function closeExplainOverlay() {
