@@ -87,6 +87,8 @@
     /* ── Subtitle List ── */
     .sub-list-header { margin-top: 14px; padding: 0 4px; display: flex; justify-content: space-between; align-items: center; }
     .sub-list-header h2 { font-size: 0.85rem; font-weight: 700; color: #6B7280; }
+    .btn-sub-order { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 10px; font-size: 0.75rem; font-weight: 700; color: #1A1A1A; cursor: pointer; font-family: inherit; white-space: nowrap; }
+    .btn-sub-order:active { background: #E5E7EB; }
     .sub-count { font-size: 0.75rem; color: #6B7280; }
     .font-controls { display: flex; gap: 4px; }
     .btn-font { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: #1A1A1A; cursor: pointer; font-family: inherit; }
@@ -488,6 +490,7 @@
 
   <div class="sub-list-header">
     <h2>자막 목록</h2>
+    <button class="btn-sub-order" id="btn-sub-order" onclick="toggleSubOrder()"></button>
     <div class="font-controls">
       <button class="btn-font" onclick="changeFontSize(-1)">A-</button>
       <button class="btn-font" onclick="changeFontSize(1)">A+</button>
@@ -582,8 +585,8 @@ var isLocked = false;
 
 // ── Data Loading ──
 Promise.all([
-  fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260303b').then(function(r) { return r.json(); }),
-  fetch('data/' + DRAMA + '/episodes.json?v=20260303b').then(function(r) { return r.json(); }).catch(function() { return null; })
+  fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260303c').then(function(r) { return r.json(); }),
+  fetch('data/' + DRAMA + '/episodes.json?v=20260303c').then(function(r) { return r.json(); }).catch(function() { return null; })
 ]).then(function(results) {
   clipData = results[0];
   episodesData = results[1];
@@ -777,19 +780,24 @@ function changeFontSize(dir) {
 function showLearnTip() { if (localStorage.getItem('learnTipSeen')) return; var tip = document.getElementById('learn-tip'); if (tip) tip.style.display = ''; }
 function dismissLearnTip() { var tip = document.getElementById('learn-tip'); if (tip) tip.style.display = 'none'; localStorage.setItem('learnTipSeen', '1'); }
 
+// ── Subtitle Order Toggle ──
+function getSubOrder() { return localStorage.getItem('kt-sub-order') || 'ne'; }
+function updateSubOrderBtn() { var btn = document.getElementById('btn-sub-order'); if (btn) btn.textContent = getSubOrder() === 'ne' ? 'ने→한' : '한→ने'; }
+function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); renderList(); }
+
 // ── Render Subtitle List ──
 function renderList() {
   var list = document.getElementById('sub-list');
   document.getElementById('sub-count').textContent = subtitles.length + '개';
+  var koFirst = getSubOrder() === 'ko';
   var html = '';
   subtitles.forEach(function(sub) {
+    var first = koFirst ? '<div class="sub-ko">' + escHtml(sub.ko) + '</div>' : '<div class="sub-ne">' + escHtml(sub.ne) + '</div>';
+    var second = koFirst ? '<div class="sub-ne">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko">' + escHtml(sub.ko) + '</div>';
     html += '<div class="sub-item" id="sub-' + sub.id + '">' +
       '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
         '<div class="sub-num">' + sub.id + '</div>' +
-        '<div class="sub-text">' +
-          '<div class="sub-ko">' + escHtml(sub.ko) + '</div>' +
-          '<div class="sub-ne">' + escHtml(sub.ne) + '</div>' +
-        '</div>' +
+        '<div class="sub-text">' + first + second + '</div>' +
         '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
         '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
       '</div>' +
@@ -797,6 +805,7 @@ function renderList() {
     '</div>';
   });
   list.innerHTML = html;
+  updateSubOrderBtn();
 }
 
 function buildDetail(id) {
@@ -1008,7 +1017,7 @@ function openExplainOverlay(id, lang) {
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
   var audioFile = data['audio_' + lang];
-  var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260303b';
+  var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260303c';
   try { explainAudio = new Audio(path); } catch(e) { return; }
   playBtn.textContent = '⏸'; playBtn.classList.add('playing');
   explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
@@ -1182,7 +1191,7 @@ var JONG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ'
 var JAMO_AUDIO = {'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut','ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup','ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung','ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk','ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut','ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e','ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe','ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu','ㅡ':'eu','ㅢ':'ui','ㅣ':'i'};
 
 function composeHangul(j) { if (j.length === 0) return ''; if (j.length === 1) return j[0]; var ci = CHO.indexOf(j[0]); if (ci < 0) return j.join(''); var ji = JUNG.indexOf(j[1]); if (ji < 0) return j.join(''); if (j.length === 2) return String.fromCharCode(0xAC00 + (ci*21+ji)*28); var ki = JONG.indexOf(j[2]); if (ki < 0) return j.join(''); return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki); }
-function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260303b'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
+function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260303c'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
 
 function openWritingOverlay() {
   if (isLocked) { showLockOverlay(); return; }
