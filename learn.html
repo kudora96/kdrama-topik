@@ -544,6 +544,15 @@
 /* ══════════════════════════════════════════
    K▶T Learn Page — Dynamic Clip Loading
    ══════════════════════════════════════════ */
+var APP_VERSION = '20260303d';
+(function() {
+  var p = new URLSearchParams(location.search);
+  if (p.get('_r')) return;
+  fetch('learn.html?_t=' + Date.now()).then(function(r) { return r.text(); }).then(function(html) {
+    var m = html.match(/APP_VERSION\s*=\s*'([^']+)'/);
+    if (m && m[1] !== APP_VERSION) { p.set('_r', '1'); location.replace(location.pathname + '?' + p.toString()); }
+  }).catch(function() {});
+})();
 
 // ── URL params ──
 var params = new URLSearchParams(location.search);
