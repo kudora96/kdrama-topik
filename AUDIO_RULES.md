@@ -130,12 +130,12 @@ var path = 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile;
 
 - JSON/JS 로드 시 버전 쿼리스트링 사용
 - 형식: `?v=YYYYMMDD` 또는 `?v=YYYYMMDDx` (같은 날 여러 번이면 a, b, c 추가)
-- 현재 버전: `?v=20260302b`
+- 현재 버전: `?v=20260303`
 - **새 JSON 추가하거나 수정할 때마다 버전 업데이트 필수**
 
 ```javascript
-fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260302b')
-fetch('data/' + DRAMA + '/episodes.json?v=20260302b')
+fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260303')
+fetch('data/' + DRAMA + '/episodes.json?v=20260303')
 ```
 
 ---

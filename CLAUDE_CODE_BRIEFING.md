@@ -132,10 +132,10 @@ var path = 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile;
 ## 🔄 캐시 방지
 
 ```javascript
-fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260302b')
-fetch('data/' + DRAMA + '/episodes.json?v=20260302b')
+fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260303')
+fetch('data/' + DRAMA + '/episodes.json?v=20260303')
 ```
-- 현재 버전: `?v=20260302b`
+- 현재 버전: `?v=20260303`
 - JSON 수정할 때마다 버전 올릴 것 (같은 날이면 a, b, c 추가)
 
 ---
