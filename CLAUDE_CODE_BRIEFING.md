@@ -1,264 +1,170 @@
 # 🎬 KDrama TOPIK — 클로드코드 작업 브리핑
 
-> **프로젝트:** kdrama-topik  
-> **GitHub:** https://github.com/kudora96/kdrama-topik  
-> **Firebase Studio:** https://studio.firebase.google.com/kdrama-topik-97927302  
-> **현재 상태:** S001 프로토타입만 작동 중  
-> **목표:** E01-C01 기반 프로덕션 구조로 전환
+> **프로젝트:** kdrama-topik
+> **GitHub:** https://github.com/kudora96/kdrama-topik
+> **Firebase Studio:** https://studio.firebase.google.com/kdrama-topik-97927302
+> **현재 상태:** E01-C01 완료, E01-C02 작업 중 (11번 자막부터)
+> **최종 업데이트:** 2026-03-02
 
 ---
 
-## 📋 작업 순서 (4단계)
+## 📋 프로젝트 현황
 
-| 순서 | 작업 | 상태 |
-|------|------|------|
-| **STEP 1** | 폴더 구조 재설계 | ⬜ |
-| **STEP 2** | 시작 페이지 (v6) → 실제 코드 전환 | ⬜ |
-| **STEP 3** | subtitles.json 생성 (SRT → JSON) | ⬜ |
-| **STEP 4** | E01-C01 학습 화면 (영상+자막+퀴즈) | ⬜ |
+| 항목 | 상태 |
+|------|------|
+| 폴더 구조 재설계 | ✅ 완료 |
+| 시작 페이지 (index.html) | ✅ 완료 |
+| learn.html 학습 화면 | ✅ 완료 |
+| E01-C01 자막+설명+음성 | ✅ 완료 (39개) |
+| E01-C02 자막+설명+음성 | 🔄 진행 중 (1~10번 완료, 11번부터 계속) |
+| E01-C03 ~ C08 JSON | ✅ 생성됨 (설명 미작성) |
 
 ---
 
-## STEP 1: 폴더 구조 재설계
+## 📁 현재 폴더 구조
 
-### 현재 구조 (S001 전용)
 ```
 kdrama-topik/
-├── public/
-│   ├── index.html          ← S001 하드코딩 (3558줄, videoId: srN85EUD1kI)
-│   ├── manifest.json
-│   └── sw.js
+├── index.html                    ← 메인 페이지 (드라마/에피소드 선택)
+├── learn.html                    ← 학습 페이지 (자막 재생 + 설명)
+├── kdrama_home_v6.html           ← 홈 v6 버전
+│
 ├── data/
-│   ├── subtitles.json      ← S001 전용 (ko+ne 103문장)
-│   ├── explanations.json   ← S001 전용
-│   └── quiz.json           ← S001 전용
+│   └── cloy/
+│       ├── episodes.json         ← 에피소드 메타 정보
+│       ├── E01-C01.json          ← ✅ 완료
+│       ├── E01-C02.json          ← 🔄 작업 중
+│       ├── E01-C03.json ~ E01-C08.json  ← 빈 설명
+│       └── ...
+│
 ├── audio/
-│   ├── kr/                 ← S001 TTS (S01E01_001_kr.mp3...)
-│   ├── ne/
-│   ├── jamo/
-│   └── quiz/S001/
-├── images/quiz/S001/
-└── .idx/
+│   ├── kr/                       ← 한국어 설명 TTS
+│   │   ├── E01-C01/ (39개)
+│   │   └── E01-C02/ (10개)
+│   ├── np/                       ← 네팔어 설명 TTS (⚠️ ne 아님!)
+│   │   ├── E01-C01/ (39개)
+│   │   └── E01-C02/ (10개)
+│   ├── quiz/
+│   └── jamo/
+│
+├── shared/
+├── S001/                         ← 기존 프로토타입 보존
+├── CLAUDE_CODE_BRIEFING.md       ← 이 파일
+├── CLOY_Master_Map.md            ← 249클립 YouTube URL 매핑
+├── AUDIO_RULES.md                ← 오디오 파일/폴더 규칙
+└── ...
 ```
-
-### 목표 구조 (멀티 클립)
-```
-kdrama-topik/
-├── index.html              ← 시작 페이지 (랜딩+대시보드)
-├── learn.html              ← 학습 화면 (클립 ID 파라미터로 동적 로딩)
-│
-├── data/
-│   ├── dramas.json         ← 드라마 카탈로그 (CLOY, 추후 추가)
-│   ├── cloy/               ← 사랑의 불시착 데이터
-│   │   ├── episodes.json   ← 에피소드/클립 목록 + YouTube ID
-│   │   ├── E01-C01.json    ← 자막 + 설명 + 퀴즈 통합
-│   │   ├── E01-C02.json
-│   │   └── ...
-│   └── S001/               ← 기존 프로토타입 데이터 보존
-│       ├── subtitles.json
-│       ├── explanations.json
-│       └── quiz.json
-│
-├── audio/                  ← 기존 S001 오디오 유지 (추후 클립별로 재구성)
-│   ├── kr/
-│   ├── ne/
-│   ├── jamo/
-│   └── quiz/S001/
-│
-├── shared/                 ← 공통 리소스
-│   ├── style.css           ← 공통 CSS (다크/라이트 테마)
-│   ├── app.js              ← 공통 JS (테마, 네비게이션, 구독 로직)
-│   └── components.js       ← 재사용 UI 컴포넌트
-│
-├── S001/                   ← 기존 프로토타입 (독립 작동 유지)
-│   └── index.html          ← 기존 public/index.html 이동
-│
-├── images/quiz/S001/
-├── manifest.json
-└── sw.js
-```
-
-### 작업 내용
-1. `public/index.html` → `S001/index.html`로 이동 (기존 프로토타입 보존)
-2. `data/` 내 S001 파일들 → `data/S001/`로 이동
-3. `data/cloy/` 폴더 생성
-4. `shared/` 폴더 생성
-5. 새 `index.html` 생성 (STEP 2)
-6. 새 `learn.html` 생성 (STEP 4)
-7. `data/dramas.json` 생성
-8. `data/cloy/episodes.json` 생성 (249클립 YouTube ID 매핑)
-
-### S001 경로 호환성
-S001/index.html 내부의 data 로딩 경로 수정 필요:
-- 기존: `../data/subtitles.json`
-- 변경: `../data/S001/subtitles.json`
 
 ---
 
-## STEP 2: 시작 페이지 → 실제 코드 전환
+## 🔊 오디오 파일 규칙 (필독!)
 
-프로토타입 HTML (v6)을 실제 프로덕션 코드로 전환.
+> 상세 내용은 `AUDIO_RULES.md` 참고. 아래는 핵심 요약.
 
-### 핵심 파일
-- `index.html` — 메인 진입점
-- `shared/style.css` — 다크/라이트 테마 CSS 변수
-- `shared/app.js` — 테마 토글, 첫방문/재방문 분기, 구독 모달
+### 네팔어 코드: "np"로 통일
 
-### 포함 기능
-- **첫 방문:** 풀 랜딩 페이지 (WHY 섹션, 비교표, 가격, User Journey)
-- **재방문:** 대시보드 (이어하기 카드, 학습 통계, 드라마 목록)
-- **다크/라이트 모드** 토글
-- **PRO 구독** 바텀 시트
-- **드라마 카탈로그** → 에피소드 → 클립 목록 네비게이션
-- **클립 클릭** → `learn.html?clip=E01-C01` 로 이동
+| 항목 | 올바른 값 | 잘못된 값 |
+|------|-----------|-----------|
+| 폴더 | audio/**np**/ | audio/~~ne~~/ |
+| JSON 키 | "**np**", "audio_**np**" | "~~ne~~", "audio_~~ne~~" |
+| 파일명 | _**np**.mp3 | _~~ne~~.mp3 |
 
-### Brand Identity (기획서 PDF p13)
-- **다크 기본:** `#0e1018`
-- **컬러:** Teal `#00cec9` + Purple `#6c5ce7`
-- **폰트:** Bebas Neue (헤드라인) + Sora (본문) + Space Mono (뱃지)
-- **그라데이션:** `linear-gradient(135deg, #00cec9, #6c5ce7)`
+### 오디오 경로 조합 (learn.html)
+```javascript
+var path = 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile;
+// audio/kr/E01-C02/E01-C02_01_kr.mp3
+// audio/np/E01-C02/E01-C02_01_np.mp3
+```
 
-### 시작 페이지 핵심 메시지 (기획서 반영)
-- 히어로: "교재를 버리고, 드라마를 켜세요"
-- 수치: 6.5% 합격률 / ₩100만 비용 / $1.50 K▶T
-- Old Way vs New Way 비교
-- User Journey: Watch → Quiz → Speak → Review
-- 경쟁 비교표: K▶T vs 기존앱 vs 오프라인
-- 수익 모델: FREE / AD(보상형) / PRO 구독 ($1.50~$3.50/월)
-
-### 프로토타입 파일 위치
-v6 HTML 파일을 참조: (이 브리핑과 함께 제공)
+### 오디오 재생 코드 규칙
+- `new Audio()`와 `.play()`는 반드시 **try-catch + .catch()** 로 감쌀 것
+- 오디오 에러가 유튜브 플레이어 등 다른 기능을 차단하면 안 됨
+- 2026-03-02에 line 1007 수정 완료됨
 
 ---
 
-## STEP 3: SRT → JSON 변환
+## 📝 JSON 구조
 
-### 입력
-EP1, EP2 SRT 파일 (한국어 자막, 타임스탬프 포함)
-- 위치: `K:\기타\kdrama-topik-plan\기획안02한국 취업을 꿈꾸는\사랑의불시착(디글)\`
-- EP1 클립: E01-C01 ~ E01-C11 (각 클립별 SRT)
-- EP2 클립: E02-C01 ~ E02-C15
-
-### 출력 형식 (클립별 JSON)
 ```json
-// data/cloy/E01-C01.json
 {
-  "clip_id": "E01-C01",
+  "clip_id": "E01-C02",
   "drama": "cloy",
   "episode": 1,
-  "clip_num": 1,
-  "youtube_id": "YvIJMGPzfro",
-  "title": "현빈❤️손예진, 둘리커플 서사의 시작...",
+  "clip_num": 2,
+  "youtube_id": "rCz4CFwZy6w",    ← ⚠️ 반드시 채울 것!
+  "title": "",
   "subtitles": [
-    {
-      "id": 1,
-      "start": 0.0,
-      "end": 3.5,
-      "ko": "여기가 어디야?",
-      "ne": "यो कहाँ हो?"
-    },
-    ...
+    { "id": 1, "start": 0.0, "end": 3.5, "ko": "한국어", "ne": "नेपाली" }
   ],
-  "explanations": [],
+  "explanations": [
+    {
+      "sub_id": 1,
+      "kr": "한국어 설명",
+      "np": "नेपाली व्याख्या",
+      "audio_kr": "E01-C02_01_kr.mp3",
+      "audio_np": "E01-C02_01_np.mp3"
+    }
+  ],
   "quiz": []
 }
 ```
 
-### 변환 스크립트
-Python 스크립트로 SRT 파싱 → JSON 생성
-- SRT 타임스탬프 → 초(float) 변환
-- 네팔어 번역은 빈칸 (추후 AI 번역 + 검수)
-- explanations, quiz는 빈 배열 (추후 Claude API로 생성)
+---
+
+## ✅ 새 클립 작업 시 필수 체크리스트
+
+### 시작 전
+- [ ] `youtube_id` 채웠는가 (CLOY_Master_Map.md에서 복사)
+- [ ] `audio/kr/{클립ID}/` 폴더 존재하는가
+- [ ] `audio/np/{클립ID}/` 폴더 존재하는가 (ne 아님!)
+- [ ] 폴더 비어있으면 `.gitkeep` 넣었는가
+
+### 배포 전 (커밋 & 푸시 전)
+- [ ] JSON의 youtube_id 확인
+- [ ] audio/kr/ 에 kr mp3 파일 확인
+- [ ] audio/np/ 에 np mp3 파일 확인
+- [ ] learn.html 캐시 버전 업데이트 (`?v=YYYYMMDD`)
+- [ ] 오디오 재생 코드에 try-catch 있는지 확인
+- [ ] 사이트에서 Ctrl+Shift+R 후 영상 + 음성 테스트
 
 ---
 
-## STEP 4: E01-C01 학습 화면
+## 🔄 캐시 방지
 
-### 핵심 파일
-- `learn.html` — URL 파라미터로 클립 로딩 (`?clip=E01-C01`)
-
-### 기능 (기존 S001 index.html 기반)
-현재 S001/index.html의 핵심 기능을 재사용하되, 동적 데이터 로딩으로 변경:
-
-1. **YouTube 플레이어** — `youtube_id`로 동적 로딩
-2. **자막 동기화** — 시간 기반 ko/ne 자막 표시
-3. **자막 인터랙션:**
-   - 클릭 → 구간 반복 (속도 조절 1x/0.7x/0.5x)
-   - 루프 모드 (일시정지 간격)
-   - TTS 설명 (한국어/네팔어)
-4. **쓰기 연습** — 한글 자모 분해 → 조합
-5. **EPS-TOPIK 퀴즈** — 읽기 + 듣기
-6. **자막 크기 조절**
-7. **다크/라이트 모드**
-
-### 데이터 로딩 방식
 ```javascript
-// URL에서 클립 ID 추출
-const clipId = new URLSearchParams(location.search).get('clip'); // 'E01-C01'
-const drama = 'cloy'; // 추후 URL에서 추출
-
-// JSON 로딩
-const data = await fetch(`data/${drama}/${clipId}.json`).then(r => r.json());
-
-// YouTube 플레이어 초기화
-player = new YT.Player('player', { videoId: data.youtube_id });
-
-// 자막 렌더링
-data.subtitles.forEach(sub => { ... });
+fetch('data/' + DRAMA + '/' + CLIP_ID + '.json?v=20260302b')
+fetch('data/' + DRAMA + '/episodes.json?v=20260302b')
 ```
-
-### 네비게이션
-- ← 이전 클립 / 다음 클립 → 버튼
-- 에피소드 목록으로 돌아가기
-- 홈으로 돌아가기
+- 현재 버전: `?v=20260302b`
+- JSON 수정할 때마다 버전 올릴 것 (같은 날이면 a, b, c 추가)
 
 ---
 
-## 참고 자료
+## ⚠️ 과거 사고 기록 (같은 실수 반복 금지)
 
-### 249클립 YouTube URL 매핑
-`cloy_naming_map.md` 파일에 전체 매핑 있음:
-- E01-C01 ~ E16-C12
-- 각 클립별 YouTube URL, 원본 파일명
-
-### episodes.json 구조
-```json
-{
-  "drama_id": "cloy",
-  "title": "사랑의 불시착",
-  "title_en": "Crash Landing on You",
-  "year": 2019,
-  "total_episodes": 16,
-  "total_clips": 249,
-  "episodes": [
-    {
-      "ep": 1,
-      "clips": [
-        {"id": "E01-C01", "vid": "YvIJMGPzfro", "title": "현빈❤️손예진..."},
-        {"id": "E01-C02", "vid": "rCz4CFwZy6w", "title": "Ri Jeong-hyeok VS..."},
-        ...
-      ]
-    },
-    ...
-  ]
-}
-```
-
-### 기존 S001 index.html 핵심 구조
-- 3558줄 단일 HTML
-- YouTube IFrame API
-- subtitles.json에서 시간 기반 자막 로딩
-- explanations.json에서 문법 설명 로딩
-- quiz.json에서 퀴즈 로딩
-- Web Speech API TTS
-- 자모 분해 쓰기 연습
+| # | 사고 | 원인 | 교훈 |
+|---|------|------|------|
+| 1 | ne→np 폴더 rename 시 파일 소실 | git rename 중 중첩 폴더 오류 | 폴더 변경 전 백업, 변경 후 파일 수 확인 |
+| 2 | 빈 오디오 폴더 → 유튜브도 안 나옴 | 오디오 에러가 이후 코드 차단 | try-catch 필수, 폴더는 미리 생성 |
+| 3 | youtube_id 누락 → 영상 안 나옴 | JSON에 빈 문자열 | Master Map에서 반드시 복사 |
+| 4 | .play() 에러 전파 | try-catch 없음 | .play().catch() 패턴 사용 |
 
 ---
 
-## ⚠️ 주의사항
+## 🎯 현재 작업
 
-1. **S001 보존** — 기존 프로토타입이 깨지면 안 됨. 이동 후 경로만 수정.
-2. **GitHub Pages 호환** — 서버 없이 정적 파일만 사용. SPA 라우터 X.
-3. **모바일 최적화** — 네팔 저사양 스마트폰이 주 타겟. 경량화 필수.
-4. **PWA 유지** — manifest.json, sw.js 경로 업데이트 필요.
-5. **점진적 구축** — EP1-2만 자막 있음. 나머지는 빈 데이터로 준비.
+**E01-C02 자막 설명 작업 중**
+- 총 54개 자막 (빈 자막 4개 제외)
+- 1~10번: KR/NP 완료 + JSON 반영 + 음성 완료
+- 11번부터: Claude 대화창에서 텍스트 생성 중
+- 텍스트 완성 → ElevenLabs 음성 변환 → audio 폴더에 저장 → JSON 반영 → 커밋/푸시
+
+---
+
+## 📌 주의사항
+
+1. **S001 보존** — 기존 프로토타입 깨지면 안 됨
+2. **GitHub Pages 호환** — 서버 없이 정적 파일만 사용
+3. **모바일 최적화** — 네팔 저사양 스마트폰이 주 타겟
+4. **네팔어 코드는 np** — ne 절대 사용 금지
+5. **오디오 코드는 try-catch 필수** — 파일 없어도 다른 기능 막으면 안 됨
