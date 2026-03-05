@@ -590,76 +590,124 @@
       "audio_np": "E01-C02_29_np.mp3"
     },
     {
-      "sub_id": 30
+      "sub_id": 30,
+      "audio_kr": "E01-C02_30_kr.mp3",
+      "audio_np": "E01-C02_30_np.mp3"
     },
     {
-      "sub_id": 31
+      "sub_id": 31,
+      "audio_kr": "E01-C02_31_kr.mp3",
+      "audio_np": "E01-C02_31_np.mp3"
     },
     {
-      "sub_id": 33
+      "sub_id": 32,
+      "audio_kr": "E01-C02_32_kr.mp3",
+      "audio_np": "E01-C02_32_np.mp3"
     },
     {
-      "sub_id": 34
+      "sub_id": 34,
+      "audio_kr": "E01-C02_33_kr.mp3",
+      "audio_np": "E01-C02_33_np.mp3"
     },
     {
-      "sub_id": 35
+      "sub_id": 35,
+      "audio_kr": "E01-C02_34_kr.mp3",
+      "audio_np": "E01-C02_34_np.mp3"
     },
     {
-      "sub_id": 37
+      "sub_id": 36,
+      "audio_kr": "E01-C02_35_kr.mp3",
+      "audio_np": "E01-C02_35_np.mp3"
     },
     {
-      "sub_id": 38
+      "sub_id": 38,
+      "audio_kr": "E01-C02_36_kr.mp3",
+      "audio_np": "E01-C02_36_np.mp3"
     },
     {
-      "sub_id": 39
+      "sub_id": 39,
+      "audio_kr": "E01-C02_37_kr.mp3",
+      "audio_np": "E01-C02_37_np.mp3"
     },
     {
-      "sub_id": 40
+      "sub_id": 40,
+      "audio_kr": "E01-C02_38_kr.mp3",
+      "audio_np": "E01-C02_38_np.mp3"
     },
     {
-      "sub_id": 41
+      "sub_id": 41,
+      "audio_kr": "E01-C02_39_kr.mp3",
+      "audio_np": "E01-C02_39_np.mp3"
     },
     {
-      "sub_id": 42
+      "sub_id": 42,
+      "audio_kr": "E01-C02_40_kr.mp3",
+      "audio_np": "E01-C02_40_np.mp3"
     },
     {
-      "sub_id": 43
+      "sub_id": 43,
+      "audio_kr": "E01-C02_41_kr.mp3",
+      "audio_np": "E01-C02_41_np.mp3"
     },
     {
-      "sub_id": 44
+      "sub_id": 44,
+      "audio_kr": "E01-C02_42_kr.mp3",
+      "audio_np": "E01-C02_42_np.mp3"
     },
     {
-      "sub_id": 45
+      "sub_id": 45,
+      "audio_kr": "E01-C02_43_kr.mp3",
+      "audio_np": "E01-C02_43_np.mp3"
     },
     {
-      "sub_id": 46
+      "sub_id": 46,
+      "audio_kr": "E01-C02_44_kr.mp3",
+      "audio_np": "E01-C02_44_np.mp3"
     },
     {
-      "sub_id": 47
+      "sub_id": 47,
+      "audio_kr": "E01-C02_45_kr.mp3",
+      "audio_np": "E01-C02_45_np.mp3"
     },
     {
-      "sub_id": 48
+      "sub_id": 48,
+      "audio_kr": "E01-C02_46_kr.mp3",
+      "audio_np": "E01-C02_46_np.mp3"
     },
     {
-      "sub_id": 49
+      "sub_id": 49,
+      "audio_kr": "E01-C02_47_kr.mp3",
+      "audio_np": "E01-C02_47_np.mp3"
     },
     {
-      "sub_id": 50
+      "sub_id": 50,
+      "audio_kr": "E01-C02_48_kr.mp3",
+      "audio_np": "E01-C02_48_np.mp3"
     },
     {
-      "sub_id": 51
+      "sub_id": 51,
+      "audio_kr": "E01-C02_49_kr.mp3",
+      "audio_np": "E01-C02_49_np.mp3"
     },
     {
-      "sub_id": 52
+      "sub_id": 52,
+      "audio_kr": "E01-C02_50_kr.mp3",
+      "audio_np": "E01-C02_50_np.mp3"
     },
     {
-      "sub_id": 54
+      "sub_id": 53,
+      "audio_kr": "E01-C02_51_kr.mp3",
+      "audio_np": "E01-C02_51_np.mp3"
     },
     {
-      "sub_id": 55
+      "sub_id": 55,
+      "audio_kr": "E01-C02_52_kr.mp3",
+      "audio_np": "E01-C02_52_np.mp3"
     },
     {
-      "sub_id": 56
+      "sub_id": 56,
+      "audio_kr": "E01-C02_53_kr.mp3",
+      "audio_np": "E01-C02_53_np.mp3"
     }
   ],
   "quiz": []
