@@ -801,10 +801,11 @@ function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() =
 // ── Render Subtitle List ──
 function renderList() {
   var list = document.getElementById('sub-list');
-  document.getElementById('sub-count').textContent = subtitles.length + '개';
+  var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
+  document.getElementById('sub-count').textContent = visibleSubs.length + '개';
   var koFirst = getSubOrder() === 'ko';
   var html = '';
-  subtitles.forEach(function(sub) {
+  visibleSubs.forEach(function(sub) {
     var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(sub.ko) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
     var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(sub.ko) + '</div>';
     html += '<div class="sub-item" id="sub-' + sub.id + '">' +
