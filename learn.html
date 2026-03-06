@@ -773,6 +773,7 @@ function openProSheet() {
 // ── Helpers ──
 function formatTime(sec) { var m = Math.floor(sec / 60); var s = Math.floor(sec % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
 function escHtml(str) { var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function stripParen(str) { var prev; do { prev = str; str = str.replace(/\([^()]*\)/g, ''); } while (str !== prev); return str.replace(/ {2,}/g, ' ').trim(); }
 function findSub(id) { for (var i = 0; i < subtitles.length; i++) { if (subtitles[i].id === id) return subtitles[i]; } return null; }
 function fmtAudioTime(sec) { if (!sec || isNaN(sec)) return '0:00'; var m = Math.floor(sec / 60); var s = Math.floor(sec % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
 
@@ -807,8 +808,9 @@ function renderList() {
   var html = '';
   visibleSubs.forEach(function(sub, idx) {
     var displayNum = idx + 1;
-    var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(sub.ko) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
-    var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(sub.ko) + '</div>';
+    var koDisplay = stripParen(sub.ko);
+    var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(koDisplay) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
+    var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(koDisplay) + '</div>';
     html += '<div class="sub-item" id="sub-' + sub.id + '">' +
       '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
         '<div class="sub-num">' + displayNum + '</div>' +
@@ -956,7 +958,8 @@ function showBar(mode) {
   var sub = currentSub;
   if (!sub) return;
   bar.classList.add('active');
-  var label = '#' + sub.id + ' ' + escHtml(sub.ko.substring(0, 25)) + (sub.ko.length > 25 ? '...' : '');
+  var koLabel = stripParen(sub.ko);
+  var label = '#' + sub.id + ' ' + escHtml(koLabel.substring(0, 25)) + (koLabel.length > 25 ? '...' : '');
   if (mode === 'once') {
     info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
     document.getElementById('btn-repeat').style.display = '';
