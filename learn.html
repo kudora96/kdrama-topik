@@ -805,12 +805,13 @@ function renderList() {
   document.getElementById('sub-count').textContent = visibleSubs.length + '개';
   var koFirst = getSubOrder() === 'ko';
   var html = '';
-  visibleSubs.forEach(function(sub) {
+  visibleSubs.forEach(function(sub, idx) {
+    var displayNum = idx + 1;
     var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(sub.ko) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
     var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(sub.ko) + '</div>';
     html += '<div class="sub-item" id="sub-' + sub.id + '">' +
       '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
-        '<div class="sub-num">' + sub.id + '</div>' +
+        '<div class="sub-num">' + displayNum + '</div>' +
         '<div class="sub-text">' + first + second + '</div>' +
         '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
         '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
