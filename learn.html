@@ -559,6 +559,25 @@ var params = new URLSearchParams(location.search);
 var CLIP_ID = params.get('clip') || 'E01-C01';
 var DRAMA = params.get('drama') || 'cloy';
 
+// ── Lang ──
+var langData = {};
+(function() {
+  var code = 'ne';
+  try { code = localStorage.getItem('kt-lang') || 'ne'; } catch(e) {}
+  fetch('lang/' + code + '.json').then(function(r) { return r.json(); }).then(function(d) {
+    langData = d;
+    applyLangUI();
+  }).catch(function() {});
+})();
+function applyLangUI() {
+  var r = document.getElementById('btn-repeat');
+  if (r) r.innerHTML = '&#128257; ' + (langData.btn_repeat || '반복');
+  var p = document.getElementById('btn-play-all');
+  if (p) p.innerHTML = '&#9654; ' + (langData.btn_play_all || '전체');
+  var h = document.querySelector('.sub-list-header h2');
+  if (h && !h.querySelector('.lock-badge')) h.textContent = langData.subtitle_list || '자막 목록';
+}
+
 // ── State ──
 var clipData = null;
 var episodesData = null;
@@ -632,7 +651,7 @@ Promise.all([
   // Show lock badge on header
   if (isLocked) {
     var hdr = document.querySelector('.sub-list-header h2');
-    if (hdr) hdr.innerHTML = '자막 목록 <span class="lock-badge">&#128274; PREMIUM</span>';
+    if (hdr) hdr.innerHTML = (langData.subtitle_list || '자막 목록') + ' <span class="lock-badge">&#128274; PREMIUM</span>';
   }
 
   // Render
@@ -761,7 +780,7 @@ function doAdUnlock() {
   if (subtitles.length > 0) renderList();
   // Reset header badge
   var hdr = document.querySelector('.sub-list-header h2');
-  if (hdr) hdr.innerHTML = '자막 목록';
+  if (hdr) hdr.innerHTML = langData.subtitle_list || '자막 목록';
   alert('🎬 24시간 학습 기능 해제!');
 }
 
@@ -962,13 +981,13 @@ function showBar(mode) {
   var koLabel = stripParen(sub.ko);
   var label = '#' + sub.id + ' ' + escHtml(koLabel.substring(0, 25)) + (koLabel.length > 25 ? '...' : '');
   if (mode === 'once') {
-    info.innerHTML = '<strong>▶ 재생 중</strong> ' + label;
+    info.innerHTML = '<strong>▶ ' + (langData.playing || '재생 중') + '</strong> ' + label;
     document.getElementById('btn-repeat').style.display = '';
     document.getElementById('btn-play-all').style.display = '';
     document.getElementById('btn-speed').style.display = 'none';
     document.getElementById('btn-stop').style.display = 'none';
   } else {
-    info.innerHTML = '<strong>🔁 반복 재생 중</strong> ' + label;
+    info.innerHTML = '<strong>🔁 ' + (langData.playing || '재생 중') + '</strong> ' + label;
     document.getElementById('btn-repeat').style.display = 'none';
     document.getElementById('btn-play-all').style.display = 'none';
     document.getElementById('btn-speed').style.display = '';
