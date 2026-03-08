@@ -187,6 +187,23 @@ showEp = function(ep) {
   });
   document.getElementById('clist').innerHTML = h;
   go('v-ep');
+  // Load title_ne for each clip
+  var lc = ''; try { lc = localStorage.getItem('kt-lang') || ''; } catch(e) {}
+  if (lc === 'ne') {
+    ep.clips.forEach(function(clip) {
+      fetch('data/cloy/' + clip.id + '.json').then(function(r) { return r.json(); }).then(function(d) {
+        if (d.title_ne) {
+          var els = document.querySelectorAll('#clist .clip .cd');
+          els.forEach(function(el) {
+            var cidEl = el.previousElementSibling;
+            if (cidEl && cidEl.textContent.trim().indexOf(clip.id) === 0) {
+              el.textContent = d.title_ne;
+            }
+          });
+        }
+      }).catch(function() {});
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
