@@ -3,16 +3,18 @@
 // ── Theme ──
 function toggleTheme() {
   var h = document.documentElement;
-  var curr = h.getAttribute('data-theme') || 'dark';
+  var curr = h.getAttribute('data-theme') || 'light';
   var next = curr === 'dark' ? 'light' : 'dark';
   h.setAttribute('data-theme', next);
   try { localStorage.setItem('kt-theme', next); } catch (e) {}
 }
 (function () {
   try {
-    var t = localStorage.getItem('kt-theme');
-    if (t) document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
+    var t = localStorage.getItem('kt-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
 })();
 
 // ── View navigation ──
