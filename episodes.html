@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K▶T — KDrama TOPIK</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e1018">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/style.css">
+</head>
+<body>
+
+<nav><div class="nav-in">
+<div class="logo" onclick="go(localStorage.getItem('kt-visited')?'v-dash':'v-home')">K▶T</div>
+<div style="display:flex;align-items:center;gap:8px">
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="테마 변경"></button>
+<button class="btn-pro" onclick="openSheet('sub')">PRO 구독</button>
+</div>
+</div></nav>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- DASHBOARD (재방문)                      -->
+<!-- ═══════════════════════════════════════ -->
+<div id="v-dash" class="hidden">
+
+<div class="dash-welcome">
+<div class="greeting">다시 오신 걸 환영해요 👋</div>
+<h2>이어서 <span class="teal">학습하기</span></h2>
+</div>
+
+<!-- 이어하기 카드 -->
+<div class="resume-card">
+<div class="resume-thumb">
+<img src="https://img.youtube.com/vi/YvIJMGPzfro/mqdefault.jpg" alt="">
+<div class="play-icon">▶</div>
+</div>
+<div class="resume-info">
+<div class="resume-label">CONTINUE</div>
+<div class="resume-title" id="dash-resume-title">E01-C01</div>
+<div class="resume-sub">사랑의 불시착 · 1화</div>
+<div class="resume-progress"><div class="resume-progress-fill" style="width:0%"></div></div>
+</div>
+</div>
+
+<!-- 학습 통계 -->
+<div class="quick-stats">
+<div class="qs"><div class="qs-num" id="dash-clips">0</div><div class="qs-label">학습 클립</div></div>
+<div class="qs"><div class="qs-num" id="dash-quiz">0</div><div class="qs-label">풀은 퀴즈</div></div>
+<div class="qs"><div class="qs-num" id="dash-streak">0</div><div class="qs-label">연속 일수</div></div>
+</div>
+
+<!-- 드라마 목록 -->
+<div class="sec">MY DRAMA</div>
+
+<div class="dash-drama" onclick="go('v-drama')">
+<div class="dash-drama-inner">
+<div class="dash-poster"><img src="https://img.youtube.com/vi/YvIJMGPzfro/mqdefault.jpg" alt=""></div>
+<div class="dash-dinfo">
+<h4>사랑의 불시착</h4>
+<div class="sub">0/249 클립 완료</div>
+</div>
+</div>
+<div class="dash-bar"><div class="dash-bar-f" style="width:0%"></div></div>
+</div>
+
+<div class="coming" style="opacity:0.35">
+<div class="ic">🎬</div>
+<div><h4>다음 드라마 준비 중</h4><p>이태원 클라쓰 · 도깨비 · 미생</p></div>
+</div>
+
+<div class="dash-link" onclick="go('v-home')">📋 앱 소개 다시 보기</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HOME (첫 방문 랜딩)                     -->
+<!-- ═══════════════════════════════════════ -->
+<div id="v-home" class="hidden">
+
+<div class="hero">
+<div class="hero-badge"><span class="dot"></span> BETA 2026</div>
+<h1><span class="teal">교재를 버리고</span><br><span class="purple">드라마를 켜세요</span></h1>
+<p>한국 취업을 꿈꾸는 <b>92,376명</b>의 네팔 청년들을 위한<br>K-드라마 기반 <b>EPS-TOPIK</b> 학습 플랫폼</p>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+<div class="stat"><div class="stat-num red">6.5%</div><div class="stat-label">EPS-TOPIK<br>합격률</div></div>
+<div class="stat"><div class="stat-num gold">₩100만</div><div class="stat-label">6개월 학원비<br>+숙식비</div></div>
+<div class="stat"><div class="stat-num teal">$1.50</div><div class="stat-label">K▶T 월 구독<br>1/50 가격</div></div>
+</div>
+
+<!-- Problem / Solution -->
+<div class="sec">OLD WAY vs NEW WAY</div>
+<div class="ps-grid">
+<div class="ps problem">
+<div class="ps-icon">📚</div>
+<h4>기존 방식</h4>
+<p>딱딱한 교재 암기<br>재미없는 문제 반복<br>6.5% 합격률<br>94%는 돈과 시간만 잃음</p>
+</div>
+<div class="ps solution">
+<div class="ps-icon">🎬</div>
+<h4>K▶T 방식</h4>
+<p>드라마 장면 속에서 학습<br>감정이 담긴 실제 상황<br>AI 문법 해설 + 퀴즈<br>재미 = 학습 동기</p>
+</div>
+</div>
+
+<!-- User Journey -->
+<div class="sec">USER JOURNEY</div>
+<div class="journey">
+<div class="jstep"><div class="j-num">01</div><div class="j-icon">🎬</div><div class="j-name">Watch</div><div class="j-desc">드라마 감상</div></div>
+<div class="jstep"><div class="j-num">02</div><div class="j-icon">📝</div><div class="j-name">Quiz</div><div class="j-desc">문제 풀이</div></div>
+<div class="jstep"><div class="j-num">03</div><div class="j-icon">🗣</div><div class="j-name">Speak</div><div class="j-desc">따라 말하기</div></div>
+<div class="jstep"><div class="j-num">04</div><div class="j-icon">📖</div><div class="j-name">Review</div><div class="j-desc">복습</div></div>
+</div>
+
+<!-- Compare -->
+<div class="sec">COMPETITIVE EDGE</div>
+<table class="cmp">
+<tr><th></th><th class="hl">K▶T</th><th>기존 앱</th><th>오프라인</th></tr>
+<tr><td>학습 소재</td><td class="hl">K-드라마 실제 클립</td><td>PDF / 오디오</td><td>교실 수업</td></tr>
+<tr><td>학습 동기</td><td class="hl">드라마의 재미</td><td>낮음 (지루함)</td><td>강제성</td></tr>
+<tr><td>시험 연계</td><td class="hl">60개 상황 매칭</td><td>기출 반복</td><td>고정 커리큘럼</td></tr>
+<tr><td>월 비용</td><td class="hl">$1.50~$3.50</td><td>무료~$5</td><td class="red">~$170</td></tr>
+</table>
+
+<!-- Plans -->
+<div class="sec">PRICING</div>
+<div class="plans">
+<div class="plan" onclick="openSheet('sub')">
+<div class="plan-emoji">🆓</div>
+<div class="plan-name">FREE</div>
+<div class="plan-price teal">$0</div>
+<div class="plan-sub">1화 전체 학습</div>
+</div>
+<div class="plan" onclick="openSheet('sub')">
+<div class="plan-emoji">🎬</div>
+<div class="plan-name">AD</div>
+<div class="plan-price gold">$0</div>
+<div class="plan-sub">광고→24h 해제</div>
+</div>
+<div class="plan pop" onclick="openSheet('sub')">
+<div class="plan-emoji">👑</div>
+<div class="plan-name">PRO</div>
+<div class="plan-price purple">$1.50</div>
+<div class="plan-sub">/월 · 무제한</div>
+</div>
+</div>
+
+<!-- Drama -->
+<div class="sec">DRAMA</div>
+<div class="drama" onclick="go('v-drama')">
+<div class="drama-inner">
+<div class="poster"><img src="https://img.youtube.com/vi/YvIJMGPzfro/mqdefault.jpg" alt=""></div>
+<div class="dinfo">
+<h3>사랑의 불시착</h3>
+<div class="sub">Crash Landing on You · 2019</div>
+<div class="tags">
+<span class="t t-purple">16화 · 249클립</span>
+<span class="t t-teal">1화 무료</span>
+</div>
+</div>
+</div>
+<div class="drama-bar">
+<div class="bar"><div class="bar-f"></div></div>
+<div class="bar-t">학습 데이터 2/16</div>
+</div>
+</div>
+
+<div class="coming">
+<div class="ic">🎬</div>
+<div><h4>다음 드라마 준비 중</h4><p>이태원 클라쓰 · 도깨비 · 미생</p></div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- DRAMA (에피소드 그리드)                  -->
+<!-- ═══════════════════════════════════════ -->
+<div id="v-drama" class="hidden">
+<button class="back" onclick="go(localStorage.getItem('kt-visited')?'v-dash':'v-home')">← 홈</button>
+<div class="sec">사랑의 불시착 · EPISODES</div>
+<div class="ep-grid" id="epg"></div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- EPISODE (클립 리스트)                    -->
+<!-- ═══════════════════════════════════════ -->
+<div id="v-ep" class="hidden">
+<button class="back" onclick="go('v-drama')">← EPISODES</button>
+<div class="sec" id="ept"></div>
+<div id="clist"></div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Unlock bottom sheet                     -->
+<!-- ═══════════════════════════════════════ -->
+<div class="overlay" id="o-unlock" onclick="closeSheet('unlock')">
+<div class="sheet" onclick="event.stopPropagation()">
+<div class="sheet-handle"></div>
+<div style="font-size:2rem;margin-bottom:6px">🔐</div>
+<h3>PREMIUM CONTENT</h3>
+<div class="mid" id="m-cid"></div>
+<p>자막 해설 · EPS-TOPIK 퀴즈 · 쓰기 연습</p>
+<button class="sbtn sbtn-ad" onclick="doAd()">🎬 광고 보고 24시간 해제</button>
+<button class="sbtn sbtn-pro" onclick="closeSheet('unlock');openSheet('sub')">👑 PRO — 전체 무제한</button>
+<button class="sbtn sbtn-close" onclick="closeSheet('unlock')">닫기</button>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Subscribe bottom sheet                  -->
+<!-- ═══════════════════════════════════════ -->
+<div class="overlay" id="o-sub" onclick="closeSheet('sub')">
+<div class="sheet" onclick="event.stopPropagation()">
+<div class="sheet-handle"></div>
+<div style="font-size:2rem;margin-bottom:6px">👑</div>
+<h3>PRO SUBSCRIPTION</h3>
+<p>모든 드라마 · 모든 클립 · 광고 없이 무제한</p>
+<div class="sub-plans">
+<div class="sp" onclick="this.style.borderColor='var(--purple)'">
+<div class="sp-name">Monthly</div>
+<div class="sp-price">$3.50<span style="font-size:0.6rem;color:var(--t3)">/월</span></div>
+<div class="sp-desc">언제든 해지 가능</div>
+</div>
+<div class="sp pop">
+<div class="sp-name">Yearly</div>
+<div class="sp-price">$18<span style="font-size:0.6rem;color:var(--t3)">/년</span> <span class="disc">57% OFF</span></div>
+<div class="sp-desc">월 $1.50 · 학원의 1/100</div>
+</div>
+</div>
+<button class="sbtn sbtn-pro" onclick="alert('eSewa / Khalti 결제 연동 예정')">구독 시작하기</button>
+<button class="sbtn sbtn-close" onclick="closeSheet('sub')">닫기</button>
+</div>
+</div>
+
+<div class="footer"><span>K▶T</span> — Korean Dream, Starts with K-Drama.<br>&copy; 2026 KDrama TOPIK</div>
+
+<script src="shared/app.js"></script>
+
+<!-- Service Worker -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>
