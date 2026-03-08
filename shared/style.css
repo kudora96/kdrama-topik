@@ -147,14 +147,14 @@ html[data-theme="dark"] .theme-toggle::after{left:calc(100% - 18px);background:v
 .coming p{font-size:0.72rem;color:var(--t3)}
 
 /* ── EP grid ── */
-.ep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0 14px}
-.ep{background:var(--glass);border:1px solid var(--bd);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:.15s;position:relative}
+.ep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 14px}
+.ep{background:var(--glass);border:1px solid var(--bd);border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:.15s;position:relative}
 .ep:hover{border-color:var(--purple);transform:translateY(-1px)}
 .ep:active{transform:scale(0.96)}
 .ep.free{background:var(--teal-g);border-color:rgba(0,206,201,0.2)}
 .ep.free:hover{border-color:var(--teal)}
-.ep .n{font-family:'Sora';font-size:0.94rem;font-weight:800}
-.ep .c{font-size:0.62rem;color:var(--t3)}
+.ep .n{font-family:'Sora';font-size:1.22rem;font-weight:800}
+.ep .c{font-size:0.81rem;color:var(--t3)}
 .ep .lk{font-size:0.58rem;position:absolute;top:3px;right:5px}
 .ep .fb{font-family:'Space Mono';font-size:0.46rem;font-weight:700;padding:2px 6px;border-radius:100px;background:var(--teal);color:var(--bg);margin-top:2px;display:inline-block;letter-spacing:0.5px}
 
