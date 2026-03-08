@@ -73,5 +73,19 @@
   "consonants": "व्यञ्जन Consonants",
   "vowels": "स्वर Vowels",
   "audio_preparing": "अडियो फाइल तयार हुँदैछ",
-  "no_questions": "प्रश्न छैन।"
+  "no_questions": "प्रश्न छैन।",
+
+  "back_to_drama": "← ड्रामा",
+  "episode_unit": "एपिसोड",
+  "clip_unit": "क्लिप",
+  "free": "FREE",
+  "next_drama": "अर्को ड्रामा तयारी हुँदैछ",
+  "premium_content_desc": "उपशीर्षक व्याख्या · EPS-TOPIK क्विज · लेखन अभ्यास",
+  "ad_unlock": "विज्ञापन हेरेर 24 घण्टा अनलक",
+  "pro_unlimited_full": "PRO — सबै अनलिमिटेड",
+  "all_drama_unlimited": "सबै ड्रामा · सबै क्लिप · विज्ञापन बिना अनलिमिटेड",
+  "cancel_anytime": "जुनसुकै बेला रद्द गर्न सकिन्छ",
+  "per_month": "/महिना",
+  "per_year": "/वर्ष",
+  "start_subscription": "सदस्यता सुरु गर्नुहोस्"
 }

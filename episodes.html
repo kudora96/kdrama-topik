@@ -113,14 +113,100 @@
 <script src="shared/app.js"></script>
 
 <script>
-// Override init for simplified episodes page
+var epLang = {};
+function EL(k, fb) { return epLang[k] || fb; }
+
+function applyEpLang() {
+  // static HTML texts
+  var backBtn = document.querySelector('#v-eplist .back');
+  if (backBtn) backBtn.textContent = EL('back_to_drama', '← 드라마');
+  var nextH4 = document.querySelector('.coming h4');
+  if (nextH4) nextH4.textContent = EL('next_drama', '다음 드라마 준비 중');
+  var tagPurple = document.querySelector('.t-purple');
+  if (tagPurple) tagPurple.textContent = '16' + EL('episode_unit', '화') + ' · 249' + EL('clip_unit', '클립');
+  var tagTeal = document.querySelector('.t-teal');
+  if (tagTeal) tagTeal.textContent = '1' + EL('episode_unit', '화') + ' ' + EL('free', 'FREE');
+  // unlock sheet
+  var unlockP = document.querySelector('#o-unlock .sheet p');
+  if (unlockP) unlockP.textContent = EL('premium_content_desc', '자막 해설 · EPS-TOPIK 퀴즈 · 쓰기 연습');
+  var adBtn = document.querySelector('.sbtn-ad');
+  if (adBtn) adBtn.textContent = '🎬 ' + EL('ad_unlock', '광고 보고 24시간 해제');
+  var proBtn = document.querySelector('#o-unlock .sbtn-pro');
+  if (proBtn) proBtn.textContent = '👑 ' + EL('pro_unlimited_full', 'PRO — 전체 무제한');
+  document.querySelectorAll('.sbtn-close').forEach(function(b) { b.textContent = EL('btn_close', '닫기'); });
+  // sub sheet
+  var subP = document.querySelector('#o-sub .sheet p');
+  if (subP) subP.textContent = EL('all_drama_unlimited', '모든 드라마 · 모든 클립 · 광고 없이 무제한');
+  var subBtn = document.querySelector('#o-sub .sbtn-pro');
+  if (subBtn) subBtn.textContent = EL('start_subscription', '구독 시작하기');
+}
+
+// Override renderEpGrid to use lang
+var _origRenderEpGrid = renderEpGrid;
+renderEpGrid = function() {
+  var g = document.getElementById('epg');
+  if (!g || !episodesData) return;
+  g.innerHTML = '';
+  episodesData.episodes.forEach(function (ep) {
+    var d = document.createElement('div');
+    var isFree = ep.free;
+    d.className = 'ep' + (isFree ? ' free' : '');
+    d.innerHTML = '<div class="n">' + ep.ep + EL('episode_unit', '화') + '</div><div class="c">' + ep.clips.length + EL('clip_unit', '클립') + '</div>' +
+      (isFree ? '<span class="fb">' + EL('free', 'FREE') + '</span>' : '<span class="lk">🔒</span>');
+    d.onclick = function () { showEp(ep); };
+    g.appendChild(d);
+  });
+};
+
+// Override showEp to use lang
+var _origShowEp = showEp;
+showEp = function(ep) {
+  var p = ep.ep < 10 ? '0' + ep.ep : '' + ep.ep;
+  var isFree = ep.free;
+  document.getElementById('ept').innerHTML = 'EP' + p + ' · ' + ep.clips.length + ' ' + EL('clip_unit', 'CLIPS') + ' ' +
+    (isFree ? '<span style="color:var(--teal)">' + EL('free', 'FREE') + '</span>' : '<span style="color:var(--purple)">PREMIUM</span>');
+  var h = '';
+  ep.clips.forEach(function (clip) {
+    var vid = clip.vid;
+    var thumb = vid ? ytThumb(vid) : '';
+    var hasSrt = ep.ep <= 2;
+    var title = clip.title || clip.id;
+    if (isFree) {
+      h += '<div class="clip" onclick="goClip(\'' + clip.id + '\')">' +
+        '<div class="clip-th"><img src="' + thumb + '" loading="lazy"></div>' +
+        '<div class="ci"><div class="cid">' + clip.id +
+        (hasSrt ? ' <span class="srt">SRT</span>' : '') +
+        '</div><div class="cd">' + escHtml(title) + '</div></div></div>';
+    } else {
+      h += '<div class="clip" onclick="showUnlock(\'' + clip.id + '\')">' +
+        '<div class="clip-th"><img src="' + thumb + '" loading="lazy"><div class="ol">🔒</div></div>' +
+        '<div class="ci"><div class="cid">' + clip.id +
+        '</div><div class="cd">' + escHtml(title) + '</div>' +
+        '<div class="hint">🔒 AD or PRO</div></div></div>';
+    }
+  });
+  document.getElementById('clist').innerHTML = h;
+  go('v-ep');
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   try { localStorage.setItem('kt-visited', '1'); } catch (e) {}
-  loadEpisodesData().then(function () {
+  var langCode = 'ne';
+  try { langCode = localStorage.getItem('kt-lang') || 'ne'; } catch(e) {}
+  fetch('lang/' + langCode + '.json').then(function(r) { return r.json(); }).then(function(d) {
+    epLang = d;
+    return loadEpisodesData();
+  }).then(function () {
     renderEpGrid();
+    applyEpLang();
     document.getElementById('v-drama').classList.remove('hidden');
   }).catch(function () {
-    document.getElementById('v-drama').classList.remove('hidden');
+    loadEpisodesData().then(function() {
+      renderEpGrid();
+      document.getElementById('v-drama').classList.remove('hidden');
+    }).catch(function() {
+      document.getElementById('v-drama').classList.remove('hidden');
+    });
   });
 });
 </script>
