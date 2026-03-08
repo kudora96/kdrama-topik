@@ -1,0 +1,33 @@
+{
+  "lang_code": "ne",
+  "lang_name": "नेपाली",
+  "lang_flag": "🇳🇵",
+
+  "toggle_ko_first": "한→네",
+  "toggle_ne_first": "네→한",
+  "btn_repeat": "दोहोर्याउनुहोस्",
+  "btn_play_all": "सबै",
+  "playing": "बजिरहेको छ",
+
+  "tooltip_video": "भिडियो माथि 'भिडियो थप हेर्नुहोस्' देखिए ×मा एकपटक थिच्नुहोस्।",
+  "tooltip_subtitle": "उपशीर्षक थिच्नुहोस्! छानिएको वाक्यसँग सम्बन्धित EPS-TOPIK अभ्यास, नेपाली·कोरियन व्याख्या, लेखन अभ्याससम्म!",
+
+  "subtitle_list": "उपशीर्षक सूची",
+  "episode": "एपिसोड",
+  "count_unit": "वटा",
+
+  "font_increase": "A+",
+  "font_decrease": "A-",
+
+  "welcome_title": "K-Drama बाट कोरियन भाषा सिक्नुहोस्",
+  "welcome_subtitle": "EPS-TOPIK तयारीका लागि K-Drama मार्फत मजाले कोरियन सिक्नुहोस्",
+  "select_language": "भाषा छान्नुहोस्",
+  "start": "सुरु गर्नुहोस्",
+
+  "back": "पछाडि",
+  "next": "अर्को",
+  "previous": "अघिल्लो",
+  "loading": "लोड हुँदैछ...",
+  "error": "त्रुटि भयो",
+  "no_subtitle": "उपशीर्षक उपलब्ध छैन"
+}
