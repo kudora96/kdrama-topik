@@ -411,7 +411,39 @@
       .learn-bar-btn .lb-label { font-size: calc(0.56rem * var(--font-scale, 1)); }
       .btn-action { padding: 6px 10px; font-size: 0.72rem; }
     }
+
+    /* ── Page Dark Mode ── */
+    .learn-theme-btn { border: none; width: 32px; height: 18px; border-radius: 100px; border: 1.5px solid #E5E7EB; background: rgba(0,0,0,0.04); cursor: pointer; padding: 0; position: relative; flex-shrink: 0; }
+    .learn-theme-btn::after { content: ''; position: absolute; top: 1.5px; left: 1.5px; width: 13px; height: 13px; border-radius: 50%; background: #6c5ce7; transition: .3s; }
+    html[data-theme="dark"] body { background: #0e1018; color: #f0f0f5; }
+    html[data-theme="dark"] .learn-nav { background: rgba(14,16,24,0.88); border-bottom-color: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .nav-back { background: rgba(255,255,255,0.08); color: #f0f0f5; }
+    html[data-theme="dark"] .nav-clip-id { color: #9ba4b8; }
+    html[data-theme="dark"] .nav-clip-name { color: #f0f0f5; }
+    html[data-theme="dark"] .nav-arrow { background: rgba(255,255,255,0.08); color: #f0f0f5; }
+    html[data-theme="dark"] .player-wrap { border-color: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .btn-action { background: rgba(255,255,255,0.08); color: #f0f0f5; border-color: rgba(255,255,255,0.12); }
+    html[data-theme="dark"] .loop-bar { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .loop-info { color: #f0f0f5; }
+    html[data-theme="dark"] .sub-list-header h2 { color: #f0f0f5; }
+    html[data-theme="dark"] .btn-sub-order { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #f0f0f5; }
+    html[data-theme="dark"] .btn-font { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #f0f0f5; }
+    html[data-theme="dark"] .sub-count { color: #9ba4b8; }
+    html[data-theme="dark"] .sub-item { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .sub-ko { color: #f0f0f5; }
+    html[data-theme="dark"] .sub-ne { color: #9ba4b8; }
+    html[data-theme="dark"] .sub-item.active { background: rgba(0,206,201,0.1); border-color: rgba(0,206,201,0.3); }
+    html[data-theme="dark"] .learn-bar { background: rgba(14,16,24,0.95); border-top-color: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .learn-bar-btn { color: #9ba4b8; }
+    html[data-theme="dark"] .learn-bar-btn.active { color: #00cec9; }
+    html[data-theme="dark"] .tip-banner { background: rgba(74,158,255,0.12); color: #9ba4b8; }
+    html[data-theme="dark"] .empty-state { color: #9ba4b8; }
+    html[data-theme="dark"] .lock-sheet { background: #151822; color: #f0f0f5; }
+    html[data-theme="dark"] .next-clip-inner { color: #f0f0f5; }
+    html[data-theme="dark"] .learn-theme-btn { border-color: rgba(255,255,255,0.12); background: rgba(255,255,255,0.08); }
+    html[data-theme="dark"] .learn-theme-btn::after { left: calc(100% - 15px); background: #00cec9; }
   </style>
+  <script>(function(){var t=localStorage.getItem('kt-theme')||'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 </head>
 <body>
 
@@ -422,6 +454,7 @@
     <div class="nav-clip-name" id="nav-clip-name">...</div>
   </div>
   <div class="nav-btns">
+    <button class="learn-theme-btn" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'light';var n=c==='light'?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('kt-theme',n)" aria-label="Theme"></button>
     <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
     <button class="nav-arrow" id="btn-next-clip" onclick="goNextClip()" disabled>&#9654;</button>
   </div>

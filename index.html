@@ -19,10 +19,27 @@ body { background: #fff; font-family: 'Sora', sans-serif; min-height: 100vh; dis
 .flag-card .label { font-size: 0.65rem; font-weight: 600; color: #333; }
 .flag-card.disabled .label { color: #aaa; }
 .coming { font-size: 0.5rem; color: #bbb; margin-top: 2px; }
+.theme-btn { position: fixed; top: 16px; right: 16px; width: 38px; height: 22px; border-radius: 100px; border: 1.5px solid #E5E7EB; background: rgba(0,0,0,0.04); cursor: pointer; padding: 0; }
+.theme-btn::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #6c5ce7; transition: .3s; }
+html[data-theme="dark"] body { background: #0e1018; color: #f0f0f5; }
+html[data-theme="dark"] .logo { color: #f0f0f5; }
+html[data-theme="dark"] .subtitle { color: #9ba4b8; }
+html[data-theme="dark"] .flag-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+html[data-theme="dark"] .flag-card:hover { border-color: #E50914; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+html[data-theme="dark"] .flag-card .label { color: #f0f0f5; }
+html[data-theme="dark"] .flag-card.disabled .label { color: #5a6378; }
+html[data-theme="dark"] .coming { color: #5a6378; }
+html[data-theme="dark"] .theme-btn { border-color: rgba(255,255,255,0.12); background: rgba(255,255,255,0.08); }
+html[data-theme="dark"] .theme-btn::after { left: calc(100% - 18px); background: #00cec9; }
 @media (max-width: 440px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 10px; } .flag-card { padding: 12px 4px; } .flag-card .emoji { font-size: 1.8rem; } }
 </style>
+<script>
+(function(){var t=localStorage.getItem('kt-theme')||'light';document.documentElement.setAttribute('data-theme',t)})();
+</script>
 </head>
 <body>
+
+<button class="theme-btn" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'light';var n=c==='light'?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('kt-theme',n)" aria-label="Theme"></button>
 
 <div class="logo">K<span>▶</span>Drama TOPIK</div>
 <div class="subtitle">Choose your language</div>
