@@ -3,8 +3,8 @@
   "lang_name": "नेपाली",
   "lang_flag": "🇳🇵",
 
-  "toggle_ko_first": "한→네",
-  "toggle_ne_first": "네→한",
+  "toggle_ko_first": "KO→NE",
+  "toggle_ne_first": "NE→KO",
   "btn_repeat": "दोहोर्याउनुहोस्",
   "btn_play_all": "सबै",
   "playing": "बजिरहेको छ",
