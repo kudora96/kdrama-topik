@@ -74,6 +74,9 @@
   "vowels": "स्वर Vowels",
   "audio_preparing": "अडियो फाइल तयार हुँदैछ",
   "no_questions": "प्रश्न छैन।",
+  "btn_np_explain": "NP नेपाली व्याख्या",
+  "btn_kr_explain": "KR कोरियन व्याख्या",
+  "btn_writing": "लेखन",
 
   "back_to_drama": "← ड्रामा",
   "episode_unit": "एपिसोड",

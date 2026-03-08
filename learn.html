@@ -921,9 +921,9 @@ function renderList() {
 function buildDetail(id) {
   if (isLocked) {
     var html = '<div class="learn-bar">';
-    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명 &#128274;</span></button>';
-    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">한국어 설명 &#128274;</span></button>';
-    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">쓰기 &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">' + L('btn_np_explain','NP 네팔어 설명') + ' &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">' + L('btn_kr_explain','KR 한국어 설명') + ' &#128274;</span></button>';
+    html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">' + L('btn_writing','쓰기') + ' &#128274;</span></button>';
     html += '<button class="learn-bar-btn" onclick="showLockOverlay()"><span class="lb-icon">&#128221;</span><span class="lb-label">EPS-TOPIK &#128274;</span></button>';
     html += '</div>';
     return html;
@@ -933,9 +933,9 @@ function buildDetail(id) {
   var hasQuiz = !!quizData;
   var hasWriting = !!(quizData && quizData.writing);
   var html = '<div class="learn-bar">';
-  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'np\')"' + disabled + '><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">네팔어 설명</span></button>';
-  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">한국어 설명</span></button>';
-  html += '<button class="learn-bar-btn" onclick="openWritingOverlay()"' + (hasWriting ? '' : ' disabled') + '><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">쓰기</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'np\')"' + disabled + '><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">' + L('btn_np_explain','NP 네팔어 설명') + '</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openExplainOverlay(' + id + ',\'kr\')"' + disabled + '><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">' + L('btn_kr_explain','KR 한국어 설명') + '</span></button>';
+  html += '<button class="learn-bar-btn" onclick="openWritingOverlay()"' + (hasWriting ? '' : ' disabled') + '><span class="lb-icon">&#9999;&#65039;</span><span class="lb-label">' + L('btn_writing','쓰기') + '</span></button>';
   html += '<button class="learn-bar-btn" onclick="openQuizOverlay()"' + (hasQuiz ? '' : ' disabled') + '><span class="lb-icon">&#128221;</span><span class="lb-label">EPS-TOPIK</span></button>';
   html += '</div>';
   return html;
@@ -1120,7 +1120,7 @@ function openExplainOverlay(id, lang) {
   var data = explanationsMap[String(id)]; if (!data) return;
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
-  document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 한국어 설명 #' : '🎧 네팔어 설명 #') + id;
+  document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 ' + L('btn_kr_explain','KR 한국어 설명') + ' #' : '🎧 ' + L('btn_np_explain','NP 네팔어 설명') + ' #') + id;
   document.getElementById('explain-overlay').classList.add('open');
   var playBtn = document.getElementById('eo-play-btn');
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
