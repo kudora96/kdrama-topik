@@ -381,6 +381,14 @@ KR은 두 가지 버전을 만든다:
 - 기존 JSON의 youtube_id, explanations, quiz 등은 절대 건드리지 않음
 - 번역 완료 후 사용자에게 검수용으로 전체 목록을 보여줄 것
 
+### title 토글 전환 규칙 (필수)
+
+- learn.html에서 한→네 토글 시 상단 클립 제목도 title → title_ne로 전환
+- 네→한 토글 시 title_ne → title로 전환
+- 자막 목록의 언어 순서와 제목의 언어가 항상 일치할 것
+- JSON에 title_ne 필드가 없으면 기존 title 유지
+- 새 클립 JSON 생성 시 title_ne를 반드시 포함할 것
+
 ### JSON 무결성 검증 (필수)
 - 새 자막 설명을 JSON에 추가할 때 반드시 다음을 확인:
   1. **sub_id 일치**: explanations[N]의 sub_id는 반드시 subtitles[N]의 id와 같아야 함
