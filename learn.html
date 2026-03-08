@@ -616,7 +616,7 @@ Promise.all([
   // Update nav
   var epLabel = CLIP_ID + ' · ' + (clipData.episode || '') + '화';
   document.getElementById('nav-clip-id').textContent = epLabel;
-  document.getElementById('nav-clip-name').textContent = clipData.title || CLIP_ID;
+  updateClipTitle();
   document.title = 'K▶T — ' + CLIP_ID;
 
   // Setup clip navigation
@@ -797,7 +797,8 @@ function dismissLearnTip() { var tip = document.getElementById('learn-tip'); if 
 // ── Subtitle Order Toggle ──
 function getSubOrder() { return localStorage.getItem('kt-sub-order') || 'ne'; }
 function updateSubOrderBtn() { var btn = document.getElementById('btn-sub-order'); if (btn) btn.textContent = getSubOrder() === 'ne' ? 'ने→한' : '한→ने'; }
-function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); renderList(); }
+function updateClipTitle() { if (!clipData) return; var el = document.getElementById('nav-clip-name'); if (!el) return; var useNe = getSubOrder() === 'ne' && clipData.title_ne; el.textContent = useNe ? clipData.title_ne : (clipData.title || CLIP_ID); }
+function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); updateClipTitle(); renderList(); }
 
 // ── Render Subtitle List ──
 function renderList() {
