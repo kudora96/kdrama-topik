@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>K▶T — 학습</title>
+  <title>K▶T</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -419,7 +419,7 @@
   <button class="nav-back" onclick="goBack()" title="뒤로">&#8592;</button>
   <div class="nav-title">
     <div class="nav-clip-id" id="nav-clip-id">...</div>
-    <div class="nav-clip-name" id="nav-clip-name">로딩 중...</div>
+    <div class="nav-clip-name" id="nav-clip-name">...</div>
   </div>
   <div class="nav-btns">
     <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
@@ -510,8 +510,8 @@
 
   <div class="empty-state" id="empty-state" style="display:none">
     <div class="icon">&#127916;</div>
-    <h3>자막 데이터 준비 중</h3>
-    <p>이 클립의 SRT 자막이 아직 변환되지 않았습니다.<br>영상은 재생할 수 있습니다!</p>
+    <h3 id="empty-title">자막 데이터 준비 중</h3>
+    <p id="empty-desc">이 클립의 SRT 자막이 아직 변환되지 않았습니다.<br>영상은 재생할 수 있습니다!</p>
   </div>
 </div>
 
@@ -569,13 +569,46 @@ var langData = {};
     applyLangUI();
   }).catch(function() {});
 })();
+function L(key, fb) { return langData[key] || fb; }
 function applyLangUI() {
   var r = document.getElementById('btn-repeat');
-  if (r) r.innerHTML = '&#128257; ' + (langData.btn_repeat || '반복');
+  if (r) r.innerHTML = '&#128257; ' + L('btn_repeat', '반복');
   var p = document.getElementById('btn-play-all');
-  if (p) p.innerHTML = '&#9654; ' + (langData.btn_play_all || '전체');
+  if (p) p.innerHTML = '&#9654; ' + L('btn_play_all', '전체');
+  var s = document.getElementById('btn-stop');
+  if (s) s.innerHTML = '&#9209; ' + L('btn_stop', '중지');
   var h = document.querySelector('.sub-list-header h2');
-  if (h && !h.querySelector('.lock-badge')) h.textContent = langData.subtitle_list || '자막 목록';
+  if (h && !h.querySelector('.lock-badge')) h.textContent = L('subtitle_list', '자막 목록');
+  // next clip banner
+  var ncb = document.querySelector('.ncb-btn');
+  if (ncb) ncb.innerHTML = L('next_clip', '다음 클립') + ' &#9654;';
+  // lock overlay
+  var lp = document.querySelector('#lock-overlay p');
+  if (lp) lp.innerHTML = L('premium_desc', '자막 해설 · EPS-TOPIK 퀴즈 · 쓰기 연습') + '<br>' + L('premium_locked', 'EP1 이후 학습 기능은 잠금 상태입니다');
+  var la = document.querySelector('.lock-btn-ad');
+  if (la) la.innerHTML = '&#127916; ' + L('ad_unlock_24h', '광고 보고 24시간 해제');
+  var lpr = document.querySelector('.lock-btn-pro');
+  if (lpr) lpr.innerHTML = '&#128081; ' + L('pro_unlimited', 'PRO — 전체 무제한');
+  var lc = document.querySelector('.lock-btn-close');
+  if (lc) lc.textContent = L('btn_close', '닫기');
+  // video lock
+  var vd = document.querySelector('.vl-desc');
+  if (vd) vd.textContent = L('premium_locked', 'EP2 이후 클립은 잠금 상태입니다');
+  var va = document.querySelector('.vl-btn-ad');
+  if (va) va.innerHTML = '&#127916; ' + L('ad_unlock_24h', '광고 보고 24h 해제');
+  var vp = document.querySelector('.vl-btn-pro');
+  if (vp) vp.innerHTML = '&#128081; ' + L('pro_unlimited', 'PRO 구독');
+  // back button
+  var bb = document.querySelector('.nav-back');
+  if (bb) bb.title = L('back', '뒤로');
+  // writing practice title
+  var wt = document.querySelector('#writing-overlay .qo-header-title');
+  if (wt) wt.innerHTML = '&#9997;&#65039; ' + L('writing_practice', '쓰기연습');
+  // empty state
+  var et = document.getElementById('empty-title');
+  if (et) et.textContent = L('empty_title', '자막 데이터 준비 중');
+  var ed = document.getElementById('empty-desc');
+  if (ed) ed.innerHTML = L('empty_desc', '이 클립의 SRT 자막이 아직 변환되지 않았습니다.') + '<br>' + L('empty_desc2', '영상은 재생할 수 있습니다!');
 }
 
 // ── State ──
@@ -633,7 +666,7 @@ Promise.all([
   quizData = clipData.quiz || null;
 
   // Update nav
-  var epLabel = CLIP_ID + ' · ' + (clipData.episode || '') + '화';
+  var epLabel = CLIP_ID + ' · ' + L('episode','에피소드') + ' ' + (clipData.episode || '');
   document.getElementById('nav-clip-id').textContent = epLabel;
   updateClipTitle();
   document.title = 'K▶T — ' + CLIP_ID;
@@ -671,7 +704,7 @@ Promise.all([
 }).catch(function(e) {
   console.error('Clip data load error:', e);
   document.getElementById('nav-clip-id').textContent = CLIP_ID;
-  document.getElementById('nav-clip-name').textContent = '데이터를 불러올 수 없습니다';
+  document.getElementById('nav-clip-name').textContent = L('error','데이터를 불러올 수 없습니다');
 });
 
 // ── YouTube ──
@@ -781,7 +814,7 @@ function doAdUnlock() {
   // Reset header badge
   var hdr = document.querySelector('.sub-list-header h2');
   if (hdr) hdr.innerHTML = langData.subtitle_list || '자막 목록';
-  alert('🎬 24시간 학습 기능 해제!');
+  alert('🎬 ' + L('unlocked_24h','24시간 학습 기능 해제!'));
 }
 
 function openProSheet() {
@@ -815,7 +848,7 @@ function dismissLearnTip() { var tip = document.getElementById('learn-tip'); if 
 
 // ── Subtitle Order Toggle ──
 function getSubOrder() { return localStorage.getItem('kt-sub-order') || 'ne'; }
-function updateSubOrderBtn() { var btn = document.getElementById('btn-sub-order'); if (btn) btn.textContent = getSubOrder() === 'ne' ? 'ने→한' : '한→ने'; }
+function updateSubOrderBtn() { var btn = document.getElementById('btn-sub-order'); if (btn) btn.textContent = getSubOrder() === 'ne' ? L('toggle_ne_first','ने→한') : L('toggle_ko_first','한→ने'); }
 function updateClipTitle() { if (!clipData) return; var el = document.getElementById('nav-clip-name'); if (!el) return; var useNe = getSubOrder() === 'ne' && clipData.title_ne; el.textContent = useNe ? clipData.title_ne : (clipData.title || CLIP_ID); }
 function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); updateClipTitle(); renderList(); }
 
@@ -823,7 +856,7 @@ function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() =
 function renderList() {
   var list = document.getElementById('sub-list');
   var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
-  document.getElementById('sub-count').textContent = visibleSubs.length + '개';
+  document.getElementById('sub-count').textContent = visibleSubs.length + ' ' + L('count_unit','개');
   var koFirst = getSubOrder() === 'ko';
   var html = '';
   visibleSubs.forEach(function(sub, idx) {
@@ -1114,7 +1147,7 @@ function closeQuizOverlay() {
 
 function renderQuiz() {
   var qs = quizAllQuestions; var total = qs.length;
-  if (total === 0) { document.getElementById('qo-pbar').innerHTML = ''; document.getElementById('qo-body').innerHTML = '<div style="text-align:center;padding:40px;color:#6B7280">문제가 없습니다.</div>'; document.getElementById('qo-nav').innerHTML = ''; return; }
+  if (total === 0) { document.getElementById('qo-pbar').innerHTML = ''; document.getElementById('qo-body').innerHTML = '<div style="text-align:center;padding:40px;color:#6B7280">' + L('no_questions','문제가 없습니다.') + '</div>'; document.getElementById('qo-nav').innerHTML = ''; return; }
   var q = qs[quizIdx]; var answered = quizAnswers[q.id];
   if (answered) { quizSelected = answered.selected; quizChecked = true; }
   renderQuizProgressBar(quizIdx, total); renderQuizQuestion(q, quizIdx, total); renderQuizNav(quizIdx, total);
@@ -1128,16 +1161,15 @@ function renderQuizProgressBar(idx, total) {
 
 function renderQuizQuestion(q, idx, total) {
   stopQuizAudio(); var body = document.getElementById('qo-body'); var html = ''; var nums = ['①','②','③','④']; var sec = getQuizSection(q);
-  html += '<div class="qo-progress">' + (sec === 'reading' ? '<span class="qo-progress-section reading">📖 읽기</span>' : '<span class="qo-progress-section listening">🎧 듣기</span>') + '문제 ' + (idx+1) + '/' + total + '</div>';
+  html += '<div class="qo-progress">' + (sec === 'reading' ? '<span class="qo-progress-section reading">📖 ' + L('reading','읽기') + '</span>' : '<span class="qo-progress-section listening">🎧 ' + L('listening','듣기') + '</span>') + L('question_counter','문제') + ' ' + (idx+1) + '/' + total + '</div>';
   html += '<div class="qo-instruction">' + escHtml(q.instruction) + '</div>';
   var isCorrect = quizChecked && quizSelected === q.answer;
   if (q.audio) {
-    html += '<div class="qo-audio-wrap"><button class="qo-audio-btn" id="qo-audio-btn" onclick="toggleQuizAudio()">🔊 음성 듣기</button>';
+    html += '<div class="qo-audio-wrap"><button class="qo-audio-btn" id="qo-audio-btn" onclick="toggleQuizAudio()">🔊 ' + L('listen_audio','음성 듣기') + '</button>';
     if (q.audio_text) {
       if (sec === 'listening') {
         var showText = isCorrect || quizShowAudioText;
-        html += '<button class="qo-toggle-text-btn" onclick="toggleQuizAudioText()">' + (showText ? '📝 대화 숨기기' : '📝 대화 보기') + '</button>';
-        html += '<div class="qo-toggle-hint">(실제 시험에서는 대화 내용이 보이지 않습니다)</div>';
+        html += '<button class="qo-toggle-text-btn" onclick="toggleQuizAudioText()">' + (showText ? '📝 ' + L('hide_dialogue','대화 숨기기') : '📝 ' + L('show_dialogue','대화 보기')) + '</button>';
         html += '<div class="qo-audio-text" style="' + (showText ? '' : 'display:none') + '">' + formatAudioText(q.audio_text) + '</div>';
       } else { html += '<div class="qo-audio-text">' + escHtml(q.audio_text).replace(/\n/g,'<br>') + '</div>'; }
     }
@@ -1161,11 +1193,11 @@ function renderQuizQuestion(q, idx, total) {
     }
     html += '</div>';
   }
-  if (!quizChecked) html += '<button class="qo-check-btn" id="qo-check" onclick="checkQuizAnswer()"' + (quizSelected === -1 ? ' disabled' : '') + '>정답 확인</button>';
+  if (!quizChecked) html += '<button class="qo-check-btn" id="qo-check" onclick="checkQuizAnswer()"' + (quizSelected === -1 ? ' disabled' : '') + '>✔ ' + L('check_answer','정답 확인') + '</button>';
   if (quizChecked) {
-    html += '<div class="qo-result ' + (isCorrect ? 'correct' : 'wrong') + '">' + (isCorrect ? '⭕ 정답!' : '❌ 오답!') + '</div>';
+    html += '<div class="qo-result ' + (isCorrect ? 'correct' : 'wrong') + '">' + (isCorrect ? '⭕ ' + L('correct','정답!') : '❌ ' + L('wrong','오답!')) + '</div>';
     if (isCorrect) { html += '<div class="qo-explain"><div class="qo-explain-ko">💡 ' + escHtml(q.explanation_ko) + '</div><div class="qo-explain-ne">🇳🇵 ' + escHtml(q.explanation_ne) + '</div></div>'; }
-    else { html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">🔄 다시 풀기</button>'; }
+    else { html += '<button class="qo-retry-one" onclick="retryCurrentQuiz()">🔄 ' + L('retry','다시 풀기') + '</button>'; }
   }
   body.innerHTML = html;
 }
@@ -1174,9 +1206,9 @@ function scrollQuizToTop() { var el = document.getElementById('quiz-overlay'); i
 
 function renderQuizNav(idx, total) {
   var nav = document.getElementById('qo-nav'); var html = '';
-  if (idx > 0) html += '<button class="qo-nav-btn qo-prev" onclick="quizPrev()">← 이전</button>';
-  if (idx < total - 1) html += '<button class="qo-nav-btn qo-next" onclick="quizNext()">다음 →</button>';
-  else { var allDone = true; for (var i = 0; i < quizAllQuestions.length; i++) { if (!quizAnswers[quizAllQuestions[i].id]) { allDone = false; break; } } html += '<button class="qo-nav-btn qo-next" onclick="showQuizResults()"' + (allDone ? '' : ' disabled') + '>결과 보기</button>'; }
+  if (idx > 0) html += '<button class="qo-nav-btn qo-prev" onclick="quizPrev()">← ' + L('previous','이전') + '</button>';
+  if (idx < total - 1) html += '<button class="qo-nav-btn qo-next" onclick="quizNext()">' + L('next_arrow','다음 →') + '</button>';
+  else { var allDone = true; for (var i = 0; i < quizAllQuestions.length; i++) { if (!quizAnswers[quizAllQuestions[i].id]) { allDone = false; break; } } html += '<button class="qo-nav-btn qo-next" onclick="showQuizResults()"' + (allDone ? '' : ' disabled') + '>' + L('view_results','결과 보기') + '</button>'; }
   nav.innerHTML = html;
 }
 
@@ -1199,7 +1231,7 @@ function showQuizResults() {
   for (var i = 0; i < rQs.length; i++) { if (quizAnswers[rQs[i].id] && quizAnswers[rQs[i].id].correct) rC++; }
   for (var i = 0; i < lQs.length; i++) { if (quizAnswers[lQs[i].id] && quizAnswers[lQs[i].id].correct) lC++; }
   var total = quizAllQuestions.length; var correct = rC + lC; var pct = total > 0 ? Math.round(correct / total * 100) : 0;
-  body.innerHTML = '<div class="qo-results-screen"><div class="qo-results-icon">🎉</div><div class="qo-results-title">퀴즈 완료!</div><div class="qo-results-score">' + correct + '/' + total + ' 문제 정답 (' + pct + '%)</div><div class="qo-results-detail"><div class="qo-results-row">📖 읽기: ' + rC + '/' + rQs.length + '</div><div class="qo-results-row">🎧 듣기: ' + lC + '/' + lQs.length + '</div></div><div class="qo-results-btns"><button class="qo-results-btn qo-retry" onclick="retryQuiz()">🔄 다시 풀기</button><button class="qo-results-btn qo-close" onclick="closeQuizOverlay()">✕ 닫기</button></div></div>';
+  body.innerHTML = '<div class="qo-results-screen"><div class="qo-results-icon">🎉</div><div class="qo-results-title">' + L('quiz_complete','퀴즈 완료!') + '</div><div class="qo-results-score">' + correct + '/' + total + ' ' + L('question_counter','문제') + ' (' + pct + '%)</div><div class="qo-results-detail"><div class="qo-results-row">📖 ' + L('reading','읽기') + ': ' + rC + '/' + rQs.length + '</div><div class="qo-results-row">🎧 ' + L('listening','듣기') + ': ' + lC + '/' + lQs.length + '</div></div><div class="qo-results-btns"><button class="qo-results-btn qo-retry" onclick="retryQuiz()">🔄 ' + L('retry','다시 풀기') + '</button><button class="qo-results-btn qo-close" onclick="closeQuizOverlay()">✕ ' + L('btn_close','닫기') + '</button></div></div>';
   document.getElementById('qo-nav').innerHTML = ''; document.getElementById('qo-pbar').innerHTML = '';
 }
 
@@ -1207,15 +1239,15 @@ function retryCurrentQuiz() { var q = quizAllQuestions[quizIdx]; if (q) delete q
 function retryQuiz() { quizIdx = 0; quizSelected = -1; quizChecked = false; quizAnswers = {}; quizAllQuestions = buildQuizAllQuestions(); renderQuiz(); scrollQuizToTop(); }
 
 function formatAudioText(text) { return escHtml(text).replace(/\n/g,'<br>').replace(/(여자|남자|가|나):/g,'<b>$1:</b>'); }
-function toggleQuizAudioText() { var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a && a.correct) return; quizShowAudioText = !quizShowAudioText; var t = document.querySelector('.qo-audio-text'); var b = document.querySelector('.qo-toggle-text-btn'); if (t) t.style.display = quizShowAudioText ? '' : 'none'; if (b) b.innerHTML = quizShowAudioText ? '📝 대화 숨기기' : '📝 대화 보기'; }
+function toggleQuizAudioText() { var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a && a.correct) return; quizShowAudioText = !quizShowAudioText; var t = document.querySelector('.qo-audio-text'); var b = document.querySelector('.qo-toggle-text-btn'); if (t) t.style.display = quizShowAudioText ? '' : 'none'; if (b) b.innerHTML = quizShowAudioText ? '📝 ' + L('hide_dialogue','대화 숨기기') : '📝 ' + L('show_dialogue','대화 보기'); }
 
 function toggleQuizAudio() {
   var q = quizAllQuestions[quizIdx]; if (!q || !q.audio) return; var btn = document.getElementById('qo-audio-btn');
   if (quizAudioEl && !quizAudioEl.paused) { quizAudioEl.pause(); quizAudioEl.currentTime = 0; if (btn) btn.classList.remove('playing'); return; }
   stopQuizAudio(); quizAudioEl = new Audio(q.audio); if (btn) btn.classList.add('playing');
   quizAudioEl.onended = function() { if (btn) btn.classList.remove('playing'); };
-  quizAudioEl.onerror = function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 음성 파일 준비 중'; } };
-  quizAudioEl.play().catch(function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 음성 파일 준비 중'; } });
+  quizAudioEl.onerror = function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 ' + L('audio_preparing','음성 파일 준비 중'); } };
+  quizAudioEl.play().catch(function() { if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 ' + L('audio_preparing','음성 파일 준비 중'); } });
 }
 
 function stopQuizAudio() { if (quizAudioEl) { quizAudioEl.pause(); quizAudioEl = null; } }
@@ -1262,17 +1294,17 @@ function renderWriting() {
   if (!writingData) return; var body = document.getElementById('wr-body'); var words = writingData.words; var html = '';
   var allDone = wrWordIdx >= words.length;
   if (allDone) {
-    html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">문장 완성!</div><div class="wr-complete-words" id="wr-complete-words">';
+    html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; }
-    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" onclick="playSentenceAudio()">🔁 반복</button><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 다시 연습</button></div><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ 닫기</button></div>';
+    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" onclick="playSentenceAudio()">🔁 ' + L('btn_repeat','반복') + '</button><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button></div><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div>';
     body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudio(); }, 800); return;
   }
   html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (i < wrWordIdx) cls += ' wr-w-done'; else if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
   var cw = words[wrWordIdx]; var cc = cw.chars;
   if (wrCharIdx >= cc.length) {
-    html += '<div class="wr-word-done">✅ ' + escHtml(cw.word) + ' 완성! — ' + escHtml(cw.meaning_ne) + '</div>';
+    html += '<div class="wr-word-done">✅ ' + escHtml(cw.word) + ' ' + L('word_complete','완성!') + ' — ' + escHtml(cw.meaning_ne) + '</div>';
     html += '<div class="wr-char-explain-list">'; for (var i = 0; i < cc.length; i++) html += '<div class="wr-char-explain-item">' + escHtml(cc[i].explanation_ne) + '</div>'; html += '</div>';
-    html += '<div class="wr-word-btns"><button class="wr-repeat-btn" onclick="playWordAudio()">🔁 반복</button><button class="wr-next-btn" onclick="wrNextWord()">다음 단어 →</button></div>';
+    html += '<div class="wr-word-btns"><button class="wr-repeat-btn" onclick="playWordAudio()">🔁 ' + L('btn_repeat','반복') + '</button><button class="wr-next-btn" onclick="wrNextWord()">' + L('next_word','다음 단어 →') + '</button></div>';
     body.innerHTML = html; playQuizSound(true); setTimeout(function() { playWordAudio(); }, 500); return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
@@ -1280,12 +1312,12 @@ function renderWriting() {
   html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeHangul(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
   for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '"></div>'; }
   html += '</div></div>';
-  html += '<div class="wr-keyboard"><div class="wr-kb-label">자음 Consonants</div><div class="wr-kb-row">';
+  html += '<div class="wr-keyboard"><div class="wr-kb-label">' + L('consonants','자음 Consonants') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
-  html += '</div><div class="wr-kb-label">모음 Vowels</div><div class="wr-kb-row">';
+  html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
   html += '</div></div>';
-  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ 건너뛰기</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ 전체 건너뛰기</button></div>';
+  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','건너뛰기') + '</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','전체 건너뛰기') + '</button></div>';
   body.innerHTML = html;
 }
 

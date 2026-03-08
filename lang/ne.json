@@ -29,5 +29,49 @@
   "previous": "अघिल्लो",
   "loading": "लोड हुँदैछ...",
   "error": "त्रुटि भयो",
-  "no_subtitle": "उपशीर्षक उपलब्ध छैन"
+  "no_subtitle": "उपशीर्षक उपलब्ध छैन",
+
+  "btn_stop": "रोक्नुहोस्",
+  "btn_close": "बन्द गर्नुहोस्",
+  "next_clip": "अर्को क्लिप",
+  "loading_text": "लोड हुँदैछ...",
+  "title_learning": "अध्ययन",
+
+  "reading": "पढाइ",
+  "listening": "सुनाइ",
+  "question_counter": "प्रश्न",
+  "listen_audio": "आवाज सुन्नुहोस्",
+  "show_dialogue": "संवाद हेर्नुहोस्",
+  "hide_dialogue": "संवाद लुकाउनुहोस्",
+  "retry": "फेरि प्रयास",
+  "next_arrow": "अर्को →",
+  "view_results": "नतिजा हेर्नुहोस्",
+  "writing_practice": "लेखन अभ्यास",
+  "next_word": "अर्को शब्द →",
+  "skip": "छोड्नुहोस्",
+  "skip_all": "सबै छोड्नुहोस्",
+  "retry_writing": "फेरि अभ्यास",
+
+  "premium_clip": "PREMIUM CLIP",
+  "premium_desc": "उपशीर्षक व्याख्या · EPS-TOPIK क्विज · लेखन अभ्यास",
+  "premium_locked": "EP1 पछिको अध्ययन सुविधा लक गरिएको छ",
+  "ad_unlock_24h": "विज्ञापन हेरेर 24 घण्टा अनलक",
+  "pro_unlimited": "PRO — सबै अनलिमिटेड",
+  "unlocked_24h": "24 घण्टा अध्ययन सुविधा अनलक!",
+
+  "check_answer": "उत्तर जाँच",
+  "correct": "सही!",
+  "wrong": "गलत!",
+  "quiz_complete": "क्विज सकियो!",
+  "sentence_complete": "वाक्य पूरा भयो!",
+
+  "empty_title": "उपशीर्षक डाटा तयार हुँदैछ",
+  "empty_desc": "यो क्लिपको SRT उपशीर्षक अझै रूपान्तरण भएको छैन।",
+  "empty_desc2": "भिडियो चलाउन सकिन्छ!",
+
+  "word_complete": "पूरा भयो!",
+  "consonants": "व्यञ्जन Consonants",
+  "vowels": "स्वर Vowels",
+  "audio_preparing": "अडियो फाइल तयार हुँदैछ",
+  "no_questions": "प्रश्न छैन।"
 }
