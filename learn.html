@@ -343,21 +343,22 @@
     .wr-keyboard { margin-bottom: 12px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; justify-content: center; }
     .wr-kb-label { font-size: 0.6rem; color: #6B7280; text-align: center; margin-bottom: 3px; }
-    .wr-kb-btn { border: none; border-radius: 8px; padding: 8px 0; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; min-width: 32px; text-align: center; transition: background 0.15s; }
+    .wr-kb-btn { border: none; border-radius: 8px; padding: 8px 0; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; min-width: 32px; text-align: center; transition: background 0.15s, transform 0.1s; }
     .wr-kb-btn.consonant { background: rgba(74,158,255,0.1); color: #4A9EFF; }
     .wr-kb-btn.vowel { background: rgba(76,175,80,0.1); color: #4CAF50; }
-    .wr-kb-btn:active { opacity: 0.7; }
+    .wr-kb-btn:active { opacity: 0.7; transform: scale(0.93); }
     .wr-kb-btn.correct-anim { background: #4CAF50 !important; color: #fff !important; }
     .wr-kb-btn.wrong-anim { background: #F44336 !important; color: #fff !important; }
     .wr-skip-row { display: flex; justify-content: center; gap: 16px; margin-top: 8px; }
-    .wr-skip-btn { border: none; background: none; color: #6B7280; font-size: 0.75rem; cursor: pointer; font-family: inherit; padding: 4px; }
-    .wr-skip-btn:active { color: #1A1A1A; }
-    .wr-word-done { text-align: center; padding: 12px; margin-bottom: 12px; background: rgba(76,175,80,0.1); border-radius: 10px; font-size: 16px; font-weight: 700; color: #4CAF50; }
+    .wr-skip-btn { border: none; background: none; color: #6B7280; font-size: 0.75rem; cursor: pointer; font-family: inherit; padding: 4px; transition: transform 0.1s; }
+    .wr-skip-btn:active { color: #1A1A1A; transform: scale(0.95); }
+    .wr-word-done { text-align: center; padding: 12px; margin-bottom: 12px; background: rgba(76,175,80,0.1); border-radius: 10px; font-size: 16px; font-weight: 700; color: #4CAF50; transition: transform 0.1s; }
+    .wr-word-done:active { transform: scale(0.95); background: rgba(76,175,80,0.2); }
     .wr-word-btns { display: flex; gap: 8px; margin-bottom: 12px; }
-    .wr-repeat-btn, .wr-next-btn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; }
+    .wr-repeat-btn, .wr-next-btn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; transition: transform 0.1s; }
     .wr-repeat-btn { background: #4A9EFF; }
     .wr-next-btn { background: #4A9EFF; }
-    .wr-repeat-btn:active, .wr-next-btn:active { opacity: 0.8; }
+    .wr-repeat-btn:active, .wr-next-btn:active { opacity: 0.8; transform: scale(0.95); }
     .wr-char-explain-list { margin-bottom: 12px; padding: 10px 14px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; }
     .wr-char-explain-item { font-size: 14px; color: #6B7280; line-height: 1.7; }
     .wr-complete { text-align: center; padding: 20px 10px; }
@@ -367,8 +368,8 @@
     .wr-complete-words .wr-cw-highlight { color: #2563EB; }
     .wr-complete-ne { font-size: 15px; color: #374151; margin-bottom: 14px; line-height: 1.6; }
     .wr-complete-btns { display: flex; gap: 8px; margin-bottom: 8px; }
-    .wr-cbtn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
-    .wr-cbtn:active { opacity: 0.8; }
+    .wr-cbtn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; transition: transform 0.1s; }
+    .wr-cbtn:active { opacity: 0.8; transform: scale(0.95); }
     .wr-cbtn-repeat { background: #2563EB; color: #fff; }
     .wr-cbtn-retry { background: #059669; color: #fff; }
     .wr-cbtn-close { background: #E5E7EB; color: #1A1A1A; margin-top: 4px; }
@@ -1476,8 +1477,13 @@ function playSentenceAudio() { wrPlayKrAudio(); }
 function playOriginalAudio() { wrPlayKrAudio(); }
 function toggleOriginalAudio() {
   var btn = document.getElementById('wr-original-btn');
-  if (wrSentenceAudio) { stopSentenceAudio(); if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); return; }
-  wrPlayKrAudio(function() { if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); });
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); return; }
+  if (!writingData) return; var words = writingData.words; if (wrWordIdx >= words.length) return;
+  var cw = words[wrWordIdx]; if (!cw.audio) return;
+  wrWordAudio = new Audio(cw.audio);
+  wrWordAudio.onended = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); };
+  wrWordAudio.onerror = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); };
+  wrWordAudio.play().catch(function(){});
   if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
 }
 function toggleCompleteAudio() {
