@@ -1387,7 +1387,9 @@ function renderWriting() {
   if (wrCharIdx >= cc.length) {
     html += '<div class="wr-word-done">✅ ' + escHtml(cw.word) + ' ' + L('word_complete','완성!') + ' — ' + escHtml(cw.meaning_ne) + '</div>';
     html += '<div class="wr-word-btns"><button class="wr-next-btn" onclick="wrNextWord()">' + L('next_word','다음 단어 →') + '</button></div>';
-    body.innerHTML = html; playQuizSound(true); return;
+    body.innerHTML = html; playQuizSound(true);
+    if (cw.audio) { setTimeout(function() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }, 400); }
+    return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
   var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
@@ -1437,6 +1439,23 @@ function wrNextWord() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = nu
 
 function wrPlayKrAudio(onDone) {
   stopSentenceAudio(); if (!writingData) return;
+  // Check if words have audio paths for word-by-word playback
+  var words = writingData.words; var audioPaths = [];
+  for (var i = 0; i < words.length; i++) { if (words[i].audio) audioPaths.push(words[i].audio); }
+  if (audioPaths.length > 0) {
+    wrSentenceIdx = 0;
+    var playNext = function() {
+      if (wrSentenceIdx < 0 || wrSentenceIdx >= audioPaths.length) { wrSentenceAudio = null; wrSentenceIdx = -1; if (onDone) onDone(); return; }
+      // Highlight current word
+      for (var h = 0; h < words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.style.color = (h === wrSentenceIdx) ? '#2563EB' : ''; }
+      wrSentenceAudio = new Audio(audioPaths[wrSentenceIdx]);
+      wrSentenceAudio.onended = function() { wrSentenceIdx++; playNext(); };
+      wrSentenceAudio.onerror = function() { wrSentenceIdx++; playNext(); };
+      wrSentenceAudio.play().catch(function(){ wrSentenceIdx++; playNext(); });
+    };
+    playNext(); return;
+  }
+  // Fallback: use KR sentence audio
   var endTime = writingData.sentence_end;
   if (wrPreloadedAudio) {
     wrSentenceAudio = wrPreloadedAudio; wrSentenceAudio.currentTime = 0; wrSentenceAudio.volume = 1;
@@ -1470,7 +1489,10 @@ function playSentenceAudioWithBtn() {
   wrPlayKrAudio(function() { var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); });
   var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
 }
-function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1; }
+function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1;
+  // Reset word highlights
+  if (writingData) { for (var h = 0; h < writingData.words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.style.color = ''; } }
+}
 
 function wrSkipWord() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = wrWordIdx; wrPreloadKrForCompletion(); wrAutoTypeNext(); }
 function wrSkipAll() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrPreloadKrForCompletion(); wrAutoTypeNext(); }

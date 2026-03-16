@@ -437,7 +437,8 @@
                 "ㅇ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_01_jungdaejang.mp3"
         },
         {
           "word": "동지",
@@ -458,7 +459,8 @@
                 "ㅣ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_02_dongji.mp3"
         },
         {
           "word": "총성",
@@ -480,7 +482,8 @@
                 "ㅇ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_03_chongseong.mp3"
         },
         {
           "word": "방향을",
@@ -510,7 +513,8 @@
                 "ㄹ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_04_banghyangeul.mp3"
         },
         {
           "word": "보믄",
@@ -531,7 +535,8 @@
                 "ㄴ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_05_bomun.mp3"
         },
         {
           "word": "이쪽으로",
@@ -566,7 +571,8 @@
                 "ㅗ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_06_ijjogeuro.mp3"
         },
         {
           "word": "오고",
@@ -586,7 +592,8 @@
                 "ㅗ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_07_ogo.mp3"
         },
         {
           "word": "있습니다",
@@ -622,7 +629,8 @@
                 "ㅏ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_08_itsseumnida.mp3"
         }
       ]
     },
