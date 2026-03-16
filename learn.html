@@ -1400,9 +1400,14 @@ function playSentenceAudio() {
   stopSentenceAudio(); if (!writingData) return;
   var path = getWritingKrAudioPath(); if (!path) return;
   wrSentenceAudio = new Audio(path);
+  wrSentenceAudio.currentTime = 0;
+  var endTime = writingData.sentence_end;
   wrSentenceAudio.onended = function() { wrSentenceAudio = null; };
   wrSentenceAudio.onerror = function() { wrSentenceAudio = null; };
   wrSentenceAudio.play().catch(function(){});
+  if (endTime && endTime > 0) {
+    wrSentenceTimer = setTimeout(function() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } }, endTime * 1000);
+  }
 }
 function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1; }
 
