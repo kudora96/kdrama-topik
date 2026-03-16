@@ -1379,8 +1379,8 @@ function renderWriting() {
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; }
-    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" onclick="playSentenceAudio()">🔁 ' + L('btn_repeat','반복') + '</button><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button></div><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div>';
-    body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudio(); }, 800); return;
+    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','듣기') + '</button><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button></div><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div>';
+    body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudioWithBtn(); }, 800); return;
   }
   html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (i < wrWordIdx) cls += ' wr-w-done'; else if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
   var cw = words[wrWordIdx]; var cc = cw.chars;
@@ -1399,7 +1399,7 @@ function renderWriting() {
   html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
   html += '</div></div>';
-  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','건너뛰기') + '</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','전체 건너뛰기') + '</button><button class="wr-skip-btn" onclick="playOriginalAudio()">🔊 ' + L('listen_original','मूल सुन्नुहोस्') + '</button></div>';
+  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','건너뛰기') + '</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','전체 건너뛰기') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','मूल सुन्नुहोस्') + '</button></div>';
   body.innerHTML = html;
 }
 
@@ -1435,7 +1435,7 @@ function playWordAudio() { if (!writingData) return; var w = writingData.words; 
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
 function wrNextWord() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
 
-function wrPlayKrAudio() {
+function wrPlayKrAudio(onDone) {
   stopSentenceAudio(); if (!writingData) return;
   var endTime = writingData.sentence_end;
   if (wrPreloadedAudio) {
@@ -1444,15 +1444,32 @@ function wrPlayKrAudio() {
     var path = getWritingKrAudioPath(); if (!path) return;
     wrSentenceAudio = new Audio(path); wrSentenceAudio.currentTime = 0;
   }
-  wrSentenceAudio.onended = function() { wrSentenceAudio = null; };
-  wrSentenceAudio.onerror = function() { wrSentenceAudio = null; };
+  var done = function() { wrSentenceAudio = null; if (onDone) onDone(); };
+  wrSentenceAudio.onended = done;
+  wrSentenceAudio.onerror = done;
   wrSentenceAudio.play().catch(function(){});
   if (endTime && endTime > 0) {
-    wrSentenceTimer = setTimeout(function() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } }, endTime * 1000);
+    wrSentenceTimer = setTimeout(function() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; if (onDone) onDone(); } }, endTime * 1000);
   }
 }
 function playSentenceAudio() { wrPlayKrAudio(); }
 function playOriginalAudio() { wrPlayKrAudio(); }
+function toggleOriginalAudio() {
+  var btn = document.getElementById('wr-original-btn');
+  if (wrSentenceAudio) { stopSentenceAudio(); if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); return; }
+  wrPlayKrAudio(function() { if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); });
+  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+}
+function toggleCompleteAudio() {
+  var btn = document.getElementById('wr-complete-play-btn');
+  if (wrSentenceAudio) { stopSentenceAudio(); if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); return; }
+  wrPlayKrAudio(function() { if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); });
+  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+}
+function playSentenceAudioWithBtn() {
+  wrPlayKrAudio(function() { var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); });
+  var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+}
 function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1; }
 
 function wrSkipWord() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = wrWordIdx; wrPreloadKrForCompletion(); wrAutoTypeNext(); }
