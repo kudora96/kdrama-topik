@@ -916,6 +916,14 @@ function renderList() {
   });
   list.innerHTML = html;
   updateSubOrderBtn();
+  if (currentSub) {
+    var el = document.getElementById('sub-' + currentSub.id);
+    if (el) { el.classList.add('active'); activeEl = el; }
+  }
+  if (openDetailId !== -1) {
+    var det = document.getElementById('detail-' + openDetailId);
+    if (det) det.classList.add('open');
+  }
 }
 
 function buildDetail(id) {
