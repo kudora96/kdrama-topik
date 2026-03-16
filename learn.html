@@ -335,10 +335,10 @@
     .wr-target-char { font-size: 48px; color: #E5E7EB; position: absolute; font-weight: 700; }
     .wr-composed { font-size: 48px; color: #1A1A1A; position: relative; font-weight: 700; transition: color 0.2s; }
     .wr-composed.flash-correct { color: #4CAF50; }
-    .wr-jamo-slots { display: flex; gap: 6px; }
-    .wr-slot { width: 10px; height: 10px; border-radius: 50%; background: #E5E7EB; }
-    .wr-slot.filled { background: #4CAF50; }
-    .wr-slot.current { background: #4A9EFF; box-shadow: 0 0 4px rgba(74,158,255,0.5); }
+    .wr-jamo-slots { display: flex; gap: 4px; justify-content: center; }
+    .wr-slot { min-width: 28px; height: 32px; border-radius: 6px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #9CA3AF; }
+    .wr-slot.filled { background: #4CAF50; color: #fff; }
+    .wr-slot.current { background: #4A9EFF; color: #fff; box-shadow: 0 0 4px rgba(74,158,255,0.5); }
     .wr-explain { padding: 8px 14px; margin-top: 8px; background: rgba(74,158,255,0.08); border-radius: 8px; font-size: 14px; color: #4A9EFF; line-height: 1.6; }
     .wr-keyboard { margin-bottom: 12px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; justify-content: center; }
@@ -387,9 +387,9 @@
     .quiz-dark .wr-target-char { color: rgba(255,255,255,0.15); }
     .quiz-dark .wr-composed { color: #fff; }
     .quiz-dark .wr-composed.flash-correct { color: #66BB6A; }
-    .quiz-dark .wr-slot { background: rgba(255,255,255,0.15); }
-    .quiz-dark .wr-slot.filled { background: #66BB6A; }
-    .quiz-dark .wr-slot.current { background: #64B5F6; }
+    .quiz-dark .wr-slot { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-slot.filled { background: #66BB6A; color: #fff; }
+    .quiz-dark .wr-slot.current { background: #64B5F6; color: #fff; }
     .quiz-dark .wr-explain { background: rgba(76,175,80,0.15); color: #A5D6A7; }
     .quiz-dark .wr-kb-btn.consonant { background: rgba(33,150,243,0.2); color: #90CAF9; }
     .quiz-dark .wr-kb-btn.vowel { background: rgba(76,175,80,0.2); color: #A5D6A7; }
@@ -1310,7 +1310,27 @@ var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','�
 var JONG = ['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
 var JAMO_AUDIO = {'ㄱ':'giyeok','ㄲ':'ssang_giyeok','ㄴ':'nieun','ㄷ':'digeut','ㄸ':'ssang_digeut','ㄹ':'rieul','ㅁ':'mieum','ㅂ':'bieup','ㅃ':'ssang_bieup','ㅅ':'siot','ㅆ':'ssang_siot','ㅇ':'ieung','ㅈ':'jieut','ㅉ':'ssang_jieut','ㅊ':'chieut','ㅋ':'kieuk','ㅌ':'tieut','ㅍ':'pieup','ㅎ':'hieut','ㅏ':'a','ㅐ':'ae','ㅑ':'ya','ㅒ':'yae','ㅓ':'eo','ㅔ':'e','ㅕ':'yeo','ㅖ':'ye','ㅗ':'o','ㅘ':'wa','ㅙ':'wae','ㅚ':'oe','ㅛ':'yo','ㅜ':'u','ㅝ':'wo','ㅞ':'we','ㅟ':'wi','ㅠ':'yu','ㅡ':'eu','ㅢ':'ui','ㅣ':'i'};
 
+var COMPOUND_VOWEL = {'ㅐ':['ㅏ','ㅣ'],'ㅔ':['ㅓ','ㅣ'],'ㅘ':['ㅗ','ㅏ'],'ㅙ':['ㅗ','ㅏ','ㅣ'],'ㅚ':['ㅗ','ㅣ'],'ㅝ':['ㅜ','ㅓ'],'ㅞ':['ㅜ','ㅓ','ㅣ'],'ㅟ':['ㅜ','ㅣ'],'ㅢ':['ㅡ','ㅣ'],'ㅒ':['ㅑ','ㅣ'],'ㅖ':['ㅕ','ㅣ']};
+function expandJamo(arr) { var r = []; for (var i = 0; i < arr.length; i++) { var d = COMPOUND_VOWEL[arr[i]]; if (d) { for (var j = 0; j < d.length; j++) r.push(d[j]); } else { r.push(arr[i]); } } return r; }
+
 function composeHangul(j) { if (j.length === 0) return ''; if (j.length === 1) return j[0]; var ci = CHO.indexOf(j[0]); if (ci < 0) return j.join(''); var ji = JUNG.indexOf(j[1]); if (ji < 0) return j.join(''); if (j.length === 2) return String.fromCharCode(0xAC00 + (ci*21+ji)*28); var ki = JONG.indexOf(j[2]); if (ki < 0) return j.join(''); return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki); }
+function composeFromExpanded(j) {
+  if (j.length === 0) return '';
+  var cho = j[0]; if (CHO.indexOf(cho) < 0) return j.join('');
+  if (j.length === 1) return cho;
+  var vParts = []; var vi = 1;
+  while (vi < j.length && CHO.indexOf(j[vi]) < 0) { vParts.push(j[vi]); vi++; }
+  if (vParts.length === 0) return j.join('');
+  var vowel = vParts.length === 1 ? vParts[0] : null;
+  if (!vowel) { for (var k in COMPOUND_VOWEL) { var d = COMPOUND_VOWEL[k]; if (d.length === vParts.length) { var match = true; for (var m = 0; m < d.length; m++) { if (d[m] !== vParts[m]) { match = false; break; } } if (match) { vowel = k; break; } } } }
+  if (!vowel) return j.join('');
+  var ci = CHO.indexOf(cho); var ji = JUNG.indexOf(vowel);
+  if (ji < 0) return j.join('');
+  if (vi >= j.length) return String.fromCharCode(0xAC00 + (ci*21+ji)*28);
+  var jong = j[vi]; var ki = JONG.indexOf(jong);
+  if (ki < 0) return j.join('');
+  return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki);
+}
 function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260305b'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
 
 function openWritingOverlay(subId) {
@@ -1364,9 +1384,9 @@ function renderWriting() {
     body.innerHTML = html; playQuizSound(true); return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
-  var ch = cc[wrCharIdx]; var tJ = ch.jamo.length;
-  html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeHangul(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
-  for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '"></div>'; }
+  var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
+  html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
+  for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '">' + escHtml(exJamo[i]) + '</div>'; }
   html += '</div></div>';
   html += '<div class="wr-keyboard"><div class="wr-kb-label">' + L('consonants','자음 Consonants') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
@@ -1379,11 +1399,12 @@ function renderWriting() {
 
 function pressJamo(jamo) {
   if (!writingData || wrAdvanceTimer || wrSkipping) return; var words = writingData.words; if (wrWordIdx >= words.length) return;
-  var cw = words[wrWordIdx]; if (wrCharIdx >= cw.chars.length) return; var ch = cw.chars[wrCharIdx]; var exp = ch.jamo[wrJamoIdx];
+  var cw = words[wrWordIdx]; if (wrCharIdx >= cw.chars.length) return; var ch = cw.chars[wrCharIdx];
+  var exJamo = expandJamo(ch.jamo); var exp = exJamo[wrJamoIdx];
   playJamoAudio(jamo);
   if (jamo === exp) { wrEnteredJamo.push(jamo); wrJamoIdx++; flashJamoBtn(jamo, true);
-    var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeHangul(wrEnteredJamo); updateSlots(ch.jamo.length);
-    if (wrJamoIdx >= ch.jamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
+    var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
+    if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
   } else { flashJamoBtn(jamo, false); playQuizSound(false); }
@@ -1420,9 +1441,9 @@ function wrAutoTypeNext() {
   if (wrWordIdx >= words.length) { wrSkipping = false; renderWriting(); return; }
   var cw = words[wrWordIdx];
   if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); return; }
-  var ch = cw.chars[wrCharIdx]; var jamo = ch.jamo[wrJamoIdx]; wrSkipAudio = playJamoAudio(jamo); flashJamoBtn(jamo, true); wrEnteredJamo.push(jamo); wrJamoIdx++;
-  var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeHangul(wrEnteredJamo); updateSlots(ch.jamo.length);
-  if (wrJamoIdx >= ch.jamo.length) { if (cel) cel.classList.add('flash-correct'); if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
+  var ch = cw.chars[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var jamo = exJamo[wrJamoIdx]; wrSkipAudio = playJamoAudio(jamo); flashJamoBtn(jamo, true); wrEnteredJamo.push(jamo); wrJamoIdx++;
+  var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
+  if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
     wrAfterAudio(wrSkipAudio, function() { wrSkipTimer = setTimeout(function() { wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 300); } }, 1000); });
   } else { wrAfterAudio(wrSkipAudio, function() { wrSkipTimer = setTimeout(wrAutoTypeNext, 300); }); }
 }
