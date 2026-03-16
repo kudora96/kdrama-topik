@@ -1404,7 +1404,17 @@ function pressJamo(jamo) {
   var cw = words[wrWordIdx]; if (wrCharIdx >= cw.chars.length) return; var ch = cw.chars[wrCharIdx];
   var exJamo = expandJamo(ch.jamo); var exp = exJamo[wrJamoIdx];
   playJamoAudio(jamo);
-  if (jamo === exp) { wrEnteredJamo.push(jamo); wrJamoIdx++; flashJamoBtn(jamo, true);
+  // Check compound vowel input: e.g. user presses ㅐ when expecting ㅏ+ㅣ
+  var advance = 0;
+  if (jamo === exp) { advance = 1; }
+  else if (COMPOUND_VOWEL[jamo]) {
+    var parts = COMPOUND_VOWEL[jamo]; var match = true;
+    for (var pi = 0; pi < parts.length; pi++) { if (exJamo[wrJamoIdx + pi] !== parts[pi]) { match = false; break; } }
+    if (match) advance = parts.length;
+  }
+  if (advance > 0) {
+    for (var ai = 0; ai < advance; ai++) wrEnteredJamo.push(exJamo[wrJamoIdx + ai]);
+    wrJamoIdx += advance; flashJamoBtn(jamo, true);
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
