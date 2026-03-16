@@ -1421,6 +1421,8 @@ function pressJamo(jamo) {
     wrJamoIdx += advance; flashJamoBtn(jamo, true);
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
+      // If this is the last char of the last word, re-preload KR audio now (user gesture context) to avoid autoplay block on completion screen
+      if (wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1) { wrPreloadKrForCompletion(); }
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
   } else { flashJamoBtn(jamo, false); playQuizSound(false); }
@@ -1453,8 +1455,9 @@ function playSentenceAudio() { wrPlayKrAudio(); }
 function playOriginalAudio() { wrPlayKrAudio(); }
 function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1; }
 
-function wrSkipWord() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = wrWordIdx; wrAutoTypeNext(); }
-function wrSkipAll() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrAutoTypeNext(); }
+function wrSkipWord() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = wrWordIdx; wrPreloadKrForCompletion(); wrAutoTypeNext(); }
+function wrSkipAll() { if (!writingData || wrSkipping || wrAdvanceTimer) return; if (wrWordIdx >= writingData.words.length) return; wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrPreloadKrForCompletion(); wrAutoTypeNext(); }
+function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } } }
 function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
 
 function wrAutoTypeNext() {
