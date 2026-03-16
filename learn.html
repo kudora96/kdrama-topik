@@ -1347,6 +1347,8 @@ function openWritingOverlay(subId) {
   document.getElementById('writing-overlay').classList.add('open');
   applyWritingTheme(); renderWriting();
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  // Unlock audio on user gesture
+  try { var _u = new Audio(); _u.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA='; _u.volume = 0; _u.play().then(function(){ _u.pause(); }).catch(function(){}); } catch(e) {}
 }
 
 function closeWritingOverlay() {
