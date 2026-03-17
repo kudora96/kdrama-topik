@@ -323,6 +323,11 @@
     .writing-overlay.open { display: flex; }
     .writing-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
     .writing-overlay .eo-btn:active { background: #E5E7EB; }
+    .wr-progress { display: flex; gap: 6px; justify-content: center; padding: 10px 10px 6px; flex-wrap: wrap; }
+    .wr-prog-btn { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #D1D5DB; background: #fff; color: #9CA3AF; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; transition: background 0.1s, transform 0.1s, border-color 0.1s, color 0.1s; }
+    .wr-prog-btn:active { transform: scale(0.9); }
+    .wr-prog-btn.prog-active { border-color: #4A9EFF; background: #4A9EFF; color: #fff; box-shadow: 0 0 6px rgba(74,158,255,0.4); }
+    .wr-prog-btn.prog-done { border-color: #4CAF50; background: #4CAF50; color: #fff; }
     .wr-body { padding: 14px 16px; }
     .wr-sentence { font-size: 20px; font-weight: 700; text-align: center; padding: 12px 10px; border-bottom: 1px solid #E5E7EB; margin-bottom: 14px; line-height: 1.6; }
     .wr-sentence .wr-w { transition: color 0.2s; }
@@ -405,6 +410,9 @@
     .quiz-dark .wr-char-explain-list { background: rgba(76,175,80,0.15); border-color: transparent; }
     .quiz-dark .wr-char-explain-item { color: #A5D6A7; }
     .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
+    .quiz-dark .wr-prog-btn { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-prog-btn.prog-active { border-color: #4A9EFF; background: #4A9EFF; color: #fff; }
+    .quiz-dark .wr-prog-btn.prog-done { border-color: #66BB6A; background: #66BB6A; color: #fff; }
     .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); }
     .quiz-dark .wr-skip-btn:active { color: #fff; background: rgba(255,255,255,0.2); }
     .quiz-dark .wr-word-done:active { background: rgba(76,175,80,0.35); }
@@ -1378,6 +1386,15 @@ function renderWriting() {
     return;
   }
   var words = writingData.words; var html = '';
+  // Word progress bar
+  html += '<div class="wr-progress">';
+  for (var pi = 0; pi < words.length; pi++) {
+    var pcls = 'wr-prog-btn';
+    if (pi < wrWordIdx) pcls += ' prog-done';
+    else if (pi === wrWordIdx) pcls += ' prog-active';
+    html += '<button class="' + pcls + '" onclick="wrGoToWord(' + pi + ')">' + (pi + 1) + '</button>';
+  }
+  html += '</div>';
   var allDone = wrWordIdx >= words.length;
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
@@ -1440,6 +1457,35 @@ function playWordAudio() { if (!writingData) return; var w = writingData.words; 
 function wrReplayWordAudio(path) { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(path); wrWordAudio.play().catch(function(){}); }
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
 function wrNextWord() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+function wrGoToWord(idx) {
+  if (!writingData || wrSkipping || wrAdvanceTimer) return;
+  var words = writingData.words;
+  if (idx < 0 || idx >= words.length) return;
+  if (idx === wrWordIdx) return;
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio();
+  if (idx < wrWordIdx) {
+    // Completed word: show its completion view with audio
+    var cw = words[idx];
+    var body = document.getElementById('wr-body');
+    var html = '<div class="wr-progress">';
+    for (var pi = 0; pi < words.length; pi++) {
+      var pcls = 'wr-prog-btn';
+      if (pi < wrWordIdx) pcls += ' prog-done';
+      else if (pi === wrWordIdx) pcls += ' prog-active';
+      html += '<button class="' + pcls + '" onclick="wrGoToWord(' + pi + ')">' + (pi + 1) + '</button>';
+    }
+    html += '</div>';
+    html += '<div class="wr-word-done"' + (cw.audio ? ' onclick="wrReplayWordAudio(\'' + escHtml(cw.audio).replace(/'/g, "\\'") + '\')" style="cursor:pointer"' : '') + '>✅ ' + escHtml(cw.word) + (cw.meaning_ne ? ' (' + escHtml(cw.meaning_ne) + ')' : '') + '</div>';
+    html += '<div class="wr-word-btns"><button class="wr-next-btn" onclick="renderWriting()">' + L('btn_back','돌아가기 →') + '</button></div>';
+    body.innerHTML = html;
+    if (cw.audio) { wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }
+  } else {
+    // Jump to a future word
+    wrWordIdx = idx; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
+    renderWriting();
+  }
+  var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
 
 function wrPlayKrAudio(onDone) {
   stopSentenceAudio(); if (!writingData) return;
