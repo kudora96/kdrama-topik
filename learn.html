@@ -1397,8 +1397,9 @@ function renderWriting() {
   }
   var words = writingData.words; var html = '';
   var allDone = wrDoneWords.length >= words.length && wrWordIdx >= words.length;
-  // Word progress bar (hide on completion screen)
-  if (!allDone) {
+  // Word progress bar (hide on completion screen and word-done screen)
+  var wordDone = !allDone && wrWordIdx < words.length && wrCharIdx >= words[wrWordIdx].chars.length;
+  if (!allDone && !wordDone) {
     html += '<div class="wr-progress">';
     for (var pi = 0; pi < words.length; pi++) {
       var pcls = 'wr-prog-btn';
