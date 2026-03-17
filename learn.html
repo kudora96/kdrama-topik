@@ -1396,16 +1396,18 @@ function renderWriting() {
     return;
   }
   var words = writingData.words; var html = '';
-  // Word progress bar
-  html += '<div class="wr-progress">';
-  for (var pi = 0; pi < words.length; pi++) {
-    var pcls = 'wr-prog-btn';
-    if (wrDoneWords.indexOf(pi) !== -1) pcls += ' prog-done';
-    if (pi === wrWordIdx && wrWordIdx < words.length) pcls += ' prog-active';
-    html += '<button class="' + pcls + '" onclick="wrGoToWord(' + pi + ')">' + (pi + 1) + '</button>';
-  }
-  html += '</div>';
   var allDone = wrDoneWords.length >= words.length && wrWordIdx >= words.length;
+  // Word progress bar (hide on completion screen)
+  if (!allDone) {
+    html += '<div class="wr-progress">';
+    for (var pi = 0; pi < words.length; pi++) {
+      var pcls = 'wr-prog-btn';
+      if (wrDoneWords.indexOf(pi) !== -1) pcls += ' prog-done';
+      if (pi === wrWordIdx && wrWordIdx < words.length) pcls += ' prog-active';
+      html += '<button class="' + pcls + '" onclick="wrGoToWord(' + pi + ')">' + (pi + 1) + '</button>';
+    }
+    html += '</div>';
+  }
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + (words[i].meaning_ne ? '<span class="wr-cw-ne">' + escHtml(words[i].meaning_ne) + '</span>' : '') + '</span>'; }
