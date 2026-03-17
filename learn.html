@@ -1409,7 +1409,7 @@ function renderWriting() {
     html += '<div class="wr-word-done"' + (cw.audio ? ' onclick="wrReplayWordAudio(\'' + escHtml(cw.audio).replace(/'/g, "\\'") + '\')" style="cursor:pointer"' : '') + '>✅ ' + escHtml(cw.word) + (cw.meaning_ne ? ' (' + escHtml(cw.meaning_ne) + ')' : '') + '</div>';
     html += '<div class="wr-word-btns"><button class="wr-next-btn" onclick="wrNextWord()">' + L('next_word','다음 단어 →') + '</button></div>';
     body.innerHTML = html; playQuizSound(true);
-    if (cw.audio) { setTimeout(function() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }, 400); }
+    if (cw.audio && !wrSkipping) { setTimeout(function() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }, 400); }
     return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
