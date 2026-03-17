@@ -1293,10 +1293,11 @@ function renderQuizNav(idx, total) {
 function jumpToQuiz(idx) { quizIdx = idx; quizShowAudioText = false; var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a) { quizSelected = a.selected; quizChecked = true; } else { quizSelected = -1; quizChecked = false; } renderQuiz(); scrollQuizToTop(); }
 function selectQuizChoice(idx) { if (quizChecked) return; quizSelected = idx; renderQuiz(); }
 
-function playQuizSound(correct) {
+function playQuizSound(correct, vol) {
+  var v = typeof vol === 'number' ? vol : 1;
   try { var ctx = new (window.AudioContext || window.webkitAudioContext)();
-    if (correct) { [523,659].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(1,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.3); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.3); }); }
-    else { [200,180].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(1,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.2); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.2); }); }
+    if (correct) { [523,659].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(v,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.3); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.3); }); }
+    else { [200,180].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(v,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.2); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.2); }); }
   } catch(e) {}
 }
 
@@ -1475,6 +1476,7 @@ function pressJamo(jamo) {
     wrJamoIdx += advance;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     var charDone = wrJamoIdx >= exJamo.length;
+    if (!charDone) playQuizSound(true, 0.3);
     if (charDone) { if (cel) { cel.classList.add('flash-correct'); if (ch.audio) { var abtn = document.createElement('button'); abtn.className = 'wr-char-audio-btn'; abtn.textContent = '🔊'; abtn.onclick = (function(p){ return function(e){ e.stopPropagation(); wrPlayCharAudio(p); }; })(ch.audio); cel.parentNode.insertBefore(abtn, cel.nextSibling); } } }
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
