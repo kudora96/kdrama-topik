@@ -349,7 +349,7 @@
     .wr-keyboard { margin-bottom: 8px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
     .wr-kb-label { font-size: 0.65rem; color: #4B5563; text-align: center; margin-bottom: 2px; font-weight: 600; }
-    .wr-kb-btn { border: none; border-radius: 8px; padding: 10px 0; font-size: 19px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 36px; text-align: center; transition: background 0.15s, transform 0.1s; }
+    .wr-kb-btn { border: none; border-radius: 8px; padding: 10px 0; font-size: 19px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 36px; text-align: center; }
     .wr-kb-btn.consonant { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-kb-btn.vowel { background: rgba(22,163,74,0.12); color: #15803D; }
     .wr-kb-btn:active { opacity: 0.7; transform: scale(0.93); }
@@ -1459,11 +1459,12 @@ function pressJamo(jamo) {
     for (var ai = 0; ai < advance; ai++) wrEnteredJamo.push(exJamo[wrJamoIdx + ai]);
     wrJamoIdx += advance;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
+    var charDone = wrJamoIdx >= exJamo.length;
+    if (charDone) { if (cel) cel.classList.add('flash-correct'); }
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
-    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); });
-    if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
-      // If this is the last char of the last word, re-preload KR audio now (user gesture context) to avoid autoplay block on completion screen
-      if (wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1) { wrPreloadKrForCompletion(); }
+    var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
+    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); if (charDone) { playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
+    if (charDone) {
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
   } else { var wrBody2 = document.getElementById('wr-body'); if (wrBody2) wrBody2.offsetHeight; requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
