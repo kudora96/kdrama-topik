@@ -1422,7 +1422,7 @@ function renderWriting() {
   html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
   html += '</div></div>';
-  html += '<div class="wr-skip-row"><button class="wr-skip-btn" id="wr-skip-word-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','छोड्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-skip-all-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','सबै छोड्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','शब्द सुन्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-kr-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div>';
+  html += '<div class="wr-skip-row"><button class="wr-skip-btn" id="wr-skip-word-btn" onclick="wrSkipWord()">▶ ' + L('skip','शब्द स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-skip-all-btn" onclick="wrSkipAll()">⏭ ' + L('skip_all','सबै स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','शब्द सुन्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-kr-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div>';
   body.innerHTML = html;
 }
 
