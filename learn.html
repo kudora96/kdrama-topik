@@ -1464,7 +1464,8 @@ function pressJamo(jamo) {
     if (charDone) { if (cel) cel.classList.add('flash-correct'); }
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
-    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); if (charDone) { playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
+    var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
+    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); if (charDone) { playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); if (!isLastWordChar) { var u = new SpeechSynthesisUtterance(ch.char); u.lang = 'ko-KR'; u.rate = 0.8; speechSynthesis.speak(u); } } });
     if (charDone) {
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
