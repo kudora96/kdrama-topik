@@ -1628,11 +1628,19 @@ function wrAutoTypeNext() {
   if (wrWordIdx >= words.length) { wrSkipping = false; renderWriting(); return; }
   var cw = words[wrWordIdx];
   if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); return; }
-  var ch = cw.chars[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var jamo = exJamo[wrJamoIdx]; wrSkipAudio = playJamoAudio(jamo); flashJamoBtn(jamo, true); wrEnteredJamo.push(jamo); wrJamoIdx++;
-  var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
-  if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
-    wrAfterAudio(wrSkipAudio, function() { if (!wrSkipping) return; wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 300); } }, 1000); });
-  } else { wrAfterAudio(wrSkipAudio, function() { if (!wrSkipping) return; wrSkipTimer = setTimeout(wrAutoTypeNext, 300); }); }
+  var ch = cw.chars[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var jamo = exJamo[wrJamoIdx];
+  // Play audio first, wait for it to end, then fill slot and advance
+  wrSkipAudio = playJamoAudio(jamo); flashJamoBtn(jamo, true);
+  wrAfterAudio(wrSkipAudio, function() {
+    if (!wrSkipping) return;
+    wrEnteredJamo.push(jamo); wrJamoIdx++;
+    var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
+    if (wrJamoIdx >= exJamo.length) {
+      if (cel) cel.classList.add('flash-correct');
+      if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
+      wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; if (wrCharIdx >= cw.chars.length) { if (wrWordIdx >= wrSkipTarget) { wrSkipping = false; renderWriting(); return; } wrAutoPlayWordThenNext(cw); } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); } }, 800);
+    } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
+  });
 }
 
 function wrAfterAudio(audio, cb) { if (!audio || audio.ended) { cb(); return; } var done = false; var finish = function() { if (done) return; done = true; audio.onended = null; audio.onerror = null; if (wrSkipping) cb(); }; audio.onended = finish; audio.onerror = finish; wrSkipTimer = setTimeout(finish, 1500); }
