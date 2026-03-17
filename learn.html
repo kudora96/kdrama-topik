@@ -350,10 +350,10 @@
     .wr-kb-btn.correct-anim { background: #4CAF50 !important; color: #fff !important; }
     .wr-kb-btn.wrong-anim { background: #F44336 !important; color: #fff !important; }
     .wr-skip-row { display: flex; justify-content: center; gap: 16px; margin-top: 8px; }
-    .wr-skip-btn { border: none; background: none; color: #6B7280; font-size: 0.75rem; cursor: pointer; font-family: inherit; padding: 4px; transition: transform 0.1s; }
-    .wr-skip-btn:active { color: #1A1A1A; transform: scale(0.95); }
-    .wr-word-done { text-align: center; padding: 12px; margin-bottom: 12px; background: rgba(76,175,80,0.1); border-radius: 10px; font-size: 16px; font-weight: 700; color: #4CAF50; transition: transform 0.1s; }
-    .wr-word-done:active { transform: scale(0.95); background: rgba(76,175,80,0.2); }
+    .wr-skip-btn { border: none; background: rgba(0,0,0,0.05); color: #6B7280; font-size: 0.75rem; cursor: pointer; font-family: inherit; padding: 4px 10px; border-radius: 6px; transition: background 0.1s, transform 0.1s; }
+    .wr-skip-btn:active { color: #1A1A1A; background: rgba(0,0,0,0.15); transform: scale(0.95); }
+    .wr-word-done { text-align: center; padding: 12px; margin-bottom: 12px; background: rgba(76,175,80,0.1); border-radius: 10px; font-size: 16px; font-weight: 700; color: #4CAF50; transition: background 0.1s, transform 0.1s; }
+    .wr-word-done:active { transform: scale(0.95); background: rgba(76,175,80,0.25); }
     .wr-word-btns { display: flex; gap: 8px; margin-bottom: 12px; }
     .wr-repeat-btn, .wr-next-btn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit; transition: transform 0.1s; }
     .wr-repeat-btn { background: #4A9EFF; }
@@ -405,7 +405,9 @@
     .quiz-dark .wr-char-explain-list { background: rgba(76,175,80,0.15); border-color: transparent; }
     .quiz-dark .wr-char-explain-item { color: #A5D6A7; }
     .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
-    .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.35); }
+    .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); }
+    .quiz-dark .wr-skip-btn:active { color: #fff; background: rgba(255,255,255,0.2); }
+    .quiz-dark .wr-word-done:active { background: rgba(76,175,80,0.35); }
 
     /* ── Responsive ── */
     @media (max-width: 400px) {
