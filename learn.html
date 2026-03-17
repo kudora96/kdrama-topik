@@ -1465,9 +1465,14 @@ function pressJamo(jamo) {
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
-    // TTS for completed char (not last char of word) — call in onclick context, skip playQuizSound to avoid conflict
-    if (charDone && !isLastWordChar) { var u = new SpeechSynthesisUtterance(ch.char); u.lang = 'ko-KR'; u.rate = 0.8; speechSynthesis.speak(u); }
-    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
+    if (charDone && !isLastWordChar) {
+      // Stop all competing audio, then TTS after 300ms
+      speechSynthesis.cancel();
+      if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+      var ttsChar = ch.char;
+      setTimeout(function() { speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(ttsChar); u.lang = 'ko-KR'; u.rate = 0.8; speechSynthesis.speak(u); }, 300);
+    }
+    requestAnimationFrame(function(){ flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
     if (charDone) {
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
