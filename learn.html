@@ -1566,20 +1566,20 @@ function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); w
 
 function wrSkipWord() {
   if (!writingData || wrAdvanceTimer) return;
-  if (wrSkipping) { wrStopSkip(); renderWriting(); return; }
+  if (wrSkipping && wrSkipTarget === wrWordIdx) { wrStopSkip(); renderWriting(); return; }
+  if (wrSkipping) { wrStopSkip(); }
   if (wrWordIdx >= writingData.words.length) return;
   wrSkipping = true; wrSkipTarget = wrWordIdx; wrPreloadKrForCompletion();
   var btn = document.getElementById('wr-skip-word-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
-  var btn2 = document.getElementById('wr-skip-all-btn'); if (btn2) btn2.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
   wrAutoTypeNext();
 }
 function wrSkipAll() {
   if (!writingData || wrAdvanceTimer) return;
-  if (wrSkipping) { wrStopSkip(); renderWriting(); return; }
+  if (wrSkipping && wrSkipTarget === writingData.words.length - 1) { wrStopSkip(); renderWriting(); return; }
+  if (wrSkipping) { wrStopSkip(); }
   if (wrWordIdx >= writingData.words.length) return;
   wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrPreloadKrForCompletion();
-  var btn = document.getElementById('wr-skip-word-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
-  var btn2 = document.getElementById('wr-skip-all-btn'); if (btn2) btn2.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
+  var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
   wrAutoTypeNext();
 }
 function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } } }
