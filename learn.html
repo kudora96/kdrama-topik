@@ -344,6 +344,7 @@
     .wr-slot { min-width: 32px; height: 36px; border-radius: 6px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #9CA3AF; }
     .wr-slot.filled { background: #16A34A; color: #fff; }
     .wr-slot.current { background: #2563EB; color: #fff; box-shadow: 0 0 6px rgba(37,99,235,0.5); }
+    .wr-alt-hint { font-size: 13px; color: #6B7280; margin-top: 5px; font-weight: 600; }
     .wr-explain { padding: 6px 12px; margin-top: 6px; background: rgba(37,99,235,0.08); border-radius: 8px; font-size: 15px; color: #1D4ED8; line-height: 1.5; }
     .wr-keyboard { margin-bottom: 8px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
@@ -402,6 +403,7 @@
     .quiz-dark .wr-slot.filled { background: #4ADE80; color: #1a1a2e; }
     .quiz-dark .wr-slot.current { background: #60A5FA; color: #fff; }
     .quiz-dark .wr-explain { background: rgba(37,99,235,0.15); color: #93C5FD; }
+    .quiz-dark .wr-alt-hint { color: rgba(255,255,255,0.45); }
     .quiz-dark .wr-kb-btn.consonant { background: rgba(37,99,235,0.25); color: #93C5FD; }
     .quiz-dark .wr-kb-btn.vowel { background: rgba(22,163,74,0.25); color: #86EFAC; }
     .quiz-dark .wr-kb-btn.wrong-anim { background: rgba(220,38,38,0.4) !important; color: #FCA5A5 !important; }
@@ -1423,7 +1425,12 @@ function renderWriting() {
   var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
   html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
   for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '">' + escHtml(exJamo[i]) + '</div>'; }
-  html += '</div></div>';
+  html += '</div>';
+  // Show compound vowel alternative hint
+  var hasCompound = false;
+  for (var ci2 = 0; ci2 < ch.jamo.length; ci2++) { if (COMPOUND_VOWEL[ch.jamo[ci2]]) { hasCompound = true; break; } }
+  if (hasCompound) { html += '<div class="wr-alt-hint">वा ' + escHtml(ch.jamo.join(' + ')) + '</div>'; }
+  html += '</div>';
   html += '<div class="wr-keyboard"><div class="wr-kb-label">' + L('consonants','자음 Consonants') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
   html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
