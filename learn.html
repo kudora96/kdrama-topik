@@ -1572,20 +1572,22 @@ function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); w
 }
 
 function wrSkipWord() {
-  if (!writingData || wrAdvanceTimer) return;
+  if (!writingData) return;
   var wasSkippingWord = wrSkipping && wrSkipTarget === wrWordIdx;
   wrStopAll();
-  if (wasSkippingWord) { renderWriting(); return; }
+  renderWriting();
+  if (wasSkippingWord) return;
   if (wrWordIdx >= writingData.words.length) return;
   wrSkipping = true; wrSkipTarget = wrWordIdx; wrPreloadKrForCompletion();
   var btn = document.getElementById('wr-skip-word-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
   wrAutoTypeNext();
 }
 function wrSkipAll() {
-  if (!writingData || wrAdvanceTimer) return;
+  if (!writingData) return;
   var wasSkippingAll = wrSkipping && wrSkipTarget === writingData.words.length - 1;
   wrStopAll();
-  if (wasSkippingAll) { renderWriting(); return; }
+  renderWriting();
+  if (wasSkippingAll) return;
   if (wrWordIdx >= writingData.words.length) return;
   wrSkipping = true; wrSkipTarget = writingData.words.length - 1; wrPreloadKrForCompletion();
   var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
@@ -1594,8 +1596,12 @@ function wrSkipAll() {
 function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } } }
 function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
 function wrStopAll() {
+  var wasSkipping = wrSkipping;
   wrStopSkip(); stopKrAudio(); stopSentenceAudio();
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  // Reset jamo state if skip was interrupted mid-character
+  if (wasSkipping) { wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; }
   // Reset button texts
   var b1 = document.getElementById('wr-skip-word-btn'); if (b1) b1.innerHTML = '▶ ' + L('skip','शब्द स्वतः पूरा');
   var b2 = document.getElementById('wr-skip-all-btn'); if (b2) b2.innerHTML = '⏭ ' + L('skip_all','सबै स्वतः पूरा');
