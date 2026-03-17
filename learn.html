@@ -1408,7 +1408,7 @@ function renderWriting() {
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + (words[i].meaning_ne ? '<span class="wr-cw-ne">' + escHtml(words[i].meaning_ne) + '</span>' : '') + '</span>'; }
-    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','듣기') + '</button><button class="wr-cbtn wr-cbtn-repeat" id="wr-kr-complete-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div></div>';
+    html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','वाक्य सुन्नुहोस्') + '</button><button class="wr-cbtn wr-cbtn-repeat" id="wr-kr-complete-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div></div>';
     body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudioWithBtn(); }, 800); return;
   }
   html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (wrDoneWords.indexOf(i) !== -1) cls += ' wr-w-done'; if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
@@ -1539,7 +1539,7 @@ function toggleOriginalAudio() {
   wrWordAudio.onended = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्'); };
   wrWordAudio.onerror = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्'); };
   wrWordAudio.play().catch(function(){});
-  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
 }
 function stopKrAudio() { if (wrKrAudio) { wrKrAudio.pause(); wrKrAudio = null; } if (wrKrTimer) { clearTimeout(wrKrTimer); wrKrTimer = null; } }
 function toggleKrSentenceAudio() {
@@ -1558,7 +1558,7 @@ function toggleKrSentenceAudio() {
   wrKrAudio.onended = resetBtn;
   wrKrAudio.onerror = resetBtn;
   wrKrAudio.play().catch(function(){});
-  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
   if (endTime && endTime > 0) { wrKrTimer = setTimeout(function() { if (wrKrAudio) { wrKrAudio.pause(); resetBtn(); } }, endTime * 1000); }
 }
 function toggleCompleteAudio() {
@@ -1566,12 +1566,12 @@ function toggleCompleteAudio() {
   wrStopAll();
   if (wasPlaying) return;
   var btn = document.getElementById('wr-complete-play-btn');
-  wrPlayKrAudio(function() { if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); });
-  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+  wrPlayKrAudio(function() { if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','फेरि सुन्नुहोस्'); });
+  if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
 }
 function playSentenceAudioWithBtn() {
-  wrPlayKrAudio(function() { var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','다시듣기'); });
-  var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
+  wrPlayKrAudio(function() { var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '🔊 ' + L('btn_listen_again','फेरि सुन्नुहोस्'); });
+  var btn = document.getElementById('wr-complete-play-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
 }
 function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1;
   // Reset word highlights
@@ -1615,7 +1615,7 @@ function wrStopAll() {
   var b3 = document.getElementById('wr-original-btn'); if (b3) b3.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्');
   var b4 = document.getElementById('wr-kr-btn'); if (b4) b4.innerHTML = '🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्');
   var b5 = document.getElementById('wr-kr-complete-btn'); if (b5) b5.innerHTML = '🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्');
-  var b6 = document.getElementById('wr-complete-play-btn'); if (b6) b6.innerHTML = '🔊 ' + L('btn_listen','듣기');
+  var b6 = document.getElementById('wr-complete-play-btn'); if (b6) b6.innerHTML = '🔊 ' + L('btn_listen','वाक्य सुन्नुहोस्');
 }
 
 function wrAutoTypeNext() {
