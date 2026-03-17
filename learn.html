@@ -327,7 +327,7 @@
     .wr-prog-btn { width: 34px; height: 34px; border-radius: 50%; border: 2.5px solid #D1D5DB; background: #fff; color: #9CA3AF; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; transition: background 0.1s, transform 0.1s, border-color 0.1s, color 0.1s; }
     .wr-prog-btn:active { transform: scale(0.9); }
     .wr-prog-btn.prog-active { border-color: #2563EB; background: #2563EB; color: #fff; box-shadow: 0 0 8px rgba(37,99,235,0.5); }
-    .wr-prog-btn.prog-done { border-color: #16A34A; background: #16A34A; color: #fff; }
+    .wr-prog-btn.prog-done { border-color: #D1D5DB; background: #fff; color: #6B7280; }
     .wr-body { padding: 10px 14px; }
     .wr-sentence { font-size: 22px; font-weight: 800; text-align: center; padding: 8px 10px; border-bottom: 1px solid #E5E7EB; margin-bottom: 10px; line-height: 1.5; color: #1A1A1A; }
     .wr-sentence .wr-w { transition: color 0.2s; color: #6B7280; }
@@ -421,7 +421,7 @@
     .quiz-dark .wr-cbtn-close { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .wr-prog-btn { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 15px; }
     .quiz-dark .wr-prog-btn.prog-active { border-color: #3B82F6; background: #3B82F6; color: #fff; }
-    .quiz-dark .wr-prog-btn.prog-done { border-color: #4ADE80; background: #4ADE80; color: #1a1a2e; }
+    .quiz-dark .wr-prog-btn.prog-done { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
     .quiz-dark .wr-skip-btn { color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.1); }
     .quiz-dark .wr-skip-btn:active { color: #fff; background: rgba(255,255,255,0.25); }
     .quiz-dark .wr-word-done:active { background: rgba(22,163,74,0.35); }
@@ -1482,14 +1482,19 @@ function wrNextWord() {
   renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 function wrGoToWord(idx) {
-  if (!writingData || wrSkipping || wrAdvanceTimer) return;
+  if (!writingData) return;
   var words = writingData.words;
   if (idx < 0 || idx >= words.length) return;
-  if (idx === wrWordIdx && wrCharIdx === 0) return;
-  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio(); stopKrAudio();
+  var wasSkipAll = wrSkipping && wrSkipTarget === words.length - 1;
+  wrStopAll();
   wrWordIdx = idx; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
   renderWriting();
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  if (wasSkipAll) {
+    wrSkipping = true; wrSkipTarget = words.length - 1; wrPreloadKrForCompletion();
+    var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
+    wrAutoTypeNext();
+  }
 }
 
 function wrPlayKrAudio(onDone) {
