@@ -1665,16 +1665,29 @@ function wrAutoTypeNext() {
     if (wrJamoIdx >= exJamo.length) {
       if (cel) cel.classList.add('flash-correct');
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
-      wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
-        if (wrCharIdx >= cw.chars.length) {
-          if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
-          if (wrWordIdx >= wrSkipTarget) {
-            wrSkipping = false;
-            if (wrSkipTarget === words.length - 1) { for (var di = 0; di < words.length; di++) { if (wrDoneWords.indexOf(di) === -1) wrDoneWords.push(di); } wrWordIdx = words.length; }
-            renderWriting(); return;
-          }
-          wrAutoPlayWordThenNext(cw);
-        } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); } }, 800);
+      var isLWC = wrCharIdx >= cw.chars.length - 1;
+      var afterCharAudio = function() {
+        if (!wrSkipping) return;
+        var delay = isLWC ? 500 : 300;
+        wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
+          if (wrCharIdx >= cw.chars.length) {
+            if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
+            if (wrWordIdx >= wrSkipTarget) {
+              wrSkipping = false;
+              if (wrSkipTarget === words.length - 1) { for (var di = 0; di < words.length; di++) { if (wrDoneWords.indexOf(di) === -1) wrDoneWords.push(di); } wrWordIdx = words.length; }
+              renderWriting(); return;
+            }
+            wrAutoPlayWordThenNext(cw);
+          } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); } }, delay);
+      };
+      if (ch.audio) {
+        if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; }
+        wrSkipAudio = new Audio(ch.audio);
+        wrAfterAudio(wrSkipAudio, afterCharAudio);
+        wrSkipAudio.play().catch(function(){ afterCharAudio(); });
+      } else {
+        wrSkipTimer = setTimeout(afterCharAudio, 800);
+      }
     } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
   });
 }
