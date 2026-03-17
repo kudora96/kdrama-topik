@@ -412,7 +412,7 @@
       "words": [
         {
           "word": "중대장",
-          "meaning_ne": "",
+          "meaning_ne": "कम्पनी कमान्डर",
           "chars": [
             {
               "char": "중",
@@ -442,7 +442,7 @@
         },
         {
           "word": "동지",
-          "meaning_ne": "",
+          "meaning_ne": "साथी",
           "chars": [
             {
               "char": "동",
@@ -464,7 +464,7 @@
         },
         {
           "word": "총성",
-          "meaning_ne": "",
+          "meaning_ne": "गोलीको आवाज",
           "chars": [
             {
               "char": "총",
@@ -487,7 +487,7 @@
         },
         {
           "word": "방향을",
-          "meaning_ne": "",
+          "meaning_ne": "दिशातर्फ",
           "chars": [
             {
               "char": "방",
@@ -518,7 +518,7 @@
         },
         {
           "word": "보믄",
-          "meaning_ne": "",
+          "meaning_ne": "हेर्दा",
           "chars": [
             {
               "char": "보",
@@ -540,7 +540,7 @@
         },
         {
           "word": "이쪽으로",
-          "meaning_ne": "",
+          "meaning_ne": "यतातिर",
           "chars": [
             {
               "char": "이",
@@ -576,7 +576,7 @@
         },
         {
           "word": "오고",
-          "meaning_ne": "",
+          "meaning_ne": "आउँदै",
           "chars": [
             {
               "char": "오",
@@ -597,7 +597,7 @@
         },
         {
           "word": "있습니다",
-          "meaning_ne": "",
+          "meaning_ne": "छ",
           "chars": [
             {
               "char": "있",
