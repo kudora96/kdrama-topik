@@ -1459,13 +1459,14 @@ function pressJamo(jamo) {
     for (var ai = 0; ai < advance; ai++) wrEnteredJamo.push(exJamo[wrJamoIdx + ai]);
     wrJamoIdx += advance;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
-    setTimeout(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); }, 0);
+    var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
+    requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, true); });
     if (wrJamoIdx >= exJamo.length) { if (cel) cel.classList.add('flash-correct'); playQuizSound(true);
       // If this is the last char of the last word, re-preload KR audio now (user gesture context) to avoid autoplay block on completion screen
       if (wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1) { wrPreloadKrForCompletion(); }
       wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
-  } else { setTimeout(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }, 0); }
+  } else { var wrBody2 = document.getElementById('wr-body'); if (wrBody2) wrBody2.offsetHeight; requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
 }
 
 function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr-kb-btn'); for (var i = 0; i < btns.length; i++) { if (btns[i].textContent === jamo) { var b = btns[i]; var c = correct ? 'correct-anim' : 'wrong-anim'; b.classList.add(c); (function(bb,cc) { setTimeout(function() { bb.classList.remove(cc); }, correct ? 500 : 400); })(b,c); break; } } }
