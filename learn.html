@@ -350,6 +350,11 @@
     .wr-done-char { display: inline-flex; align-items: center; gap: 2px; font-size: 28px; font-weight: 800; color: #16A34A; }
     .wr-char-audio-btn { border: none; background: none; cursor: pointer; font-size: 16px; padding: 2px 4px; opacity: 0.7; transition: opacity 0.15s; }
     .wr-char-audio-btn:active { opacity: 1; transform: scale(1.15); }
+    .wr-char-next-row { display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
+    .wr-char-next-btn { border: none; border-radius: 10px; padding: 12px 20px; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; transition: transform 0.1s; }
+    .wr-char-next-btn:active { opacity: 0.8; transform: scale(0.95); }
+    .wr-char-replay-btn { background: rgba(37,99,235,0.12); color: #1D4ED8; }
+    .wr-char-advance-btn { background: #2563EB; color: #fff; }
     .wr-keyboard { margin-bottom: 8px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
     .wr-kb-label { font-size: 0.65rem; color: #4B5563; text-align: center; margin-bottom: 2px; font-weight: 600; }
@@ -408,6 +413,8 @@
     .quiz-dark .wr-slot.filled { background: rgba(255,255,255,0.25); color: #E5E7EB; }
     .quiz-dark .wr-slot.current { background: #4ADE80; color: #1a1a2e; }
     .quiz-dark .wr-explain { background: rgba(37,99,235,0.15); color: #93C5FD; }
+    .quiz-dark .wr-char-replay-btn { background: rgba(37,99,235,0.25); color: #93C5FD; }
+    .quiz-dark .wr-char-advance-btn { background: #3B82F6; color: #fff; }
     .quiz-dark .wr-alt-hint { color: rgba(255,255,255,0.45); }
     .quiz-dark .wr-kb-btn.consonant { background: rgba(37,99,235,0.25); color: #93C5FD; }
     .quiz-dark .wr-kb-btn.vowel { background: rgba(22,163,74,0.25); color: #86EFAC; }
@@ -1495,7 +1502,23 @@ function pressJamo(jamo) {
     }
     requestAnimationFrame(function(){ flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
     if (charDone) {
-      wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
+      if (isLastWordChar) {
+        // Last char of word: auto-advance to word-done after delay
+        wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
+      } else {
+        // Non-last char: pause and show next button
+        wrAdvanceTimer = true; // block input
+        var wrBody3 = document.getElementById('wr-body');
+        // Hide keyboard and skip row
+        var kbEl = wrBody3.querySelector('.wr-keyboard'); if (kbEl) kbEl.style.display = 'none';
+        var skEl = wrBody3.querySelector('.wr-skip-row'); if (skEl) skEl.style.display = 'none';
+        // Show next char button area
+        var nextDiv = document.createElement('div');
+        nextDiv.className = 'wr-char-next-row';
+        var chAudioPath = ch.audio;
+        nextDiv.innerHTML = (chAudioPath ? '<button class="wr-char-next-btn wr-char-replay-btn" onclick="wrPlayCharAudio(\'' + escHtml(chAudioPath).replace(/'/g, "\\'") + '\')">🔊 ' + escHtml(ch.char) + '</button>' : '') + '<button class="wr-char-next-btn wr-char-advance-btn" onclick="wrAdvanceChar()">अर्को →</button>';
+        wrBody3.appendChild(nextDiv);
+      }
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
   } else { var wrBody2 = document.getElementById('wr-body'); if (wrBody2) wrBody2.offsetHeight; requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
 }
@@ -1504,6 +1527,7 @@ function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr
 function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) slots[i].classList.add('filled'); else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
 
 function wrPlayCharAudio(path) { var a = new Audio(path); a.play().catch(function(){}); }
+function wrAdvanceChar() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }
 function playWordAudio() { if (!writingData) return; var w = writingData.words; if (wrWordIdx >= w.length) return; var cw = w[wrWordIdx]; if (!cw.audio) return; if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }
 function wrReplayWordAudio(path) { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(path); wrWordAudio.play().catch(function(){}); }
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
