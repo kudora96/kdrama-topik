@@ -1596,7 +1596,14 @@ function wrAfterAudio(audio, cb) { if (!audio || audio.ended) { cb(); return; } 
 function wrAutoPlayWordThenNext(cw) {
   if (!wrSkipping) return;
   if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
-  wrSkipTimer = setTimeout(function() { wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 500);
+  renderWriting();
+  var advance = function() { if (!wrSkipping) return; wrSkipTimer = setTimeout(function() { wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 500); };
+  if (cw.audio) {
+    if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; }
+    wrSkipAudio = new Audio(cw.audio);
+    wrAfterAudio(wrSkipAudio, advance);
+    wrSkipAudio.play().catch(function(){ advance(); });
+  } else { advance(); }
 }
 
 function retryWriting() { wrStopSkip(); if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; wrDoneWords = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
