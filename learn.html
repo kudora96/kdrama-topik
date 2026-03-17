@@ -1326,7 +1326,7 @@ function toggleQuizAudio() {
 function stopQuizAudio() { if (quizAudioEl) { quizAudioEl.pause(); quizAudioEl = null; } }
 
 // ── Writing Practice ──
-var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrKrAudio = null, wrKrTimer = null, wrDoneWords = [];
+var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrKrAudio = null, wrKrTimer = null, wrDoneWords = [], wrAutoPlayTimer = null;
 
 var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
 var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
@@ -1410,7 +1410,7 @@ function renderWriting() {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + (words[i].meaning_ne ? '<span class="wr-cw-ne">' + escHtml(words[i].meaning_ne) + '</span>' : '') + '</span>'; }
     html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','वाक्य सुन्नुहोस्') + '</button><button class="wr-cbtn wr-cbtn-repeat" id="wr-kr-complete-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div></div>';
-    body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudioWithBtn(); }, 800); return;
+    body.innerHTML = html; playQuizSound(true); if (wrAutoPlayTimer) clearTimeout(wrAutoPlayTimer); wrAutoPlayTimer = setTimeout(function() { wrAutoPlayTimer = null; playSentenceAudioWithBtn(); }, 800); return;
   }
   html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (wrDoneWords.indexOf(i) !== -1) cls += ' wr-w-done'; if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
   var cw = words[wrWordIdx]; var cc = cw.chars;
@@ -1613,6 +1613,7 @@ function wrStopAll() {
   wrStopSkip(); stopKrAudio(); stopSentenceAudio();
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
   if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; }
+  if (wrAutoPlayTimer) { clearTimeout(wrAutoPlayTimer); wrAutoPlayTimer = null; }
   // Reset jamo state if skip was interrupted mid-character
   if (wasSkipping) { wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; }
   // Reset button texts
@@ -1676,7 +1677,7 @@ function wrAutoPlayWordThenNext(cw) {
   } else { advance(); }
 }
 
-function retryWriting() { wrStopSkip(); if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; wrDoneWords = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+function retryWriting() { wrStopAll(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; wrDoneWords = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
 
 // ── Seekbar events ──
 (function() {
