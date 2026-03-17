@@ -369,7 +369,11 @@
     .wr-complete { text-align: center; padding: 20px 10px; }
     .wr-complete-icon { font-size: 3rem; margin-bottom: 8px; }
     .wr-complete-title { font-size: 20px; font-weight: 900; margin-bottom: 10px; color: #1A1A1A; }
-    .wr-complete-words { font-size: 20px; font-weight: 700; color: #1A1A1A; margin-bottom: 6px; }
+    .wr-complete-words { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 20px; font-weight: 700; color: #1A1A1A; margin-bottom: 6px; }
+    .wr-cw { display: flex; flex-direction: column; align-items: center; transition: color 0.2s; }
+    .wr-cw-ne { font-size: 11px; font-weight: 500; color: #9CA3AF; line-height: 1.3; }
+    .wr-cw.wr-cw-playing { color: #2563EB; }
+    .wr-cw.wr-cw-playing .wr-cw-ne { color: #2563EB; }
     .wr-complete-words .wr-cw-highlight { color: #2563EB; }
     .wr-complete-ne { font-size: 15px; color: #374151; margin-bottom: 14px; line-height: 1.6; }
     .wr-complete-btns { display: flex; gap: 8px; margin-bottom: 8px; }
@@ -403,6 +407,8 @@
     .quiz-dark .wr-kb-label { color: rgba(255,255,255,0.4); }
     .quiz-dark .wr-complete-title { color: #fff; }
     .quiz-dark .wr-complete-words { color: #E5E7EB; }
+    .quiz-dark .wr-cw-ne { color: rgba(255,255,255,0.35); }
+    .quiz-dark .wr-cw.wr-cw-playing .wr-cw-ne { color: #60A5FA; }
     .quiz-dark .wr-complete-ne { color: #A5D6A7; }
     .quiz-dark .wr-cbtn-repeat { background: #3B82F6; }
     .quiz-dark .wr-cbtn-retry { background: #10B981; }
@@ -1398,7 +1404,7 @@ function renderWriting() {
   var allDone = wrDoneWords.length >= words.length && wrWordIdx >= words.length;
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
-    for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; }
+    for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + (words[i].meaning_ne ? '<span class="wr-cw-ne">' + escHtml(words[i].meaning_ne) + '</span>' : '') + '</span>'; }
     html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','듣기') + '</button><button class="wr-cbtn wr-cbtn-repeat" id="wr-kr-complete-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()">✕ ' + L('btn_close','닫기') + '</button></div></div>';
     body.innerHTML = html; playQuizSound(true); setTimeout(function() { playSentenceAudioWithBtn(); }, 800); return;
   }
@@ -1488,7 +1494,7 @@ function wrPlayKrAudio(onDone) {
     var playNext = function() {
       if (wrSentenceIdx < 0 || wrSentenceIdx >= audioPaths.length) { wrSentenceAudio = null; wrSentenceIdx = -1; if (onDone) onDone(); return; }
       // Highlight current word
-      for (var h = 0; h < words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.style.color = (h === wrSentenceIdx) ? '#2563EB' : ''; }
+      for (var h = 0; h < words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) { if (h === wrSentenceIdx) el.classList.add('wr-cw-playing'); else el.classList.remove('wr-cw-playing'); } }
       wrSentenceAudio = new Audio(audioPaths[wrSentenceIdx]);
       wrSentenceAudio.onended = function() { wrSentenceIdx++; playNext(); };
       wrSentenceAudio.onerror = function() { wrSentenceIdx++; playNext(); };
@@ -1555,7 +1561,7 @@ function playSentenceAudioWithBtn() {
 }
 function stopSentenceAudio() { if (wrSentenceAudio) { wrSentenceAudio.pause(); wrSentenceAudio = null; } if (wrSentenceTimer) { clearTimeout(wrSentenceTimer); wrSentenceTimer = null; } wrSentenceIdx = -1;
   // Reset word highlights
-  if (writingData) { for (var h = 0; h < writingData.words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.style.color = ''; } }
+  if (writingData) { for (var h = 0; h < writingData.words.length; h++) { var el = document.getElementById('wr-cw-' + h); if (el) el.classList.remove('wr-cw-playing'); } }
 }
 
 function wrSkipWord() {
