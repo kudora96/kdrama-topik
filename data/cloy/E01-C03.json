@@ -810,7 +810,7 @@
       "words": [
         {
           "word": "현위치에서",
-          "meaning_ne": "",
+          "meaning_ne": "हालको स्थानबाट",
           "chars": [
             {
               "char": "현",
@@ -848,11 +848,12 @@
                 "ㅓ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/03_01_hyeonwichieseo.mp3"
         },
         {
           "word": "교전지점까지",
-          "meaning_ne": "",
+          "meaning_ne": "गोलीबारी भएको ठाउँसम्म",
           "chars": [
             {
               "char": "교",
@@ -898,11 +899,12 @@
                 "ㅣ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/03_02_gyojeonjijoemkkaji.mp3"
         },
         {
           "word": "사백미터",
-          "meaning_ne": "",
+          "meaning_ne": "चार सय मिटर",
           "chars": [
             {
               "char": "사",
@@ -933,7 +935,8 @@
                 "ㅓ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/03_03_sabaengmiteo.mp3"
         }
       ]
     },
