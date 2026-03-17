@@ -1404,7 +1404,7 @@ function renderWriting() {
   html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
   for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
   html += '</div></div>';
-  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','건너뛰기') + '</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','전체 건너뛰기') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','मूल सुन्नुहोस्') + '</button></div>';
+  html += '<div class="wr-skip-row"><button class="wr-skip-btn" onclick="wrSkipWord()">⏭️ ' + L('skip','건너뛰기') + '</button><button class="wr-skip-btn" onclick="wrSkipAll()">⏭️ ' + L('skip_all','전체 건너뛰기') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','शब्द सुन्नुहोस्') + '</button></div>';
   body.innerHTML = html;
 }
 
@@ -1479,12 +1479,12 @@ function playSentenceAudio() { wrPlayKrAudio(); }
 function playOriginalAudio() { wrPlayKrAudio(); }
 function toggleOriginalAudio() {
   var btn = document.getElementById('wr-original-btn');
-  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); return; }
+  if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्'); return; }
   if (!writingData) return; var words = writingData.words; if (wrWordIdx >= words.length) return;
   var cw = words[wrWordIdx]; if (!cw.audio) return;
   wrWordAudio = new Audio(cw.audio);
-  wrWordAudio.onended = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); };
-  wrWordAudio.onerror = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','मूल सुन्नुहोस्'); };
+  wrWordAudio.onended = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्'); };
+  wrWordAudio.onerror = function() { wrWordAudio = null; if (btn) btn.innerHTML = '🔊 ' + L('listen_original','शब्द सुन्नुहोस्'); };
   wrWordAudio.play().catch(function(){});
   if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','멈춤');
 }
