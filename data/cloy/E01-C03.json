@@ -642,7 +642,7 @@
       "words": [
         {
           "word": "남조선",
-          "meaning_ne": "",
+          "meaning_ne": "दक्षिण कोरिया",
           "chars": [
             {
               "char": "남",
@@ -667,11 +667,12 @@
                 "ㄴ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/02_01_namjoseon.mp3"
         },
         {
           "word": "부대에서",
-          "meaning_ne": "",
+          "meaning_ne": "सैनिक शिविरबाट",
           "chars": [
             {
               "char": "부",
@@ -701,11 +702,12 @@
                 "ㅓ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/02_02_budaeeseo.mp3"
         },
         {
           "word": "놀가지",
-          "meaning_ne": "",
+          "meaning_ne": "अचम्मको कुरा",
           "chars": [
             {
               "char": "놀",
@@ -729,11 +731,12 @@
                 "ㅣ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/02_03_nolgaji.mp3"
         },
         {
           "word": "생긴거",
-          "meaning_ne": "",
+          "meaning_ne": "भएको",
           "chars": [
             {
               "char": "생",
@@ -758,11 +761,12 @@
                 "ㅓ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/02_04_saenggin-geo.mp3"
         },
         {
           "word": "아닙니까",
-          "meaning_ne": "",
+          "meaning_ne": "होइन?",
           "chars": [
             {
               "char": "아",
@@ -793,7 +797,8 @@
                 "ㅏ"
               ]
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/02_05_animnikka.mp3"
         }
       ]
     },
