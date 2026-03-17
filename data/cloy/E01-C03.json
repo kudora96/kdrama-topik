@@ -420,14 +420,16 @@
                 "ㅈ",
                 "ㅜ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jung.mp3"
             },
             {
               "char": "대",
               "jamo": [
                 "ㄷ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/dae.mp3"
             },
             {
               "char": "장",
@@ -435,7 +437,8 @@
                 "ㅈ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jang.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_01_jungdaejang.mp3"
@@ -450,14 +453,16 @@
                 "ㄷ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/dong.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_02_dongji.mp3"
@@ -472,7 +477,8 @@
                 "ㅊ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chong.mp3"
             },
             {
               "char": "성",
@@ -480,7 +486,8 @@
                 "ㅅ",
                 "ㅓ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/seong.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_03_chongseong.mp3"
@@ -495,7 +502,8 @@
                 "ㅂ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/bang.mp3"
             },
             {
               "char": "향",
@@ -503,7 +511,8 @@
                 "ㅎ",
                 "ㅑ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/hyang.mp3"
             },
             {
               "char": "을",
@@ -511,7 +520,8 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_04_banghyangeul.mp3"
@@ -525,7 +535,8 @@
               "jamo": [
                 "ㅂ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/bo.mp3"
             },
             {
               "char": "믄",
@@ -533,7 +544,8 @@
                 "ㅁ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_05_bomun.mp3"
@@ -547,7 +559,8 @@
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "쪽",
@@ -555,21 +568,24 @@
                 "ㅉ",
                 "ㅗ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/jjok.mp3"
             },
             {
               "char": "으",
               "jamo": [
                 "ㅇ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/eu.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_06_ijjogeuro.mp3"
@@ -583,14 +599,16 @@
               "jamo": [
                 "ㅇ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/o.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_07_ogo.mp3"
@@ -605,7 +623,8 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/it.mp3"
             },
             {
               "char": "습",
@@ -613,21 +632,24 @@
                 "ㅅ",
                 "ㅡ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/seup.mp3"
             },
             {
               "char": "니",
               "jamo": [
                 "ㄴ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ni.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/01_08_itsseumnida.mp3"

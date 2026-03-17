@@ -1422,7 +1422,6 @@ function renderWriting() {
     html += '<div class="wr-word-done"' + (cw.audio ? ' onclick="wrReplayWordAudio(\'' + escHtml(cw.audio).replace(/'/g, "\\'") + '\')" style="cursor:pointer"' : '') + '>✅ ' + escHtml(cw.word) + (cw.meaning_ne ? ' (' + escHtml(cw.meaning_ne) + ')' : '') + '</div>';
     html += '<div class="wr-word-btns"><button class="wr-next-btn" onclick="wrNextWord()">' + L('next_word','다음 단어 →') + '</button></div>';
     body.innerHTML = html; playQuizSound(true);
-    if (cw.audio && !wrSkipping) { setTimeout(function() { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }, 400); }
     return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
@@ -1465,12 +1464,17 @@ function pressJamo(jamo) {
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
-    if (charDone && !isLastWordChar) {
-      // Stop all competing audio, then TTS after 300ms
-      speechSynthesis.cancel();
+    if (charDone) {
+      // Play char completion mp3 (ElevenLabs)
       if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
-      var ttsChar = ch.char;
-      setTimeout(function() { speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(ttsChar); u.lang = 'ko-KR'; u.rate = 0.8; speechSynthesis.speak(u); }, 300);
+      if (ch.audio) {
+        var charAudio = new Audio(ch.audio);
+        if (isLastWordChar) {
+          var cwAudio = cw.audio;
+          charAudio.onended = function() { setTimeout(function() { if (cwAudio) { wrWordAudio = new Audio(cwAudio); wrWordAudio.play().catch(function(){}); } }, 500); };
+        }
+        charAudio.play().catch(function(){});
+      }
     }
     requestAnimationFrame(function(){ flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
     if (charDone) {
