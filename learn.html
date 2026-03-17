@@ -346,6 +346,10 @@
     .wr-slot.current { background: #16A34A; color: #fff; box-shadow: 0 0 6px rgba(22,163,74,0.5); }
     .wr-alt-hint { font-size: 13px; color: #6B7280; margin-top: 5px; font-weight: 600; }
     .wr-explain { padding: 6px 12px; margin-top: 6px; background: rgba(37,99,235,0.08); border-radius: 8px; font-size: 15px; color: #1D4ED8; line-height: 1.5; }
+    .wr-completed-chars { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 8px; }
+    .wr-done-char { display: inline-flex; align-items: center; gap: 2px; font-size: 28px; font-weight: 800; color: #16A34A; }
+    .wr-char-audio-btn { border: none; background: none; cursor: pointer; font-size: 16px; padding: 2px 4px; opacity: 0.7; transition: opacity 0.15s; }
+    .wr-char-audio-btn:active { opacity: 1; transform: scale(1.15); }
     .wr-keyboard { margin-bottom: 8px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
     .wr-kb-label { font-size: 0.65rem; color: #4B5563; text-align: center; margin-bottom: 2px; font-weight: 600; }
@@ -392,6 +396,7 @@
     .quiz-dark.writing-overlay .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .wr-sentence { color: #E5E7EB; border-bottom-color: rgba(255,255,255,0.1); }
     .quiz-dark .wr-sentence .wr-w { color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-done-char { color: #4ADE80; }
     .quiz-dark .wr-sentence .wr-w-done { color: #4ADE80; }
     .quiz-dark .wr-sentence .wr-w-active { color: #60A5FA; }
     .quiz-dark .wr-word-info { color: rgba(255,255,255,0.7); }
@@ -1425,6 +1430,16 @@ function renderWriting() {
     return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
+  if (wrCharIdx > 0) {
+    html += '<div class="wr-completed-chars">';
+    for (var ci = 0; ci < wrCharIdx; ci++) {
+      var prevCh = cc[ci];
+      html += '<span class="wr-done-char">' + escHtml(prevCh.char);
+      if (prevCh.audio) html += ' <button class="wr-char-audio-btn" onclick="wrPlayCharAudio(\'' + escHtml(prevCh.audio).replace(/'/g, "\\'") + '\')">🔊</button>';
+      html += '</span>';
+    }
+    html += '</div>';
+  }
   var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
   html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
   for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '">' + escHtml(exJamo[i]) + '</div>'; }
@@ -1460,7 +1475,7 @@ function pressJamo(jamo) {
     wrJamoIdx += advance;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     var charDone = wrJamoIdx >= exJamo.length;
-    if (charDone) { if (cel) cel.classList.add('flash-correct'); }
+    if (charDone) { if (cel) { cel.classList.add('flash-correct'); if (ch.audio) { var abtn = document.createElement('button'); abtn.className = 'wr-char-audio-btn'; abtn.textContent = '🔊'; abtn.onclick = (function(p){ return function(e){ e.stopPropagation(); wrPlayCharAudio(p); }; })(ch.audio); cel.parentNode.insertBefore(abtn, cel.nextSibling); } } }
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
@@ -1486,6 +1501,7 @@ function pressJamo(jamo) {
 function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr-kb-btn'); for (var i = 0; i < btns.length; i++) { if (btns[i].textContent === jamo) { var b = btns[i]; var c = correct ? 'correct-anim' : 'wrong-anim'; b.classList.add(c); (function(bb,cc) { setTimeout(function() { bb.classList.remove(cc); }, correct ? 500 : 400); })(b,c); break; } } }
 function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) slots[i].classList.add('filled'); else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
 
+function wrPlayCharAudio(path) { var a = new Audio(path); a.play().catch(function(){}); }
 function playWordAudio() { if (!writingData) return; var w = writingData.words; if (wrWordIdx >= w.length) return; var cw = w[wrWordIdx]; if (!cw.audio) return; if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }
 function wrReplayWordAudio(path) { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(path); wrWordAudio.play().catch(function(){}); }
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
@@ -1663,7 +1679,7 @@ function wrAutoTypeNext() {
     wrEnteredJamo.push(jamo); wrJamoIdx++;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     if (wrJamoIdx >= exJamo.length) {
-      if (cel) cel.classList.add('flash-correct');
+      if (cel) { cel.classList.add('flash-correct'); if (ch.audio) { var abtn2 = document.createElement('button'); abtn2.className = 'wr-char-audio-btn'; abtn2.textContent = '🔊'; abtn2.onclick = (function(p){ return function(e){ e.stopPropagation(); wrPlayCharAudio(p); }; })(ch.audio); cel.parentNode.insertBefore(abtn2, cel.nextSibling); } }
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
       var isLWC = wrCharIdx >= cw.chars.length - 1;
       var afterCharAudio = function() {
