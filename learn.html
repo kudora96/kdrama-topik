@@ -1703,6 +1703,7 @@ function wrAutoTypeNext() {
         wrSkipAllPending = true;
         renderWriting(); return;
       }
+      if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
       renderWriting(); return;
     }
     if (wrSkipTarget === words.length - 1) {
