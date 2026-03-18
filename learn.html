@@ -1304,9 +1304,11 @@ function renderQuizNav(idx, total) {
 function jumpToQuiz(idx) { quizIdx = idx; quizShowAudioText = false; var q = quizAllQuestions[quizIdx]; var a = quizAnswers[q.id]; if (a) { quizSelected = a.selected; quizChecked = true; } else { quizSelected = -1; quizChecked = false; } renderQuiz(); scrollQuizToTop(); }
 function selectQuizChoice(idx) { if (quizChecked) return; quizSelected = idx; renderQuiz(); }
 
+var _quizAudioCtx = null;
+function _getAudioCtx() { if (!_quizAudioCtx) { try { _quizAudioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } return _quizAudioCtx; }
 function playQuizSound(correct, vol) {
   var v = typeof vol === 'number' ? vol : 1;
-  try { var ctx = new (window.AudioContext || window.webkitAudioContext)();
+  try { var ctx = _getAudioCtx(); if (!ctx) return; if (ctx.state === 'suspended') ctx.resume();
     if (correct) { [523,659].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(v,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.3); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.3); }); }
     else { [200,180].forEach(function(f,i) { var o=ctx.createOscillator(); var g=ctx.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(v,ctx.currentTime+i*0.15); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.2); o.connect(g); g.connect(ctx.destination); o.start(ctx.currentTime+i*0.15); o.stop(ctx.currentTime+i*0.15+0.2); }); }
   } catch(e) {}
@@ -1371,7 +1373,9 @@ function composeFromExpanded(j) {
   if (ki < 0) return j.join('');
   return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki);
 }
-function playJamoAudio(jamo) { var f = JAMO_AUDIO[jamo]; if (f) { try { var a = new Audio('audio/jamo/' + f + '.mp3?v=20260305b'); a.play().catch(function(){}); return a; } catch(e) {} } return null; }
+var _jamoAudioCache = {};
+function preloadJamoAudio() { for (var j in JAMO_AUDIO) { if (!_jamoAudioCache[j]) { try { _jamoAudioCache[j] = new Audio('audio/jamo/' + JAMO_AUDIO[j] + '.mp3?v=20260305b'); _jamoAudioCache[j].preload = 'auto'; } catch(e) {} } } }
+function playJamoAudio(jamo) { var a = _jamoAudioCache[jamo]; if (a) { try { a.currentTime = 0; a.play().catch(function(){}); return a; } catch(e) {} } return null; }
 
 function openWritingOverlay(subId) {
   if (isLocked) { showLockOverlay(); return; }
@@ -1386,7 +1390,7 @@ function openWritingOverlay(subId) {
   document.getElementById('loop-bar').classList.add('disabled');
   document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('writing-overlay').classList.add('open');
-  applyWritingTheme(); renderWriting();
+  applyWritingTheme(); renderWriting(); preloadJamoAudio();
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
   // Preload KR audio on user gesture to avoid autoplay block
   var krPath = getWritingKrAudioPath();
@@ -1484,17 +1488,18 @@ function pressJamo(jamo) {
     wrJamoIdx += advance;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     var charDone = wrJamoIdx >= exJamo.length;
-    if (!charDone) { playQuizSound(true, 0.3); playJamoAudio(jamo); }
     if (charDone) { if (cel) cel.classList.add('flash-correct'); }
-    var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
-    if (charDone) {
-      // Play char completion mp3 (ElevenLabs)
-      if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
-      if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
-    }
-    requestAnimationFrame(function(){ flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
+    requestAnimationFrame(function(){
+      flashJamoBtn(jamo, true);
+      if (charDone) {
+        if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+        if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
+        if (isLastWordChar) playQuizSound(true);
+        if (isLastChar) wrPreloadKrForCompletion();
+      } else { playQuizSound(true, 0.3); playJamoAudio(jamo); }
+    });
     if (charDone) {
       // Pause and show next button for all chars (including last)
       wrAdvanceTimer = true; // block input
@@ -1507,7 +1512,7 @@ function pressJamo(jamo) {
       nextDiv.innerHTML = (chAudioPath ? '<button class="wr-char-next-btn wr-char-replay-btn" onclick="wrPlayCharAudio(\'' + escHtml(chAudioPath).replace(/'/g, "\\'") + '\')">🔊 ' + escHtml(ch.char) + '</button>' : '') + '<button class="wr-char-next-btn wr-char-advance-btn" onclick="wrAdvanceChar()">अर्को →</button>';
       wrBody3.appendChild(nextDiv);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
-  } else { var wrBody2 = document.getElementById('wr-body'); if (wrBody2) wrBody2.offsetHeight; requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
+  } else { requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
 }
 
 function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr-kb-btn'); for (var i = 0; i < btns.length; i++) { if (btns[i].textContent === jamo) { var b = btns[i]; var c = correct ? 'correct-anim' : 'wrong-anim'; b.classList.add(c); (function(bb,cc) { setTimeout(function() { bb.classList.remove(cc); }, correct ? 500 : 400); })(b,c); break; } } }
