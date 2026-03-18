@@ -1369,7 +1369,10 @@ function composeFromExpanded(j) {
   var ci = CHO.indexOf(cho); var ji = JUNG.indexOf(vowel);
   if (ji < 0) return j.join('');
   if (vi >= j.length) return String.fromCharCode(0xAC00 + (ci*21+ji)*28);
-  var jong = j[vi]; var ki = JONG.indexOf(jong);
+  var jong = j[vi];
+  var COMPOUND_JONG = {'ㄱㅅ':'ㄳ','ㄴㅈ':'ㄵ','ㄴㅎ':'ㄶ','ㄹㄱ':'ㄺ','ㄹㅁ':'ㄻ','ㄹㅂ':'ㄼ','ㄹㅅ':'ㄽ','ㄹㅌ':'ㄾ','ㄹㅍ':'ㄿ','ㄹㅎ':'ㅀ','ㅂㅅ':'ㅄ'};
+  if (vi + 1 < j.length && CHO.indexOf(j[vi+1]) >= 0) { var cj = COMPOUND_JONG[jong + j[vi+1]]; if (cj) jong = cj; }
+  var ki = JONG.indexOf(jong);
   if (ki < 0) return j.join('');
   return String.fromCharCode(0xAC00 + (ci*21+ji)*28+ki);
 }
