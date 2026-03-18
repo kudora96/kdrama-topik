@@ -1345,7 +1345,7 @@ function toggleQuizAudio() {
 function stopQuizAudio() { if (quizAudioEl) { quizAudioEl.pause(); quizAudioEl = null; } }
 
 // ── Writing Practice ──
-var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrKrAudio = null, wrKrTimer = null, wrDoneWords = [], wrAutoPlayTimer = null;
+var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrKrAudio = null, wrKrTimer = null, wrDoneWords = [], wrAutoPlayTimer = null, wrSkipAllPending = false;
 
 var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
 var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
@@ -1540,13 +1540,21 @@ function wrReplayWordAudio(path) { if (wrWordAudio) { wrWordAudio.pause(); wrWor
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
 function wrNextWord() {
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+  if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; }
   if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
+  var resumeSkipAll = wrSkipAllPending; wrSkipAllPending = false;
   // Find next undone word, or go past end to trigger allDone
   var words = writingData.words; var next = -1;
   for (var i = wrWordIdx + 1; i < words.length; i++) { if (wrDoneWords.indexOf(i) === -1) { next = i; break; } }
   if (next === -1) { wrWordIdx = words.length; } else { wrWordIdx = next; }
   wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
   renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  // Resume skip-all auto-typing for next word
+  if (resumeSkipAll && wrWordIdx < words.length) {
+    wrSkipping = true; wrSkipTarget = words.length - 1;
+    var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
+    wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
+  }
 }
 function wrGoToWord(idx) {
   if (!writingData) return;
@@ -1673,7 +1681,7 @@ function wrSkipAll() {
   wrAutoTypeNext();
 }
 function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } } }
-function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
+function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; wrSkipAllPending = false; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
 function wrStopAll() {
   var wasSkipping = wrSkipping;
   wrStopSkip(); stopKrAudio(); stopSentenceAudio();
@@ -1699,7 +1707,17 @@ function wrAutoTypeNext() {
     if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
     if (wrWordIdx >= wrSkipTarget) {
       wrSkipping = false;
-      if (wrSkipTarget === words.length - 1) { for (var di = 0; di < words.length; di++) { if (wrDoneWords.indexOf(di) === -1) wrDoneWords.push(di); } wrWordIdx = words.length; }
+      if (wrSkipTarget === words.length - 1) {
+        // Skip-all: pause at word-done, don't jump to sentence complete
+        wrSkipAllPending = true;
+        renderWriting(); return;
+      }
+      renderWriting(); return;
+    }
+    // Skip-all: pause at word-done screen instead of auto-advancing
+    if (wrSkipTarget === words.length - 1) {
+      wrSkipping = false; wrSkipAllPending = true;
+      if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
       renderWriting(); return;
     }
     wrAutoPlayWordThenNext(cw); return;
@@ -1718,10 +1736,14 @@ function wrAutoTypeNext() {
     wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
       if (wrCharIdx >= cw.chars.length) {
         if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
-        if (wrWordIdx >= wrSkipTarget) {
-          wrSkipping = false;
-          if (wrSkipTarget === words.length - 1) { for (var di = 0; di < words.length; di++) { if (wrDoneWords.indexOf(di) === -1) wrDoneWords.push(di); } wrWordIdx = words.length; }
+        // Skip-all: pause at word-done screen
+        if (wrSkipTarget === words.length - 1) {
+          wrSkipping = false; wrSkipAllPending = true;
+          if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
           renderWriting(); return;
+        }
+        if (wrWordIdx >= wrSkipTarget) {
+          wrSkipping = false; renderWriting(); return;
         }
         wrAutoPlayWordThenNext(cw);
       } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
