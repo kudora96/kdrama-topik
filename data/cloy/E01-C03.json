@@ -1010,7 +1010,8 @@
                 "ㅈ",
                 "ㅣ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/jin.mp3"
             },
             {
               "char": "입",
@@ -1018,7 +1019,8 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/ip.mp3"
             },
             {
               "char": "각",
@@ -1026,9 +1028,11 @@
                 "ㄱ",
                 "ㅏ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/gak.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jinipgak.mp3"
         },
         {
           "word": "십일시",
@@ -1040,7 +1044,8 @@
                 "ㅅ",
                 "ㅣ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/sip.mp3"
             },
             {
               "char": "일",
@@ -1048,16 +1053,19 @@
                 "ㅇ",
                 "ㅣ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/il.mp3"
             },
             {
               "char": "시",
               "jamo": [
                 "ㅅ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/si.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/sibilsi.mp3"
         },
         {
           "word": "방향",
@@ -1069,7 +1077,8 @@
                 "ㅂ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/bang.mp3"
             },
             {
               "char": "향",
@@ -1077,9 +1086,11 @@
                 "ㅎ",
                 "ㅑ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/hyang.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/banghyang.mp3"
         },
         {
           "word": "교전인원",
@@ -1090,7 +1101,8 @@
               "jamo": [
                 "ㄱ",
                 "ㅛ"
-              ]
+              ],
+              "audio": "audio/chars/gyo.mp3"
             },
             {
               "char": "전",
@@ -1098,7 +1110,8 @@
                 "ㅈ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/jeon.mp3"
             },
             {
               "char": "인",
@@ -1106,7 +1119,8 @@
                 "ㅇ",
                 "ㅣ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/in_char.mp3"
             },
             {
               "char": "원",
@@ -1114,9 +1128,11 @@
                 "ㅇ",
                 "ㅝ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/won.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gyojeoninwon.mp3"
         },
         {
           "word": "열",
@@ -1128,9 +1144,11 @@
                 "ㅇ",
                 "ㅕ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/yeol.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/yeol.mp3"
         }
       ]
     },
@@ -1149,23 +1167,27 @@
               "jamo": [
                 "ㅋ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/ke.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "투",
               "jamo": [
                 "ㅌ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/tu.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/keitu.mp3"
         },
         {
           "word": "자동소총",
@@ -1176,7 +1198,8 @@
               "jamo": [
                 "ㅈ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ja.mp3"
             },
             {
               "char": "동",
@@ -1184,14 +1207,16 @@
                 "ㄷ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/dong.mp3"
             },
             {
               "char": "소",
               "jamo": [
                 "ㅅ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/so.mp3"
             },
             {
               "char": "총",
@@ -1199,9 +1224,11 @@
                 "ㅊ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chong.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jadongso-chong.mp3"
         },
         {
           "word": "여섯종",
@@ -1212,7 +1239,8 @@
               "jamo": [
                 "ㅇ",
                 "ㅕ"
-              ]
+              ],
+              "audio": "audio/chars/yeo_char.mp3"
             },
             {
               "char": "섯",
@@ -1220,7 +1248,8 @@
                 "ㅅ",
                 "ㅓ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/seot.mp3"
             },
             {
               "char": "종",
@@ -1228,9 +1257,11 @@
                 "ㅈ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jong.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/yeoseotjong.mp3"
         },
         {
           "word": "떼떼삼삼",
@@ -1241,14 +1272,16 @@
               "jamo": [
                 "ㄸ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/tte.mp3"
             },
             {
               "char": "떼",
               "jamo": [
                 "ㄸ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/tte.mp3"
             },
             {
               "char": "삼",
@@ -1256,7 +1289,8 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/sam.mp3"
             },
             {
               "char": "삼",
@@ -1264,9 +1298,11 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/sam.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ttettesamsam.mp3"
         },
         {
           "word": "토카레프",
@@ -1277,30 +1313,35 @@
               "jamo": [
                 "ㅌ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/to.mp3"
             },
             {
               "char": "카",
               "jamo": [
                 "ㅋ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ka.mp3"
             },
             {
               "char": "레",
               "jamo": [
                 "ㄹ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/re.mp3"
             },
             {
               "char": "프",
               "jamo": [
                 "ㅍ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/peu.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/tokarepeu.mp3"
         },
         {
           "word": "권총",
@@ -1312,7 +1353,8 @@
                 "ㄱ",
                 "ㅝ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/gwon.mp3"
             },
             {
               "char": "총",
@@ -1320,9 +1362,11 @@
                 "ㅊ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chong.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gwonchong.mp3"
         },
         {
           "word": "세종으로",
@@ -1333,7 +1377,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/se.mp3"
             },
             {
               "char": "종",
@@ -1341,23 +1386,27 @@
                 "ㅈ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jong.mp3"
             },
             {
               "char": "으",
               "jamo": [
                 "ㅇ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/eu.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/sejong-euro.mp3"
         },
         {
           "word": "교전",
@@ -1368,7 +1417,8 @@
               "jamo": [
                 "ㄱ",
                 "ㅛ"
-              ]
+              ],
+              "audio": "audio/chars/gyo.mp3"
             },
             {
               "char": "전",
@@ -1376,9 +1426,11 @@
                 "ㅈ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/jeon.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gyojeon.mp3"
         },
         {
           "word": "중이다",
@@ -1390,23 +1442,27 @@
                 "ㅈ",
                 "ㅜ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jung.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jungida.mp3"
         }
       ]
     },
@@ -1425,14 +1481,16 @@
               "jamo": [
                 "ㄸ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/tte.mp3"
             },
             {
               "char": "떼",
               "jamo": [
                 "ㄸ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/tte.mp3"
             },
             {
               "char": "삼",
@@ -1440,7 +1498,8 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/sam.mp3"
             },
             {
               "char": "삼",
@@ -1448,21 +1507,24 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/sam.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             },
             {
               "char": "믄",
@@ -1470,9 +1532,11 @@
                 "ㅁ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ttettesamsam-iramun.mp3"
         }
       ]
     },
@@ -1491,16 +1555,19 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/uri.mp3"
         },
         {
           "word": "쪽",
@@ -1512,9 +1579,11 @@
                 "ㅉ",
                 "ㅗ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/jjok.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jjok.mp3"
         },
         {
           "word": "사람들이다",
@@ -1525,7 +1594,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "람",
@@ -1533,7 +1603,8 @@
                 "ㄹ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/ram.mp3"
             },
             {
               "char": "들",
@@ -1541,23 +1612,27 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/saramdeul-ida.mp3"
         }
       ]
     },
@@ -1577,30 +1652,35 @@
                 "ㅁ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mul.mp3"
             },
             {
               "char": "러",
               "jamo": [
                 "ㄹ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/reo.mp3"
             },
             {
               "char": "서",
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/mulleoseora.mp3"
         },
         {
           "word": "한",
@@ -1612,9 +1692,11 @@
                 "ㅎ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/han.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/han.mp3"
         },
         {
           "word": "발만",
@@ -1626,7 +1708,8 @@
                 "ㅂ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/bal.mp3"
             },
             {
               "char": "만",
@@ -1634,9 +1717,11 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/man.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/balman.mp3"
         },
         {
           "word": "더",
@@ -1647,9 +1732,11 @@
               "jamo": [
                 "ㄷ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/deo.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/deo.mp3"
         },
         {
           "word": "내디디믄",
@@ -1660,21 +1747,24 @@
               "jamo": [
                 "ㄴ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/nae.mp3"
             },
             {
               "char": "디",
               "jamo": [
                 "ㄷ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/di.mp3"
             },
             {
               "char": "디",
               "jamo": [
                 "ㄷ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/di.mp3"
             },
             {
               "char": "믄",
@@ -1682,9 +1772,11 @@
                 "ㅁ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/naedidimun.mp3"
         }
       ]
     },
@@ -1703,16 +1795,19 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/uri.mp3"
         },
         {
           "word": "측",
@@ -1724,12 +1819,14 @@
                 "ㅊ",
                 "ㅡ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/cheuk.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/cheuk.mp3"
         },
         {
-          "word": "위수구역(군대가",
+          "word": "위수구역이다",
           "meaning_ne": "",
           "chars": [
             {
@@ -1737,21 +1834,24 @@
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             },
             {
               "char": "수",
               "jamo": [
                 "ㅅ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/su.mp3"
             },
             {
               "char": "구",
               "jamo": [
                 "ㄱ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/gu.mp3"
             },
             {
               "char": "역",
@@ -1759,179 +1859,27 @@
                 "ㅇ",
                 "ㅕ",
                 "ㄱ"
-              ]
-            },
-            {
-              "char": "(",
-              "jamo": [
-                "("
-              ]
-            },
-            {
-              "char": "군",
-              "jamo": [
-                "ㄱ",
-                "ㅜ",
-                "ㄴ"
-              ]
-            },
-            {
-              "char": "대",
-              "jamo": [
-                "ㄷ",
-                "ㅐ"
-              ]
-            },
-            {
-              "char": "가",
-              "jamo": [
-                "ㄱ",
-                "ㅏ"
-              ]
-            }
-          ]
-        },
-        {
-          "word": "장기간",
-          "meaning_ne": "",
-          "chars": [
-            {
-              "char": "장",
-              "jamo": [
-                "ㅈ",
-                "ㅏ",
-                "ㅇ"
-              ]
-            },
-            {
-              "char": "기",
-              "jamo": [
-                "ㄱ",
-                "ㅣ"
-              ]
-            },
-            {
-              "char": "간",
-              "jamo": [
-                "ㄱ",
-                "ㅏ",
-                "ㄴ"
-              ]
-            }
-          ]
-        },
-        {
-          "word": "머무르면서",
-          "meaning_ne": "",
-          "chars": [
-            {
-              "char": "머",
-              "jamo": [
-                "ㅁ",
-                "ㅓ"
-              ]
-            },
-            {
-              "char": "무",
-              "jamo": [
-                "ㅁ",
-                "ㅜ"
-              ]
-            },
-            {
-              "char": "르",
-              "jamo": [
-                "ㄹ",
-                "ㅡ"
-              ]
-            },
-            {
-              "char": "면",
-              "jamo": [
-                "ㅁ",
-                "ㅕ",
-                "ㄴ"
-              ]
-            },
-            {
-              "char": "서",
-              "jamo": [
-                "ㅅ",
-                "ㅓ"
-              ]
-            }
-          ]
-        },
-        {
-          "word": "경비하는구역)이다",
-          "meaning_ne": "",
-          "chars": [
-            {
-              "char": "경",
-              "jamo": [
-                "ㄱ",
-                "ㅕ",
-                "ㅇ"
-              ]
-            },
-            {
-              "char": "비",
-              "jamo": [
-                "ㅂ",
-                "ㅣ"
-              ]
-            },
-            {
-              "char": "하",
-              "jamo": [
-                "ㅎ",
-                "ㅏ"
-              ]
-            },
-            {
-              "char": "는",
-              "jamo": [
-                "ㄴ",
-                "ㅡ",
-                "ㄴ"
-              ]
-            },
-            {
-              "char": "구",
-              "jamo": [
-                "ㄱ",
-                "ㅜ"
-              ]
-            },
-            {
-              "char": "역",
-              "jamo": [
-                "ㅇ",
-                "ㅕ",
-                "ㄱ"
-              ]
-            },
-            {
-              "char": ")",
-              "jamo": [
-                ")"
-              ]
+              ],
+              "audio": "audio/chars/yeok.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/wisuguyek-ida.mp3"
         }
       ]
     },
@@ -1950,9 +1898,11 @@
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/i_word.mp3"
         },
         {
           "word": "셋을",
@@ -1964,7 +1914,8 @@
                 "ㅅ",
                 "ㅔ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/set.mp3"
             },
             {
               "char": "을",
@@ -1972,9 +1923,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/seseul.mp3"
         },
         {
           "word": "넘겨라",
@@ -1986,23 +1939,27 @@
                 "ㄴ",
                 "ㅓ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/neom.mp3"
             },
             {
               "char": "겨",
               "jamo": [
                 "ㄱ",
                 "ㅕ"
-              ]
+              ],
+              "audio": "audio/chars/gyeo.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/neomgyeora.mp3"
         },
         {
           "word": "그럼",
@@ -2013,7 +1970,8 @@
               "jamo": [
                 "ㄱ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/geu.mp3"
             },
             {
               "char": "럼",
@@ -2021,9 +1979,11 @@
                 "ㄹ",
                 "ㅓ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/reom.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/geureom.mp3"
         },
         {
           "word": "물러서겠다",
@@ -2035,21 +1995,24 @@
                 "ㅁ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mul.mp3"
             },
             {
               "char": "러",
               "jamo": [
                 "ㄹ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/reo.mp3"
             },
             {
               "char": "서",
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             },
             {
               "char": "겠",
@@ -2057,16 +2020,19 @@
                 "ㄱ",
                 "ㅔ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/get.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/mulleoseogetda.mp3"
         }
       ]
     },
@@ -2085,16 +2051,19 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/uri.mp3"
         },
         {
           "word": "사람들이다",
@@ -2105,7 +2074,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "람",
@@ -2113,7 +2083,8 @@
                 "ㄹ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/ram.mp3"
             },
             {
               "char": "들",
@@ -2121,23 +2092,27 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/saramdeul-ida.mp3"
         }
       ]
     },
@@ -2156,16 +2131,19 @@
               "jamo": [
                 "ㄷ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/dae.mp3"
             },
             {
               "char": "위",
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/daewi.mp3"
         },
         {
           "word": "동지",
@@ -2177,16 +2155,19 @@
                 "ㄷ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/dong.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/01_02_dongji.mp3"
         }
       ]
     },
@@ -2205,7 +2186,8 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "린",
@@ -2213,9 +2195,11 @@
                 "ㄹ",
                 "ㅣ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/rin.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/urin.mp3"
         },
         {
           "word": "보위",
@@ -2226,16 +2210,19 @@
               "jamo": [
                 "ㅂ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/bo.mp3"
             },
             {
               "char": "위",
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bowi.mp3"
         },
         {
           "word": "사령부",
@@ -2246,7 +2233,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "령",
@@ -2254,16 +2242,19 @@
                 "ㄹ",
                 "ㅕ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/ryeong.mp3"
             },
             {
               "char": "부",
               "jamo": [
                 "ㅂ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/bu.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/saryeongbu.mp3"
         },
         {
           "word": "허가를",
@@ -2274,14 +2265,16 @@
               "jamo": [
                 "ㅎ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/heo.mp3"
             },
             {
               "char": "가",
               "jamo": [
                 "ㄱ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ga.mp3"
             },
             {
               "char": "를",
@@ -2289,9 +2282,11 @@
                 "ㄹ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/reul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/heogareul.mp3"
         },
         {
           "word": "받고",
@@ -2303,16 +2298,19 @@
                 "ㅂ",
                 "ㅏ",
                 "ㄷ"
-              ]
+              ],
+              "audio": "audio/chars/bat.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/batgo.mp3"
         },
         {
           "word": "노루새끼",
@@ -2323,30 +2321,35 @@
               "jamo": [
                 "ㄴ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/no.mp3"
             },
             {
               "char": "루",
               "jamo": [
                 "ㄹ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/ru.mp3"
             },
             {
               "char": "새",
               "jamo": [
                 "ㅅ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/sae.mp3"
             },
             {
               "char": "끼",
               "jamo": [
                 "ㄲ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/kki.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/norusaekki.mp3"
         },
         {
           "word": "잡으러",
@@ -2358,23 +2361,27 @@
                 "ㅈ",
                 "ㅏ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/jap.mp3"
             },
             {
               "char": "으",
               "jamo": [
                 "ㅇ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/eu.mp3"
             },
             {
               "char": "러",
               "jamo": [
                 "ㄹ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/reo.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jabeureo.mp3"
         },
         {
           "word": "들어왔다가",
@@ -2386,14 +2393,16 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "어",
               "jamo": [
                 "ㅇ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/eo_char.mp3"
             },
             {
               "char": "왔",
@@ -2401,23 +2410,27 @@
                 "ㅇ",
                 "ㅘ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/wat.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             },
             {
               "char": "가",
               "jamo": [
                 "ㄱ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ga.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/deureowatdaga.mp3"
         }
       ]
     },
@@ -2437,16 +2450,19 @@
                 "ㄷ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dol.mp3"
             },
             {
               "char": "개",
               "jamo": [
                 "ㄱ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/gae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/dolgae.mp3"
         },
         {
           "word": "바람이",
@@ -2457,7 +2473,8 @@
               "jamo": [
                 "ㅂ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ba.mp3"
             },
             {
               "char": "람",
@@ -2465,16 +2482,19 @@
                 "ㄹ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/ram.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/barami.mp3"
         },
         {
           "word": "불어서",
@@ -2486,23 +2506,27 @@
                 "ㅂ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/bul.mp3"
             },
             {
               "char": "어",
               "jamo": [
                 "ㅇ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/eo_char.mp3"
             },
             {
               "char": "서",
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bureoseo.mp3"
         },
         {
           "word": "길을",
@@ -2514,7 +2538,8 @@
                 "ㄱ",
                 "ㅣ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/gil.mp3"
             },
             {
               "char": "을",
@@ -2522,9 +2547,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gireul.mp3"
         },
         {
           "word": "잃었을",
@@ -2537,7 +2564,8 @@
                 "ㅣ",
                 "ㄹ",
                 "ㅎ"
-              ]
+              ],
+              "audio": "audio/chars/ilt.mp3"
             },
             {
               "char": "었",
@@ -2545,7 +2573,8 @@
                 "ㅇ",
                 "ㅓ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/eot.mp3"
             },
             {
               "char": "을",
@@ -2553,9 +2582,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ireoseul.mp3"
         },
         {
           "word": "뿐입니다",
@@ -2567,7 +2598,8 @@
                 "ㅃ",
                 "ㅜ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/ppun.mp3"
             },
             {
               "char": "입",
@@ -2575,23 +2607,27 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/ip.mp3"
             },
             {
               "char": "니",
               "jamo": [
                 "ㄴ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ni.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ppunimnida.mp3"
         }
       ]
     },
@@ -2610,9 +2646,11 @@
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/i_word.mp3"
         },
         {
           "word": "자들은",
@@ -2623,7 +2661,8 @@
               "jamo": [
                 "ㅈ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ja.mp3"
             },
             {
               "char": "들",
@@ -2631,7 +2670,8 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "은",
@@ -2639,9 +2679,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/eun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jadeureun.mp3"
         },
         {
           "word": "우리",
@@ -2652,16 +2694,19 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/uri.mp3"
         },
         {
           "word": "측",
@@ -2673,9 +2718,11 @@
                 "ㅊ",
                 "ㅡ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/cheuk.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/cheuk.mp3"
         },
         {
           "word": "남방",
@@ -2687,7 +2734,8 @@
                 "ㄴ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/nam.mp3"
             },
             {
               "char": "방",
@@ -2695,9 +2743,11 @@
                 "ㅂ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/bang.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/nambang.mp3"
         },
         {
           "word": "한계선",
@@ -2709,14 +2759,16 @@
                 "ㅎ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/han.mp3"
             },
             {
               "char": "계",
               "jamo": [
                 "ㄱ",
                 "ㅖ"
-              ]
+              ],
+              "audio": "audio/chars/gye.mp3"
             },
             {
               "char": "선",
@@ -2724,9 +2776,11 @@
                 "ㅅ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/seon.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hangyeseon.mp3"
         },
         {
           "word": "지역을",
@@ -2737,7 +2791,8 @@
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             },
             {
               "char": "역",
@@ -2745,7 +2800,8 @@
                 "ㅇ",
                 "ㅕ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/yeok.mp3"
             },
             {
               "char": "을",
@@ -2753,9 +2809,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jiyeogeul.mp3"
         },
         {
           "word": "침입해",
@@ -2767,7 +2825,8 @@
                 "ㅊ",
                 "ㅣ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/chim.mp3"
             },
             {
               "char": "입",
@@ -2775,16 +2834,19 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/ip.mp3"
             },
             {
               "char": "해",
               "jamo": [
                 "ㅎ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/hae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/chimiphae.mp3"
         }
       ]
     },
@@ -2804,7 +2866,8 @@
                 "ㅂ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/bul.mp3"
             },
             {
               "char": "법",
@@ -2812,23 +2875,27 @@
                 "ㅂ",
                 "ㅓ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/beop.mp3"
             },
             {
               "char": "으",
               "jamo": [
                 "ㅇ",
                 "ㅡ"
-              ]
+              ],
+              "audio": "audio/chars/eu.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bulbeobeuro.mp3"
         },
         {
           "word": "문화재",
@@ -2840,23 +2907,27 @@
                 "ㅁ",
                 "ㅜ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun2.mp3"
             },
             {
               "char": "화",
               "jamo": [
                 "ㅎ",
                 "ㅘ"
-              ]
+              ],
+              "audio": "audio/chars/hwa.mp3"
             },
             {
               "char": "재",
               "jamo": [
                 "ㅈ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/jae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/munhwajae.mp3"
         },
         {
           "word": "도굴을",
@@ -2867,7 +2938,8 @@
               "jamo": [
                 "ㄷ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/do.mp3"
             },
             {
               "char": "굴",
@@ -2875,7 +2947,8 @@
                 "ㄱ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/gul.mp3"
             },
             {
               "char": "을",
@@ -2883,9 +2956,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/dogureul.mp3"
         },
         {
           "word": "하다가",
@@ -2896,23 +2971,27 @@
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             },
             {
               "char": "가",
               "jamo": [
                 "ㄱ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ga.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hadaga.mp3"
         },
         {
           "word": "적발됐다",
@@ -2924,7 +3003,8 @@
                 "ㅈ",
                 "ㅓ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/jeok.mp3"
             },
             {
               "char": "발",
@@ -2932,7 +3012,8 @@
                 "ㅂ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/bal.mp3"
             },
             {
               "char": "됐",
@@ -2940,16 +3021,19 @@
                 "ㄷ",
                 "ㅙ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/dwaet.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jeokbaldwaetda.mp3"
         }
       ]
     },
@@ -2969,14 +3053,16 @@
                 "ㅈ",
                 "ㅡ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/jeung.mp3"
             },
             {
               "char": "거",
               "jamo": [
                 "ㄱ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/geo.mp3"
             },
             {
               "char": "는",
@@ -2984,9 +3070,11 @@
                 "ㄴ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/neun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jeunggoneun.mp3"
         }
       ]
     },
@@ -3006,9 +3094,11 @@
                 "ㅇ",
                 "ㅕ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/yeol.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/yeol.mp3"
         },
         {
           "word": "감지",
@@ -3020,16 +3110,19 @@
                 "ㄱ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/gam.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gamji.mp3"
         },
         {
           "word": "카메라",
@@ -3040,23 +3133,27 @@
               "jamo": [
                 "ㅋ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ka.mp3"
             },
             {
               "char": "메",
               "jamo": [
                 "ㅁ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/me.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/kamera.mp3"
         },
         {
           "word": "영상을",
@@ -3068,7 +3165,8 @@
                 "ㅇ",
                 "ㅕ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/yeong.mp3"
             },
             {
               "char": "상",
@@ -3076,7 +3174,8 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/sang.mp3"
             },
             {
               "char": "을",
@@ -3084,9 +3183,11 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/eul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/yeongsangeul.mp3"
         },
         {
           "word": "시간대별로",
@@ -3097,7 +3198,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/si.mp3"
             },
             {
               "char": "간",
@@ -3105,14 +3207,16 @@
                 "ㄱ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/gan.mp3"
             },
             {
               "char": "대",
               "jamo": [
                 "ㄷ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/dae.mp3"
             },
             {
               "char": "별",
@@ -3120,16 +3224,19 @@
                 "ㅂ",
                 "ㅕ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/byeol.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/sigandaebyeollo.mp3"
         },
         {
           "word": "복사한",
@@ -3141,14 +3248,16 @@
                 "ㅂ",
                 "ㅗ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/bok.mp3"
             },
             {
               "char": "사",
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "한",
@@ -3156,9 +3265,11 @@
                 "ㅎ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/han.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/boksahan.mp3"
         },
         {
           "word": "페이퍼다",
@@ -3169,30 +3280,35 @@
               "jamo": [
                 "ㅍ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/pe.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             },
             {
               "char": "퍼",
               "jamo": [
                 "ㅍ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/peo.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/peipeoda.mp3"
         }
       ]
     },
@@ -3211,7 +3327,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "상",
@@ -3219,14 +3336,16 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/sang.mp3"
             },
             {
               "char": "자",
               "jamo": [
                 "ㅈ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ja.mp3"
             },
             {
               "char": "는",
@@ -3234,9 +3353,11 @@
                 "ㄴ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/neun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/sasangja-neun.mp3"
         },
         {
           "word": "있는가",
@@ -3248,7 +3369,8 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/it.mp3"
             },
             {
               "char": "는",
@@ -3256,16 +3378,19 @@
                 "ㄴ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/neun.mp3"
             },
             {
               "char": "가",
               "jamo": [
                 "ㄱ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ga.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ineunga.mp3"
         },
         {
           "word": "대위",
@@ -3276,16 +3401,19 @@
               "jamo": [
                 "ㄷ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/dae.mp3"
             },
             {
               "char": "위",
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/daewi.mp3"
         }
       ]
     },
@@ -3306,16 +3434,19 @@
                 "ㅓ",
                 "ㅂ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/eopt.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/eopda.mp3"
         }
       ]
     },
@@ -3334,16 +3465,19 @@
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/seoro.mp3"
         },
         {
           "word": "상황",
@@ -3355,7 +3489,8 @@
                 "ㅅ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/sang.mp3"
             },
             {
               "char": "황",
@@ -3363,9 +3498,11 @@
                 "ㅎ",
                 "ㅘ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/hwang.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/sanghwang.mp3"
         },
         {
           "word": "파악이",
@@ -3376,7 +3513,8 @@
               "jamo": [
                 "ㅍ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/pa.mp3"
             },
             {
               "char": "악",
@@ -3384,16 +3522,19 @@
                 "ㅇ",
                 "ㅏ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/ak.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/paagi.mp3"
         },
         {
           "word": "끝난",
@@ -3405,7 +3546,8 @@
                 "ㄲ",
                 "ㅡ",
                 "ㅌ"
-              ]
+              ],
+              "audio": "audio/chars/kkeut.mp3"
             },
             {
               "char": "난",
@@ -3413,9 +3555,11 @@
                 "ㄴ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/nan.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/kkeunnan.mp3"
         },
         {
           "word": "것",
@@ -3427,9 +3571,11 @@
                 "ㄱ",
                 "ㅓ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/geot.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/geot.mp3"
         },
         {
           "word": "같은데",
@@ -3441,7 +3587,8 @@
                 "ㄱ",
                 "ㅏ",
                 "ㅌ"
-              ]
+              ],
+              "audio": "audio/chars/gat2.mp3"
             },
             {
               "char": "은",
@@ -3449,16 +3596,19 @@
                 "ㅇ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/eun.mp3"
             },
             {
               "char": "데",
               "jamo": [
                 "ㄷ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/de.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gateunde.mp3"
         },
         {
           "word": "무기를",
@@ -3469,14 +3619,16 @@
               "jamo": [
                 "ㅁ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/mu.mp3"
             },
             {
               "char": "기",
               "jamo": [
                 "ㄱ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/gi.mp3"
             },
             {
               "char": "를",
@@ -3484,9 +3636,11 @@
                 "ㄹ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/reul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/mugireul.mp3"
         },
         {
           "word": "내리는",
@@ -3497,14 +3651,16 @@
               "jamo": [
                 "ㄴ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/nae.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             },
             {
               "char": "는",
@@ -3512,9 +3668,11 @@
                 "ㄴ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/neun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/naerineun.mp3"
         },
         {
           "word": "게",
@@ -3525,9 +3683,11 @@
               "jamo": [
                 "ㄱ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/ge.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ge.mp3"
         },
         {
           "word": "좋갔소",
@@ -3539,7 +3699,8 @@
                 "ㅈ",
                 "ㅗ",
                 "ㅎ"
-              ]
+              ],
+              "audio": "audio/chars/jot.mp3"
             },
             {
               "char": "갔",
@@ -3547,16 +3708,19 @@
                 "ㄱ",
                 "ㅏ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/gat.mp3"
             },
             {
               "char": "소",
               "jamo": [
                 "ㅅ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/so.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jotgatso.mp3"
         }
       ]
     },
@@ -3575,7 +3739,8 @@
               "jamo": [
                 "ㅈ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/jeo.mp3"
             },
             {
               "char": "들",
@@ -3583,16 +3748,19 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "의",
               "jamo": [
                 "ㅇ",
                 "ㅢ"
-              ]
+              ],
+              "audio": "audio/chars/ui_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jeodeurui.mp3"
         },
         {
           "word": "문제는",
@@ -3604,14 +3772,16 @@
                 "ㅁ",
                 "ㅜ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun2.mp3"
             },
             {
               "char": "제",
               "jamo": [
                 "ㅈ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/je.mp3"
             },
             {
               "char": "는",
@@ -3619,9 +3789,11 @@
                 "ㄴ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/neun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/munjeneun.mp3"
         },
         {
           "word": "조국의",
@@ -3632,7 +3804,8 @@
               "jamo": [
                 "ㅈ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/jo.mp3"
             },
             {
               "char": "국",
@@ -3640,16 +3813,19 @@
                 "ㄱ",
                 "ㅜ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/guk.mp3"
             },
             {
               "char": "의",
               "jamo": [
                 "ㅇ",
                 "ㅢ"
-              ]
+              ],
+              "audio": "audio/chars/ui_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jogugui.mp3"
         },
         {
           "word": "명예를",
@@ -3661,14 +3837,16 @@
                 "ㅁ",
                 "ㅕ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/myeong.mp3"
             },
             {
               "char": "예",
               "jamo": [
                 "ㅇ",
                 "ㅖ"
-              ]
+              ],
+              "audio": "audio/chars/ye_char.mp3"
             },
             {
               "char": "를",
@@ -3676,9 +3854,11 @@
                 "ㄹ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/reul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/myeongyereul.mp3"
         },
         {
           "word": "걸고",
@@ -3690,16 +3870,19 @@
                 "ㄱ",
                 "ㅓ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/geol.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/geolgo.mp3"
         },
         {
           "word": "본때",
@@ -3711,16 +3894,19 @@
                 "ㅂ",
                 "ㅗ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/bon.mp3"
             },
             {
               "char": "때",
               "jamo": [
                 "ㄸ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/ttae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bonttae.mp3"
         },
         {
           "word": "있게",
@@ -3732,16 +3918,19 @@
                 "ㅇ",
                 "ㅣ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/it.mp3"
             },
             {
               "char": "게",
               "jamo": [
                 "ㄱ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/ge.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/itge.mp3"
         },
         {
           "word": "조사하갔다",
@@ -3752,21 +3941,24 @@
               "jamo": [
                 "ㅈ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/jo.mp3"
             },
             {
               "char": "사",
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "갔",
@@ -3774,16 +3966,19 @@
                 "ㄱ",
                 "ㅏ",
                 "ㅆ"
-              ]
+              ],
+              "audio": "audio/chars/gat.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/josahaggatda.mp3"
         }
       ]
     },
@@ -3802,7 +3997,8 @@
               "jamo": [
                 "ㅊ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/cheo.mp3"
             },
             {
               "char": "벌",
@@ -3810,16 +4006,19 @@
                 "ㅂ",
                 "ㅓ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/beol.mp3"
             },
             {
               "char": "의",
               "jamo": [
                 "ㅇ",
                 "ㅢ"
-              ]
+              ],
+              "audio": "audio/chars/ui_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/cheoborui.mp3"
         },
         {
           "word": "수위로만",
@@ -3830,21 +4029,24 @@
               "jamo": [
                 "ㅅ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/su.mp3"
             },
             {
               "char": "위",
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             },
             {
               "char": "로",
               "jamo": [
                 "ㄹ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/ro.mp3"
             },
             {
               "char": "만",
@@ -3852,9 +4054,11 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/man.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/suwiroman.mp3"
         },
         {
           "word": "따지자믄",
@@ -3865,21 +4069,24 @@
               "jamo": [
                 "ㄸ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/tta.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             },
             {
               "char": "자",
               "jamo": [
                 "ㅈ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ja.mp3"
             },
             {
               "char": "믄",
@@ -3887,9 +4094,11 @@
                 "ㅁ",
                 "ㅡ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/mun.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/ttajijamun.mp3"
         },
         {
           "word": "우리",
@@ -3900,16 +4109,19 @@
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/uri.mp3"
         },
         {
           "word": "북조선이",
@@ -3921,14 +4133,16 @@
                 "ㅂ",
                 "ㅜ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/buk.mp3"
             },
             {
               "char": "조",
               "jamo": [
                 "ㅈ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/jo.mp3"
             },
             {
               "char": "선",
@@ -3936,16 +4150,19 @@
                 "ㅅ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/seon.mp3"
             },
             {
               "char": "이",
               "jamo": [
                 "ㅇ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/i.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bukjoseoni.mp3"
         },
         {
           "word": "남조선보다",
@@ -3957,14 +4174,16 @@
                 "ㄴ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/nam.mp3"
             },
             {
               "char": "조",
               "jamo": [
                 "ㅈ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/jo.mp3"
             },
             {
               "char": "선",
@@ -3972,23 +4191,27 @@
                 "ㅅ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/seon.mp3"
             },
             {
               "char": "보",
               "jamo": [
                 "ㅂ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/bo.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/namjoseonboda.mp3"
         },
         {
           "word": "월등히",
@@ -4000,7 +4223,8 @@
                 "ㅇ",
                 "ㅝ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/wol.mp3"
             },
             {
               "char": "등",
@@ -4008,16 +4232,19 @@
                 "ㄷ",
                 "ㅡ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/deung.mp3"
             },
             {
               "char": "히",
               "jamo": [
                 "ㅎ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/hi.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/woldeunghi.mp3"
         },
         {
           "word": "강력하다",
@@ -4029,7 +4256,8 @@
                 "ㄱ",
                 "ㅏ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/gang.mp3"
             },
             {
               "char": "력",
@@ -4037,23 +4265,27 @@
                 "ㄹ",
                 "ㅕ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/ryeok.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/gangnyeokhada.mp3"
         }
       ]
     },
@@ -4072,16 +4304,19 @@
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "나",
               "jamo": [
                 "ㄴ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/na.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hana.mp3"
         },
         {
           "word": "둘",
@@ -4093,9 +4328,11 @@
                 "ㄷ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/dul.mp3"
         },
         {
           "word": "셋",
@@ -4107,9 +4344,11 @@
                 "ㅅ",
                 "ㅔ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/set.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/set.mp3"
         },
         {
           "word": "만에",
@@ -4121,16 +4360,19 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/man.mp3"
             },
             {
               "char": "에",
               "jamo": [
                 "ㅇ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/e_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/mane.mp3"
         },
         {
           "word": "동시에",
@@ -4142,23 +4384,27 @@
                 "ㄷ",
                 "ㅗ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/dong.mp3"
             },
             {
               "char": "시",
               "jamo": [
                 "ㅅ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/si.mp3"
             },
             {
               "char": "에",
               "jamo": [
                 "ㅇ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/e_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/dongsie.mp3"
         },
         {
           "word": "내린다",
@@ -4169,7 +4415,8 @@
               "jamo": [
                 "ㄴ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/nae.mp3"
             },
             {
               "char": "린",
@@ -4177,16 +4424,19 @@
                 "ㄹ",
                 "ㅣ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/rin.mp3"
             },
             {
               "char": "다",
               "jamo": [
                 "ㄷ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/da.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/naerinda.mp3"
         },
         {
           "word": "하나",
@@ -4197,16 +4447,19 @@
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "나",
               "jamo": [
                 "ㄴ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/na.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hana.mp3"
         },
         {
           "word": "둘",
@@ -4218,9 +4471,11 @@
                 "ㄷ",
                 "ㅜ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dul.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/dul.mp3"
         },
         {
           "word": "셋",
@@ -4232,9 +4487,11 @@
                 "ㅅ",
                 "ㅔ",
                 "ㅅ"
-              ]
+              ],
+              "audio": "audio/chars/set.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/set.mp3"
         }
       ]
     },
@@ -4254,14 +4511,16 @@
                 "ㅇ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/al.mp3"
             },
             {
               "char": "파",
               "jamo": [
                 "ㅍ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/pa.mp3"
             },
             {
               "char": "원",
@@ -4269,9 +4528,11 @@
                 "ㅇ",
                 "ㅝ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/won.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/alpawon.mp3"
         },
         {
           "word": "알파원",
@@ -4283,14 +4544,16 @@
                 "ㅇ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/al.mp3"
             },
             {
               "char": "파",
               "jamo": [
                 "ㅍ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/pa.mp3"
             },
             {
               "char": "원",
@@ -4298,9 +4561,11 @@
                 "ㅇ",
                 "ㅝ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/won.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/alpawon.mp3"
         },
         {
           "word": "충돌하지",
@@ -4312,7 +4577,8 @@
                 "ㅊ",
                 "ㅜ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chung.mp3"
             },
             {
               "char": "돌",
@@ -4320,23 +4586,27 @@
                 "ㄷ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dol.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -4348,16 +4618,19 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mal.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/malgo.mp3"
         },
         {
           "word": "철수하라",
@@ -4369,30 +4642,35 @@
                 "ㅊ",
                 "ㅓ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/cheol.mp3"
             },
             {
               "char": "수",
               "jamo": [
                 "ㅅ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/su.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/cheolsuhara.mp3"
         }
       ]
     },
@@ -4412,7 +4690,8 @@
                 "ㅂ",
                 "ㅜ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/buk.mp3"
             },
             {
               "char": "측",
@@ -4420,16 +4699,19 @@
                 "ㅊ",
                 "ㅡ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/cheuk.mp3"
             },
             {
               "char": "과",
               "jamo": [
                 "ㄱ",
                 "ㅘ"
-              ]
+              ],
+              "audio": "audio/chars/gwa.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/bukchukkwa.mp3"
         },
         {
           "word": "충돌하지",
@@ -4441,7 +4723,8 @@
                 "ㅊ",
                 "ㅜ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chung.mp3"
             },
             {
               "char": "돌",
@@ -4449,23 +4732,27 @@
                 "ㄷ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dol.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -4477,16 +4764,19 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mal.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/malgo.mp3"
         },
         {
           "word": "철수하라",
@@ -4498,30 +4788,35 @@
                 "ㅊ",
                 "ㅓ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/cheol.mp3"
             },
             {
               "char": "수",
               "jamo": [
                 "ㅅ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/su.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/cheolsuhara.mp3"
         }
       ]
     },
@@ -4541,16 +4836,19 @@
                 "ㅂ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/beon.mp3"
             },
             {
               "char": "개",
               "jamo": [
                 "ㄱ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/gae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/beongae.mp3"
         },
         {
           "word": "하나",
@@ -4561,16 +4859,19 @@
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "나",
               "jamo": [
                 "ㄴ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/na.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hana.mp3"
         },
         {
           "word": "번개",
@@ -4582,16 +4883,19 @@
                 "ㅂ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/beon.mp3"
             },
             {
               "char": "개",
               "jamo": [
                 "ㄱ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/gae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/beongae.mp3"
         },
         {
           "word": "하나",
@@ -4602,16 +4906,19 @@
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "나",
               "jamo": [
                 "ㄴ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/na.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/hana.mp3"
         },
         {
           "word": "내",
@@ -4622,9 +4929,11 @@
               "jamo": [
                 "ㄴ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/nae.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/nae.mp3"
         },
         {
           "word": "말",
@@ -4636,9 +4945,11 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mal.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/mal.mp3"
         },
         {
           "word": "들리네",
@@ -4650,23 +4961,27 @@
                 "ㄷ",
                 "ㅡ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/deul.mp3"
             },
             {
               "char": "리",
               "jamo": [
                 "ㄹ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ri.mp3"
             },
             {
               "char": "네",
               "jamo": [
                 "ㄴ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/ne_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/deulline.mp3"
         }
       ]
     },
@@ -4686,7 +5001,8 @@
                 "ㄴ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/nam.mp3"
             },
             {
               "char": "측",
@@ -4694,16 +5010,19 @@
                 "ㅊ",
                 "ㅡ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/cheuk.mp3"
             },
             {
               "char": "과",
               "jamo": [
                 "ㄱ",
                 "ㅘ"
-              ]
+              ],
+              "audio": "audio/chars/gwa.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/namchukkwa.mp3"
         },
         {
           "word": "충돌하지",
@@ -4715,7 +5034,8 @@
                 "ㅊ",
                 "ㅜ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/chung.mp3"
             },
             {
               "char": "돌",
@@ -4723,23 +5043,27 @@
                 "ㄷ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dol.mp3"
             },
             {
               "char": "하",
               "jamo": [
                 "ㅎ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ha.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -4751,16 +5075,19 @@
                 "ㅁ",
                 "ㅏ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/mal.mp3"
             },
             {
               "char": "고",
               "jamo": [
                 "ㄱ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/go.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/malgo.mp3"
         },
         {
           "word": "즉시",
@@ -4772,16 +5099,19 @@
                 "ㅈ",
                 "ㅡ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/jeuk.mp3"
             },
             {
               "char": "시",
               "jamo": [
                 "ㅅ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/si.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/jeuksi.mp3"
         },
         {
           "word": "돌아오라우",
@@ -4793,37 +5123,43 @@
                 "ㄷ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/dol.mp3"
             },
             {
               "char": "아",
               "jamo": [
                 "ㅇ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/a_char.mp3"
             },
             {
               "char": "오",
               "jamo": [
                 "ㅇ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/o.mp3"
             },
             {
               "char": "라",
               "jamo": [
                 "ㄹ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ra.mp3"
             },
             {
               "char": "우",
               "jamo": [
                 "ㅇ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/u_char.mp3"
             }
-          ]
+          ],
+          "audio": "audio/writing/np/E01-C03/doraorau.mp3"
         }
       ]
     }
