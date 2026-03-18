@@ -1495,10 +1495,10 @@ function pressJamo(jamo) {
       flashJamoBtn(jamo, true);
       if (charDone) {
         if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
-        if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
-        if (isLastWordChar) playQuizSound(true);
+        // TEST: audio disabled — if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
+        // TEST: audio disabled — if (isLastWordChar) playQuizSound(true);
         if (isLastChar) wrPreloadKrForCompletion();
-      } else { playQuizSound(true, 0.3); playJamoAudio(jamo); }
+      } else { /* TEST: audio disabled — playQuizSound(true, 0.3); playJamoAudio(jamo); */ }
     });
     if (charDone) {
       // Pause and show next button for all chars (including last)
