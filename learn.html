@@ -1748,7 +1748,7 @@ function wrAutoTypeNext() {
         wrAutoPlayWordThenNext(cw);
       } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
     }, isLWC ? 1600 : 1000);
-  } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 1000); }
+  } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 300); }
 }
 
 function wrAutoPlayWordThenNext(cw) {
