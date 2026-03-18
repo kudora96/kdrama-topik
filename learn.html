@@ -1442,9 +1442,7 @@ function renderWriting() {
     html += '<div class="wr-completed-chars">';
     for (var ci = 0; ci < wrCharIdx; ci++) {
       var prevCh = cc[ci];
-      html += '<span class="wr-done-char">' + escHtml(prevCh.char);
-      if (prevCh.audio) html += ' <button class="wr-char-audio-btn" onclick="wrPlayCharAudio(\'' + escHtml(prevCh.audio).replace(/'/g, "\\'") + '\')">🔊</button>';
-      html += '</span>';
+      html += '<span class="wr-done-char">' + escHtml(prevCh.char) + '</span>';
     }
     html += '</div>';
   }
@@ -1484,7 +1482,7 @@ function pressJamo(jamo) {
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     var charDone = wrJamoIdx >= exJamo.length;
     if (!charDone) playQuizSound(true, 0.3);
-    if (charDone) { if (cel) { cel.classList.add('flash-correct'); if (ch.audio) { var abtn = document.createElement('button'); abtn.className = 'wr-char-audio-btn'; abtn.textContent = '🔊'; abtn.onclick = (function(p){ return function(e){ e.stopPropagation(); wrPlayCharAudio(p); }; })(ch.audio); cel.parentNode.insertBefore(abtn, cel.nextSibling); } } }
+    if (charDone) { if (cel) cel.classList.add('flash-correct'); }
     var wrBody = document.getElementById('wr-body'); if (wrBody) wrBody.offsetHeight;
     var isLastChar = wrCharIdx >= cw.chars.length - 1 && wrWordIdx >= words.length - 1;
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
@@ -1705,7 +1703,7 @@ function wrAutoTypeNext() {
     wrEnteredJamo.push(jamo); wrJamoIdx++;
     var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
     if (wrJamoIdx >= exJamo.length) {
-      if (cel) { cel.classList.add('flash-correct'); if (ch.audio) { var abtn2 = document.createElement('button'); abtn2.className = 'wr-char-audio-btn'; abtn2.textContent = '🔊'; abtn2.onclick = (function(p){ return function(e){ e.stopPropagation(); wrPlayCharAudio(p); }; })(ch.audio); cel.parentNode.insertBefore(abtn2, cel.nextSibling); } }
+      if (cel) cel.classList.add('flash-correct');
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
       var isLWC = wrCharIdx >= cw.chars.length - 1;
       var afterCharAudio = function() {
