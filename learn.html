@@ -1493,12 +1493,14 @@ function pressJamo(jamo) {
     var isLastWordChar = wrCharIdx >= cw.chars.length - 1;
     requestAnimationFrame(function(){
       flashJamoBtn(jamo, true);
-      if (charDone) {
-        if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
-        // TEST: audio disabled — if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
-        // TEST: audio disabled — if (isLastWordChar) playQuizSound(true);
-        if (isLastChar) wrPreloadKrForCompletion();
-      } else { /* TEST: audio disabled — playQuizSound(true, 0.3); playJamoAudio(jamo); */ }
+      if (charDone) { if (isLastChar) wrPreloadKrForCompletion(); }
+      requestAnimationFrame(function(){
+        if (charDone) {
+          if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+          if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
+          if (isLastWordChar) playQuizSound(true);
+        } else { playQuizSound(true, 0.3); playJamoAudio(jamo); }
+      });
     });
     if (charDone) {
       // Pause and show next button for all chars (including last)
