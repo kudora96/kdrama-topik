@@ -1732,7 +1732,9 @@ function wrAutoTypeNext() {
           renderWriting(); return;
         }
         if (wrWordIdx >= wrSkipTarget) {
-          wrSkipping = false; renderWriting(); return;
+          wrSkipping = false;
+          if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
+          renderWriting(); return;
         }
         wrAutoPlayWordThenNext(cw);
       } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
