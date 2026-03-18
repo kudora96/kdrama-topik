@@ -672,14 +672,16 @@
                 "ㄴ",
                 "ㅏ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/nam.mp3"
             },
             {
               "char": "조",
               "jamo": [
                 "ㅈ",
                 "ㅗ"
-              ]
+              ],
+              "audio": "audio/chars/jo.mp3"
             },
             {
               "char": "선",
@@ -687,7 +689,8 @@
                 "ㅅ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/seon.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/02_01_namjoseon.mp3"
@@ -701,28 +704,32 @@
               "jamo": [
                 "ㅂ",
                 "ㅜ"
-              ]
+              ],
+              "audio": "audio/chars/bu.mp3"
             },
             {
               "char": "대",
               "jamo": [
                 "ㄷ",
                 "ㅐ"
-              ]
+              ],
+              "audio": "audio/chars/dae.mp3"
             },
             {
               "char": "에",
               "jamo": [
                 "ㅇ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/e_char.mp3"
             },
             {
               "char": "서",
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/02_02_budaeeseo.mp3"
@@ -737,21 +744,24 @@
                 "ㄴ",
                 "ㅗ",
                 "ㄹ"
-              ]
+              ],
+              "audio": "audio/chars/nol.mp3"
             },
             {
               "char": "가",
               "jamo": [
                 "ㄱ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/ga.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/02_03_nolgaji.mp3"
@@ -766,7 +776,8 @@
                 "ㅅ",
                 "ㅐ",
                 "ㅇ"
-              ]
+              ],
+              "audio": "audio/chars/saeng.mp3"
             },
             {
               "char": "긴",
@@ -774,14 +785,16 @@
                 "ㄱ",
                 "ㅣ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/gin.mp3"
             },
             {
               "char": "거",
               "jamo": [
                 "ㄱ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/geo.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/02_04_saenggin-geo.mp3"
@@ -795,7 +808,8 @@
               "jamo": [
                 "ㅇ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/a_char.mp3"
             },
             {
               "char": "닙",
@@ -803,21 +817,24 @@
                 "ㄴ",
                 "ㅣ",
                 "ㅂ"
-              ]
+              ],
+              "audio": "audio/chars/nip.mp3"
             },
             {
               "char": "니",
               "jamo": [
                 "ㄴ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ni.mp3"
             },
             {
               "char": "까",
               "jamo": [
                 "ㄲ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/kka.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/02_05_animnikka.mp3"
@@ -840,35 +857,40 @@
                 "ㅎ",
                 "ㅕ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/hyeon.mp3"
             },
             {
               "char": "위",
               "jamo": [
                 "ㅇ",
                 "ㅟ"
-              ]
+              ],
+              "audio": "audio/chars/wi_char.mp3"
             },
             {
               "char": "치",
               "jamo": [
                 "ㅊ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/chi.mp3"
             },
             {
               "char": "에",
               "jamo": [
                 "ㅇ",
                 "ㅔ"
-              ]
+              ],
+              "audio": "audio/chars/e_char.mp3"
             },
             {
               "char": "서",
               "jamo": [
                 "ㅅ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/seo.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/03_01_hyeonwichieseo.mp3"
@@ -882,7 +904,8 @@
               "jamo": [
                 "ㄱ",
                 "ㅛ"
-              ]
+              ],
+              "audio": "audio/chars/gyo.mp3"
             },
             {
               "char": "전",
@@ -890,14 +913,16 @@
                 "ㅈ",
                 "ㅓ",
                 "ㄴ"
-              ]
+              ],
+              "audio": "audio/chars/jeon.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             },
             {
               "char": "점",
@@ -905,21 +930,24 @@
                 "ㅈ",
                 "ㅓ",
                 "ㅁ"
-              ]
+              ],
+              "audio": "audio/chars/jeom.mp3"
             },
             {
               "char": "까",
               "jamo": [
                 "ㄲ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/kka.mp3"
             },
             {
               "char": "지",
               "jamo": [
                 "ㅈ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/ji.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/03_02_gyojeonjijoemkkaji.mp3"
@@ -933,7 +961,8 @@
               "jamo": [
                 "ㅅ",
                 "ㅏ"
-              ]
+              ],
+              "audio": "audio/chars/sa.mp3"
             },
             {
               "char": "백",
@@ -941,21 +970,24 @@
                 "ㅂ",
                 "ㅐ",
                 "ㄱ"
-              ]
+              ],
+              "audio": "audio/chars/baek.mp3"
             },
             {
               "char": "미",
               "jamo": [
                 "ㅁ",
                 "ㅣ"
-              ]
+              ],
+              "audio": "audio/chars/mi.mp3"
             },
             {
               "char": "터",
               "jamo": [
                 "ㅌ",
                 "ㅓ"
-              ]
+              ],
+              "audio": "audio/chars/teo.mp3"
             }
           ],
           "audio": "audio/writing/np/E01-C03/03_03_sabaengmiteo.mp3"
