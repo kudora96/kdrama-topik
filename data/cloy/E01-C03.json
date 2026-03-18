@@ -1035,26 +1035,27 @@
           "audio": "audio/writing/np/E01-C03/jinipgak.mp3"
         },
         {
-          "word": "십일시",
+          "word": "열한시",
           "meaning_ne": "एघार बजेको",
+          "audio": "audio/writing/np/E01-C03/yeolhansi.mp3",
           "chars": [
             {
-              "char": "십",
-              "jamo": [
-                "ㅅ",
-                "ㅣ",
-                "ㅂ"
-              ],
-              "audio": "audio/chars/sip.mp3"
-            },
-            {
-              "char": "일",
+              "char": "열",
               "jamo": [
                 "ㅇ",
-                "ㅣ",
+                "ㅕ",
                 "ㄹ"
               ],
-              "audio": "audio/chars/il.mp3"
+              "audio": "audio/chars/yeol.mp3"
+            },
+            {
+              "char": "한",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/han.mp3"
             },
             {
               "char": "시",
@@ -1064,8 +1065,7 @@
               ],
               "audio": "audio/chars/si.mp3"
             }
-          ],
-          "audio": "audio/writing/np/E01-C03/sibilsi.mp3"
+          ]
         },
         {
           "word": "방향",
