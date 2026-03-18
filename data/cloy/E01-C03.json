@@ -1544,7 +1544,7 @@
       "sub_id": 7,
       "sentence": "우리 쪽 사람들이다.",
       "sentence_ne": "हाम्रो तर्फका मान्छेहरू हुन्।",
-      "sentence_end": 8.01,
+      "sentence_end": 1.0,
       "words": [
         {
           "word": "우리",
@@ -4293,7 +4293,7 @@
       "sub_id": 24,
       "sentence": "하나, 둘, 셋 만에 동시에 내린다. 하나, 둘, 셋",
       "sentence_ne": "एक, दुई, तीनमा एकैसाथ तल राख्छौं। एक, दुई, तीन",
-      "sentence_end": 10.35,
+      "sentence_end": 5.0,
       "words": [
         {
           "word": "하나",
@@ -4678,7 +4678,7 @@
       "sub_id": 26,
       "sentence": "북측과 충돌하지 말고 철수하라.",
       "sentence_ne": "उत्तर पक्षसँग भिडन्त नगरी पछि हट।",
-      "sentence_end": 6.9,
+      "sentence_end": 2.0,
       "words": [
         {
           "word": "북측과",
@@ -4824,7 +4824,7 @@
       "sub_id": 27,
       "sentence": "번개 하나, 번개 하나 내 말 들리네?",
       "sentence_ne": "बिजुली एक, बिजुली एक मेरो कुरा सुनिन्छ?",
-      "sentence_end": 7.35,
+      "sentence_end": 2.0,
       "words": [
         {
           "word": "번개",
@@ -4989,7 +4989,7 @@
       "sub_id": 28,
       "sentence": "남측과 충돌하지 말고 즉시 돌아오라우",
       "sentence_ne": "दक्षिण पक्षसँग भिडन्त नगरी तुरुन्तै फर्केर आऊ",
-      "sentence_end": 12.41,
+      "sentence_end": 3.0,
       "words": [
         {
           "word": "남측과",
