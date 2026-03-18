@@ -1722,32 +1722,33 @@ function wrAutoTypeNext() {
     }
     wrAutoPlayWordThenNext(cw); return;
   }
-  var ch = cw.chars[wrCharIdx]; var exJamo = expandJamo(ch.jamo);
-  // Complete char instantly: fill all jamo, show completed char, flash keyboard buttons
-  for (var ji = 0; ji < exJamo.length; ji++) wrEnteredJamo.push(exJamo[ji]);
-  wrJamoIdx = exJamo.length;
-  var cel = document.getElementById('wr-composed'); if (cel) { cel.textContent = composeFromExpanded(wrEnteredJamo); cel.classList.add('flash-correct'); }
-  updateSlots(exJamo.length);
-  for (var ji = 0; ji < ch.jamo.length; ji++) flashJamoBtn(ch.jamo[ji], true);
-  if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
-  // Play char audio only (no jamo audio)
-  if (ch.audio) { try { var ca = new Audio(ch.audio); ca.play().catch(function(){}); } catch(e) {} }
-  var isLWC = wrCharIdx >= cw.chars.length - 1;
-  wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
-    if (wrCharIdx >= cw.chars.length) {
-      if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
-      // Skip-all: pause at word-done screen
-      if (wrSkipTarget === words.length - 1) {
-        wrSkipping = false; wrSkipAllPending = true;
-        if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
-        renderWriting(); return;
-      }
-      if (wrWordIdx >= wrSkipTarget) {
-        wrSkipping = false; renderWriting(); return;
-      }
-      wrAutoPlayWordThenNext(cw);
-    } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
-  }, isLWC ? 1600 : 800);
+  var ch = cw.chars[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var jamo = exJamo[wrJamoIdx];
+  // DOM update first, then audio in background
+  wrEnteredJamo.push(jamo); wrJamoIdx++;
+  var cel = document.getElementById('wr-composed'); if (cel) cel.textContent = composeFromExpanded(wrEnteredJamo); updateSlots(exJamo.length);
+  flashJamoBtn(jamo, true); playJamoAudio(jamo);
+  if (wrJamoIdx >= exJamo.length) {
+    if (cel) cel.classList.add('flash-correct');
+    if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); }
+    // Char done: play char audio in background, advance after fixed delay
+    if (ch.audio) { try { var ca = new Audio(ch.audio); ca.play().catch(function(){}); } catch(e) {} }
+    var isLWC = wrCharIdx >= cw.chars.length - 1;
+    wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
+      if (wrCharIdx >= cw.chars.length) {
+        if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
+        // Skip-all: pause at word-done screen
+        if (wrSkipTarget === words.length - 1) {
+          wrSkipping = false; wrSkipAllPending = true;
+          if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
+          renderWriting(); return;
+        }
+        if (wrWordIdx >= wrSkipTarget) {
+          wrSkipping = false; renderWriting(); return;
+        }
+        wrAutoPlayWordThenNext(cw);
+      } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
+    }, isLWC ? 1600 : 1000);
+  } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 300); }
 }
 
 function wrAutoPlayWordThenNext(cw) {
