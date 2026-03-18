@@ -1489,34 +1489,20 @@ function pressJamo(jamo) {
     if (charDone) {
       // Play char completion mp3 (ElevenLabs)
       if (typeof wrWordAudio !== 'undefined' && wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
-      if (ch.audio) {
-        var charAudio = new Audio(ch.audio);
-        if (isLastWordChar) {
-          var cwAudio = cw.audio;
-          charAudio.onended = function() { setTimeout(function() { if (cwAudio) { wrWordAudio = new Audio(cwAudio); wrWordAudio.play().catch(function(){}); } }, 500); };
-        }
-        charAudio.play().catch(function(){});
-      }
+      if (ch.audio) { var charAudio = new Audio(ch.audio); charAudio.play().catch(function(){}); }
     }
     requestAnimationFrame(function(){ flashJamoBtn(jamo, true); if (charDone) { if (isLastWordChar) playQuizSound(true); if (isLastChar) wrPreloadKrForCompletion(); } });
     if (charDone) {
-      if (isLastWordChar) {
-        // Last char of word: auto-advance to word-done after delay
-        wrAdvanceTimer = setTimeout(function() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }, 1200);
-      } else {
-        // Non-last char: pause and show next button
-        wrAdvanceTimer = true; // block input
-        var wrBody3 = document.getElementById('wr-body');
-        // Hide keyboard and skip row
-        var kbEl = wrBody3.querySelector('.wr-keyboard'); if (kbEl) kbEl.style.display = 'none';
-        var skEl = wrBody3.querySelector('.wr-skip-row'); if (skEl) skEl.style.display = 'none';
-        // Show next char button area
-        var nextDiv = document.createElement('div');
-        nextDiv.className = 'wr-char-next-row';
-        var chAudioPath = ch.audio;
-        nextDiv.innerHTML = (chAudioPath ? '<button class="wr-char-next-btn wr-char-replay-btn" onclick="wrPlayCharAudio(\'' + escHtml(chAudioPath).replace(/'/g, "\\'") + '\')">🔊 ' + escHtml(ch.char) + '</button>' : '') + '<button class="wr-char-next-btn wr-char-advance-btn" onclick="wrAdvanceChar()">अर्को →</button>';
-        wrBody3.appendChild(nextDiv);
-      }
+      // Pause and show next button for all chars (including last)
+      wrAdvanceTimer = true; // block input
+      var wrBody3 = document.getElementById('wr-body');
+      var kbEl = wrBody3.querySelector('.wr-keyboard'); if (kbEl) kbEl.style.display = 'none';
+      var skEl = wrBody3.querySelector('.wr-skip-row'); if (skEl) skEl.style.display = 'none';
+      var nextDiv = document.createElement('div');
+      nextDiv.className = 'wr-char-next-row';
+      var chAudioPath = ch.audio;
+      nextDiv.innerHTML = (chAudioPath ? '<button class="wr-char-next-btn wr-char-replay-btn" onclick="wrPlayCharAudio(\'' + escHtml(chAudioPath).replace(/'/g, "\\'") + '\')">🔊 ' + escHtml(ch.char) + '</button>' : '') + '<button class="wr-char-next-btn wr-char-advance-btn" onclick="wrAdvanceChar()">अर्को →</button>';
+      wrBody3.appendChild(nextDiv);
       if (ch.explanation_ne) { var explDiv = document.createElement('div'); explDiv.className = 'wr-explain'; explDiv.textContent = ch.explanation_ne; document.getElementById('wr-body').appendChild(explDiv); } }
   } else { var wrBody2 = document.getElementById('wr-body'); if (wrBody2) wrBody2.offsetHeight; requestAnimationFrame(function(){ playJamoAudio(jamo); flashJamoBtn(jamo, false); playQuizSound(false); }); }
 }
@@ -1525,7 +1511,20 @@ function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr
 function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) slots[i].classList.add('filled'); else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
 
 function wrPlayCharAudio(path) { var a = new Audio(path); a.play().catch(function(){}); }
-function wrAdvanceChar() { wrAdvanceTimer = null; wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); }
+function wrAdvanceChar() {
+  wrAdvanceTimer = null;
+  if (!writingData) return;
+  var cw = writingData.words[wrWordIdx];
+  var isLastWordChar = cw && wrCharIdx >= cw.chars.length - 1;
+  wrCharIdx++; wrJamoIdx = 0; wrEnteredJamo = [];
+  if (isLastWordChar && cw && cw.audio) {
+    if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; }
+    wrWordAudio = new Audio(cw.audio);
+    wrWordAudio.onended = function() { wrWordAudio = null; renderWriting(); };
+    wrWordAudio.onerror = function() { wrWordAudio = null; renderWriting(); };
+    setTimeout(function() { if (wrWordAudio) wrWordAudio.play().catch(function(){ renderWriting(); }); }, 500);
+  } else { renderWriting(); }
+}
 function playWordAudio() { if (!writingData) return; var w = writingData.words; if (wrWordIdx >= w.length) return; var cw = w[wrWordIdx]; if (!cw.audio) return; if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(cw.audio); wrWordAudio.play().catch(function(){}); }
 function wrReplayWordAudio(path) { if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } wrWordAudio = new Audio(path); wrWordAudio.play().catch(function(){}); }
 function getWritingKrAudioPath() { if (!writingData || !wrWritingSubId) return null; var expl = explanationsMap[String(wrWritingSubId)]; if (expl && expl.audio_kr) return 'audio/kr/' + CLIP_ID + '/' + expl.audio_kr + '?v=20260305b'; return null; }
