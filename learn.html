@@ -1725,8 +1725,8 @@ function wrAutoTypeNext() {
         }
         wrAutoPlayWordThenNext(cw);
       } else { renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 200); }
-    }, isLWC ? 800 : 500);
-  } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }
+    }, isLWC ? 1600 : 1000);
+  } else { wrSkipTimer = setTimeout(wrAutoTypeNext, 1000); }
 }
 
 function wrAutoPlayWordThenNext(cw) {
@@ -1735,7 +1735,7 @@ function wrAutoPlayWordThenNext(cw) {
   renderWriting();
   // Play word audio in background, advance after fixed delay
   if (cw.audio) { try { if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } wrSkipAudio = new Audio(cw.audio); wrSkipAudio.play().catch(function(){}); } catch(e) {} }
-  wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 1200);
+  wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 2400);
 }
 
 function retryWriting() { wrStopAll(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; wrDoneWords = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
