@@ -1438,14 +1438,6 @@ function renderWriting() {
     return;
   }
   html += '<div class="wr-word-info"><strong>' + escHtml(cw.word) + '</strong> — ' + escHtml(cw.meaning_ne) + '</div>';
-  if (wrCharIdx > 0) {
-    html += '<div class="wr-completed-chars">';
-    for (var ci = 0; ci < wrCharIdx; ci++) {
-      var prevCh = cc[ci];
-      html += '<span class="wr-done-char">' + escHtml(prevCh.char) + '</span>';
-    }
-    html += '</div>';
-  }
   var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
   html += '<div class="wr-char-area"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-jamo-slots">';
   for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '">' + escHtml(exJamo[i]) + '</div>'; }
