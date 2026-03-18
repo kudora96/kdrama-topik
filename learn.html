@@ -343,7 +343,8 @@
     .wr-jamo-slots { display: flex; gap: 5px; justify-content: center; }
     .wr-slot { min-width: 32px; height: 36px; border-radius: 6px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #9CA3AF; }
     .wr-slot.filled { background: #fff; color: #1A1A1A; border: 1.5px solid #D1D5DB; }
-    .wr-slot.current { background: #16A34A; color: #fff; box-shadow: 0 0 6px rgba(22,163,74,0.5); }
+    .wr-slot.current { background: #F3F4F6; color: #9CA3AF; }
+    .wr-slot.just-pressed { background: #16A34A; color: #fff; box-shadow: 0 0 6px rgba(22,163,74,0.5); transition: background 0.15s, color 0.15s; }
     .wr-alt-hint { font-size: 13px; color: #6B7280; margin-top: 5px; font-weight: 600; }
     .wr-explain { padding: 6px 12px; margin-top: 6px; background: rgba(37,99,235,0.08); border-radius: 8px; font-size: 15px; color: #1D4ED8; line-height: 1.5; }
     .wr-completed-chars { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 12px; }
@@ -414,7 +415,8 @@
     .quiz-dark .wr-composed.flash-correct { color: #4ADE80; }
     .quiz-dark .wr-slot { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
     .quiz-dark .wr-slot.filled { background: rgba(255,255,255,0.25); color: #E5E7EB; }
-    .quiz-dark .wr-slot.current { background: #4ADE80; color: #1a1a2e; }
+    .quiz-dark .wr-slot.current { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
+    .quiz-dark .wr-slot.just-pressed { background: #4ADE80; color: #1a1a2e; box-shadow: 0 0 6px rgba(74,222,128,0.5); }
     .quiz-dark .wr-explain { background: rgba(37,99,235,0.15); color: #93C5FD; }
     .quiz-dark .wr-char-replay-btn { background: rgba(37,99,235,0.25); color: #93C5FD; }
     .quiz-dark .wr-char-advance-btn { background: #3B82F6; color: #fff; }
@@ -1518,7 +1520,7 @@ function pressJamo(jamo) {
 }
 
 function flashJamoBtn(jamo, correct) { var btns = document.querySelectorAll('.wr-kb-btn'); for (var i = 0; i < btns.length; i++) { if (btns[i].textContent === jamo) { var b = btns[i]; var c = correct ? 'correct-anim' : 'wrong-anim'; b.classList.add(c); (function(bb,cc) { setTimeout(function() { bb.classList.remove(cc); }, correct ? 500 : 400); })(b,c); break; } } }
-function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) slots[i].classList.add('filled'); else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
+function updateSlots(total) { var slots = document.querySelectorAll('.wr-jamo-slots .wr-slot'); for (var i = 0; i < slots.length; i++) { slots[i].className = 'wr-slot'; if (i < wrJamoIdx) { slots[i].classList.add('filled'); if (i === wrJamoIdx - 1) { slots[i].classList.add('just-pressed'); (function(s){ setTimeout(function(){ s.classList.remove('just-pressed'); }, 400); })(slots[i]); } } else if (i === wrJamoIdx) slots[i].classList.add('current'); } }
 
 function wrPlayCharAudio(path) { var a = new Audio(path); a.play().catch(function(){}); }
 function wrAdvanceChar() {
