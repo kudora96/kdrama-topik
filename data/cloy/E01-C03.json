@@ -1002,7 +1002,7 @@
       "words": [
         {
           "word": "진입각",
-          "meaning_ne": "",
+          "meaning_ne": "प्रवेश कोण",
           "chars": [
             {
               "char": "진",
@@ -1036,7 +1036,7 @@
         },
         {
           "word": "십일시",
-          "meaning_ne": "",
+          "meaning_ne": "एघार बजेको",
           "chars": [
             {
               "char": "십",
@@ -1069,7 +1069,7 @@
         },
         {
           "word": "방향",
-          "meaning_ne": "",
+          "meaning_ne": "दिशा",
           "chars": [
             {
               "char": "방",
@@ -1094,7 +1094,7 @@
         },
         {
           "word": "교전인원",
-          "meaning_ne": "",
+          "meaning_ne": "लडाइँमा संलग्न सैनिक",
           "chars": [
             {
               "char": "교",
@@ -1136,7 +1136,7 @@
         },
         {
           "word": "열",
-          "meaning_ne": "",
+          "meaning_ne": "ताप",
           "chars": [
             {
               "char": "열",
@@ -1160,7 +1160,7 @@
       "words": [
         {
           "word": "케이투",
-          "meaning_ne": "",
+          "meaning_ne": "के-टु",
           "chars": [
             {
               "char": "케",
@@ -1191,7 +1191,7 @@
         },
         {
           "word": "자동소총",
-          "meaning_ne": "",
+          "meaning_ne": "स्वचालित राइफल",
           "chars": [
             {
               "char": "자",
@@ -1232,7 +1232,7 @@
         },
         {
           "word": "여섯종",
-          "meaning_ne": "",
+          "meaning_ne": "छ प्रकार",
           "chars": [
             {
               "char": "여",
@@ -1265,7 +1265,7 @@
         },
         {
           "word": "떼떼삼삼",
-          "meaning_ne": "",
+          "meaning_ne": "टीटी-३३",
           "chars": [
             {
               "char": "떼",
@@ -1306,7 +1306,7 @@
         },
         {
           "word": "토카레프",
-          "meaning_ne": "",
+          "meaning_ne": "टोकारेभ",
           "chars": [
             {
               "char": "토",
@@ -1345,7 +1345,7 @@
         },
         {
           "word": "권총",
-          "meaning_ne": "",
+          "meaning_ne": "पिस्तोल",
           "chars": [
             {
               "char": "권",
@@ -1370,7 +1370,7 @@
         },
         {
           "word": "세종으로",
-          "meaning_ne": "",
+          "meaning_ne": "तीन प्रकारले",
           "chars": [
             {
               "char": "세",
@@ -1410,7 +1410,7 @@
         },
         {
           "word": "교전",
-          "meaning_ne": "",
+          "meaning_ne": "गोलीबारी",
           "chars": [
             {
               "char": "교",
@@ -1434,7 +1434,7 @@
         },
         {
           "word": "중이다",
-          "meaning_ne": "",
+          "meaning_ne": "भइरहेको छ",
           "chars": [
             {
               "char": "중",
@@ -1474,7 +1474,7 @@
       "words": [
         {
           "word": "떼떼삼삼이라믄",
-          "meaning_ne": "",
+          "meaning_ne": "टीटी-३३ भन्नाले",
           "chars": [
             {
               "char": "떼",
@@ -1548,7 +1548,7 @@
       "words": [
         {
           "word": "우리",
-          "meaning_ne": "",
+          "meaning_ne": "हाम्रो",
           "chars": [
             {
               "char": "우",
@@ -1571,7 +1571,7 @@
         },
         {
           "word": "쪽",
-          "meaning_ne": "",
+          "meaning_ne": "तर्फको",
           "chars": [
             {
               "char": "쪽",
@@ -1587,7 +1587,7 @@
         },
         {
           "word": "사람들이다",
-          "meaning_ne": "",
+          "meaning_ne": "मान्छेहरू हुन्",
           "chars": [
             {
               "char": "사",
@@ -1644,7 +1644,7 @@
       "words": [
         {
           "word": "물러서라",
-          "meaning_ne": "",
+          "meaning_ne": "पछि हट",
           "chars": [
             {
               "char": "물",
@@ -1684,7 +1684,7 @@
         },
         {
           "word": "한",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "chars": [
             {
               "char": "한",
@@ -1700,7 +1700,7 @@
         },
         {
           "word": "발만",
-          "meaning_ne": "",
+          "meaning_ne": "पाइला मात्र",
           "chars": [
             {
               "char": "발",
@@ -1725,7 +1725,7 @@
         },
         {
           "word": "더",
-          "meaning_ne": "",
+          "meaning_ne": "अझ",
           "chars": [
             {
               "char": "더",
@@ -1740,7 +1740,7 @@
         },
         {
           "word": "내디디믄",
-          "meaning_ne": "",
+          "meaning_ne": "चाल्यौ भने",
           "chars": [
             {
               "char": "내",
@@ -1788,7 +1788,7 @@
       "words": [
         {
           "word": "우리",
-          "meaning_ne": "",
+          "meaning_ne": "हाम्रो",
           "chars": [
             {
               "char": "우",
@@ -1811,7 +1811,7 @@
         },
         {
           "word": "측",
-          "meaning_ne": "",
+          "meaning_ne": "पक्षको",
           "chars": [
             {
               "char": "측",
@@ -1827,7 +1827,7 @@
         },
         {
           "word": "위수구역이다",
-          "meaning_ne": "",
+          "meaning_ne": "सैनिक क्षेत्र हो",
           "chars": [
             {
               "char": "위",
@@ -1891,7 +1891,7 @@
       "words": [
         {
           "word": "이",
-          "meaning_ne": "",
+          "meaning_ne": "यी",
           "chars": [
             {
               "char": "이",
@@ -1906,7 +1906,7 @@
         },
         {
           "word": "셋을",
-          "meaning_ne": "",
+          "meaning_ne": "तीन जनालाई",
           "chars": [
             {
               "char": "셋",
@@ -1931,7 +1931,7 @@
         },
         {
           "word": "넘겨라",
-          "meaning_ne": "",
+          "meaning_ne": "सुम्पिदेउ",
           "chars": [
             {
               "char": "넘",
@@ -1963,7 +1963,7 @@
         },
         {
           "word": "그럼",
-          "meaning_ne": "",
+          "meaning_ne": "त्यसो भए",
           "chars": [
             {
               "char": "그",
@@ -1987,7 +1987,7 @@
         },
         {
           "word": "물러서겠다",
-          "meaning_ne": "",
+          "meaning_ne": "पछि हट्छौं",
           "chars": [
             {
               "char": "물",
@@ -2044,7 +2044,7 @@
       "words": [
         {
           "word": "우리",
-          "meaning_ne": "",
+          "meaning_ne": "हाम्रो",
           "chars": [
             {
               "char": "우",
@@ -2067,7 +2067,7 @@
         },
         {
           "word": "사람들이다",
-          "meaning_ne": "",
+          "meaning_ne": "मान्छेहरू हुन्",
           "chars": [
             {
               "char": "사",
@@ -2124,7 +2124,7 @@
       "words": [
         {
           "word": "대위",
-          "meaning_ne": "",
+          "meaning_ne": "कप्तान",
           "chars": [
             {
               "char": "대",
@@ -2147,7 +2147,7 @@
         },
         {
           "word": "동지",
-          "meaning_ne": "",
+          "meaning_ne": "साथी",
           "chars": [
             {
               "char": "동",
@@ -2179,7 +2179,7 @@
       "words": [
         {
           "word": "우린",
-          "meaning_ne": "",
+          "meaning_ne": "हामी",
           "chars": [
             {
               "char": "우",
@@ -2203,7 +2203,7 @@
         },
         {
           "word": "보위",
-          "meaning_ne": "",
+          "meaning_ne": "सुरक्षा",
           "chars": [
             {
               "char": "보",
@@ -2226,7 +2226,7 @@
         },
         {
           "word": "사령부",
-          "meaning_ne": "",
+          "meaning_ne": "कमाण्ड",
           "chars": [
             {
               "char": "사",
@@ -2258,7 +2258,7 @@
         },
         {
           "word": "허가를",
-          "meaning_ne": "",
+          "meaning_ne": "अनुमति",
           "chars": [
             {
               "char": "허",
@@ -2290,7 +2290,7 @@
         },
         {
           "word": "받고",
-          "meaning_ne": "",
+          "meaning_ne": "पाएर",
           "chars": [
             {
               "char": "받",
@@ -2314,7 +2314,7 @@
         },
         {
           "word": "노루새끼",
-          "meaning_ne": "",
+          "meaning_ne": "मृगको बच्चा",
           "chars": [
             {
               "char": "노",
@@ -2353,7 +2353,7 @@
         },
         {
           "word": "잡으러",
-          "meaning_ne": "",
+          "meaning_ne": "समात्न",
           "chars": [
             {
               "char": "잡",
@@ -2385,7 +2385,7 @@
         },
         {
           "word": "들어왔다가",
-          "meaning_ne": "",
+          "meaning_ne": "भित्र आएको",
           "chars": [
             {
               "char": "들",
@@ -2442,7 +2442,7 @@
       "words": [
         {
           "word": "돌개",
-          "meaning_ne": "",
+          "meaning_ne": "घुम्ने",
           "chars": [
             {
               "char": "돌",
@@ -2466,7 +2466,7 @@
         },
         {
           "word": "바람이",
-          "meaning_ne": "",
+          "meaning_ne": "हावा",
           "chars": [
             {
               "char": "바",
@@ -2498,7 +2498,7 @@
         },
         {
           "word": "불어서",
-          "meaning_ne": "",
+          "meaning_ne": "चलेर",
           "chars": [
             {
               "char": "불",
@@ -2530,7 +2530,7 @@
         },
         {
           "word": "길을",
-          "meaning_ne": "",
+          "meaning_ne": "बाटो",
           "chars": [
             {
               "char": "길",
@@ -2555,7 +2555,7 @@
         },
         {
           "word": "잃었을",
-          "meaning_ne": "",
+          "meaning_ne": "हराएको",
           "chars": [
             {
               "char": "잃",
@@ -2590,7 +2590,7 @@
         },
         {
           "word": "뿐입니다",
-          "meaning_ne": "",
+          "meaning_ne": "मात्र हो",
           "chars": [
             {
               "char": "뿐",
@@ -2639,7 +2639,7 @@
       "words": [
         {
           "word": "이",
-          "meaning_ne": "",
+          "meaning_ne": "यी",
           "chars": [
             {
               "char": "이",
@@ -2654,7 +2654,7 @@
         },
         {
           "word": "자들은",
-          "meaning_ne": "",
+          "meaning_ne": "ती व्यक्तिहरू",
           "chars": [
             {
               "char": "자",
@@ -2687,7 +2687,7 @@
         },
         {
           "word": "우리",
-          "meaning_ne": "",
+          "meaning_ne": "हाम्रो",
           "chars": [
             {
               "char": "우",
@@ -2710,7 +2710,7 @@
         },
         {
           "word": "측",
-          "meaning_ne": "",
+          "meaning_ne": "पक्षको",
           "chars": [
             {
               "char": "측",
@@ -2726,7 +2726,7 @@
         },
         {
           "word": "남방",
-          "meaning_ne": "",
+          "meaning_ne": "दक्षिण",
           "chars": [
             {
               "char": "남",
@@ -2751,7 +2751,7 @@
         },
         {
           "word": "한계선",
-          "meaning_ne": "",
+          "meaning_ne": "सीमा रेखा",
           "chars": [
             {
               "char": "한",
@@ -2784,7 +2784,7 @@
         },
         {
           "word": "지역을",
-          "meaning_ne": "",
+          "meaning_ne": "क्षेत्रमा",
           "chars": [
             {
               "char": "지",
@@ -2817,7 +2817,7 @@
         },
         {
           "word": "침입해",
-          "meaning_ne": "",
+          "meaning_ne": "घुसपैठ गरेर",
           "chars": [
             {
               "char": "침",
@@ -2858,7 +2858,7 @@
       "words": [
         {
           "word": "불법으로",
-          "meaning_ne": "",
+          "meaning_ne": "अवैध रूपमा",
           "chars": [
             {
               "char": "불",
@@ -2899,7 +2899,7 @@
         },
         {
           "word": "문화재",
-          "meaning_ne": "",
+          "meaning_ne": "सांस्कृतिक सम्पदा",
           "chars": [
             {
               "char": "문",
@@ -2931,7 +2931,7 @@
         },
         {
           "word": "도굴을",
-          "meaning_ne": "",
+          "meaning_ne": "उत्खनन",
           "chars": [
             {
               "char": "도",
@@ -2964,7 +2964,7 @@
         },
         {
           "word": "하다가",
-          "meaning_ne": "",
+          "meaning_ne": "गर्दा",
           "chars": [
             {
               "char": "하",
@@ -2995,7 +2995,7 @@
         },
         {
           "word": "적발됐다",
-          "meaning_ne": "",
+          "meaning_ne": "पक्राउ परे",
           "chars": [
             {
               "char": "적",
@@ -3045,7 +3045,7 @@
       "words": [
         {
           "word": "증거는",
-          "meaning_ne": "",
+          "meaning_ne": "प्रमाण",
           "chars": [
             {
               "char": "증",
@@ -3086,7 +3086,7 @@
       "words": [
         {
           "word": "열",
-          "meaning_ne": "",
+          "meaning_ne": "ताप",
           "chars": [
             {
               "char": "열",
@@ -3102,7 +3102,7 @@
         },
         {
           "word": "감지",
-          "meaning_ne": "",
+          "meaning_ne": "पत्ता लगाउने",
           "chars": [
             {
               "char": "감",
@@ -3126,7 +3126,7 @@
         },
         {
           "word": "카메라",
-          "meaning_ne": "",
+          "meaning_ne": "क्यामेरा",
           "chars": [
             {
               "char": "카",
@@ -3157,7 +3157,7 @@
         },
         {
           "word": "영상을",
-          "meaning_ne": "",
+          "meaning_ne": "भिडियो",
           "chars": [
             {
               "char": "영",
@@ -3191,7 +3191,7 @@
         },
         {
           "word": "시간대별로",
-          "meaning_ne": "",
+          "meaning_ne": "समय अनुसार",
           "chars": [
             {
               "char": "시",
@@ -3240,7 +3240,7 @@
         },
         {
           "word": "복사한",
-          "meaning_ne": "",
+          "meaning_ne": "प्रतिलिपि गरेको",
           "chars": [
             {
               "char": "복",
@@ -3273,7 +3273,7 @@
         },
         {
           "word": "페이퍼다",
-          "meaning_ne": "",
+          "meaning_ne": "कागजात हो",
           "chars": [
             {
               "char": "페",
@@ -3320,7 +3320,7 @@
       "words": [
         {
           "word": "사상자는",
-          "meaning_ne": "",
+          "meaning_ne": "हताहत",
           "chars": [
             {
               "char": "사",
@@ -3361,7 +3361,7 @@
         },
         {
           "word": "있는가",
-          "meaning_ne": "",
+          "meaning_ne": "छ कि",
           "chars": [
             {
               "char": "있",
@@ -3394,7 +3394,7 @@
         },
         {
           "word": "대위",
-          "meaning_ne": "",
+          "meaning_ne": "कप्तान",
           "chars": [
             {
               "char": "대",
@@ -3425,7 +3425,7 @@
       "words": [
         {
           "word": "없다",
-          "meaning_ne": "",
+          "meaning_ne": "छैन",
           "chars": [
             {
               "char": "없",
@@ -3458,7 +3458,7 @@
       "words": [
         {
           "word": "서로",
-          "meaning_ne": "",
+          "meaning_ne": "आपसमा",
           "chars": [
             {
               "char": "서",
@@ -3481,7 +3481,7 @@
         },
         {
           "word": "상황",
-          "meaning_ne": "",
+          "meaning_ne": "अवस्था",
           "chars": [
             {
               "char": "상",
@@ -3506,7 +3506,7 @@
         },
         {
           "word": "파악이",
-          "meaning_ne": "",
+          "meaning_ne": "बुझाइ",
           "chars": [
             {
               "char": "파",
@@ -3538,7 +3538,7 @@
         },
         {
           "word": "끝난",
-          "meaning_ne": "",
+          "meaning_ne": "सकिएको",
           "chars": [
             {
               "char": "끝",
@@ -3563,7 +3563,7 @@
         },
         {
           "word": "것",
-          "meaning_ne": "",
+          "meaning_ne": "कुरा",
           "chars": [
             {
               "char": "것",
@@ -3579,7 +3579,7 @@
         },
         {
           "word": "같은데",
-          "meaning_ne": "",
+          "meaning_ne": "जस्तो छ",
           "chars": [
             {
               "char": "같",
@@ -3612,7 +3612,7 @@
         },
         {
           "word": "무기를",
-          "meaning_ne": "",
+          "meaning_ne": "हतियार",
           "chars": [
             {
               "char": "무",
@@ -3644,7 +3644,7 @@
         },
         {
           "word": "내리는",
-          "meaning_ne": "",
+          "meaning_ne": "तल सार्ने",
           "chars": [
             {
               "char": "내",
@@ -3676,7 +3676,7 @@
         },
         {
           "word": "게",
-          "meaning_ne": "",
+          "meaning_ne": "कुरा",
           "chars": [
             {
               "char": "게",
@@ -3691,7 +3691,7 @@
         },
         {
           "word": "좋갔소",
-          "meaning_ne": "",
+          "meaning_ne": "राम्रो होला",
           "chars": [
             {
               "char": "좋",
@@ -3732,7 +3732,7 @@
       "words": [
         {
           "word": "저들의",
-          "meaning_ne": "",
+          "meaning_ne": "तिनीहरूको",
           "chars": [
             {
               "char": "저",
@@ -3764,7 +3764,7 @@
         },
         {
           "word": "문제는",
-          "meaning_ne": "",
+          "meaning_ne": "मुद्दा",
           "chars": [
             {
               "char": "문",
@@ -3797,7 +3797,7 @@
         },
         {
           "word": "조국의",
-          "meaning_ne": "",
+          "meaning_ne": "देशको",
           "chars": [
             {
               "char": "조",
@@ -3829,7 +3829,7 @@
         },
         {
           "word": "명예를",
-          "meaning_ne": "",
+          "meaning_ne": "सम्मान",
           "chars": [
             {
               "char": "명",
@@ -3862,7 +3862,7 @@
         },
         {
           "word": "걸고",
-          "meaning_ne": "",
+          "meaning_ne": "राखेर",
           "chars": [
             {
               "char": "걸",
@@ -3886,7 +3886,7 @@
         },
         {
           "word": "본때",
-          "meaning_ne": "",
+          "meaning_ne": "सबक",
           "chars": [
             {
               "char": "본",
@@ -3910,7 +3910,7 @@
         },
         {
           "word": "있게",
-          "meaning_ne": "",
+          "meaning_ne": "हुने गरी",
           "chars": [
             {
               "char": "있",
@@ -3934,7 +3934,7 @@
         },
         {
           "word": "조사하갔다",
-          "meaning_ne": "",
+          "meaning_ne": "अनुसन्धान गर्छौं",
           "chars": [
             {
               "char": "조",
@@ -3990,7 +3990,7 @@
       "words": [
         {
           "word": "처벌의",
-          "meaning_ne": "",
+          "meaning_ne": "सजायको",
           "chars": [
             {
               "char": "처",
@@ -4022,7 +4022,7 @@
         },
         {
           "word": "수위로만",
-          "meaning_ne": "",
+          "meaning_ne": "स्तरमा मात्र",
           "chars": [
             {
               "char": "수",
@@ -4062,7 +4062,7 @@
         },
         {
           "word": "따지자믄",
-          "meaning_ne": "",
+          "meaning_ne": "तुलना गर्दा",
           "chars": [
             {
               "char": "따",
@@ -4102,7 +4102,7 @@
         },
         {
           "word": "우리",
-          "meaning_ne": "",
+          "meaning_ne": "हाम्रो",
           "chars": [
             {
               "char": "우",
@@ -4125,7 +4125,7 @@
         },
         {
           "word": "북조선이",
-          "meaning_ne": "",
+          "meaning_ne": "उत्तर कोरियाले",
           "chars": [
             {
               "char": "북",
@@ -4166,7 +4166,7 @@
         },
         {
           "word": "남조선보다",
-          "meaning_ne": "",
+          "meaning_ne": "दक्षिण कोरिया भन्दा",
           "chars": [
             {
               "char": "남",
@@ -4215,7 +4215,7 @@
         },
         {
           "word": "월등히",
-          "meaning_ne": "",
+          "meaning_ne": "धेरै नै",
           "chars": [
             {
               "char": "월",
@@ -4248,7 +4248,7 @@
         },
         {
           "word": "강력하다",
-          "meaning_ne": "",
+          "meaning_ne": "कडा छ",
           "chars": [
             {
               "char": "강",
@@ -4297,7 +4297,7 @@
       "words": [
         {
           "word": "하나",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "chars": [
             {
               "char": "하",
@@ -4320,7 +4320,7 @@
         },
         {
           "word": "둘",
-          "meaning_ne": "",
+          "meaning_ne": "दुई",
           "chars": [
             {
               "char": "둘",
@@ -4336,7 +4336,7 @@
         },
         {
           "word": "셋",
-          "meaning_ne": "",
+          "meaning_ne": "तीन",
           "chars": [
             {
               "char": "셋",
@@ -4352,7 +4352,7 @@
         },
         {
           "word": "만에",
-          "meaning_ne": "",
+          "meaning_ne": "मा",
           "chars": [
             {
               "char": "만",
@@ -4376,7 +4376,7 @@
         },
         {
           "word": "동시에",
-          "meaning_ne": "",
+          "meaning_ne": "एकैचोटि",
           "chars": [
             {
               "char": "동",
@@ -4408,7 +4408,7 @@
         },
         {
           "word": "내린다",
-          "meaning_ne": "",
+          "meaning_ne": "तल सार्छौं",
           "chars": [
             {
               "char": "내",
@@ -4440,7 +4440,7 @@
         },
         {
           "word": "하나",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "chars": [
             {
               "char": "하",
@@ -4463,7 +4463,7 @@
         },
         {
           "word": "둘",
-          "meaning_ne": "",
+          "meaning_ne": "दुई",
           "chars": [
             {
               "char": "둘",
@@ -4479,7 +4479,7 @@
         },
         {
           "word": "셋",
-          "meaning_ne": "",
+          "meaning_ne": "तीन",
           "chars": [
             {
               "char": "셋",
@@ -4503,7 +4503,7 @@
       "words": [
         {
           "word": "알파원",
-          "meaning_ne": "",
+          "meaning_ne": "अल्फा वन",
           "chars": [
             {
               "char": "알",
@@ -4536,7 +4536,7 @@
         },
         {
           "word": "알파원",
-          "meaning_ne": "",
+          "meaning_ne": "अल्फा वन",
           "chars": [
             {
               "char": "알",
@@ -4569,7 +4569,7 @@
         },
         {
           "word": "충돌하지",
-          "meaning_ne": "",
+          "meaning_ne": "झडप नगरी",
           "chars": [
             {
               "char": "충",
@@ -4610,7 +4610,7 @@
         },
         {
           "word": "말고",
-          "meaning_ne": "",
+          "meaning_ne": "नगरी",
           "chars": [
             {
               "char": "말",
@@ -4634,7 +4634,7 @@
         },
         {
           "word": "철수하라",
-          "meaning_ne": "",
+          "meaning_ne": "पछि हट",
           "chars": [
             {
               "char": "철",
@@ -4682,7 +4682,7 @@
       "words": [
         {
           "word": "북측과",
-          "meaning_ne": "",
+          "meaning_ne": "उत्तर कोरियासँग",
           "chars": [
             {
               "char": "북",
@@ -4715,7 +4715,7 @@
         },
         {
           "word": "충돌하지",
-          "meaning_ne": "",
+          "meaning_ne": "झडप नगरी",
           "chars": [
             {
               "char": "충",
@@ -4756,7 +4756,7 @@
         },
         {
           "word": "말고",
-          "meaning_ne": "",
+          "meaning_ne": "नगरी",
           "chars": [
             {
               "char": "말",
@@ -4780,7 +4780,7 @@
         },
         {
           "word": "철수하라",
-          "meaning_ne": "",
+          "meaning_ne": "पछि हट",
           "chars": [
             {
               "char": "철",
@@ -4828,7 +4828,7 @@
       "words": [
         {
           "word": "번개",
-          "meaning_ne": "",
+          "meaning_ne": "बिजुली",
           "chars": [
             {
               "char": "번",
@@ -4852,7 +4852,7 @@
         },
         {
           "word": "하나",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "chars": [
             {
               "char": "하",
@@ -4875,7 +4875,7 @@
         },
         {
           "word": "번개",
-          "meaning_ne": "",
+          "meaning_ne": "बिजुली",
           "chars": [
             {
               "char": "번",
@@ -4899,7 +4899,7 @@
         },
         {
           "word": "하나",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "chars": [
             {
               "char": "하",
@@ -4922,7 +4922,7 @@
         },
         {
           "word": "내",
-          "meaning_ne": "",
+          "meaning_ne": "मेरो",
           "chars": [
             {
               "char": "내",
@@ -4937,7 +4937,7 @@
         },
         {
           "word": "말",
-          "meaning_ne": "",
+          "meaning_ne": "कुरा",
           "chars": [
             {
               "char": "말",
@@ -4953,7 +4953,7 @@
         },
         {
           "word": "들리네",
-          "meaning_ne": "",
+          "meaning_ne": "सुनिन्छ",
           "chars": [
             {
               "char": "들",
@@ -4993,7 +4993,7 @@
       "words": [
         {
           "word": "남측과",
-          "meaning_ne": "",
+          "meaning_ne": "दक्षिण कोरियासँग",
           "chars": [
             {
               "char": "남",
@@ -5026,7 +5026,7 @@
         },
         {
           "word": "충돌하지",
-          "meaning_ne": "",
+          "meaning_ne": "झडप नगरी",
           "chars": [
             {
               "char": "충",
@@ -5067,7 +5067,7 @@
         },
         {
           "word": "말고",
-          "meaning_ne": "",
+          "meaning_ne": "नगरी",
           "chars": [
             {
               "char": "말",
@@ -5091,7 +5091,7 @@
         },
         {
           "word": "즉시",
-          "meaning_ne": "",
+          "meaning_ne": "तुरुन्तै",
           "chars": [
             {
               "char": "즉",
@@ -5115,7 +5115,7 @@
         },
         {
           "word": "돌아오라우",
-          "meaning_ne": "",
+          "meaning_ne": "फर्क",
           "chars": [
             {
               "char": "돌",
