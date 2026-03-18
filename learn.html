@@ -355,6 +355,9 @@
     .wr-char-next-btn:active { opacity: 0.8; transform: scale(0.95); }
     .wr-char-replay-btn { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-char-advance-btn { background: #2563EB; color: #fff; }
+    .wr-char-audio-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap; }
+    .wr-char-audio-play { border: none; border-radius: 10px; padding: 10px 16px; font-size: 18px; font-weight: 700; cursor: pointer; font-family: inherit; background: rgba(22,163,74,0.1); color: #15803D; transition: transform 0.1s; }
+    .wr-char-audio-play:active { opacity: 0.8; transform: scale(0.95); }
     .wr-keyboard { margin-bottom: 8px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
     .wr-kb-label { font-size: 0.65rem; color: #4B5563; text-align: center; margin-bottom: 2px; font-weight: 600; }
@@ -415,6 +418,7 @@
     .quiz-dark .wr-explain { background: rgba(37,99,235,0.15); color: #93C5FD; }
     .quiz-dark .wr-char-replay-btn { background: rgba(37,99,235,0.25); color: #93C5FD; }
     .quiz-dark .wr-char-advance-btn { background: #3B82F6; color: #fff; }
+    .quiz-dark .wr-char-audio-play { background: rgba(74,222,128,0.15); color: #4ADE80; }
     .quiz-dark .wr-alt-hint { color: rgba(255,255,255,0.45); }
     .quiz-dark .wr-kb-btn.consonant { background: rgba(37,99,235,0.25); color: #93C5FD; }
     .quiz-dark .wr-kb-btn.vowel { background: rgba(22,163,74,0.25); color: #86EFAC; }
@@ -1433,6 +1437,12 @@ function renderWriting() {
   if (wrCharIdx >= cc.length) {
     if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
     html += '<div class="wr-word-done"' + (cw.audio ? ' onclick="wrReplayWordAudio(\'' + escHtml(cw.audio).replace(/'/g, "\\'") + '\')" style="cursor:pointer"' : '') + '>✅ ' + escHtml(cw.word) + (cw.meaning_ne ? ' (' + escHtml(cw.meaning_ne) + ')' : '') + '</div>';
+    var hasCharAudio = false; for (var ca = 0; ca < cc.length; ca++) { if (cc[ca].audio) { hasCharAudio = true; break; } }
+    if (hasCharAudio) {
+      html += '<div class="wr-char-audio-row">';
+      for (var ca = 0; ca < cc.length; ca++) { if (cc[ca].audio) html += '<button class="wr-char-audio-play" onclick="wrPlayCharAudio(\'' + escHtml(cc[ca].audio).replace(/'/g, "\\'") + '\')">🔊' + escHtml(cc[ca].char) + '</button>'; }
+      html += '</div>';
+    }
     html += '<div class="wr-word-btns"><button class="wr-next-btn" onclick="wrNextWord()">' + L('next_word','다음 단어 →') + '</button></div>';
     body.innerHTML = html; playQuizSound(true);
     return;
