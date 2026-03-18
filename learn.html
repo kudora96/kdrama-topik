@@ -1418,9 +1418,8 @@ function renderWriting() {
   }
   var words = writingData.words; var html = '';
   var allDone = wrDoneWords.length >= words.length && wrWordIdx >= words.length;
-  // Word progress bar (hide on completion screen and word-done screen)
-  var wordDone = !allDone && wrWordIdx < words.length && wrCharIdx >= words[wrWordIdx].chars.length;
-  if (!allDone && !wordDone) {
+  // Word progress bar (hide on completion screen only)
+  if (!allDone) {
     html += '<div class="wr-progress">';
     for (var pi = 0; pi < words.length; pi++) {
       var pcls = 'wr-prog-btn';
@@ -1543,18 +1542,31 @@ function wrNextWord() {
   if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; }
   if (wrDoneWords.indexOf(wrWordIdx) === -1) wrDoneWords.push(wrWordIdx);
   var resumeSkipAll = wrSkipAllPending; wrSkipAllPending = false;
-  // Find next undone word, or go past end to trigger allDone
-  var words = writingData.words; var next = -1;
+  var words = writingData.words;
+  // Skip-all completed last word: mark all done, go to sentence complete
+  if (resumeSkipAll) {
+    var next2 = -1;
+    for (var i2 = 0; i2 < words.length; i2++) { if (wrDoneWords.indexOf(i2) === -1) { next2 = i2; break; } }
+    if (next2 === -1) {
+      // All words done — sentence complete
+      wrWordIdx = words.length; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
+      renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      return;
+    }
+    // Still undone words: resume skip-all on next undone word
+    wrWordIdx = next2; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
+    renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    wrSkipping = true; wrSkipTarget = words.length - 1;
+    var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
+    wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
+    return;
+  }
+  // Normal (non-skip-all): find next undone word, or go past end to trigger allDone
+  var next = -1;
   for (var i = wrWordIdx + 1; i < words.length; i++) { if (wrDoneWords.indexOf(i) === -1) { next = i; break; } }
   if (next === -1) { wrWordIdx = words.length; } else { wrWordIdx = next; }
   wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
   renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
-  // Resume skip-all auto-typing for next word
-  if (resumeSkipAll && wrWordIdx < words.length) {
-    wrSkipping = true; wrSkipTarget = words.length - 1;
-    var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
-    wrSkipTimer = setTimeout(wrAutoTypeNext, 500);
-  }
 }
 function wrGoToWord(idx) {
   if (!writingData) return;
