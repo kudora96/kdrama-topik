@@ -25,122 +25,122 @@ tr:hover{background:#1e2a4a}
 <h1>E01-C01 오디오 제작 목록</h1>
 <div class="stats"><b>새 글자:</b> 108개 &nbsp;|&nbsp; <b>새 단어:</b> 161개 &nbsp;|&nbsp; <b>재사용 글자:</b> 86개 &nbsp;|&nbsp; <b>재사용 단어:</b> 7개</div>
 <div class="tabs">
-<button class="tab on" onclick="st('chars')">글자 (108)</button>
-<button class="tab" onclick="st('words')">단어 (161)</button>
-<button class="tab" onclick="st('byline')">자막별 전체</button>
+<button class="tab on" onclick="st(event,'chars')">글자 (108)</button>
+<button class="tab" onclick="st(event,'words')">단어 (161)</button>
+<button class="tab" onclick="st(event,'byline')">자막별 전체</button>
 </div>
 <div id="t-chars" class="tc on">
 <h2>새로 만들 글자 오디오 <button class="cb" onclick="cp('ct')">전체 복사</button></h2>
 <p style="color:#888;font-size:0.8em">경로: audio/chars/{{파일명}}</p>
-<table id="ct"><tr><th>#</th><th>글자</th><th>자모</th><th>파일명</th></tr>
-<tr><td>1</td><td style="font-size:1.3em">건</td><td>ㄱ + ㅓ + ㄴ</td><td class="fn">geon.mp3</td></tr>
-<tr><td>2</td><td style="font-size:1.3em">검</td><td>ㄱ + ㅓ + ㅁ</td><td class="fn">geom.mp3</td></tr>
-<tr><td>3</td><td style="font-size:1.3em">격</td><td>ㄱ + ㅕ + ㄱ</td><td class="fn">gyeok.mp3</td></tr>
-<tr><td>4</td><td style="font-size:1.3em">경</td><td>ㄱ + ㅕ + ㅇ</td><td class="fn">gyeong.mp3</td></tr>
-<tr><td>5</td><td style="font-size:1.3em">공</td><td>ㄱ + ㅗ + ㅇ</td><td class="fn">gong.mp3</td></tr>
-<tr><td>6</td><td style="font-size:1.3em">귀</td><td>ㄱ + ㅟ</td><td class="fn">gwi.mp3</td></tr>
-<tr><td>7</td><td style="font-size:1.3em">금</td><td>ㄱ + ㅡ + ㅁ</td><td class="fn">geum.mp3</td></tr>
-<tr><td>8</td><td style="font-size:1.3em">깍</td><td>ㄲ + ㅏ + ㄱ</td><td class="fn">kkak.mp3</td></tr>
-<tr><td>9</td><td style="font-size:1.3em">깝</td><td>ㄲ + ㅏ + ㅂ</td><td class="fn">kkap.mp3</td></tr>
-<tr><td>10</td><td style="font-size:1.3em">낙</td><td>ㄴ + ㅏ + ㄱ</td><td class="fn">nak.mp3</td></tr>
-<tr><td>11</td><td style="font-size:1.3em">났</td><td>ㄴ + ㅏ + ㅆ</td><td class="fn">nat.mp3</td></tr>
-<tr><td>12</td><td style="font-size:1.3em">냐</td><td>ㄴ + ㅑ</td><td class="fn">nya.mp3</td></tr>
-<tr><td>13</td><td style="font-size:1.3em">냥</td><td>ㄴ + ㅑ + ㅇ</td><td class="fn">nyang.mp3</td></tr>
-<tr><td>14</td><td style="font-size:1.3em">년</td><td>ㄴ + ㅕ + ㄴ</td><td class="fn">nyeon.mp3</td></tr>
-<tr><td>15</td><td style="font-size:1.3em">누</td><td>ㄴ + ㅜ</td><td class="fn">nu.mp3</td></tr>
-<tr><td>16</td><td style="font-size:1.3em">능</td><td>ㄴ + ㅡ + ㅇ</td><td class="fn">neung.mp3</td></tr>
-<tr><td>17</td><td style="font-size:1.3em">님</td><td>ㄴ + ㅣ + ㅁ</td><td class="fn">nim.mp3</td></tr>
-<tr><td>18</td><td style="font-size:1.3em">달</td><td>ㄷ + ㅏ + ㄹ</td><td class="fn">dal.mp3</td></tr>
-<tr><td>19</td><td style="font-size:1.3em">돼</td><td>ㄷ + ㅙ</td><td class="fn">dwae.mp3</td></tr>
-<tr><td>20</td><td style="font-size:1.3em">되</td><td>ㄷ + ㅚ</td><td class="fn">doe.mp3</td></tr>
-<tr><td>21</td><td style="font-size:1.3em">된</td><td>ㄷ + ㅚ + ㄴ</td><td class="fn">doen.mp3</td></tr>
-<tr><td>22</td><td style="font-size:1.3em">될</td><td>ㄷ + ㅚ + ㄹ</td><td class="fn">doel.mp3</td></tr>
-<tr><td>23</td><td style="font-size:1.3em">두</td><td>ㄷ + ㅜ</td><td class="fn">du.mp3</td></tr>
-<tr><td>24</td><td style="font-size:1.3em">득</td><td>ㄷ + ㅡ + ㄱ</td><td class="fn">deuk.mp3</td></tr>
-<tr><td>25</td><td style="font-size:1.3em">딱</td><td>ㄸ + ㅏ + ㄱ</td><td class="fn">ttak.mp3</td></tr>
-<tr><td>26</td><td style="font-size:1.3em">땐</td><td>ㄸ + ㅐ + ㄴ</td><td class="fn">ttaen.mp3</td></tr>
-<tr><td>27</td><td style="font-size:1.3em">떻</td><td>ㄸ + ㅓ + ㅎ</td><td class="fn">tteot.mp3</td></tr>
-<tr><td>28</td><td style="font-size:1.3em">또</td><td>ㄸ + ㅗ</td><td class="fn">tto.mp3</td></tr>
-<tr><td>29</td><td style="font-size:1.3em">뜨</td><td>ㄸ + ㅡ</td><td class="fn">tteu.mp3</td></tr>
-<tr><td>30</td><td style="font-size:1.3em">랄</td><td>ㄹ + ㅏ + ㄹ</td><td class="fn">ral.mp3</td></tr>
-<tr><td>31</td><td style="font-size:1.3em">랑</td><td>ㄹ + ㅏ + ㅇ</td><td class="fn">rang.mp3</td></tr>
-<tr><td>32</td><td style="font-size:1.3em">래</td><td>ㄹ + ㅐ</td><td class="fn">rae.mp3</td></tr>
-<tr><td>33</td><td style="font-size:1.3em">량</td><td>ㄹ + ㅑ + ㅇ</td><td class="fn">ryang.mp3</td></tr>
-<tr><td>34</td><td style="font-size:1.3em">렇</td><td>ㄹ + ㅓ + ㅎ</td><td class="fn">reot.mp3</td></tr>
-<tr><td>35</td><td style="font-size:1.3em">렸</td><td>ㄹ + ㅕ + ㅆ</td><td class="fn">ryeot.mp3</td></tr>
-<tr><td>36</td><td style="font-size:1.3em">마</td><td>ㅁ + ㅏ</td><td class="fn">ma.mp3</td></tr>
-<tr><td>37</td><td style="font-size:1.3em">막</td><td>ㅁ + ㅏ + ㄱ</td><td class="fn">mak.mp3</td></tr>
-<tr><td>38</td><td style="font-size:1.3em">맞</td><td>ㅁ + ㅏ + ㅈ</td><td class="fn">mat.mp3</td></tr>
-<tr><td>39</td><td style="font-size:1.3em">매</td><td>ㅁ + ㅐ</td><td class="fn">mae.mp3</td></tr>
-<tr><td>40</td><td style="font-size:1.3em">면</td><td>ㅁ + ㅕ + ㄴ</td><td class="fn">myeon.mp3</td></tr>
-<tr><td>41</td><td style="font-size:1.3em">모</td><td>ㅁ + ㅗ</td><td class="fn">mo.mp3</td></tr>
-<tr><td>42</td><td style="font-size:1.3em">목</td><td>ㅁ + ㅗ + ㄱ</td><td class="fn">mok.mp3</td></tr>
-<tr><td>43</td><td style="font-size:1.3em">몰</td><td>ㅁ + ㅗ + ㄹ</td><td class="fn">mol.mp3</td></tr>
-<tr><td>44</td><td style="font-size:1.3em">뭉</td><td>ㅁ + ㅜ + ㅇ</td><td class="fn">mung.mp3</td></tr>
-<tr><td>45</td><td style="font-size:1.3em">뭐</td><td>ㅁ + ㅝ</td><td class="fn">mwo.mp3</td></tr>
-<tr><td>46</td><td style="font-size:1.3em">밀</td><td>ㅁ + ㅣ + ㄹ</td><td class="fn">mil.mp3</td></tr>
-<tr><td>47</td><td style="font-size:1.3em">반</td><td>ㅂ + ㅏ + ㄴ</td><td class="fn">ban.mp3</td></tr>
-<tr><td>48</td><td style="font-size:1.3em">배</td><td>ㅂ + ㅐ</td><td class="fn">bae.mp3</td></tr>
-<tr><td>49</td><td style="font-size:1.3em">버</td><td>ㅂ + ㅓ</td><td class="fn">beo.mp3</td></tr>
-<tr><td>50</td><td style="font-size:1.3em">볼</td><td>ㅂ + ㅗ + ㄹ</td><td class="fn">bol.mp3</td></tr>
-<tr><td>51</td><td style="font-size:1.3em">봐</td><td>ㅂ + ㅘ</td><td class="fn">bwa.mp3</td></tr>
-<tr><td>52</td><td style="font-size:1.3em">분</td><td>ㅂ + ㅜ + ㄴ</td><td class="fn">bun.mp3</td></tr>
-<tr><td>53</td><td style="font-size:1.3em">붙</td><td>ㅂ + ㅜ + ㅌ</td><td class="fn">but.mp3</td></tr>
-<tr><td>54</td><td style="font-size:1.3em">샷</td><td>ㅅ + ㅑ + ㅅ</td><td class="fn">syat.mp3</td></tr>
-<tr><td>55</td><td style="font-size:1.3em">섬</td><td>ㅅ + ㅓ + ㅁ</td><td class="fn">seom.mp3</td></tr>
-<tr><td>56</td><td style="font-size:1.3em">셔</td><td>ㅅ + ㅕ</td><td class="fn">syeo.mp3</td></tr>
-<tr><td>57</td><td style="font-size:1.3em">셨</td><td>ㅅ + ㅕ + ㅆ</td><td class="fn">syeot.mp3</td></tr>
-<tr><td>58</td><td style="font-size:1.3em">손</td><td>ㅅ + ㅗ + ㄴ</td><td class="fn">son.mp3</td></tr>
-<tr><td>59</td><td style="font-size:1.3em">스</td><td>ㅅ + ㅡ</td><td class="fn">seu.mp3</td></tr>
-<tr><td>60</td><td style="font-size:1.3em">신</td><td>ㅅ + ㅣ + ㄴ</td><td class="fn">sin.mp3</td></tr>
-<tr><td>61</td><td style="font-size:1.3em">실</td><td>ㅅ + ㅣ + ㄹ</td><td class="fn">sil.mp3</td></tr>
-<tr><td>62</td><td style="font-size:1.3em">십</td><td>ㅅ + ㅣ + ㅂ</td><td class="fn">sip.mp3</td></tr>
-<tr><td>63</td><td style="font-size:1.3em">쏟</td><td>ㅆ + ㅗ + ㄷ</td><td class="fn">ssot.mp3</td></tr>
-<tr><td>64</td><td style="font-size:1.3em">안</td><td>ㅇ + ㅏ + ㄴ</td><td class="fn">an.mp3</td></tr>
-<tr><td>65</td><td style="font-size:1.3em">애</td><td>ㅇ + ㅐ</td><td class="fn">ae.mp3</td></tr>
-<tr><td>66</td><td style="font-size:1.3em">액</td><td>ㅇ + ㅐ + ㄱ</td><td class="fn">aek.mp3</td></tr>
-<tr><td>67</td><td style="font-size:1.3em">야</td><td>ㅇ + ㅑ</td><td class="fn">ya.mp3</td></tr>
-<tr><td>68</td><td style="font-size:1.3em">언</td><td>ㅇ + ㅓ + ㄴ</td><td class="fn">eon.mp3</td></tr>
-<tr><td>69</td><td style="font-size:1.3em">얼</td><td>ㅇ + ㅓ + ㄹ</td><td class="fn">eol.mp3</td></tr>
-<tr><td>70</td><td style="font-size:1.3em">업</td><td>ㅇ + ㅓ + ㅂ</td><td class="fn">eop.mp3</td></tr>
-<tr><td>71</td><td style="font-size:1.3em">왕</td><td>ㅇ + ㅘ + ㅇ</td><td class="fn">wang.mp3</td></tr>
-<tr><td>72</td><td style="font-size:1.3em">왜</td><td>ㅇ + ㅙ</td><td class="fn">wae.mp3</td></tr>
-<tr><td>73</td><td style="font-size:1.3em">요</td><td>ㅇ + ㅛ</td><td class="fn">yo.mp3</td></tr>
-<tr><td>74</td><td style="font-size:1.3em">워</td><td>ㅇ + ㅝ</td><td class="fn">wo.mp3</td></tr>
-<tr><td>75</td><td style="font-size:1.3em">일</td><td>ㅇ + ㅣ + ㄹ</td><td class="fn">il.mp3</td></tr>
-<tr><td>76</td><td style="font-size:1.3em">잖</td><td>ㅈ + ㅏ + ㄶ</td><td class="fn">jan.mp3</td></tr>
-<tr><td>77</td><td style="font-size:1.3em">잠</td><td>ㅈ + ㅏ + ㅁ</td><td class="fn">jam.mp3</td></tr>
-<tr><td>78</td><td style="font-size:1.3em">정</td><td>ㅈ + ㅓ + ㅇ</td><td class="fn">jeong.mp3</td></tr>
-<tr><td>79</td><td style="font-size:1.3em">젠</td><td>ㅈ + ㅔ + ㄴ</td><td class="fn">jen.mp3</td></tr>
-<tr><td>80</td><td style="font-size:1.3em">졌</td><td>ㅈ + ㅕ + ㅆ</td><td class="fn">jyeot.mp3</td></tr>
-<tr><td>81</td><td style="font-size:1.3em">좀</td><td>ㅈ + ㅗ + ㅁ</td><td class="fn">jom.mp3</td></tr>
-<tr><td>82</td><td style="font-size:1.3em">죠</td><td>ㅈ + ㅛ</td><td class="fn">jyo.mp3</td></tr>
-<tr><td>83</td><td style="font-size:1.3em">주</td><td>ㅈ + ㅜ</td><td class="fn">ju.mp3</td></tr>
-<tr><td>84</td><td style="font-size:1.3em">줄</td><td>ㅈ + ㅜ + ㄹ</td><td class="fn">jul.mp3</td></tr>
-<tr><td>85</td><td style="font-size:1.3em">즌</td><td>ㅈ + ㅡ + ㄴ</td><td class="fn">jeun.mp3</td></tr>
-<tr><td>86</td><td style="font-size:1.3em">질</td><td>ㅈ + ㅣ + ㄹ</td><td class="fn">jil.mp3</td></tr>
-<tr><td>87</td><td style="font-size:1.3em">차</td><td>ㅊ + ㅏ</td><td class="fn">cha.mp3</td></tr>
-<tr><td>88</td><td style="font-size:1.3em">체</td><td>ㅊ + ㅔ</td><td class="fn">che.mp3</td></tr>
-<tr><td>89</td><td style="font-size:1.3em">출</td><td>ㅊ + ㅜ + ㄹ</td><td class="fn">chul.mp3</td></tr>
-<tr><td>90</td><td style="font-size:1.3em">친</td><td>ㅊ + ㅣ + ㄴ</td><td class="fn">chin.mp3</td></tr>
-<tr><td>91</td><td style="font-size:1.3em">캔</td><td>ㅋ + ㅐ + ㄴ</td><td class="fn">kaen.mp3</td></tr>
-<tr><td>92</td><td style="font-size:1.3em">크</td><td>ㅋ + ㅡ</td><td class="fn">keu.mp3</td></tr>
-<tr><td>93</td><td style="font-size:1.3em">텐</td><td>ㅌ + ㅔ + ㄴ</td><td class="fn">ten.mp3</td></tr>
-<tr><td>94</td><td style="font-size:1.3em">트</td><td>ㅌ + ㅡ</td><td class="fn">teu.mp3</td></tr>
-<tr><td>95</td><td style="font-size:1.3em">팀</td><td>ㅌ + ㅣ + ㅁ</td><td class="fn">tim.mp3</td></tr>
-<tr><td>96</td><td style="font-size:1.3em">패</td><td>ㅍ + ㅐ</td><td class="fn">pae.mp3</td></tr>
-<tr><td>97</td><td style="font-size:1.3em">팬</td><td>ㅍ + ㅐ + ㄴ</td><td class="fn">paen.mp3</td></tr>
-<tr><td>98</td><td style="font-size:1.3em">평</td><td>ㅍ + ㅕ + ㅇ</td><td class="fn">pyeong.mp3</td></tr>
-<tr><td>99</td><td style="font-size:1.3em">표</td><td>ㅍ + ㅛ</td><td class="fn">pyo.mp3</td></tr>
-<tr><td>100</td><td style="font-size:1.3em">푸</td><td>ㅍ + ㅜ</td><td class="fn">pu.mp3</td></tr>
-<tr><td>101</td><td style="font-size:1.3em">할</td><td>ㅎ + ㅏ + ㄹ</td><td class="fn">hal.mp3</td></tr>
-<tr><td>102</td><td style="font-size:1.3em">항</td><td>ㅎ + ㅏ + ㅇ</td><td class="fn">hang.mp3</td></tr>
-<tr><td>103</td><td style="font-size:1.3em">했</td><td>ㅎ + ㅐ + ㅆ</td><td class="fn">haet.mp3</td></tr>
-<tr><td>104</td><td style="font-size:1.3em">형</td><td>ㅎ + ㅕ + ㅇ</td><td class="fn">hyeong.mp3</td></tr>
-<tr><td>105</td><td style="font-size:1.3em">혜</td><td>ㅎ + ㅖ</td><td class="fn">hye.mp3</td></tr>
-<tr><td>106</td><td style="font-size:1.3em">호</td><td>ㅎ + ㅗ</td><td class="fn">ho.mp3</td></tr>
-<tr><td>107</td><td style="font-size:1.3em">확</td><td>ㅎ + ㅘ + ㄱ</td><td class="fn">hwak.mp3</td></tr>
-<tr><td>108</td><td style="font-size:1.3em">후</td><td>ㅎ + ㅜ</td><td class="fn">hu.mp3</td></tr>
+<table id="ct"><tr><th>#</th><th>글자</th><th>파일명</th></tr>
+<tr><td>1</td><td style="font-size:1.3em">건</td><td class="fn">geon.mp3</td></tr>
+<tr><td>2</td><td style="font-size:1.3em">검</td><td class="fn">geom.mp3</td></tr>
+<tr><td>3</td><td style="font-size:1.3em">격</td><td class="fn">gyeok.mp3</td></tr>
+<tr><td>4</td><td style="font-size:1.3em">경</td><td class="fn">gyeong.mp3</td></tr>
+<tr><td>5</td><td style="font-size:1.3em">공</td><td class="fn">gong.mp3</td></tr>
+<tr><td>6</td><td style="font-size:1.3em">귀</td><td class="fn">gwi.mp3</td></tr>
+<tr><td>7</td><td style="font-size:1.3em">금</td><td class="fn">geum.mp3</td></tr>
+<tr><td>8</td><td style="font-size:1.3em">깍</td><td class="fn">kkak.mp3</td></tr>
+<tr><td>9</td><td style="font-size:1.3em">깝</td><td class="fn">kkap.mp3</td></tr>
+<tr><td>10</td><td style="font-size:1.3em">낙</td><td class="fn">nak.mp3</td></tr>
+<tr><td>11</td><td style="font-size:1.3em">났</td><td class="fn">nat.mp3</td></tr>
+<tr><td>12</td><td style="font-size:1.3em">냐</td><td class="fn">nya.mp3</td></tr>
+<tr><td>13</td><td style="font-size:1.3em">냥</td><td class="fn">nyang.mp3</td></tr>
+<tr><td>14</td><td style="font-size:1.3em">년</td><td class="fn">nyeon.mp3</td></tr>
+<tr><td>15</td><td style="font-size:1.3em">누</td><td class="fn">nu.mp3</td></tr>
+<tr><td>16</td><td style="font-size:1.3em">능</td><td class="fn">neung.mp3</td></tr>
+<tr><td>17</td><td style="font-size:1.3em">님</td><td class="fn">nim.mp3</td></tr>
+<tr><td>18</td><td style="font-size:1.3em">달</td><td class="fn">dal.mp3</td></tr>
+<tr><td>19</td><td style="font-size:1.3em">돼</td><td class="fn">dwae.mp3</td></tr>
+<tr><td>20</td><td style="font-size:1.3em">되</td><td class="fn">doe.mp3</td></tr>
+<tr><td>21</td><td style="font-size:1.3em">된</td><td class="fn">doen.mp3</td></tr>
+<tr><td>22</td><td style="font-size:1.3em">될</td><td class="fn">doel.mp3</td></tr>
+<tr><td>23</td><td style="font-size:1.3em">두</td><td class="fn">du.mp3</td></tr>
+<tr><td>24</td><td style="font-size:1.3em">득</td><td class="fn">deuk.mp3</td></tr>
+<tr><td>25</td><td style="font-size:1.3em">딱</td><td class="fn">ttak.mp3</td></tr>
+<tr><td>26</td><td style="font-size:1.3em">땐</td><td class="fn">ttaen.mp3</td></tr>
+<tr><td>27</td><td style="font-size:1.3em">떻</td><td class="fn">tteot.mp3</td></tr>
+<tr><td>28</td><td style="font-size:1.3em">또</td><td class="fn">tto.mp3</td></tr>
+<tr><td>29</td><td style="font-size:1.3em">뜨</td><td class="fn">tteu.mp3</td></tr>
+<tr><td>30</td><td style="font-size:1.3em">랄</td><td class="fn">ral.mp3</td></tr>
+<tr><td>31</td><td style="font-size:1.3em">랑</td><td class="fn">rang.mp3</td></tr>
+<tr><td>32</td><td style="font-size:1.3em">래</td><td class="fn">rae.mp3</td></tr>
+<tr><td>33</td><td style="font-size:1.3em">량</td><td class="fn">ryang.mp3</td></tr>
+<tr><td>34</td><td style="font-size:1.3em">렇</td><td class="fn">reot.mp3</td></tr>
+<tr><td>35</td><td style="font-size:1.3em">렸</td><td class="fn">ryeot.mp3</td></tr>
+<tr><td>36</td><td style="font-size:1.3em">마</td><td class="fn">ma.mp3</td></tr>
+<tr><td>37</td><td style="font-size:1.3em">막</td><td class="fn">mak.mp3</td></tr>
+<tr><td>38</td><td style="font-size:1.3em">맞</td><td class="fn">mat.mp3</td></tr>
+<tr><td>39</td><td style="font-size:1.3em">매</td><td class="fn">mae.mp3</td></tr>
+<tr><td>40</td><td style="font-size:1.3em">면</td><td class="fn">myeon.mp3</td></tr>
+<tr><td>41</td><td style="font-size:1.3em">모</td><td class="fn">mo.mp3</td></tr>
+<tr><td>42</td><td style="font-size:1.3em">목</td><td class="fn">mok.mp3</td></tr>
+<tr><td>43</td><td style="font-size:1.3em">몰</td><td class="fn">mol.mp3</td></tr>
+<tr><td>44</td><td style="font-size:1.3em">뭉</td><td class="fn">mung.mp3</td></tr>
+<tr><td>45</td><td style="font-size:1.3em">뭐</td><td class="fn">mwo.mp3</td></tr>
+<tr><td>46</td><td style="font-size:1.3em">밀</td><td class="fn">mil.mp3</td></tr>
+<tr><td>47</td><td style="font-size:1.3em">반</td><td class="fn">ban.mp3</td></tr>
+<tr><td>48</td><td style="font-size:1.3em">배</td><td class="fn">bae.mp3</td></tr>
+<tr><td>49</td><td style="font-size:1.3em">버</td><td class="fn">beo.mp3</td></tr>
+<tr><td>50</td><td style="font-size:1.3em">볼</td><td class="fn">bol.mp3</td></tr>
+<tr><td>51</td><td style="font-size:1.3em">봐</td><td class="fn">bwa.mp3</td></tr>
+<tr><td>52</td><td style="font-size:1.3em">분</td><td class="fn">bun.mp3</td></tr>
+<tr><td>53</td><td style="font-size:1.3em">붙</td><td class="fn">but.mp3</td></tr>
+<tr><td>54</td><td style="font-size:1.3em">샷</td><td class="fn">syat.mp3</td></tr>
+<tr><td>55</td><td style="font-size:1.3em">섬</td><td class="fn">seom.mp3</td></tr>
+<tr><td>56</td><td style="font-size:1.3em">셔</td><td class="fn">syeo.mp3</td></tr>
+<tr><td>57</td><td style="font-size:1.3em">셨</td><td class="fn">syeot.mp3</td></tr>
+<tr><td>58</td><td style="font-size:1.3em">손</td><td class="fn">son.mp3</td></tr>
+<tr><td>59</td><td style="font-size:1.3em">스</td><td class="fn">seu.mp3</td></tr>
+<tr><td>60</td><td style="font-size:1.3em">신</td><td class="fn">sin.mp3</td></tr>
+<tr><td>61</td><td style="font-size:1.3em">실</td><td class="fn">sil.mp3</td></tr>
+<tr><td>62</td><td style="font-size:1.3em">십</td><td class="fn">sip.mp3</td></tr>
+<tr><td>63</td><td style="font-size:1.3em">쏟</td><td class="fn">ssot.mp3</td></tr>
+<tr><td>64</td><td style="font-size:1.3em">안</td><td class="fn">an.mp3</td></tr>
+<tr><td>65</td><td style="font-size:1.3em">애</td><td class="fn">ae.mp3</td></tr>
+<tr><td>66</td><td style="font-size:1.3em">액</td><td class="fn">aek.mp3</td></tr>
+<tr><td>67</td><td style="font-size:1.3em">야</td><td class="fn">ya.mp3</td></tr>
+<tr><td>68</td><td style="font-size:1.3em">언</td><td class="fn">eon.mp3</td></tr>
+<tr><td>69</td><td style="font-size:1.3em">얼</td><td class="fn">eol.mp3</td></tr>
+<tr><td>70</td><td style="font-size:1.3em">업</td><td class="fn">eop.mp3</td></tr>
+<tr><td>71</td><td style="font-size:1.3em">왕</td><td class="fn">wang.mp3</td></tr>
+<tr><td>72</td><td style="font-size:1.3em">왜</td><td class="fn">wae.mp3</td></tr>
+<tr><td>73</td><td style="font-size:1.3em">요</td><td class="fn">yo.mp3</td></tr>
+<tr><td>74</td><td style="font-size:1.3em">워</td><td class="fn">wo.mp3</td></tr>
+<tr><td>75</td><td style="font-size:1.3em">일</td><td class="fn">il.mp3</td></tr>
+<tr><td>76</td><td style="font-size:1.3em">잖</td><td class="fn">jan.mp3</td></tr>
+<tr><td>77</td><td style="font-size:1.3em">잠</td><td class="fn">jam.mp3</td></tr>
+<tr><td>78</td><td style="font-size:1.3em">정</td><td class="fn">jeong.mp3</td></tr>
+<tr><td>79</td><td style="font-size:1.3em">젠</td><td class="fn">jen.mp3</td></tr>
+<tr><td>80</td><td style="font-size:1.3em">졌</td><td class="fn">jyeot.mp3</td></tr>
+<tr><td>81</td><td style="font-size:1.3em">좀</td><td class="fn">jom.mp3</td></tr>
+<tr><td>82</td><td style="font-size:1.3em">죠</td><td class="fn">jyo.mp3</td></tr>
+<tr><td>83</td><td style="font-size:1.3em">주</td><td class="fn">ju.mp3</td></tr>
+<tr><td>84</td><td style="font-size:1.3em">줄</td><td class="fn">jul.mp3</td></tr>
+<tr><td>85</td><td style="font-size:1.3em">즌</td><td class="fn">jeun.mp3</td></tr>
+<tr><td>86</td><td style="font-size:1.3em">질</td><td class="fn">jil.mp3</td></tr>
+<tr><td>87</td><td style="font-size:1.3em">차</td><td class="fn">cha.mp3</td></tr>
+<tr><td>88</td><td style="font-size:1.3em">체</td><td class="fn">che.mp3</td></tr>
+<tr><td>89</td><td style="font-size:1.3em">출</td><td class="fn">chul.mp3</td></tr>
+<tr><td>90</td><td style="font-size:1.3em">친</td><td class="fn">chin.mp3</td></tr>
+<tr><td>91</td><td style="font-size:1.3em">캔</td><td class="fn">kaen.mp3</td></tr>
+<tr><td>92</td><td style="font-size:1.3em">크</td><td class="fn">keu.mp3</td></tr>
+<tr><td>93</td><td style="font-size:1.3em">텐</td><td class="fn">ten.mp3</td></tr>
+<tr><td>94</td><td style="font-size:1.3em">트</td><td class="fn">teu.mp3</td></tr>
+<tr><td>95</td><td style="font-size:1.3em">팀</td><td class="fn">tim.mp3</td></tr>
+<tr><td>96</td><td style="font-size:1.3em">패</td><td class="fn">pae.mp3</td></tr>
+<tr><td>97</td><td style="font-size:1.3em">팬</td><td class="fn">paen.mp3</td></tr>
+<tr><td>98</td><td style="font-size:1.3em">평</td><td class="fn">pyeong.mp3</td></tr>
+<tr><td>99</td><td style="font-size:1.3em">표</td><td class="fn">pyo.mp3</td></tr>
+<tr><td>100</td><td style="font-size:1.3em">푸</td><td class="fn">pu.mp3</td></tr>
+<tr><td>101</td><td style="font-size:1.3em">할</td><td class="fn">hal.mp3</td></tr>
+<tr><td>102</td><td style="font-size:1.3em">항</td><td class="fn">hang.mp3</td></tr>
+<tr><td>103</td><td style="font-size:1.3em">했</td><td class="fn">haet.mp3</td></tr>
+<tr><td>104</td><td style="font-size:1.3em">형</td><td class="fn">hyeong.mp3</td></tr>
+<tr><td>105</td><td style="font-size:1.3em">혜</td><td class="fn">hye.mp3</td></tr>
+<tr><td>106</td><td style="font-size:1.3em">호</td><td class="fn">ho.mp3</td></tr>
+<tr><td>107</td><td style="font-size:1.3em">확</td><td class="fn">hwak.mp3</td></tr>
+<tr><td>108</td><td style="font-size:1.3em">후</td><td class="fn">hu.mp3</td></tr>
 </table></div>
 <div id="t-words" class="tc">
 <h2>새로 만들 단어 오디오 <button class="cb" onclick="cp('wt')">전체 복사</button></h2>
@@ -614,7 +614,7 @@ tr:hover{background:#1e2a4a}
 </table>
 </div>
 <script>
-function st(n){document.querySelectorAll(".tc").forEach(e=>e.classList.remove("on"));document.querySelectorAll(".tab").forEach(e=>e.classList.remove("on"));document.getElementById("t-"+n).classList.add("on");event.target.classList.add("on")}
-function cp(id){var t=document.getElementById(id),r=t.querySelectorAll("tr"),s="";for(var i=1;i<r.length;i++){var c=r[i].querySelectorAll("td");s+=c[1].textContent+"	"+c[id=="ct"?3:2].textContent+"
+function st(e,n){document.querySelectorAll(".tc").forEach(el=>el.classList.remove("on"));document.querySelectorAll(".tab").forEach(el=>el.classList.remove("on"));document.getElementById("t-"+n).classList.add("on");e.currentTarget.classList.add("on")}
+function cp(id){var t=document.getElementById(id),r=t.querySelectorAll("tr"),s="";for(var i=1;i<r.length;i++){var c=r[i].querySelectorAll("td");s+=c[1].textContent+"	"+c[2].textContent+"
 "}navigator.clipboard.writeText(s).then(()=>{var b=t.parentElement.querySelector(".cb");b.textContent="복사됨!";b.classList.add("ok");setTimeout(()=>{b.textContent="전체 복사";b.classList.remove("ok")},2000)})}
 </script></body></html>
