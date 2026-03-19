@@ -23,10 +23,10 @@ tr:hover{background:#1e2a4a}
 .tc{display:none;background:#1e2a4a;padding:16px;border-radius:0 8px 8px 8px}.tc.on{display:block}
 </style></head><body>
 <h1>E01-C01 오디오 제작 목록</h1>
-<div class="stats"><b>새 글자:</b> 108개 &nbsp;|&nbsp; <b>새 단어:</b> 161개 &nbsp;|&nbsp; <b>재사용 글자:</b> 86개 &nbsp;|&nbsp; <b>재사용 단어:</b> 7개</div>
+<div class="stats"><b>새 글자:</b> 108개 &nbsp;|&nbsp; <b>새 단어:</b> 142개 &nbsp;|&nbsp; <b>재사용 글자:</b> 86개 &nbsp;|&nbsp; <b>재사용 단어:</b> 26개 <span style="color:#81d4fa">(chars 재사용 19)</span></div>
 <div class="tabs">
 <button class="tab on" onclick="st(event,'chars')">글자 (108)</button>
-<button class="tab" onclick="st(event,'words')">단어 (161)</button>
+<button class="tab" onclick="st(event,'words')">단어 (142 + 재사용 19)</button>
 <button class="tab" onclick="st(event,'byline')">자막별 전체</button>
 </div>
 <div id="t-chars" class="tc on">
@@ -143,170 +143,174 @@ tr:hover{background:#1e2a4a}
 <tr><td>108</td><td style="font-size:1.3em">후</td><td class="fn">hu.mp3</td></tr>
 </table></div>
 <div id="t-words" class="tc">
-<h2>새로 만들 단어 오디오 <button class="cb" onclick="cp('wt')">전체 복사</button></h2>
-<p style="color:#888;font-size:0.8em">경로: audio/writing/np/words_common/{{파일명}}</p>
+<h2>새로 만들 단어 오디오 (142개) <button class="cb" onclick="cp('wt')">전체 복사</button></h2>
+<p style="color:#888;font-size:0.8em">경로: audio/words_common/{{파일명}}</p>
 <table id="wt"><tr><th>#</th><th>단어</th><th>파일명</th><th>자막#</th></tr>
 <tr><td>1</td><td style="font-size:1.1em">가능하면</td><td class="fn">ganeunghamyeon.mp3</td><td>#19</td></tr>
 <tr><td>2</td><td style="font-size:1.1em">가득한</td><td class="fn">gadeukhan.mp3</td><td>#6</td></tr>
 <tr><td>3</td><td style="font-size:1.1em">강력히</td><td class="fn">gangryeokhi.mp3</td><td>#6</td></tr>
 <tr><td>4</td><td style="font-size:1.1em">개들이</td><td class="fn">gaedeuli.mp3</td><td>#36</td></tr>
-<tr><td>5</td><td style="font-size:1.1em">거</td><td class="fn">geo.mp3</td><td>#12</td></tr>
-<tr><td>6</td><td style="font-size:1.1em">거냐</td><td class="fn">geonya.mp3</td><td>#3</td></tr>
-<tr><td>7</td><td style="font-size:1.1em">거다</td><td class="fn">geoda.mp3</td><td>#7</td></tr>
-<tr><td>8</td><td style="font-size:1.1em">걸로</td><td class="fn">geolro.mp3</td><td>#9</td></tr>
-<tr><td>9</td><td style="font-size:1.1em">경호원들은</td><td class="fn">gyeonghowondeuleun.mp3</td><td>#33</td></tr>
-<tr><td>10</td><td style="font-size:1.1em">공격할지</td><td class="fn">gonggyeokhalji.mp3</td><td>#34</td></tr>
-<tr><td>11</td><td style="font-size:1.1em">구두</td><td class="fn">gudu.mp3</td><td>#23</td></tr>
-<tr><td>12</td><td style="font-size:1.1em">구두도</td><td class="fn">gududo.mp3</td><td>#20</td></tr>
-<tr><td>13</td><td style="font-size:1.1em">구매팀장님</td><td class="fn">gumaetimjangnim.mp3</td><td>#22</td></tr>
-<tr><td>14</td><td style="font-size:1.1em">귀걸이</td><td class="fn">gwigeoli.mp3</td><td>#23</td></tr>
-<tr><td>15</td><td style="font-size:1.1em">귀걸이가</td><td class="fn">gwigeoliga.mp3</td><td>#18</td></tr>
-<tr><td>16</td><td style="font-size:1.1em">귀걸이까지</td><td class="fn">gwigeolikkaji.mp3</td><td>#16</td></tr>
-<tr><td>17</td><td style="font-size:1.1em">그</td><td class="fn">geu.mp3</td><td>#18</td></tr>
-<tr><td>18</td><td style="font-size:1.1em">그게</td><td class="fn">geuge.mp3</td><td>#15</td></tr>
-<tr><td>19</td><td style="font-size:1.1em">그나마</td><td class="fn">geunama.mp3</td><td>#2</td></tr>
-<tr><td>20</td><td style="font-size:1.1em">그냥</td><td class="fn">geunyang.mp3</td><td>#30</td></tr>
-<tr><td>21</td><td style="font-size:1.1em">그래</td><td class="fn">geurae.mp3</td><td>#10</td></tr>
-<tr><td>22</td><td style="font-size:1.1em">그래요</td><td class="fn">geuraeyo.mp3</td><td>#12</td></tr>
-<tr><td>23</td><td style="font-size:1.1em">그러면</td><td class="fn">geureomyeon.mp3</td><td>#24</td></tr>
-<tr><td>24</td><td style="font-size:1.1em">그렇구만</td><td class="fn">geureotguman.mp3</td><td>#30</td></tr>
-<tr><td>25</td><td style="font-size:1.1em">기분</td><td class="fn">gibun.mp3</td><td>#37</td></tr>
-<tr><td>26</td><td style="font-size:1.1em">기사가</td><td class="fn">gisaga.mp3</td><td>#1</td></tr>
-<tr><td>27</td><td style="font-size:1.1em">깍지가</td><td class="fn">kkakjiga.mp3</td><td>#4</td></tr>
-<tr><td>28</td><td style="font-size:1.1em">끝났지만</td><td class="fn">kkeutnatjiman.mp3</td><td>#11</td></tr>
-<tr><td>29</td><td style="font-size:1.1em">끼면</td><td class="fn">kkimyeon.mp3</td><td>#3</td></tr>
-<tr><td>30</td><td style="font-size:1.1em">나</td><td class="fn">na.mp3</td><td>#32</td></tr>
-<tr><td>31</td><td style="font-size:1.1em">난</td><td class="fn">nan.mp3</td><td>#27</td></tr>
-<tr><td>32</td><td style="font-size:1.1em">내가</td><td class="fn">naega.mp3</td><td>#17</td></tr>
-<tr><td>33</td><td style="font-size:1.1em">내야</td><td class="fn">naeya.mp3</td><td>#36</td></tr>
-<tr><td>34</td><td style="font-size:1.1em">네</td><td class="fn">ne.mp3</td><td>#1</td></tr>
-<tr><td>35</td><td style="font-size:1.1em">노시는</td><td class="fn">nosineun.mp3</td><td>#9</td></tr>
-<tr><td>36</td><td style="font-size:1.1em">노출이</td><td class="fn">nochuli.mp3</td><td>#20</td></tr>
-<tr><td>37</td><td style="font-size:1.1em">놀고</td><td class="fn">nolgo.mp3</td><td>#8</td></tr>
-<tr><td>38</td><td style="font-size:1.1em">누가</td><td class="fn">nuga.mp3</td><td>#36</td></tr>
-<tr><td>39</td><td style="font-size:1.1em">다</td><td class="fn">da.mp3</td><td>#11</td></tr>
-<tr><td>40</td><td style="font-size:1.1em">대체</td><td class="fn">daeche.mp3</td><td>#33</td></tr>
-<tr><td>41</td><td style="font-size:1.1em">대표님</td><td class="fn">daepyonim.mp3</td><td>#34</td></tr>
-<tr><td>42</td><td style="font-size:1.1em">데스패치</td><td class="fn">deseupaechi.mp3</td><td>#2</td></tr>
-<tr><td>43</td><td style="font-size:1.1em">돼버렸잖아</td><td class="fn">dwaebeoryeotjana.mp3</td><td>#16</td></tr>
-<tr><td>44</td><td style="font-size:1.1em">되게</td><td class="fn">doege.mp3</td><td>#20</td></tr>
-<tr><td>45</td><td style="font-size:1.1em">되는데</td><td class="fn">doeneunde.mp3</td><td>#36</td></tr>
-<tr><td>46</td><td style="font-size:1.1em">된</td><td class="fn">doen.mp3</td><td>#12</td></tr>
-<tr><td>47</td><td style="font-size:1.1em">될</td><td class="fn">doel.mp3</td><td>#1</td></tr>
-<tr><td>48</td><td style="font-size:1.1em">될까</td><td class="fn">doelkka.mp3</td><td>#13</td></tr>
-<tr><td>49</td><td style="font-size:1.1em">두</td><td class="fn">du.mp3</td><td>#8</td></tr>
-<tr><td>50</td><td style="font-size:1.1em">딱</td><td class="fn">ttak.mp3</td><td>#18</td></tr>
-<tr><td>51</td><td style="font-size:1.1em">땐</td><td class="fn">ttaen.mp3</td><td>#10</td></tr>
-<tr><td>52</td><td style="font-size:1.1em">또</td><td class="fn">tto.mp3</td><td>#4</td></tr>
-<tr><td>53</td><td style="font-size:1.1em">라인에서</td><td class="fn">raineseo.mp3</td><td>#17</td></tr>
-<tr><td>54</td><td style="font-size:1.1em">막</td><td class="fn">mak.mp3</td><td>#24</td></tr>
-<tr><td>55</td><td style="font-size:1.1em">막고</td><td class="fn">makgo.mp3</td><td>#3</td></tr>
-<tr><td>56</td><td style="font-size:1.1em">맞네</td><td class="fn">matne.mp3</td><td>#28</td></tr>
-<tr><td>57</td><td style="font-size:1.1em">매출이</td><td class="fn">maechuli.mp3</td><td>#38</td></tr>
-<tr><td>58</td><td style="font-size:1.1em">모자이크</td><td class="fn">mojaikeu.mp3</td><td>#13</td></tr>
-<tr><td>59</td><td style="font-size:1.1em">모자이크를</td><td class="fn">mojaikeureul.mp3</td><td>#18</td></tr>
-<tr><td>60</td><td style="font-size:1.1em">몰라서</td><td class="fn">molraseo.mp3</td><td>#34</td></tr>
-<tr><td>61</td><td style="font-size:1.1em">물량</td><td class="fn">mulryang.mp3</td><td>#23</td></tr>
-<tr><td>62</td><td style="font-size:1.1em">물어봐라</td><td class="fn">muleobwara.mp3</td><td>#3</td></tr>
-<tr><td>63</td><td style="font-size:1.1em">뭉개달라고</td><td class="fn">munggaedalrago.mp3</td><td>#14</td></tr>
-<tr><td>64</td><td style="font-size:1.1em">뭐</td><td class="fn">mwo.mp3</td><td>#4</td></tr>
-<tr><td>65</td><td style="font-size:1.1em">뭐랄까</td><td class="fn">mworalkka.mp3</td><td>#18</td></tr>
-<tr><td>66</td><td style="font-size:1.1em">뭐예요</td><td class="fn">mwoyeyo.mp3</td><td>#33</td></tr>
-<tr><td>67</td><td style="font-size:1.1em">밀고</td><td class="fn">milgo.mp3</td><td>#17</td></tr>
-<tr><td>68</td><td style="font-size:1.1em">반년치</td><td class="fn">bannyeonchi.mp3</td><td>#38</td></tr>
-<tr><td>69</td><td style="font-size:1.1em">배우</td><td class="fn">baeu.mp3</td><td>#27</td></tr>
-<tr><td>70</td><td style="font-size:1.1em">백</td><td class="fn">baek.mp3</td><td>#23</td></tr>
-<tr><td>71</td><td style="font-size:1.1em">백이랑</td><td class="fn">baekirang.mp3</td><td>#20</td></tr>
-<tr><td>72</td><td style="font-size:1.1em">보시면은</td><td class="fn">bosimyeoneun.mp3</td><td>#4</td></tr>
-<tr><td>73</td><td style="font-size:1.1em">보이게</td><td class="fn">boige.mp3</td><td>#18</td></tr>
-<tr><td>74</td><td style="font-size:1.1em">볼까요</td><td class="fn">bolkkayo.mp3</td><td>#14</td></tr>
-<tr><td>75</td><td style="font-size:1.1em">분이</td><td class="fn">buni.mp3</td><td>#8</td></tr>
-<tr><td>76</td><td style="font-size:1.1em">붙잡으셨더라고요</td><td class="fn">butjapeusyeotdeoragoyo.mp3</td><td>#4</td></tr>
-<tr><td>77</td><td style="font-size:1.1em">사귀는</td><td class="fn">sagwineun.mp3</td><td>#3</td></tr>
-<tr><td>78</td><td style="font-size:1.1em">사이로</td><td class="fn">sairo.mp3</td><td>#6</td></tr>
-<tr><td>79</td><td style="font-size:1.1em">상한가</td><td class="fn">sanghanga.mp3</td><td>#39</td></tr>
-<tr><td>80</td><td style="font-size:1.1em">섬세하게</td><td class="fn">seomsehage.mp3</td><td>#18</td></tr>
-<tr><td>81</td><td style="font-size:1.1em">성난팬들</td><td class="fn">seongnanpaendeul.mp3</td><td>#35</td></tr>
-<tr><td>82</td><td style="font-size:1.1em">성난팬들이</td><td class="fn">seongnanpaendeuli.mp3</td><td>#34</td></tr>
-<tr><td>83</td><td style="font-size:1.1em">성이나</td><td class="fn">seongina.mp3</td><td>#36</td></tr>
-<tr><td>84</td><td style="font-size:1.1em">성질</td><td class="fn">seongjil.mp3</td><td>#36</td></tr>
-<tr><td>85</td><td style="font-size:1.1em">손깍지</td><td class="fn">sonkkakji.mp3</td><td>#3</td></tr>
-<tr><td>86</td><td style="font-size:1.1em">손목을</td><td class="fn">sonmokeul.mp3</td><td>#4</td></tr>
-<tr><td>87</td><td style="font-size:1.1em">스캔들</td><td class="fn">seukaendeul.mp3</td><td>#27</td></tr>
-<tr><td>88</td><td style="font-size:1.1em">시면</td><td class="fn">simyeon.mp3</td><td>#1</td></tr>
-<tr><td>89</td><td style="font-size:1.1em">시즌</td><td class="fn">sijeun.mp3</td><td>#17</td></tr>
-<tr><td>90</td><td style="font-size:1.1em">실검뜨고</td><td class="fn">silgeomtteugo.mp3</td><td>#24</td></tr>
-<tr><td>91</td><td style="font-size:1.1em">쏟아질</td><td class="fn">ssotajil.mp3</td><td>#24</td></tr>
-<tr><td>92</td><td style="font-size:1.1em">아</td><td class="fn">a.mp3</td><td>#28</td></tr>
-<tr><td>93</td><td style="font-size:1.1em">아깝다</td><td class="fn">akkapda.mp3</td><td>#31</td></tr>
-<tr><td>94</td><td style="font-size:1.1em">아니</td><td class="fn">ani.mp3</td><td>#9</td></tr>
-<tr><td>95</td><td style="font-size:1.1em">아니고</td><td class="fn">anigo.mp3</td><td>#15</td></tr>
-<tr><td>96</td><td style="font-size:1.1em">아니다</td><td class="fn">anida.mp3</td><td>#5</td></tr>
-<tr><td>97</td><td style="font-size:1.1em">아니라</td><td class="fn">anira.mp3</td><td>#4</td></tr>
-<tr><td>98</td><td style="font-size:1.1em">아니야</td><td class="fn">aniya.mp3</td><td>#26</td></tr>
-<tr><td>99</td><td style="font-size:1.1em">안</td><td class="fn">an.mp3</td><td>#13</td></tr>
-<tr><td>100</td><td style="font-size:1.1em">애인데</td><td class="fn">aeinde.mp3</td><td>#17</td></tr>
-<tr><td>101</td><td style="font-size:1.1em">액세서리</td><td class="fn">aekseseori.mp3</td><td>#17</td></tr>
-<tr><td>102</td><td style="font-size:1.1em">어떻게</td><td class="fn">eotteotge.mp3</td><td>#13</td></tr>
-<tr><td>103</td><td style="font-size:1.1em">언제</td><td class="fn">eonje.mp3</td><td>#34</td></tr>
-<tr><td>104</td><td style="font-size:1.1em">얼굴도</td><td class="fn">eolguldo.mp3</td><td>#30</td></tr>
-<tr><td>105</td><td style="font-size:1.1em">얼굴을</td><td class="fn">eolguleul.mp3</td><td>#14</td></tr>
-<tr><td>106</td><td style="font-size:1.1em">업데이트</td><td class="fn">eopdeiteu.mp3</td><td>#1</td></tr>
-<tr><td>107</td><td style="font-size:1.1em">여자</td><td class="fn">yeoja.mp3</td><td>#26</td></tr>
-<tr><td>108</td><td style="font-size:1.1em">예</td><td class="fn">ye.mp3</td><td>#8</td></tr>
-<tr><td>109</td><td style="font-size:1.1em">예정입니다</td><td class="fn">yejeongipnida.mp3</td><td>#1</td></tr>
-<tr><td>110</td><td style="font-size:1.1em">오더</td><td class="fn">odeo.mp3</td><td>#24</td></tr>
-<tr><td>111</td><td style="font-size:1.1em">오전</td><td class="fn">ojeon.mp3</td><td>#1</td></tr>
-<tr><td>112</td><td style="font-size:1.1em">왜</td><td class="fn">wae.mp3</td><td>#36</td></tr>
-<tr><td>113</td><td style="font-size:1.1em">우겨</td><td class="fn">ugyeo.mp3</td><td>#14</td></tr>
-<tr><td>114</td><td style="font-size:1.1em">워낙에</td><td class="fn">wonake.mp3</td><td>#8</td></tr>
-<tr><td>115</td><td style="font-size:1.1em">은혜인형이야</td><td class="fn">eunhyeinhyeongiya.mp3</td><td>#29</td></tr>
-<tr><td>116</td><td style="font-size:1.1em">이건</td><td class="fn">igeon.mp3</td><td>#5</td></tr>
-<tr><td>117</td><td style="font-size:1.1em">이렇게</td><td class="fn">ireotge.mp3</td><td>#6</td></tr>
-<tr><td>118</td><td style="font-size:1.1em">이번</td><td class="fn">ibeon.mp3</td><td>#17</td></tr>
-<tr><td>119</td><td style="font-size:1.1em">이왕</td><td class="fn">iwang.mp3</td><td>#12</td></tr>
-<tr><td>120</td><td style="font-size:1.1em">이왕이면</td><td class="fn">iwangimyeon.mp3</td><td>#20</td></tr>
-<tr><td>121</td><td style="font-size:1.1em">이젠</td><td class="fn">ijen.mp3</td><td>#11</td></tr>
-<tr><td>122</td><td style="font-size:1.1em">있는</td><td class="fn">itneun.mp3</td><td>#17</td></tr>
-<tr><td>123</td><td style="font-size:1.1em">있다고</td><td class="fn">itdago.mp3</td><td>#8</td></tr>
-<tr><td>124</td><td style="font-size:1.1em">자세히</td><td class="fn">jasehi.mp3</td><td>#4</td></tr>
-<tr><td>125</td><td style="font-size:1.1em">잠시</td><td class="fn">jamsi.mp3</td><td>#1</td></tr>
-<tr><td>126</td><td style="font-size:1.1em">장난기</td><td class="fn">jangnangi.mp3</td><td>#6</td></tr>
-<tr><td>127</td><td style="font-size:1.1em">장난치는</td><td class="fn">jangnanchineun.mp3</td><td>#7</td></tr>
-<tr><td>128</td><td style="font-size:1.1em">저</td><td class="fn">jeo.mp3</td><td>#13</td></tr>
-<tr><td>129</td><td style="font-size:1.1em">저게</td><td class="fn">jeoge.mp3</td><td>#7</td></tr>
-<tr><td>130</td><td style="font-size:1.1em">전부</td><td class="fn">jeonbu.mp3</td><td>#3</td></tr>
-<tr><td>131</td><td style="font-size:1.1em">전신샷이면</td><td class="fn">jeonsinsyatimyeon.mp3</td><td>#19</td></tr>
-<tr><td>132</td><td style="font-size:1.1em">정리를</td><td class="fn">jeongrireul.mp3</td><td>#6</td></tr>
-<tr><td>133</td><td style="font-size:1.1em">제가</td><td class="fn">jega.mp3</td><td>#2</td></tr>
-<tr><td>134</td><td style="font-size:1.1em">제일</td><td class="fn">jeil.mp3</td><td>#17</td></tr>
-<tr><td>135</td><td style="font-size:1.1em">좀</td><td class="fn">jom.mp3</td><td>#13</td></tr>
-<tr><td>136</td><td style="font-size:1.1em">좋겠는데</td><td class="fn">jotgetneunde.mp3</td><td>#19</td></tr>
-<tr><td>137</td><td style="font-size:1.1em">좋아요</td><td class="fn">jotayo.mp3</td><td>#12</td></tr>
-<tr><td>138</td><td style="font-size:1.1em">좋은</td><td class="fn">joteun.mp3</td><td>#6</td></tr>
-<tr><td>139</td><td style="font-size:1.1em">좋은데</td><td class="fn">joteunde.mp3</td><td>#13</td></tr>
-<tr><td>140</td><td style="font-size:1.1em">주가도</td><td class="fn">jugado.mp3</td><td>#39</td></tr>
-<tr><td>141</td><td style="font-size:1.1em">주목받는</td><td class="fn">jumokbatneun.mp3</td><td>#32</td></tr>
-<tr><td>142</td><td style="font-size:1.1em">줄여서</td><td class="fn">julyeoseo.mp3</td><td>#18</td></tr>
-<tr><td>143</td><td style="font-size:1.1em">지금</td><td class="fn">jigeum.mp3</td><td>#22</td></tr>
-<tr><td>144</td><td style="font-size:1.1em">쪽에다가</td><td class="fn">jjokedaga.mp3</td><td>#2</td></tr>
-<tr><td>145</td><td style="font-size:1.1em">차상우가</td><td class="fn">chasanguga.mp3</td><td>#31</td></tr>
-<tr><td>146</td><td style="font-size:1.1em">차상우랑</td><td class="fn">chasangurang.mp3</td><td>#27</td></tr>
-<tr><td>147</td><td style="font-size:1.1em">차상우의</td><td class="fn">chasanguui.mp3</td><td>#34</td></tr>
-<tr><td>148</td><td style="font-size:1.1em">친구</td><td class="fn">chingu.mp3</td><td>#6</td></tr>
-<tr><td>149</td><td style="font-size:1.1em">친하셔서</td><td class="fn">chinhasyeoseo.mp3</td><td>#8</td></tr>
-<tr><td>150</td><td style="font-size:1.1em">친했지</td><td class="fn">chinhaetji.mp3</td><td>#10</td></tr>
-<tr><td>151</td><td style="font-size:1.1em">터졌습니다</td><td class="fn">teojyeotseupnida.mp3</td><td>#38</td></tr>
-<tr><td>152</td><td style="font-size:1.1em">텐데</td><td class="fn">tende.mp3</td><td>#24</td></tr>
-<tr><td>153</td><td style="font-size:1.1em">평소보다</td><td class="fn">pyeongsoboda.mp3</td><td>#32</td></tr>
-<tr><td>154</td><td style="font-size:1.1em">푸십시오</td><td class="fn">pusipsio.mp3</td><td>#37</td></tr>
-<tr><td>155</td><td style="font-size:1.1em">하루에</td><td class="fn">harue.mp3</td><td>#38</td></tr>
-<tr><td>156</td><td style="font-size:1.1em">하셔야겠어요</td><td class="fn">hasyeoyageteoyo.mp3</td><td>#22</td></tr>
-<tr><td>157</td><td style="font-size:1.1em">항의를</td><td class="fn">hanguireul.mp3</td><td>#6</td></tr>
-<tr><td>158</td><td style="font-size:1.1em">해서</td><td class="fn">haeseo.mp3</td><td>#6</td></tr>
-<tr><td>159</td><td style="font-size:1.1em">했습니다</td><td class="fn">haetseupnida.mp3</td><td>#6</td></tr>
-<tr><td>160</td><td style="font-size:1.1em">확보하셔야죠</td><td class="fn">hwakbohasyeoyajyo.mp3</td><td>#23</td></tr>
-<tr><td>161</td><td style="font-size:1.1em">후</td><td class="fn">hu.mp3</td><td>#1</td></tr>
+<tr><td>5</td><td style="font-size:1.1em">거냐</td><td class="fn">geonya.mp3</td><td>#3</td></tr>
+<tr><td>6</td><td style="font-size:1.1em">거다</td><td class="fn">geoda.mp3</td><td>#7</td></tr>
+<tr><td>7</td><td style="font-size:1.1em">걸로</td><td class="fn">geolro.mp3</td><td>#9</td></tr>
+<tr><td>8</td><td style="font-size:1.1em">경호원들은</td><td class="fn">gyeonghowondeuleun.mp3</td><td>#33</td></tr>
+<tr><td>9</td><td style="font-size:1.1em">공격할지</td><td class="fn">gonggyeokhalji.mp3</td><td>#34</td></tr>
+<tr><td>10</td><td style="font-size:1.1em">구두</td><td class="fn">gudu.mp3</td><td>#23</td></tr>
+<tr><td>11</td><td style="font-size:1.1em">구두도</td><td class="fn">gududo.mp3</td><td>#20</td></tr>
+<tr><td>12</td><td style="font-size:1.1em">구매팀장님</td><td class="fn">gumaetimjangnim.mp3</td><td>#22</td></tr>
+<tr><td>13</td><td style="font-size:1.1em">귀걸이</td><td class="fn">gwigeoli.mp3</td><td>#23</td></tr>
+<tr><td>14</td><td style="font-size:1.1em">귀걸이가</td><td class="fn">gwigeoliga.mp3</td><td>#18</td></tr>
+<tr><td>15</td><td style="font-size:1.1em">귀걸이까지</td><td class="fn">gwigeolikkaji.mp3</td><td>#16</td></tr>
+<tr><td>16</td><td style="font-size:1.1em">그게</td><td class="fn">geuge.mp3</td><td>#15</td></tr>
+<tr><td>17</td><td style="font-size:1.1em">그나마</td><td class="fn">geunama.mp3</td><td>#2</td></tr>
+<tr><td>18</td><td style="font-size:1.1em">그냥</td><td class="fn">geunyang.mp3</td><td>#30</td></tr>
+<tr><td>19</td><td style="font-size:1.1em">그래</td><td class="fn">geurae.mp3</td><td>#10</td></tr>
+<tr><td>20</td><td style="font-size:1.1em">그래요</td><td class="fn">geuraeyo.mp3</td><td>#12</td></tr>
+<tr><td>21</td><td style="font-size:1.1em">그러면</td><td class="fn">geureomyeon.mp3</td><td>#24</td></tr>
+<tr><td>22</td><td style="font-size:1.1em">그렇구만</td><td class="fn">geureotguman.mp3</td><td>#30</td></tr>
+<tr><td>23</td><td style="font-size:1.1em">기분</td><td class="fn">gibun.mp3</td><td>#37</td></tr>
+<tr><td>24</td><td style="font-size:1.1em">기사가</td><td class="fn">gisaga.mp3</td><td>#1</td></tr>
+<tr><td>25</td><td style="font-size:1.1em">깍지가</td><td class="fn">kkakjiga.mp3</td><td>#4</td></tr>
+<tr><td>26</td><td style="font-size:1.1em">끝났지만</td><td class="fn">kkeutnatjiman.mp3</td><td>#11</td></tr>
+<tr><td>27</td><td style="font-size:1.1em">끼면</td><td class="fn">kkimyeon.mp3</td><td>#3</td></tr>
+<tr><td>28</td><td style="font-size:1.1em">내가</td><td class="fn">naega.mp3</td><td>#17</td></tr>
+<tr><td>29</td><td style="font-size:1.1em">내야</td><td class="fn">naeya.mp3</td><td>#36</td></tr>
+<tr><td>30</td><td style="font-size:1.1em">네</td><td class="fn">ne.mp3</td><td>#1</td></tr>
+<tr><td>31</td><td style="font-size:1.1em">노시는</td><td class="fn">nosineun.mp3</td><td>#9</td></tr>
+<tr><td>32</td><td style="font-size:1.1em">노출이</td><td class="fn">nochuli.mp3</td><td>#20</td></tr>
+<tr><td>33</td><td style="font-size:1.1em">놀고</td><td class="fn">nolgo.mp3</td><td>#8</td></tr>
+<tr><td>34</td><td style="font-size:1.1em">누가</td><td class="fn">nuga.mp3</td><td>#36</td></tr>
+<tr><td>35</td><td style="font-size:1.1em">대체</td><td class="fn">daeche.mp3</td><td>#33</td></tr>
+<tr><td>36</td><td style="font-size:1.1em">대표님</td><td class="fn">daepyonim.mp3</td><td>#34</td></tr>
+<tr><td>37</td><td style="font-size:1.1em">데스패치</td><td class="fn">deseupaechi.mp3</td><td>#2</td></tr>
+<tr><td>38</td><td style="font-size:1.1em">돼버렸잖아</td><td class="fn">dwaebeoryeotjana.mp3</td><td>#16</td></tr>
+<tr><td>39</td><td style="font-size:1.1em">되게</td><td class="fn">doege.mp3</td><td>#20</td></tr>
+<tr><td>40</td><td style="font-size:1.1em">되는데</td><td class="fn">doeneunde.mp3</td><td>#36</td></tr>
+<tr><td>41</td><td style="font-size:1.1em">될까</td><td class="fn">doelkka.mp3</td><td>#13</td></tr>
+<tr><td>42</td><td style="font-size:1.1em">라인에서</td><td class="fn">raineseo.mp3</td><td>#17</td></tr>
+<tr><td>43</td><td style="font-size:1.1em">막고</td><td class="fn">makgo.mp3</td><td>#3</td></tr>
+<tr><td>44</td><td style="font-size:1.1em">맞네</td><td class="fn">matne.mp3</td><td>#28</td></tr>
+<tr><td>45</td><td style="font-size:1.1em">매출이</td><td class="fn">maechuli.mp3</td><td>#38</td></tr>
+<tr><td>46</td><td style="font-size:1.1em">모자이크</td><td class="fn">mojaikeu.mp3</td><td>#13</td></tr>
+<tr><td>47</td><td style="font-size:1.1em">모자이크를</td><td class="fn">mojaikeureul.mp3</td><td>#18</td></tr>
+<tr><td>48</td><td style="font-size:1.1em">몰라서</td><td class="fn">molraseo.mp3</td><td>#34</td></tr>
+<tr><td>49</td><td style="font-size:1.1em">물량</td><td class="fn">mulryang.mp3</td><td>#23</td></tr>
+<tr><td>50</td><td style="font-size:1.1em">물어봐라</td><td class="fn">muleobwara.mp3</td><td>#3</td></tr>
+<tr><td>51</td><td style="font-size:1.1em">뭉개달라고</td><td class="fn">munggaedalrago.mp3</td><td>#14</td></tr>
+<tr><td>52</td><td style="font-size:1.1em">뭐랄까</td><td class="fn">mworalkka.mp3</td><td>#18</td></tr>
+<tr><td>53</td><td style="font-size:1.1em">뭐예요</td><td class="fn">mwoyeyo.mp3</td><td>#33</td></tr>
+<tr><td>54</td><td style="font-size:1.1em">밀고</td><td class="fn">milgo.mp3</td><td>#17</td></tr>
+<tr><td>55</td><td style="font-size:1.1em">반년치</td><td class="fn">bannyeonchi.mp3</td><td>#38</td></tr>
+<tr><td>56</td><td style="font-size:1.1em">배우</td><td class="fn">baeu.mp3</td><td>#27</td></tr>
+<tr><td>57</td><td style="font-size:1.1em">백이랑</td><td class="fn">baekirang.mp3</td><td>#20</td></tr>
+<tr><td>58</td><td style="font-size:1.1em">보시면은</td><td class="fn">bosimyeoneun.mp3</td><td>#4</td></tr>
+<tr><td>59</td><td style="font-size:1.1em">보이게</td><td class="fn">boige.mp3</td><td>#18</td></tr>
+<tr><td>60</td><td style="font-size:1.1em">볼까요</td><td class="fn">bolkkayo.mp3</td><td>#14</td></tr>
+<tr><td>61</td><td style="font-size:1.1em">분이</td><td class="fn">buni.mp3</td><td>#8</td></tr>
+<tr><td>62</td><td style="font-size:1.1em">붙잡으셨더라고요</td><td class="fn">butjapeusyeotdeoragoyo.mp3</td><td>#4</td></tr>
+<tr><td>63</td><td style="font-size:1.1em">사귀는</td><td class="fn">sagwineun.mp3</td><td>#3</td></tr>
+<tr><td>64</td><td style="font-size:1.1em">사이로</td><td class="fn">sairo.mp3</td><td>#6</td></tr>
+<tr><td>65</td><td style="font-size:1.1em">상한가</td><td class="fn">sanghanga.mp3</td><td>#39</td></tr>
+<tr><td>66</td><td style="font-size:1.1em">섬세하게</td><td class="fn">seomsehage.mp3</td><td>#18</td></tr>
+<tr><td>67</td><td style="font-size:1.1em">성난팬들</td><td class="fn">seongnanpaendeul.mp3</td><td>#35</td></tr>
+<tr><td>68</td><td style="font-size:1.1em">성난팬들이</td><td class="fn">seongnanpaendeuli.mp3</td><td>#34</td></tr>
+<tr><td>69</td><td style="font-size:1.1em">성이나</td><td class="fn">seongina.mp3</td><td>#36</td></tr>
+<tr><td>70</td><td style="font-size:1.1em">성질</td><td class="fn">seongjil.mp3</td><td>#36</td></tr>
+<tr><td>71</td><td style="font-size:1.1em">손깍지</td><td class="fn">sonkkakji.mp3</td><td>#3</td></tr>
+<tr><td>72</td><td style="font-size:1.1em">손목을</td><td class="fn">sonmokeul.mp3</td><td>#4</td></tr>
+<tr><td>73</td><td style="font-size:1.1em">스캔들</td><td class="fn">seukaendeul.mp3</td><td>#27</td></tr>
+<tr><td>74</td><td style="font-size:1.1em">시면</td><td class="fn">simyeon.mp3</td><td>#1</td></tr>
+<tr><td>75</td><td style="font-size:1.1em">시즌</td><td class="fn">sijeun.mp3</td><td>#17</td></tr>
+<tr><td>76</td><td style="font-size:1.1em">실검뜨고</td><td class="fn">silgeomtteugo.mp3</td><td>#24</td></tr>
+<tr><td>77</td><td style="font-size:1.1em">쏟아질</td><td class="fn">ssotajil.mp3</td><td>#24</td></tr>
+<tr><td>78</td><td style="font-size:1.1em">아</td><td class="fn">a.mp3</td><td>#28</td></tr>
+<tr><td>79</td><td style="font-size:1.1em">아깝다</td><td class="fn">akkapda.mp3</td><td>#31</td></tr>
+<tr><td>80</td><td style="font-size:1.1em">아니</td><td class="fn">ani.mp3</td><td>#9</td></tr>
+<tr><td>81</td><td style="font-size:1.1em">아니고</td><td class="fn">anigo.mp3</td><td>#15</td></tr>
+<tr><td>82</td><td style="font-size:1.1em">아니다</td><td class="fn">anida.mp3</td><td>#5</td></tr>
+<tr><td>83</td><td style="font-size:1.1em">아니라</td><td class="fn">anira.mp3</td><td>#4</td></tr>
+<tr><td>84</td><td style="font-size:1.1em">아니야</td><td class="fn">aniya.mp3</td><td>#26</td></tr>
+<tr><td>85</td><td style="font-size:1.1em">애인데</td><td class="fn">aeinde.mp3</td><td>#17</td></tr>
+<tr><td>86</td><td style="font-size:1.1em">액세서리</td><td class="fn">aekseseori.mp3</td><td>#17</td></tr>
+<tr><td>87</td><td style="font-size:1.1em">어떻게</td><td class="fn">eotteotge.mp3</td><td>#13</td></tr>
+<tr><td>88</td><td style="font-size:1.1em">언제</td><td class="fn">eonje.mp3</td><td>#34</td></tr>
+<tr><td>89</td><td style="font-size:1.1em">얼굴도</td><td class="fn">eolguldo.mp3</td><td>#30</td></tr>
+<tr><td>90</td><td style="font-size:1.1em">얼굴을</td><td class="fn">eolguleul.mp3</td><td>#14</td></tr>
+<tr><td>91</td><td style="font-size:1.1em">업데이트</td><td class="fn">eopdeiteu.mp3</td><td>#1</td></tr>
+<tr><td>92</td><td style="font-size:1.1em">여자</td><td class="fn">yeoja.mp3</td><td>#26</td></tr>
+<tr><td>93</td><td style="font-size:1.1em">예</td><td class="fn">ye.mp3</td><td>#8</td></tr>
+<tr><td>94</td><td style="font-size:1.1em">예정입니다</td><td class="fn">yejeongipnida.mp3</td><td>#1</td></tr>
+<tr><td>95</td><td style="font-size:1.1em">오더</td><td class="fn">odeo.mp3</td><td>#24</td></tr>
+<tr><td>96</td><td style="font-size:1.1em">오전</td><td class="fn">ojeon.mp3</td><td>#1</td></tr>
+<tr><td>97</td><td style="font-size:1.1em">우겨</td><td class="fn">ugyeo.mp3</td><td>#14</td></tr>
+<tr><td>98</td><td style="font-size:1.1em">워낙에</td><td class="fn">wonake.mp3</td><td>#8</td></tr>
+<tr><td>99</td><td style="font-size:1.1em">은혜인형이야</td><td class="fn">eunhyeinhyeongiya.mp3</td><td>#29</td></tr>
+<tr><td>100</td><td style="font-size:1.1em">이건</td><td class="fn">igeon.mp3</td><td>#5</td></tr>
+<tr><td>101</td><td style="font-size:1.1em">이렇게</td><td class="fn">ireotge.mp3</td><td>#6</td></tr>
+<tr><td>102</td><td style="font-size:1.1em">이번</td><td class="fn">ibeon.mp3</td><td>#17</td></tr>
+<tr><td>103</td><td style="font-size:1.1em">이왕</td><td class="fn">iwang.mp3</td><td>#12</td></tr>
+<tr><td>104</td><td style="font-size:1.1em">이왕이면</td><td class="fn">iwangimyeon.mp3</td><td>#20</td></tr>
+<tr><td>105</td><td style="font-size:1.1em">이젠</td><td class="fn">ijen.mp3</td><td>#11</td></tr>
+<tr><td>106</td><td style="font-size:1.1em">있는</td><td class="fn">itneun.mp3</td><td>#17</td></tr>
+<tr><td>107</td><td style="font-size:1.1em">있다고</td><td class="fn">itdago.mp3</td><td>#8</td></tr>
+<tr><td>108</td><td style="font-size:1.1em">자세히</td><td class="fn">jasehi.mp3</td><td>#4</td></tr>
+<tr><td>109</td><td style="font-size:1.1em">잠시</td><td class="fn">jamsi.mp3</td><td>#1</td></tr>
+<tr><td>110</td><td style="font-size:1.1em">장난기</td><td class="fn">jangnangi.mp3</td><td>#6</td></tr>
+<tr><td>111</td><td style="font-size:1.1em">장난치는</td><td class="fn">jangnanchineun.mp3</td><td>#7</td></tr>
+<tr><td>112</td><td style="font-size:1.1em">저게</td><td class="fn">jeoge.mp3</td><td>#7</td></tr>
+<tr><td>113</td><td style="font-size:1.1em">전부</td><td class="fn">jeonbu.mp3</td><td>#3</td></tr>
+<tr><td>114</td><td style="font-size:1.1em">전신샷이면</td><td class="fn">jeonsinsyatimyeon.mp3</td><td>#19</td></tr>
+<tr><td>115</td><td style="font-size:1.1em">정리를</td><td class="fn">jeongrireul.mp3</td><td>#6</td></tr>
+<tr><td>116</td><td style="font-size:1.1em">제가</td><td class="fn">jega.mp3</td><td>#2</td></tr>
+<tr><td>117</td><td style="font-size:1.1em">제일</td><td class="fn">jeil.mp3</td><td>#17</td></tr>
+<tr><td>118</td><td style="font-size:1.1em">좋겠는데</td><td class="fn">jotgetneunde.mp3</td><td>#19</td></tr>
+<tr><td>119</td><td style="font-size:1.1em">좋아요</td><td class="fn">jotayo.mp3</td><td>#12</td></tr>
+<tr><td>120</td><td style="font-size:1.1em">좋은</td><td class="fn">joteun.mp3</td><td>#6</td></tr>
+<tr><td>121</td><td style="font-size:1.1em">좋은데</td><td class="fn">joteunde.mp3</td><td>#13</td></tr>
+<tr><td>122</td><td style="font-size:1.1em">주가도</td><td class="fn">jugado.mp3</td><td>#39</td></tr>
+<tr><td>123</td><td style="font-size:1.1em">주목받는</td><td class="fn">jumokbatneun.mp3</td><td>#32</td></tr>
+<tr><td>124</td><td style="font-size:1.1em">줄여서</td><td class="fn">julyeoseo.mp3</td><td>#18</td></tr>
+<tr><td>125</td><td style="font-size:1.1em">지금</td><td class="fn">jigeum.mp3</td><td>#22</td></tr>
+<tr><td>126</td><td style="font-size:1.1em">쪽에다가</td><td class="fn">jjokedaga.mp3</td><td>#2</td></tr>
+<tr><td>127</td><td style="font-size:1.1em">차상우가</td><td class="fn">chasanguga.mp3</td><td>#31</td></tr>
+<tr><td>128</td><td style="font-size:1.1em">차상우랑</td><td class="fn">chasangurang.mp3</td><td>#27</td></tr>
+<tr><td>129</td><td style="font-size:1.1em">차상우의</td><td class="fn">chasanguui.mp3</td><td>#34</td></tr>
+<tr><td>130</td><td style="font-size:1.1em">친구</td><td class="fn">chingu.mp3</td><td>#6</td></tr>
+<tr><td>131</td><td style="font-size:1.1em">친하셔서</td><td class="fn">chinhasyeoseo.mp3</td><td>#8</td></tr>
+<tr><td>132</td><td style="font-size:1.1em">친했지</td><td class="fn">chinhaetji.mp3</td><td>#10</td></tr>
+<tr><td>133</td><td style="font-size:1.1em">터졌습니다</td><td class="fn">teojyeotseupnida.mp3</td><td>#38</td></tr>
+<tr><td>134</td><td style="font-size:1.1em">텐데</td><td class="fn">tende.mp3</td><td>#24</td></tr>
+<tr><td>135</td><td style="font-size:1.1em">평소보다</td><td class="fn">pyeongsoboda.mp3</td><td>#32</td></tr>
+<tr><td>136</td><td style="font-size:1.1em">푸십시오</td><td class="fn">pusipsio.mp3</td><td>#37</td></tr>
+<tr><td>137</td><td style="font-size:1.1em">하루에</td><td class="fn">harue.mp3</td><td>#38</td></tr>
+<tr><td>138</td><td style="font-size:1.1em">하셔야겠어요</td><td class="fn">hasyeoyageteoyo.mp3</td><td>#22</td></tr>
+<tr><td>139</td><td style="font-size:1.1em">항의를</td><td class="fn">hanguireul.mp3</td><td>#6</td></tr>
+<tr><td>140</td><td style="font-size:1.1em">해서</td><td class="fn">haeseo.mp3</td><td>#6</td></tr>
+<tr><td>141</td><td style="font-size:1.1em">했습니다</td><td class="fn">haetseupnida.mp3</td><td>#6</td></tr>
+<tr><td>142</td><td style="font-size:1.1em">확보하셔야죠</td><td class="fn">hwakbohasyeoyajyo.mp3</td><td>#23</td></tr>
+</table>
+<h2 style="color:#4caf50">chars/ 재사용 단어 (19개)</h2>
+<p style="color:#888;font-size:0.8em">경로: audio/chars/{{파일명}} — 한 음절 단어는 글자 오디오 재사용</p>
+<table><tr><th>#</th><th>단어</th><th>파일명</th><th>자막#</th><th>출처</th></tr>
+<tr><td>1</td><td style="font-size:1.1em">거</td><td class="fn">geo.mp3</td><td>#12</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>2</td><td style="font-size:1.1em">그</td><td class="fn">geu.mp3</td><td>#18</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>3</td><td style="font-size:1.1em">나</td><td class="fn">na.mp3</td><td>#32</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>4</td><td style="font-size:1.1em">난</td><td class="fn">nan.mp3</td><td>#27</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>5</td><td style="font-size:1.1em">다</td><td class="fn">da.mp3</td><td>#11</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>6</td><td style="font-size:1.1em">된</td><td class="fn">doen.mp3</td><td>#12</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>7</td><td style="font-size:1.1em">될</td><td class="fn">doel.mp3</td><td>#1</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>8</td><td style="font-size:1.1em">두</td><td class="fn">du.mp3</td><td>#8</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>9</td><td style="font-size:1.1em">딱</td><td class="fn">ttak.mp3</td><td>#18</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>10</td><td style="font-size:1.1em">땐</td><td class="fn">ttaen.mp3</td><td>#10</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>11</td><td style="font-size:1.1em">또</td><td class="fn">tto.mp3</td><td>#4</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>12</td><td style="font-size:1.1em">막</td><td class="fn">mak.mp3</td><td>#24</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>13</td><td style="font-size:1.1em">뭐</td><td class="fn">mwo.mp3</td><td>#4</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>14</td><td style="font-size:1.1em">백</td><td class="fn">baek.mp3</td><td>#23</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>15</td><td style="font-size:1.1em">안</td><td class="fn">an.mp3</td><td>#13</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>16</td><td style="font-size:1.1em">왜</td><td class="fn">wae.mp3</td><td>#36</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>17</td><td style="font-size:1.1em">저</td><td class="fn">jeo.mp3</td><td>#13</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>18</td><td style="font-size:1.1em">좀</td><td class="fn">jom.mp3</td><td>#13</td><td style="color:#4caf50">chars/ 재사용</td></tr>
+<tr><td>19</td><td style="font-size:1.1em">후</td><td class="fn">hu.mp3</td><td>#1</td><td style="color:#4caf50">chars/ 재사용</td></tr>
 </table></div>
 <div id="t-byline" class="tc">
 <h2>자막별 전체 목록</h2>
@@ -315,12 +319,12 @@ tr:hover{background:#1e2a4a}
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">네</td><td class="fn">ne.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">잠시</td><td class="fn">jamsi.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">후</td><td class="fn">hu.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">후</td><td class="fn">hu.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">오전</td><td class="fn">ojeon.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">시면</td><td class="fn">simyeon.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">기사가</td><td class="fn">gisaga.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">업데이트</td><td class="fn">eopdeiteu.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">될</td><td class="fn">doel.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">될</td><td class="fn">doel.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">예정입니다</td><td class="fn">yejeongipnida.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[02] 그나마 제가 데스패치 쪽에다가</h3>
@@ -343,8 +347,8 @@ tr:hover{background:#1e2a4a}
 </table>
 <h3>[04] 또 뭐 자세히 보시면은 깍지가 아니라 손목을 붙잡으셨더라고요.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
-<tr><td class="new">또</td><td class="fn">tto.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">뭐</td><td class="fn">mwo.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">또</td><td class="fn">tto.mp3</td><td>✅ chars재사용</td></tr>
+<tr><td class="existing">뭐</td><td class="fn">mwo.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">자세히</td><td class="fn">jasehi.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">보시면은</td><td class="fn">bosimyeoneun.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">깍지가</td><td class="fn">kkakjiga.mp3</td><td>🆕 새로</td></tr>
@@ -380,7 +384,7 @@ tr:hover{background:#1e2a4a}
 <h3>[08] 예, 두 분이 워낙에 친하셔서 이렇게 놀고 있다고.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">예</td><td class="fn">ye.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">두</td><td class="fn">du.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">두</td><td class="fn">du.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">분이</td><td class="fn">buni.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">워낙에</td><td class="fn">wonake.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">친하셔서</td><td class="fn">chinhasyeoseo.mp3</td><td>🆕 새로</td></tr>
@@ -399,12 +403,12 @@ tr:hover{background:#1e2a4a}
 <tr><td class="new">그래</td><td class="fn">geurae.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">친했지</td><td class="fn">chinhaetji.mp3</td><td>🆕 새로</td></tr>
 <tr class="existing"><td>한</td><td class="fn">han.mp3</td><td>✅ 재사용</td></tr>
-<tr><td class="new">땐</td><td class="fn">ttaen.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">땐</td><td class="fn">ttaen.mp3</td><td>✅ chars재사용</td></tr>
 </table>
 <h3>[11] 이젠 다 끝났지만.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">이젠</td><td class="fn">ijen.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">다</td><td class="fn">da.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">다</td><td class="fn">da.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">끝났지만</td><td class="fn">kkeutnatjiman.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[12] 그래요, 이왕 이렇게 된 거 좋아요.</h3>
@@ -412,25 +416,25 @@ tr:hover{background:#1e2a4a}
 <tr><td class="new">그래요</td><td class="fn">geuraeyo.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">이왕</td><td class="fn">iwang.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">이렇게</td><td class="fn">ireotge.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">된</td><td class="fn">doen.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">거</td><td class="fn">geo.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">된</td><td class="fn">doen.mp3</td><td>✅ chars재사용</td></tr>
+<tr><td class="existing">거</td><td class="fn">geo.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">좋아요</td><td class="fn">jotayo.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[13] 다 좋은데 저 모자이크 좀 어떻게 안 될까?</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
-<tr><td class="new">다</td><td class="fn">da.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">다</td><td class="fn">da.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">좋은데</td><td class="fn">joteunde.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">저</td><td class="fn">jeo.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">저</td><td class="fn">jeo.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">모자이크</td><td class="fn">mojaikeu.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">좀</td><td class="fn">jom.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">좀</td><td class="fn">jom.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">어떻게</td><td class="fn">eotteotge.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">안</td><td class="fn">an.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">안</td><td class="fn">an.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">될까</td><td class="fn">doelkka.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[14] 얼굴을 좀 더 뭉개달라고 우겨 볼까요?</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">얼굴을</td><td class="fn">eolguleul.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">좀</td><td class="fn">jom.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">좀</td><td class="fn">jom.mp3</td><td>✅ chars재사용</td></tr>
 <tr class="existing"><td>더</td><td class="fn">deo.mp3</td><td>✅ 재사용</td></tr>
 <tr><td class="new">뭉개달라고</td><td class="fn">munggaedalrago.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">우겨</td><td class="fn">ugyeo.mp3</td><td>🆕 새로</td></tr>
@@ -463,15 +467,15 @@ tr:hover{background:#1e2a4a}
 </table>
 <h3>[18] 그 모자이크를 뭐랄까 좀 더 섬세하게 줄여서 귀걸이가 딱 보이게.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
-<tr><td class="new">그</td><td class="fn">geu.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">그</td><td class="fn">geu.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">모자이크를</td><td class="fn">mojaikeureul.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">뭐랄까</td><td class="fn">mworalkka.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">좀</td><td class="fn">jom.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">좀</td><td class="fn">jom.mp3</td><td>✅ chars재사용</td></tr>
 <tr class="existing"><td>더</td><td class="fn">deo.mp3</td><td>✅ 재사용</td></tr>
 <tr><td class="new">섬세하게</td><td class="fn">seomsehage.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">줄여서</td><td class="fn">julyeoseo.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">귀걸이가</td><td class="fn">gwigeoliga.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">딱</td><td class="fn">ttak.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">딱</td><td class="fn">ttak.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">보이게</td><td class="fn">boige.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[19] 가능하면 전신샷이면 좋겠는데?</h3>
@@ -496,13 +500,13 @@ tr:hover{background:#1e2a4a}
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">구매팀장님</td><td class="fn">gumaetimjangnim.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">지금</td><td class="fn">jigeum.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">뭐</td><td class="fn">mwo.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">뭐</td><td class="fn">mwo.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">하셔야겠어요</td><td class="fn">hasyeoyageteoyo.mp3</td><td>🆕 새로</td></tr>
 </table>
 <h3>[23] 귀걸이, 백, 구두 물량 확보하셔야죠.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">귀걸이</td><td class="fn">gwigeoli.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">백</td><td class="fn">baek.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">백</td><td class="fn">baek.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">구두</td><td class="fn">gudu.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">물량</td><td class="fn">mulryang.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">확보하셔야죠</td><td class="fn">hwakbohasyeoyajyo.mp3</td><td>🆕 새로</td></tr>
@@ -512,7 +516,7 @@ tr:hover{background:#1e2a4a}
 <tr><td class="new">실검뜨고</td><td class="fn">silgeomtteugo.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">그러면</td><td class="fn">geureomyeon.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">오더</td><td class="fn">odeo.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">막</td><td class="fn">mak.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">막</td><td class="fn">mak.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">쏟아질</td><td class="fn">ssotajil.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">텐데</td><td class="fn">tende.mp3</td><td>🆕 새로</td></tr>
 </table>
@@ -522,7 +526,7 @@ tr:hover{background:#1e2a4a}
 </table>
 <h3>[26] 그 여자 아니야?</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
-<tr><td class="new">그</td><td class="fn">geu.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">그</td><td class="fn">geu.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">여자</td><td class="fn">yeoja.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">아니야</td><td class="fn">aniya.mp3</td><td>🆕 새로</td></tr>
 </table>
@@ -531,7 +535,7 @@ tr:hover{background:#1e2a4a}
 <tr><td class="new">배우</td><td class="fn">baeu.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">차상우랑</td><td class="fn">chasangurang.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">스캔들</td><td class="fn">seukaendeul.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">난</td><td class="fn">nan.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">난</td><td class="fn">nan.mp3</td><td>✅ chars재사용</td></tr>
 </table>
 <h3>[28] 아 맞네.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
@@ -555,7 +559,7 @@ tr:hover{background:#1e2a4a}
 </table>
 <h3>[32] 나 지금 평소보다 더 주목받는 것 같은데.</h3>
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
-<tr><td class="new">나</td><td class="fn">na.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">나</td><td class="fn">na.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">지금</td><td class="fn">jigeum.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">평소보다</td><td class="fn">pyeongsoboda.mp3</td><td>🆕 새로</td></tr>
 <tr class="existing"><td>더</td><td class="fn">deo.mp3</td><td>✅ 재사용</td></tr>
@@ -587,7 +591,7 @@ tr:hover{background:#1e2a4a}
 <table><tr><th>단어</th><th>파일명</th><th>상태</th></tr>
 <tr><td class="new">아니</td><td class="fn">ani.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">개들이</td><td class="fn">gaedeuli.mp3</td><td>🆕 새로</td></tr>
-<tr><td class="new">왜</td><td class="fn">wae.mp3</td><td>🆕 새로</td></tr>
+<tr><td class="existing">왜</td><td class="fn">wae.mp3</td><td>✅ chars재사용</td></tr>
 <tr><td class="new">성이나</td><td class="fn">seongina.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">성질</td><td class="fn">seongjil.mp3</td><td>🆕 새로</td></tr>
 <tr><td class="new">누가</td><td class="fn">nuga.mp3</td><td>🆕 새로</td></tr>
