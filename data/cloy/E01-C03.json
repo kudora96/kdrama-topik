@@ -441,7 +441,7 @@
               "audio": "audio/chars/jang.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_01_jungdaejang.mp3"
+          "audio": "audio/writing/np/words_common/jungdaejang.mp3"
         },
         {
           "word": "동지",
@@ -465,7 +465,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_02_dongji.mp3"
+          "audio": "audio/writing/np/words_common/dongji.mp3"
         },
         {
           "word": "총성",
@@ -490,7 +490,7 @@
               "audio": "audio/chars/seong.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_03_chongseong.mp3"
+          "audio": "audio/writing/np/words_common/chongseong.mp3"
         },
         {
           "word": "방향을",
@@ -524,7 +524,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_04_banghyangeul.mp3"
+          "audio": "audio/writing/np/words_common/banghyangeul.mp3"
         },
         {
           "word": "보믄",
@@ -548,7 +548,7 @@
               "audio": "audio/chars/mun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_05_bomun.mp3"
+          "audio": "audio/writing/np/words_common/bomun.mp3"
         },
         {
           "word": "이쪽으로",
@@ -588,7 +588,7 @@
               "audio": "audio/chars/ro.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_06_ijjogeuro.mp3"
+          "audio": "audio/writing/np/words_common/ijjogeuro.mp3"
         },
         {
           "word": "오고",
@@ -611,7 +611,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_07_ogo.mp3"
+          "audio": "audio/writing/np/words_common/ogo.mp3"
         },
         {
           "word": "있습니다",
@@ -652,7 +652,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_08_itsseumnida.mp3"
+          "audio": "audio/writing/np/words_common/itsseumnida.mp3"
         }
       ]
     },
@@ -693,7 +693,7 @@
               "audio": "audio/chars/seon.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/02_01_namjoseon.mp3"
+          "audio": "audio/writing/np/words_common/namjoseon.mp3"
         },
         {
           "word": "부대에서",
@@ -732,7 +732,7 @@
               "audio": "audio/chars/seo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/02_02_budaeeseo.mp3"
+          "audio": "audio/writing/np/words_common/budaeeseo.mp3"
         },
         {
           "word": "놀가지",
@@ -764,7 +764,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/02_03_nolgaji.mp3"
+          "audio": "audio/writing/np/words_common/nolgaji.mp3"
         },
         {
           "word": "생긴거",
@@ -797,7 +797,7 @@
               "audio": "audio/chars/geo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/02_04_saenggin-geo.mp3"
+          "audio": "audio/writing/np/words_common/saenggin-geo.mp3"
         },
         {
           "word": "아닙니까",
@@ -837,7 +837,7 @@
               "audio": "audio/chars/kka.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/02_05_animnikka.mp3"
+          "audio": "audio/writing/np/words_common/animnikka.mp3"
         }
       ]
     },
@@ -893,7 +893,7 @@
               "audio": "audio/chars/seo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/03_01_hyeonwichieseo.mp3"
+          "audio": "audio/writing/np/words_common/hyeonwichieseo.mp3"
         },
         {
           "word": "교전지점까지",
@@ -950,7 +950,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/03_02_gyojeonjijoemkkaji.mp3"
+          "audio": "audio/writing/np/words_common/gyojeonjijoemkkaji.mp3"
         },
         {
           "word": "사백미터",
@@ -990,7 +990,7 @@
               "audio": "audio/chars/teo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/03_03_sabaengmiteo.mp3"
+          "audio": "audio/writing/np/words_common/sabaengmiteo.mp3"
         }
       ]
     },
@@ -1032,12 +1032,12 @@
               "audio": "audio/chars/gak.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jinipgak.mp3"
+          "audio": "audio/writing/np/words_common/jinipgak.mp3"
         },
         {
           "word": "열한시",
           "meaning_ne": "एघार बजेको",
-          "audio": "audio/writing/np/E01-C03/yeolhansi.mp3",
+          "audio": "audio/writing/np/words_common/yeolhansi.mp3",
           "chars": [
             {
               "char": "열",
@@ -1090,7 +1090,7 @@
               "audio": "audio/chars/hyang.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/banghyang.mp3"
+          "audio": "audio/writing/np/words_common/banghyang.mp3"
         },
         {
           "word": "교전인원",
@@ -1132,7 +1132,7 @@
               "audio": "audio/chars/won.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gyojeoninwon.mp3"
+          "audio": "audio/writing/np/words_common/gyojeoninwon.mp3"
         },
         {
           "word": "열",
@@ -1148,7 +1148,7 @@
               "audio": "audio/chars/yeol.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/yeol.mp3"
+          "audio": "audio/writing/np/words_common/yeol.mp3"
         }
       ]
     },
@@ -1187,7 +1187,7 @@
               "audio": "audio/chars/tu.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/keitu.mp3"
+          "audio": "audio/writing/np/words_common/keitu.mp3"
         },
         {
           "word": "자동소총",
@@ -1228,7 +1228,7 @@
               "audio": "audio/chars/chong.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jadongso-chong.mp3"
+          "audio": "audio/writing/np/words_common/jadongso-chong.mp3"
         },
         {
           "word": "여섯종",
@@ -1261,7 +1261,7 @@
               "audio": "audio/chars/jong.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/yeoseotjong.mp3"
+          "audio": "audio/writing/np/words_common/yeoseotjong.mp3"
         },
         {
           "word": "떼떼삼삼",
@@ -1302,7 +1302,7 @@
               "audio": "audio/chars/sam.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ttettesamsam.mp3"
+          "audio": "audio/writing/np/words_common/ttettesamsam.mp3"
         },
         {
           "word": "토카레프",
@@ -1341,7 +1341,7 @@
               "audio": "audio/chars/peu.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/tokarepeu.mp3"
+          "audio": "audio/writing/np/words_common/tokarepeu.mp3"
         },
         {
           "word": "권총",
@@ -1366,7 +1366,7 @@
               "audio": "audio/chars/chong.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gwonchong.mp3"
+          "audio": "audio/writing/np/words_common/gwonchong.mp3"
         },
         {
           "word": "세종으로",
@@ -1406,7 +1406,7 @@
               "audio": "audio/chars/ro.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/sejong-euro.mp3"
+          "audio": "audio/writing/np/words_common/sejong-euro.mp3"
         },
         {
           "word": "교전",
@@ -1430,7 +1430,7 @@
               "audio": "audio/chars/jeon.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gyojeon.mp3"
+          "audio": "audio/writing/np/words_common/gyojeon.mp3"
         },
         {
           "word": "중이다",
@@ -1462,7 +1462,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jungida.mp3"
+          "audio": "audio/writing/np/words_common/jungida.mp3"
         }
       ]
     },
@@ -1536,7 +1536,7 @@
               "audio": "audio/chars/mun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ttettesamsam-iramun.mp3"
+          "audio": "audio/writing/np/words_common/ttettesamsam-iramun.mp3"
         }
       ]
     },
@@ -1567,7 +1567,7 @@
               "audio": "audio/chars/ri.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/uri.mp3"
+          "audio": "audio/writing/np/words_common/uri.mp3"
         },
         {
           "word": "쪽",
@@ -1583,7 +1583,7 @@
               "audio": "audio/chars/jjok.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jjok.mp3"
+          "audio": "audio/writing/np/words_common/jjok.mp3"
         },
         {
           "word": "사람들이다",
@@ -1632,7 +1632,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/saramdeul-ida.mp3"
+          "audio": "audio/writing/np/words_common/saramdeul-ida.mp3"
         }
       ]
     },
@@ -1680,7 +1680,7 @@
               "audio": "audio/chars/ra.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/mulleoseora.mp3"
+          "audio": "audio/writing/np/words_common/mulleoseora.mp3"
         },
         {
           "word": "한",
@@ -1696,7 +1696,7 @@
               "audio": "audio/chars/han.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/han.mp3"
+          "audio": "audio/writing/np/words_common/han.mp3"
         },
         {
           "word": "발만",
@@ -1721,7 +1721,7 @@
               "audio": "audio/chars/man.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/balman.mp3"
+          "audio": "audio/writing/np/words_common/balman.mp3"
         },
         {
           "word": "더",
@@ -1736,7 +1736,7 @@
               "audio": "audio/chars/deo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/deo.mp3"
+          "audio": "audio/writing/np/words_common/deo.mp3"
         },
         {
           "word": "내디디믄",
@@ -1776,7 +1776,7 @@
               "audio": "audio/chars/mun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/naedidimun.mp3"
+          "audio": "audio/writing/np/words_common/naedidimun.mp3"
         }
       ]
     },
@@ -1807,7 +1807,7 @@
               "audio": "audio/chars/ri.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/uri.mp3"
+          "audio": "audio/writing/np/words_common/uri.mp3"
         },
         {
           "word": "측",
@@ -1823,7 +1823,7 @@
               "audio": "audio/chars/cheuk.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/cheuk.mp3"
+          "audio": "audio/writing/np/words_common/cheuk.mp3"
         },
         {
           "word": "위수구역이다",
@@ -1879,7 +1879,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/wisuguyek-ida.mp3"
+          "audio": "audio/writing/np/words_common/wisuguyek-ida.mp3"
         }
       ]
     },
@@ -1902,7 +1902,7 @@
               "audio": "audio/chars/i.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/i_word.mp3"
+          "audio": "audio/writing/np/words_common/i_word.mp3"
         },
         {
           "word": "셋을",
@@ -1927,7 +1927,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/seseul.mp3"
+          "audio": "audio/writing/np/words_common/seseul.mp3"
         },
         {
           "word": "넘겨라",
@@ -1959,7 +1959,7 @@
               "audio": "audio/chars/ra.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/neomgyeora.mp3"
+          "audio": "audio/writing/np/words_common/neomgyeora.mp3"
         },
         {
           "word": "그럼",
@@ -1983,7 +1983,7 @@
               "audio": "audio/chars/reom.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/geureom.mp3"
+          "audio": "audio/writing/np/words_common/geureom.mp3"
         },
         {
           "word": "물러서겠다",
@@ -2032,7 +2032,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/mulleoseogetda.mp3"
+          "audio": "audio/writing/np/words_common/mulleoseogetda.mp3"
         }
       ]
     },
@@ -2063,7 +2063,7 @@
               "audio": "audio/chars/ri.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/uri.mp3"
+          "audio": "audio/writing/np/words_common/uri.mp3"
         },
         {
           "word": "사람들이다",
@@ -2112,7 +2112,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/saramdeul-ida.mp3"
+          "audio": "audio/writing/np/words_common/saramdeul-ida.mp3"
         }
       ]
     },
@@ -2143,7 +2143,7 @@
               "audio": "audio/chars/wi_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/daewi.mp3"
+          "audio": "audio/writing/np/words_common/daewi.mp3"
         },
         {
           "word": "동지",
@@ -2167,7 +2167,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/01_02_dongji.mp3"
+          "audio": "audio/writing/np/words_common/dongji.mp3"
         }
       ]
     },
@@ -2199,7 +2199,7 @@
               "audio": "audio/chars/rin.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/urin.mp3"
+          "audio": "audio/writing/np/words_common/urin.mp3"
         },
         {
           "word": "보위",
@@ -2222,7 +2222,7 @@
               "audio": "audio/chars/wi_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bowi.mp3"
+          "audio": "audio/writing/np/words_common/bowi.mp3"
         },
         {
           "word": "사령부",
@@ -2254,7 +2254,7 @@
               "audio": "audio/chars/bu.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/saryeongbu.mp3"
+          "audio": "audio/writing/np/words_common/saryeongbu.mp3"
         },
         {
           "word": "허가를",
@@ -2286,7 +2286,7 @@
               "audio": "audio/chars/reul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/heogareul.mp3"
+          "audio": "audio/writing/np/words_common/heogareul.mp3"
         },
         {
           "word": "받고",
@@ -2310,7 +2310,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/batgo.mp3"
+          "audio": "audio/writing/np/words_common/batgo.mp3"
         },
         {
           "word": "노루새끼",
@@ -2349,7 +2349,7 @@
               "audio": "audio/chars/kki.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/norusaekki.mp3"
+          "audio": "audio/writing/np/words_common/norusaekki.mp3"
         },
         {
           "word": "잡으러",
@@ -2381,7 +2381,7 @@
               "audio": "audio/chars/reo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jabeureo.mp3"
+          "audio": "audio/writing/np/words_common/jabeureo.mp3"
         },
         {
           "word": "들어왔다가",
@@ -2430,7 +2430,7 @@
               "audio": "audio/chars/ga.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/deureowatdaga.mp3"
+          "audio": "audio/writing/np/words_common/deureowatdaga.mp3"
         }
       ]
     },
@@ -2462,7 +2462,7 @@
               "audio": "audio/chars/gae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/dolgae.mp3"
+          "audio": "audio/writing/np/words_common/dolgae.mp3"
         },
         {
           "word": "바람이",
@@ -2494,7 +2494,7 @@
               "audio": "audio/chars/i.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/barami.mp3"
+          "audio": "audio/writing/np/words_common/barami.mp3"
         },
         {
           "word": "불어서",
@@ -2526,7 +2526,7 @@
               "audio": "audio/chars/seo.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bureoseo.mp3"
+          "audio": "audio/writing/np/words_common/bureoseo.mp3"
         },
         {
           "word": "길을",
@@ -2551,7 +2551,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gireul.mp3"
+          "audio": "audio/writing/np/words_common/gireul.mp3"
         },
         {
           "word": "잃었을",
@@ -2586,7 +2586,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ireoseul.mp3"
+          "audio": "audio/writing/np/words_common/ireoseul.mp3"
         },
         {
           "word": "뿐입니다",
@@ -2627,7 +2627,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ppunimnida.mp3"
+          "audio": "audio/writing/np/words_common/ppunimnida.mp3"
         }
       ]
     },
@@ -2650,7 +2650,7 @@
               "audio": "audio/chars/i.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/i_word.mp3"
+          "audio": "audio/writing/np/words_common/i_word.mp3"
         },
         {
           "word": "자들은",
@@ -2683,7 +2683,7 @@
               "audio": "audio/chars/eun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jadeureun.mp3"
+          "audio": "audio/writing/np/words_common/jadeureun.mp3"
         },
         {
           "word": "우리",
@@ -2706,7 +2706,7 @@
               "audio": "audio/chars/ri.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/uri.mp3"
+          "audio": "audio/writing/np/words_common/uri.mp3"
         },
         {
           "word": "측",
@@ -2722,7 +2722,7 @@
               "audio": "audio/chars/cheuk.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/cheuk.mp3"
+          "audio": "audio/writing/np/words_common/cheuk.mp3"
         },
         {
           "word": "남방",
@@ -2747,7 +2747,7 @@
               "audio": "audio/chars/bang.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/nambang.mp3"
+          "audio": "audio/writing/np/words_common/nambang.mp3"
         },
         {
           "word": "한계선",
@@ -2780,7 +2780,7 @@
               "audio": "audio/chars/seon.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hangyeseon.mp3"
+          "audio": "audio/writing/np/words_common/hangyeseon.mp3"
         },
         {
           "word": "지역을",
@@ -2813,7 +2813,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jiyeogeul.mp3"
+          "audio": "audio/writing/np/words_common/jiyeogeul.mp3"
         },
         {
           "word": "침입해",
@@ -2846,7 +2846,7 @@
               "audio": "audio/chars/hae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/chimiphae.mp3"
+          "audio": "audio/writing/np/words_common/chimiphae.mp3"
         }
       ]
     },
@@ -2895,7 +2895,7 @@
               "audio": "audio/chars/ro.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bulbeobeuro.mp3"
+          "audio": "audio/writing/np/words_common/bulbeobeuro.mp3"
         },
         {
           "word": "문화재",
@@ -2927,7 +2927,7 @@
               "audio": "audio/chars/jae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/munhwajae.mp3"
+          "audio": "audio/writing/np/words_common/munhwajae.mp3"
         },
         {
           "word": "도굴을",
@@ -2960,7 +2960,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/dogureul.mp3"
+          "audio": "audio/writing/np/words_common/dogureul.mp3"
         },
         {
           "word": "하다가",
@@ -2991,7 +2991,7 @@
               "audio": "audio/chars/ga.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hadaga.mp3"
+          "audio": "audio/writing/np/words_common/hadaga.mp3"
         },
         {
           "word": "적발됐다",
@@ -3033,7 +3033,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jeokbaldwaetda.mp3"
+          "audio": "audio/writing/np/words_common/jeokbaldwaetda.mp3"
         }
       ]
     },
@@ -3074,7 +3074,7 @@
               "audio": "audio/chars/neun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jeunggoneun.mp3"
+          "audio": "audio/writing/np/words_common/jeunggoneun.mp3"
         }
       ]
     },
@@ -3098,7 +3098,7 @@
               "audio": "audio/chars/yeol.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/yeol.mp3"
+          "audio": "audio/writing/np/words_common/yeol.mp3"
         },
         {
           "word": "감지",
@@ -3122,7 +3122,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gamji.mp3"
+          "audio": "audio/writing/np/words_common/gamji.mp3"
         },
         {
           "word": "카메라",
@@ -3153,7 +3153,7 @@
               "audio": "audio/chars/ra.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/kamera.mp3"
+          "audio": "audio/writing/np/words_common/kamera.mp3"
         },
         {
           "word": "영상을",
@@ -3187,7 +3187,7 @@
               "audio": "audio/chars/eul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/yeongsangeul.mp3"
+          "audio": "audio/writing/np/words_common/yeongsangeul.mp3"
         },
         {
           "word": "시간대별로",
@@ -3236,7 +3236,7 @@
               "audio": "audio/chars/ro.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/sigandaebyeollo.mp3"
+          "audio": "audio/writing/np/words_common/sigandaebyeollo.mp3"
         },
         {
           "word": "복사한",
@@ -3269,7 +3269,7 @@
               "audio": "audio/chars/han.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/boksahan.mp3"
+          "audio": "audio/writing/np/words_common/boksahan.mp3"
         },
         {
           "word": "페이퍼다",
@@ -3308,7 +3308,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/peipeoda.mp3"
+          "audio": "audio/writing/np/words_common/peipeoda.mp3"
         }
       ]
     },
@@ -3357,7 +3357,7 @@
               "audio": "audio/chars/neun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/sasangja-neun.mp3"
+          "audio": "audio/writing/np/words_common/sasangja-neun.mp3"
         },
         {
           "word": "있는가",
@@ -3390,7 +3390,7 @@
               "audio": "audio/chars/ga.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ineunga.mp3"
+          "audio": "audio/writing/np/words_common/ineunga.mp3"
         },
         {
           "word": "대위",
@@ -3413,7 +3413,7 @@
               "audio": "audio/chars/wi_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/daewi.mp3"
+          "audio": "audio/writing/np/words_common/daewi.mp3"
         }
       ]
     },
@@ -3446,7 +3446,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/eopda.mp3"
+          "audio": "audio/writing/np/words_common/eopda.mp3"
         }
       ]
     },
@@ -3477,7 +3477,7 @@
               "audio": "audio/chars/ro.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/seoro.mp3"
+          "audio": "audio/writing/np/words_common/seoro.mp3"
         },
         {
           "word": "상황",
@@ -3502,7 +3502,7 @@
               "audio": "audio/chars/hwang.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/sanghwang.mp3"
+          "audio": "audio/writing/np/words_common/sanghwang.mp3"
         },
         {
           "word": "파악이",
@@ -3534,7 +3534,7 @@
               "audio": "audio/chars/i.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/paagi.mp3"
+          "audio": "audio/writing/np/words_common/paagi.mp3"
         },
         {
           "word": "끝난",
@@ -3559,7 +3559,7 @@
               "audio": "audio/chars/nan.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/kkeunnan.mp3"
+          "audio": "audio/writing/np/words_common/kkeunnan.mp3"
         },
         {
           "word": "것",
@@ -3575,7 +3575,7 @@
               "audio": "audio/chars/geot.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/geot.mp3"
+          "audio": "audio/writing/np/words_common/geot.mp3"
         },
         {
           "word": "같은데",
@@ -3608,7 +3608,7 @@
               "audio": "audio/chars/de.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gateunde.mp3"
+          "audio": "audio/writing/np/words_common/gateunde.mp3"
         },
         {
           "word": "무기를",
@@ -3640,7 +3640,7 @@
               "audio": "audio/chars/reul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/mugireul.mp3"
+          "audio": "audio/writing/np/words_common/mugireul.mp3"
         },
         {
           "word": "내리는",
@@ -3672,7 +3672,7 @@
               "audio": "audio/chars/neun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/naerineun.mp3"
+          "audio": "audio/writing/np/words_common/naerineun.mp3"
         },
         {
           "word": "게",
@@ -3687,7 +3687,7 @@
               "audio": "audio/chars/ge.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ge.mp3"
+          "audio": "audio/writing/np/words_common/ge.mp3"
         },
         {
           "word": "좋갔소",
@@ -3720,7 +3720,7 @@
               "audio": "audio/chars/so.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jotgatso.mp3"
+          "audio": "audio/writing/np/words_common/jotgatso.mp3"
         }
       ]
     },
@@ -3760,7 +3760,7 @@
               "audio": "audio/chars/ui_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jeodeurui.mp3"
+          "audio": "audio/writing/np/words_common/jeodeurui.mp3"
         },
         {
           "word": "문제는",
@@ -3793,7 +3793,7 @@
               "audio": "audio/chars/neun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/munjeneun.mp3"
+          "audio": "audio/writing/np/words_common/munjeneun.mp3"
         },
         {
           "word": "조국의",
@@ -3825,7 +3825,7 @@
               "audio": "audio/chars/ui_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jogugui.mp3"
+          "audio": "audio/writing/np/words_common/jogugui.mp3"
         },
         {
           "word": "명예를",
@@ -3858,7 +3858,7 @@
               "audio": "audio/chars/reul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/myeongyereul.mp3"
+          "audio": "audio/writing/np/words_common/myeongyereul.mp3"
         },
         {
           "word": "걸고",
@@ -3882,7 +3882,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/geolgo.mp3"
+          "audio": "audio/writing/np/words_common/geolgo.mp3"
         },
         {
           "word": "본때",
@@ -3906,7 +3906,7 @@
               "audio": "audio/chars/ttae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bonttae.mp3"
+          "audio": "audio/writing/np/words_common/bonttae.mp3"
         },
         {
           "word": "있게",
@@ -3930,7 +3930,7 @@
               "audio": "audio/chars/ge.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/itge.mp3"
+          "audio": "audio/writing/np/words_common/itge.mp3"
         },
         {
           "word": "조사하갔다",
@@ -3978,7 +3978,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/josahaggatda.mp3"
+          "audio": "audio/writing/np/words_common/josahaggatda.mp3"
         }
       ]
     },
@@ -4018,7 +4018,7 @@
               "audio": "audio/chars/ui_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/cheoborui.mp3"
+          "audio": "audio/writing/np/words_common/cheoborui.mp3"
         },
         {
           "word": "수위로만",
@@ -4058,7 +4058,7 @@
               "audio": "audio/chars/man.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/suwiroman.mp3"
+          "audio": "audio/writing/np/words_common/suwiroman.mp3"
         },
         {
           "word": "따지자믄",
@@ -4098,7 +4098,7 @@
               "audio": "audio/chars/mun.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/ttajijamun.mp3"
+          "audio": "audio/writing/np/words_common/ttajijamun.mp3"
         },
         {
           "word": "우리",
@@ -4121,7 +4121,7 @@
               "audio": "audio/chars/ri.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/uri.mp3"
+          "audio": "audio/writing/np/words_common/uri.mp3"
         },
         {
           "word": "북조선이",
@@ -4162,7 +4162,7 @@
               "audio": "audio/chars/i.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bukjoseoni.mp3"
+          "audio": "audio/writing/np/words_common/bukjoseoni.mp3"
         },
         {
           "word": "남조선보다",
@@ -4211,7 +4211,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/namjoseonboda.mp3"
+          "audio": "audio/writing/np/words_common/namjoseonboda.mp3"
         },
         {
           "word": "월등히",
@@ -4244,7 +4244,7 @@
               "audio": "audio/chars/hi.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/woldeunghi.mp3"
+          "audio": "audio/writing/np/words_common/woldeunghi.mp3"
         },
         {
           "word": "강력하다",
@@ -4285,7 +4285,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/gangnyeokhada.mp3"
+          "audio": "audio/writing/np/words_common/gangnyeokhada.mp3"
         }
       ]
     },
@@ -4316,7 +4316,7 @@
               "audio": "audio/chars/na.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hana.mp3"
+          "audio": "audio/writing/np/words_common/hana.mp3"
         },
         {
           "word": "둘",
@@ -4332,7 +4332,7 @@
               "audio": "audio/chars/dul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/dul.mp3"
+          "audio": "audio/writing/np/words_common/dul.mp3"
         },
         {
           "word": "셋",
@@ -4348,7 +4348,7 @@
               "audio": "audio/chars/set.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/set.mp3"
+          "audio": "audio/writing/np/words_common/set.mp3"
         },
         {
           "word": "만에",
@@ -4372,7 +4372,7 @@
               "audio": "audio/chars/e_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/mane.mp3"
+          "audio": "audio/writing/np/words_common/mane.mp3"
         },
         {
           "word": "동시에",
@@ -4404,7 +4404,7 @@
               "audio": "audio/chars/e_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/dongsie.mp3"
+          "audio": "audio/writing/np/words_common/dongsie.mp3"
         },
         {
           "word": "내린다",
@@ -4436,7 +4436,7 @@
               "audio": "audio/chars/da.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/naerinda.mp3"
+          "audio": "audio/writing/np/words_common/naerinda.mp3"
         },
         {
           "word": "하나",
@@ -4459,7 +4459,7 @@
               "audio": "audio/chars/na.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hana.mp3"
+          "audio": "audio/writing/np/words_common/hana.mp3"
         },
         {
           "word": "둘",
@@ -4475,7 +4475,7 @@
               "audio": "audio/chars/dul.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/dul.mp3"
+          "audio": "audio/writing/np/words_common/dul.mp3"
         },
         {
           "word": "셋",
@@ -4491,7 +4491,7 @@
               "audio": "audio/chars/set.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/set.mp3"
+          "audio": "audio/writing/np/words_common/set.mp3"
         }
       ]
     },
@@ -4532,7 +4532,7 @@
               "audio": "audio/chars/won.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/alpawon.mp3"
+          "audio": "audio/writing/np/words_common/alpawon.mp3"
         },
         {
           "word": "알파원",
@@ -4565,7 +4565,7 @@
               "audio": "audio/chars/won.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/alpawon.mp3"
+          "audio": "audio/writing/np/words_common/alpawon.mp3"
         },
         {
           "word": "충돌하지",
@@ -4606,7 +4606,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
+          "audio": "audio/writing/np/words_common/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -4630,7 +4630,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/malgo.mp3"
+          "audio": "audio/writing/np/words_common/malgo.mp3"
         },
         {
           "word": "철수하라",
@@ -4670,7 +4670,7 @@
               "audio": "audio/chars/ra.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/cheolsuhara.mp3"
+          "audio": "audio/writing/np/words_common/cheolsuhara.mp3"
         }
       ]
     },
@@ -4711,7 +4711,7 @@
               "audio": "audio/chars/gwa.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/bukchukkwa.mp3"
+          "audio": "audio/writing/np/words_common/bukchukkwa.mp3"
         },
         {
           "word": "충돌하지",
@@ -4752,7 +4752,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
+          "audio": "audio/writing/np/words_common/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -4776,7 +4776,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/malgo.mp3"
+          "audio": "audio/writing/np/words_common/malgo.mp3"
         },
         {
           "word": "철수하라",
@@ -4816,7 +4816,7 @@
               "audio": "audio/chars/ra.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/cheolsuhara.mp3"
+          "audio": "audio/writing/np/words_common/cheolsuhara.mp3"
         }
       ]
     },
@@ -4848,7 +4848,7 @@
               "audio": "audio/chars/gae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/beongae.mp3"
+          "audio": "audio/writing/np/words_common/beongae.mp3"
         },
         {
           "word": "하나",
@@ -4871,7 +4871,7 @@
               "audio": "audio/chars/na.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hana.mp3"
+          "audio": "audio/writing/np/words_common/hana.mp3"
         },
         {
           "word": "번개",
@@ -4895,7 +4895,7 @@
               "audio": "audio/chars/gae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/beongae.mp3"
+          "audio": "audio/writing/np/words_common/beongae.mp3"
         },
         {
           "word": "하나",
@@ -4918,7 +4918,7 @@
               "audio": "audio/chars/na.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/hana.mp3"
+          "audio": "audio/writing/np/words_common/hana.mp3"
         },
         {
           "word": "내",
@@ -4933,7 +4933,7 @@
               "audio": "audio/chars/nae.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/nae.mp3"
+          "audio": "audio/writing/np/words_common/nae.mp3"
         },
         {
           "word": "말",
@@ -4949,7 +4949,7 @@
               "audio": "audio/chars/mal.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/mal.mp3"
+          "audio": "audio/writing/np/words_common/mal.mp3"
         },
         {
           "word": "들리네",
@@ -4981,7 +4981,7 @@
               "audio": "audio/chars/ne_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/deulline.mp3"
+          "audio": "audio/writing/np/words_common/deulline.mp3"
         }
       ]
     },
@@ -5022,7 +5022,7 @@
               "audio": "audio/chars/gwa.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/namchukkwa.mp3"
+          "audio": "audio/writing/np/words_common/namchukkwa.mp3"
         },
         {
           "word": "충돌하지",
@@ -5063,7 +5063,7 @@
               "audio": "audio/chars/ji.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/chungdolhaji.mp3"
+          "audio": "audio/writing/np/words_common/chungdolhaji.mp3"
         },
         {
           "word": "말고",
@@ -5087,7 +5087,7 @@
               "audio": "audio/chars/go.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/malgo.mp3"
+          "audio": "audio/writing/np/words_common/malgo.mp3"
         },
         {
           "word": "즉시",
@@ -5111,7 +5111,7 @@
               "audio": "audio/chars/si.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/jeuksi.mp3"
+          "audio": "audio/writing/np/words_common/jeuksi.mp3"
         },
         {
           "word": "돌아오라우",
@@ -5159,7 +5159,7 @@
               "audio": "audio/chars/u_char.mp3"
             }
           ],
-          "audio": "audio/writing/np/E01-C03/doraorau.mp3"
+          "audio": "audio/writing/np/words_common/doraorau.mp3"
         }
       ]
     }
