@@ -615,6 +615,5 @@ tr:hover{background:#1e2a4a}
 </div>
 <script>
 function st(e,n){document.querySelectorAll(".tc").forEach(el=>el.classList.remove("on"));document.querySelectorAll(".tab").forEach(el=>el.classList.remove("on"));document.getElementById("t-"+n).classList.add("on");e.currentTarget.classList.add("on")}
-function cp(id){var t=document.getElementById(id),r=t.querySelectorAll("tr"),s="";for(var i=1;i<r.length;i++){var c=r[i].querySelectorAll("td");s+=c[1].textContent+"	"+c[2].textContent+"
-"}navigator.clipboard.writeText(s).then(()=>{var b=t.parentElement.querySelector(".cb");b.textContent="복사됨!";b.classList.add("ok");setTimeout(()=>{b.textContent="전체 복사";b.classList.remove("ok")},2000)})}
+function cp(id){var t=document.getElementById(id),r=t.querySelectorAll("tr"),s="";for(var i=1;i<r.length;i++){var c=r[i].querySelectorAll("td");s+=c[1].textContent+"\t"+c[2].textContent+"\n"}navigator.clipboard.writeText(s).then(()=>{var b=t.parentElement.querySelector(".cb");b.textContent="복사됨!";b.classList.add("ok");setTimeout(()=>{b.textContent="전체 복사";b.classList.remove("ok")},2000)})}
 </script></body></html>
