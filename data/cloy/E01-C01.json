@@ -1253,7 +1253,7 @@
       "sub_id": 4,
       "sentence": "또 뭐 자세히 보시면은 깍지가 아니라 손목을 붙잡으셨더라고요.",
       "sentence_ne": "अनि राम्ररी हेर्नुभयो भने हात समाएको होइन, नाडी समाउनुभएको रहेछ।",
-      "sentence_end": 90.99,
+      "sentence_end": 6.014,
       "words": [
         {
           "word": "또",
@@ -1534,7 +1534,7 @@
       "sub_id": 5,
       "sentence": "이건 아니다!",
       "sentence_ne": "यो त होइन!",
-      "sentence_end": 13.76,
+      "sentence_end": 1.154,
       "words": [
         {
           "word": "이건",
@@ -2536,7 +2536,7 @@
       "sub_id": 12,
       "sentence": "그래요, 이왕 이렇게 된 거 좋아요.",
       "sentence_ne": "ठिकै छ, जब यस्तो भइसक्यो त राम्रो नै भयो।",
-      "sentence_end": 2.30,
+      "sentence_end": 2.3,
       "words": [
         {
           "word": "그래요",
@@ -2892,7 +2892,7 @@
       "sub_id": 14,
       "sentence": "얼굴을 좀 더 뭉개달라고 우겨 볼까요?",
       "sentence_ne": "अनुहार अझ बढी धमिल्याइदिनोस् भनेर अनुरोध गरौं?",
-      "sentence_end": 2.50,
+      "sentence_end": 2.5,
       "words": [
         {
           "word": "얼굴을",
@@ -5028,7 +5028,7 @@
       "sub_id": 30,
       "sentence": "얼굴도 그냥 그렇구만.",
       "sentence_ne": "अनुहार पनि त्यस्तै रहेछ।",
-      "sentence_end": 1.80,
+      "sentence_end": 1.8,
       "words": [
         {
           "word": "얼굴도",
@@ -5134,7 +5134,7 @@
       "sub_id": 31,
       "sentence": "차상우가 아깝다.",
       "sentence_ne": "चा सांग-उको लागि अफसोस।",
-      "sentence_end": 1.30,
+      "sentence_end": 1.3,
       "words": [
         {
           "word": "차상우가",
@@ -5535,7 +5535,7 @@
       "sub_id": 34,
       "sentence": "차상우의 성난팬들이 대표님 언제 공격할지 몰라서.",
       "sentence_ne": "चा सांग-उका रिसाएका फ्यानहरूले प्रतिनिधिलाई कहिले आक्रमण गर्ने थाहा छैन।",
-      "sentence_end": 3.60,
+      "sentence_end": 3.6,
       "words": [
         {
           "word": "차상우의",
@@ -6132,7 +6132,7 @@
       "sub_id": 38,
       "sentence": "반년치 매출이 하루에 터졌습니다.",
       "sentence_ne": "छ महिनाको बिक्री एक दिनमा भयो।",
-      "sentence_end": 8.41,
+      "sentence_end": 2.62,
       "words": [
         {
           "word": "반년치",
@@ -6285,7 +6285,7 @@
       "sub_id": 39,
       "sentence": "주가도 상한가.",
       "sentence_ne": "शेयरको मूल्य पनि अधिकतम सीमामा पुग्यो।",
-      "sentence_end": 19.23,
+      "sentence_end": 1.487,
       "words": [
         {
           "word": "주가도",
