@@ -4,7 +4,7 @@
   "episode": 1,
   "clip_num": 1,
   "youtube_id": "YvIJMGPzfro",
-  "title": "현빈과 손예진, 사랑의 불시착 서사의 시작",
+  "title": "현빈❤️손예진, 둘리커플 서사의 시작...",
   "subtitles": [
     {
       "id": 1,
@@ -610,5 +610,5748 @@
     }
   ],
   "quiz": [],
-  "title_ne": "ह्योनबिन र सोनयेजिन, प्रेमको अवतरणको कथाको सुरुवात"
+  "writing": [
+    {
+      "sub_id": 1,
+      "sentence": "네, 잠시 후 오전 7시면 기사가 업데이트 될 예정입니다.",
+      "sentence_ne": "हो, केही समयपछि बिहान ७ बजे समाचार अपडेट हुनेछ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "네",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ne_word.mp3",
+          "chars": [
+            {
+              "char": "네",
+              "jamo": [
+                "ㄴ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ne_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "잠시",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jamsi.mp3",
+          "chars": [
+            {
+              "char": "잠",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/jam.mp3"
+            },
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            }
+          ]
+        },
+        {
+          "word": "후",
+          "meaning_ne": "",
+          "audio": "audio/chars/hu.mp3",
+          "chars": [
+            {
+              "char": "후",
+              "jamo": [
+                "ㅎ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/hu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "오전",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ojeon.mp3",
+          "chars": [
+            {
+              "char": "오",
+              "jamo": [
+                "ㅇ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/o.mp3"
+            },
+            {
+              "char": "전",
+              "jamo": [
+                "ㅈ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/jeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "일곱시면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ilgopsimyeon.mp3",
+          "chars": [
+            {
+              "char": "일",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/il.mp3"
+            },
+            {
+              "char": "곱",
+              "jamo": [
+                "ㄱ",
+                "ㅗ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/gop.mp3"
+            },
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "기사가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gisaga.mp3",
+          "chars": [
+            {
+              "char": "기",
+              "jamo": [
+                "ㄱ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/gi.mp3"
+            },
+            {
+              "char": "사",
+              "jamo": [
+                "ㅅ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/sa.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "업데이트",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eobdeiteu.mp3",
+          "chars": [
+            {
+              "char": "업",
+              "jamo": [
+                "ㅇ",
+                "ㅓ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/eop.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "트",
+              "jamo": [
+                "ㅌ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/teu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "될",
+          "meaning_ne": "",
+          "audio": "audio/chars/doel.mp3",
+          "chars": [
+            {
+              "char": "될",
+              "jamo": [
+                "ㄷ",
+                "ㅚ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/doel.mp3"
+            }
+          ]
+        },
+        {
+          "word": "예정입니다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/yejeong-imnida.mp3",
+          "chars": [
+            {
+              "char": "예",
+              "jamo": [
+                "ㅇ",
+                "ㅖ"
+              ],
+              "audio": "audio/chars/ye_char.mp3"
+            },
+            {
+              "char": "정",
+              "jamo": [
+                "ㅈ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/jeong.mp3"
+            },
+            {
+              "char": "입",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/ip.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 2,
+      "sentence": "그나마 제가 데스패치 쪽에다가",
+      "sentence_ne": "त्यसमा पनि मैले डिस्प्याच तर्फ",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그나마",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geunama.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "나",
+              "jamo": [
+                "ㄴ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/na.mp3"
+            },
+            {
+              "char": "마",
+              "jamo": [
+                "ㅁ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ma.mp3"
+            }
+          ]
+        },
+        {
+          "word": "제가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jega.mp3",
+          "chars": [
+            {
+              "char": "제",
+              "jamo": [
+                "ㅈ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/je.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "데스패치",
+          "meaning_ne": "",
+          "audio": "audio/words_common/deseupaech.mp3",
+          "chars": [
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            },
+            {
+              "char": "스",
+              "jamo": [
+                "ㅅ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/seu.mp3"
+            },
+            {
+              "char": "패",
+              "jamo": [
+                "ㅍ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/pae.mp3"
+            },
+            {
+              "char": "치",
+              "jamo": [
+                "ㅊ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/chi.mp3"
+            }
+          ]
+        },
+        {
+          "word": "쪽에다가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jjogedaga.mp3",
+          "chars": [
+            {
+              "char": "쪽",
+              "jamo": [
+                "ㅉ",
+                "ㅗ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/jjok.mp3"
+            },
+            {
+              "char": "에",
+              "jamo": [
+                "ㅇ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/e_char.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 3,
+      "sentence": "'손깍지 끼면 전부 사귀는 거냐?' 길을 막고 물어봐라.",
+      "sentence_ne": "'हात समाउनु भनेको सबै प्रेम हो?' भनेर बाटो रोकेर सोध भनेको।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "손깍지",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sonkkakji.mp3",
+          "chars": [
+            {
+              "char": "손",
+              "jamo": [
+                "ㅅ",
+                "ㅗ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/son.mp3"
+            },
+            {
+              "char": "깍",
+              "jamo": [
+                "ㄲ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/kkak.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            }
+          ]
+        },
+        {
+          "word": "끼면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/kkimyeon.mp3",
+          "chars": [
+            {
+              "char": "끼",
+              "jamo": [
+                "ㄲ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/kki.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "전부",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeonbu.mp3",
+          "chars": [
+            {
+              "char": "전",
+              "jamo": [
+                "ㅈ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/jeon.mp3"
+            },
+            {
+              "char": "부",
+              "jamo": [
+                "ㅂ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/bu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "사귀는",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sagwineun.mp3",
+          "chars": [
+            {
+              "char": "사",
+              "jamo": [
+                "ㅅ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/sa.mp3"
+            },
+            {
+              "char": "귀",
+              "jamo": [
+                "ㄱ",
+                "ㅟ"
+              ],
+              "audio": "audio/chars/gwi.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "거냐",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geonya.mp3",
+          "chars": [
+            {
+              "char": "거",
+              "jamo": [
+                "ㄱ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/geo.mp3"
+            },
+            {
+              "char": "냐",
+              "jamo": [
+                "ㄴ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/nya.mp3"
+            }
+          ]
+        },
+        {
+          "word": "길을",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gireul.mp3",
+          "chars": [
+            {
+              "char": "길",
+              "jamo": [
+                "ㄱ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/gil.mp3"
+            },
+            {
+              "char": "을",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/eul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "막고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/makgo.mp3",
+          "chars": [
+            {
+              "char": "막",
+              "jamo": [
+                "ㅁ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/mak.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        },
+        {
+          "word": "물어봐라",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mureobwara.mp3",
+          "chars": [
+            {
+              "char": "물",
+              "jamo": [
+                "ㅁ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/mul.mp3"
+            },
+            {
+              "char": "어",
+              "jamo": [
+                "ㅇ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/eo_char.mp3"
+            },
+            {
+              "char": "봐",
+              "jamo": [
+                "ㅂ",
+                "ㅘ"
+              ],
+              "audio": "audio/chars/bwa.mp3"
+            },
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 4,
+      "sentence": "또 뭐 자세히 보시면은 깍지가 아니라 손목을 붙잡으셨더라고요.",
+      "sentence_ne": "अनि राम्ररी हेर्नुभयो भने हात समाएको होइन, नाडी समाउनुभएको रहेछ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "또",
+          "meaning_ne": "",
+          "audio": "audio/chars/tto.mp3",
+          "chars": [
+            {
+              "char": "또",
+              "jamo": [
+                "ㄸ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/tto.mp3"
+            }
+          ]
+        },
+        {
+          "word": "뭐",
+          "meaning_ne": "",
+          "audio": "audio/chars/mwo.mp3",
+          "chars": [
+            {
+              "char": "뭐",
+              "jamo": [
+                "ㅁ",
+                "ㅝ"
+              ],
+              "audio": "audio/chars/mwo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "자세히",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jasehi.mp3",
+          "chars": [
+            {
+              "char": "자",
+              "jamo": [
+                "ㅈ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ja.mp3"
+            },
+            {
+              "char": "세",
+              "jamo": [
+                "ㅅ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/se.mp3"
+            },
+            {
+              "char": "히",
+              "jamo": [
+                "ㅎ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/hi.mp3"
+            }
+          ]
+        },
+        {
+          "word": "보시면은",
+          "meaning_ne": "",
+          "audio": "audio/words_common/bosimyeoneun.mp3",
+          "chars": [
+            {
+              "char": "보",
+              "jamo": [
+                "ㅂ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/bo.mp3"
+            },
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            },
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "깍지가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/kkakjiga.mp3",
+          "chars": [
+            {
+              "char": "깍",
+              "jamo": [
+                "ㄲ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/kkak.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "아니라",
+          "meaning_ne": "",
+          "audio": "audio/words_common/anira.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            }
+          ]
+        },
+        {
+          "word": "손목을",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sonmogeul.mp3",
+          "chars": [
+            {
+              "char": "손",
+              "jamo": [
+                "ㅅ",
+                "ㅗ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/son.mp3"
+            },
+            {
+              "char": "목",
+              "jamo": [
+                "ㅁ",
+                "ㅗ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/mok.mp3"
+            },
+            {
+              "char": "을",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/eul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "붙잡으셨더라고요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/butjabeuryeotdeoragoyo.mp3",
+          "chars": [
+            {
+              "char": "붙",
+              "jamo": [
+                "ㅂ",
+                "ㅜ",
+                "ㅌ"
+              ],
+              "audio": "audio/chars/but.mp3"
+            },
+            {
+              "char": "잡",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/jap.mp3"
+            },
+            {
+              "char": "으",
+              "jamo": [
+                "ㅇ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/eu.mp3"
+            },
+            {
+              "char": "셨",
+              "jamo": [
+                "ㅅ",
+                "ㅕ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/syeot.mp3"
+            },
+            {
+              "char": "더",
+              "jamo": [
+                "ㄷ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/deo.mp3"
+            },
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 5,
+      "sentence": "이건 아니다!",
+      "sentence_ne": "यो त होइन!",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "이건",
+          "meaning_ne": "",
+          "audio": "audio/words_common/igeon.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "건",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/geon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "아니다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/anida.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 6,
+      "sentence": "이렇게 강력히 항의를 해서 장난기 가득한 좋은 친구 사이로 정리를 했습니다.",
+      "sentence_ne": "यसरी कडा विरोध गरेर मजाक गर्ने राम्रो साथी भनेर सम्झौता भयो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "이렇게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ireoke.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "렇",
+              "jamo": [
+                "ㄹ",
+                "ㅓ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/reot.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "강력히",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gangnyeokhi.mp3",
+          "chars": [
+            {
+              "char": "강",
+              "jamo": [
+                "ㄱ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/gang.mp3"
+            },
+            {
+              "char": "력",
+              "jamo": [
+                "ㄹ",
+                "ㅕ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/ryeok.mp3"
+            },
+            {
+              "char": "히",
+              "jamo": [
+                "ㅎ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/hi.mp3"
+            }
+          ]
+        },
+        {
+          "word": "항의를",
+          "meaning_ne": "",
+          "audio": "audio/words_common/hanguireul.mp3",
+          "chars": [
+            {
+              "char": "항",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/hang.mp3"
+            },
+            {
+              "char": "의",
+              "jamo": [
+                "ㅇ",
+                "ㅢ"
+              ],
+              "audio": "audio/chars/ui_char.mp3"
+            },
+            {
+              "char": "를",
+              "jamo": [
+                "ㄹ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/reul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "해서",
+          "meaning_ne": "",
+          "audio": "audio/words_common/haeseo.mp3",
+          "chars": [
+            {
+              "char": "해",
+              "jamo": [
+                "ㅎ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/hae.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "장난기",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jangnangi.mp3",
+          "chars": [
+            {
+              "char": "장",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/jang.mp3"
+            },
+            {
+              "char": "난",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nan.mp3"
+            },
+            {
+              "char": "기",
+              "jamo": [
+                "ㄱ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/gi.mp3"
+            }
+          ]
+        },
+        {
+          "word": "가득한",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gadeukhan.mp3",
+          "chars": [
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            },
+            {
+              "char": "득",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/deuk.mp3"
+            },
+            {
+              "char": "한",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/han.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좋은",
+          "meaning_ne": "",
+          "audio": "audio/words_common/joeun.mp3",
+          "chars": [
+            {
+              "char": "좋",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/jot.mp3"
+            },
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "친구",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chingu.mp3",
+          "chars": [
+            {
+              "char": "친",
+              "jamo": [
+                "ㅊ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/chin.mp3"
+            },
+            {
+              "char": "구",
+              "jamo": [
+                "ㄱ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/gu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "사이로",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sairo.mp3",
+          "chars": [
+            {
+              "char": "사",
+              "jamo": [
+                "ㅅ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/sa.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "로",
+              "jamo": [
+                "ㄹ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/ro.mp3"
+            }
+          ]
+        },
+        {
+          "word": "정리를",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeongrireul.mp3",
+          "chars": [
+            {
+              "char": "정",
+              "jamo": [
+                "ㅈ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/jeong.mp3"
+            },
+            {
+              "char": "리",
+              "jamo": [
+                "ㄹ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ri.mp3"
+            },
+            {
+              "char": "를",
+              "jamo": [
+                "ㄹ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/reul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "했습니다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/haetsseumnida.mp3",
+          "chars": [
+            {
+              "char": "했",
+              "jamo": [
+                "ㅎ",
+                "ㅐ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/haet.mp3"
+            },
+            {
+              "char": "습",
+              "jamo": [
+                "ㅅ",
+                "ㅡ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/seup.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 7,
+      "sentence": "저게 장난치는 거다?",
+      "sentence_ne": "त्यो मजाक गरेको हो?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "저게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeoge.mp3",
+          "chars": [
+            {
+              "char": "저",
+              "jamo": [
+                "ㅈ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/jeo.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "장난치는",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jangnanchineun.mp3",
+          "chars": [
+            {
+              "char": "장",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/jang.mp3"
+            },
+            {
+              "char": "난",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nan.mp3"
+            },
+            {
+              "char": "치",
+              "jamo": [
+                "ㅊ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/chi.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "거다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geoda.mp3",
+          "chars": [
+            {
+              "char": "거",
+              "jamo": [
+                "ㄱ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/geo.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 8,
+      "sentence": "예, 두 분이 워낙에 친하셔서 이렇게 놀고 있다고.",
+      "sentence_ne": "हो, दुई जना एकदमै नजिक भएकाले यसरी खेलिरहेका भन्ने।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "예",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ye_word.mp3",
+          "chars": [
+            {
+              "char": "예",
+              "jamo": [
+                "ㅇ",
+                "ㅖ"
+              ],
+              "audio": "audio/chars/ye_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "두",
+          "meaning_ne": "",
+          "audio": "audio/chars/du.mp3",
+          "chars": [
+            {
+              "char": "두",
+              "jamo": [
+                "ㄷ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/du.mp3"
+            }
+          ]
+        },
+        {
+          "word": "분이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/buni.mp3",
+          "chars": [
+            {
+              "char": "분",
+              "jamo": [
+                "ㅂ",
+                "ㅜ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/bun.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "워낙에",
+          "meaning_ne": "",
+          "audio": "audio/words_common/wonage.mp3",
+          "chars": [
+            {
+              "char": "워",
+              "jamo": [
+                "ㅇ",
+                "ㅝ"
+              ],
+              "audio": "audio/chars/wo.mp3"
+            },
+            {
+              "char": "낙",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/nak.mp3"
+            },
+            {
+              "char": "에",
+              "jamo": [
+                "ㅇ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/e_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "친하셔서",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chinhasyeoseo.mp3",
+          "chars": [
+            {
+              "char": "친",
+              "jamo": [
+                "ㅊ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/chin.mp3"
+            },
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "셔",
+              "jamo": [
+                "ㅅ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/syeo.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "이렇게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ireoke.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "렇",
+              "jamo": [
+                "ㄹ",
+                "ㅓ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/reot.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "놀고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/nolgo.mp3",
+          "chars": [
+            {
+              "char": "놀",
+              "jamo": [
+                "ㄴ",
+                "ㅗ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/nol.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        },
+        {
+          "word": "있다고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/itdago.mp3",
+          "chars": [
+            {
+              "char": "있",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/it.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 9,
+      "sentence": "아니, 노시는 걸로.",
+      "sentence_ne": "होइन, खेल्नुभएको भन्ने।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "아니",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ani.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            }
+          ]
+        },
+        {
+          "word": "노시는",
+          "meaning_ne": "",
+          "audio": "audio/words_common/nosineun.mp3",
+          "chars": [
+            {
+              "char": "노",
+              "jamo": [
+                "ㄴ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/no.mp3"
+            },
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "걸로",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geollo.mp3",
+          "chars": [
+            {
+              "char": "걸",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/geol.mp3"
+            },
+            {
+              "char": "로",
+              "jamo": [
+                "ㄹ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/ro.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 10,
+      "sentence": "그래, 친했지 한 땐.",
+      "sentence_ne": "हो, एक समयमा नजिक थियौं।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그래",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geurae.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "래",
+              "jamo": [
+                "ㄹ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/rae.mp3"
+            }
+          ]
+        },
+        {
+          "word": "친했지",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chinhaetji.mp3",
+          "chars": [
+            {
+              "char": "친",
+              "jamo": [
+                "ㅊ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/chin.mp3"
+            },
+            {
+              "char": "했",
+              "jamo": [
+                "ㅎ",
+                "ㅐ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/haet.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            }
+          ]
+        },
+        {
+          "word": "한",
+          "meaning_ne": "",
+          "audio": "audio/chars/han.mp3",
+          "chars": [
+            {
+              "char": "한",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/han.mp3"
+            }
+          ]
+        },
+        {
+          "word": "땐",
+          "meaning_ne": "",
+          "audio": "audio/chars/ttaen.mp3",
+          "chars": [
+            {
+              "char": "땐",
+              "jamo": [
+                "ㄸ",
+                "ㅐ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/ttaen.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 11,
+      "sentence": "이젠 다 끝났지만.",
+      "sentence_ne": "तर अब सबै सकियो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "이젠",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ijen.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "젠",
+              "jamo": [
+                "ㅈ",
+                "ㅔ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/jen.mp3"
+            }
+          ]
+        },
+        {
+          "word": "다",
+          "meaning_ne": "",
+          "audio": "audio/chars/da.mp3",
+          "chars": [
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        },
+        {
+          "word": "끝났지만",
+          "meaning_ne": "",
+          "audio": "audio/words_common/kkeunnatjiman.mp3",
+          "chars": [
+            {
+              "char": "끝",
+              "jamo": [
+                "ㄲ",
+                "ㅡ",
+                "ㅌ"
+              ],
+              "audio": "audio/chars/kkeut.mp3"
+            },
+            {
+              "char": "났",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/nat.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            },
+            {
+              "char": "만",
+              "jamo": [
+                "ㅁ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/man.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 12,
+      "sentence": "그래요, 이왕 이렇게 된 거 좋아요.",
+      "sentence_ne": "ठिकै छ, जब यस्तो भइसक्यो त राम्रो नै भयो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그래요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geuraeyo.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "래",
+              "jamo": [
+                "ㄹ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/rae.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "이왕",
+          "meaning_ne": "",
+          "audio": "audio/words_common/iwang.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "왕",
+              "jamo": [
+                "ㅇ",
+                "ㅘ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/wang.mp3"
+            }
+          ]
+        },
+        {
+          "word": "이렇게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ireoke.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "렇",
+              "jamo": [
+                "ㄹ",
+                "ㅓ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/reot.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "된",
+          "meaning_ne": "",
+          "audio": "audio/chars/doen.mp3",
+          "chars": [
+            {
+              "char": "된",
+              "jamo": [
+                "ㄷ",
+                "ㅚ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/doen.mp3"
+            }
+          ]
+        },
+        {
+          "word": "거",
+          "meaning_ne": "",
+          "audio": "audio/chars/geo.mp3",
+          "chars": [
+            {
+              "char": "거",
+              "jamo": [
+                "ㄱ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/geo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좋아요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/joayo.mp3",
+          "chars": [
+            {
+              "char": "좋",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/jot.mp3"
+            },
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 13,
+      "sentence": "다 좋은데 저 모자이크 좀 어떻게 안 될까?",
+      "sentence_ne": "सबै ठिकै छ तर त्यो मोजाइक केही गर्न मिल्दैन?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "다",
+          "meaning_ne": "",
+          "audio": "audio/chars/da.mp3",
+          "chars": [
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좋은데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/joeunde.mp3",
+          "chars": [
+            {
+              "char": "좋",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/jot.mp3"
+            },
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        },
+        {
+          "word": "저",
+          "meaning_ne": "",
+          "audio": "audio/chars/jeo.mp3",
+          "chars": [
+            {
+              "char": "저",
+              "jamo": [
+                "ㅈ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/jeo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "모자이크",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mojaik.mp3",
+          "chars": [
+            {
+              "char": "모",
+              "jamo": [
+                "ㅁ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/mo.mp3"
+            },
+            {
+              "char": "자",
+              "jamo": [
+                "ㅈ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ja.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "크",
+              "jamo": [
+                "ㅋ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/keu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좀",
+          "meaning_ne": "",
+          "audio": "audio/chars/jom.mp3",
+          "chars": [
+            {
+              "char": "좀",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/jom.mp3"
+            }
+          ]
+        },
+        {
+          "word": "어떻게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eotteoke.mp3",
+          "chars": [
+            {
+              "char": "어",
+              "jamo": [
+                "ㅇ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/eo_char.mp3"
+            },
+            {
+              "char": "떻",
+              "jamo": [
+                "ㄸ",
+                "ㅓ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/tteot.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "안",
+          "meaning_ne": "",
+          "audio": "audio/chars/an.mp3",
+          "chars": [
+            {
+              "char": "안",
+              "jamo": [
+                "ㅇ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/an.mp3"
+            }
+          ]
+        },
+        {
+          "word": "될까",
+          "meaning_ne": "",
+          "audio": "audio/words_common/doelkka.mp3",
+          "chars": [
+            {
+              "char": "될",
+              "jamo": [
+                "ㄷ",
+                "ㅚ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/doel.mp3"
+            },
+            {
+              "char": "까",
+              "jamo": [
+                "ㄲ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/kka.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 14,
+      "sentence": "얼굴을 좀 더 뭉개달라고 우겨 볼까요?",
+      "sentence_ne": "अनुहार अझ बढी धमिल्याइदिनोस् भनेर अनुरोध गरौं?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "얼굴을",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eolgurul.mp3",
+          "chars": [
+            {
+              "char": "얼",
+              "jamo": [
+                "ㅇ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/eol.mp3"
+            },
+            {
+              "char": "굴",
+              "jamo": [
+                "ㄱ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/gul.mp3"
+            },
+            {
+              "char": "을",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/eul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좀",
+          "meaning_ne": "",
+          "audio": "audio/chars/jom.mp3",
+          "chars": [
+            {
+              "char": "좀",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/jom.mp3"
+            }
+          ]
+        },
+        {
+          "word": "더",
+          "meaning_ne": "",
+          "audio": "audio/chars/deo.mp3",
+          "chars": [
+            {
+              "char": "더",
+              "jamo": [
+                "ㄷ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/deo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "뭉개달라고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/munggaedalrago.mp3",
+          "chars": [
+            {
+              "char": "뭉",
+              "jamo": [
+                "ㅁ",
+                "ㅜ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/mung.mp3"
+            },
+            {
+              "char": "개",
+              "jamo": [
+                "ㄱ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/gae.mp3"
+            },
+            {
+              "char": "달",
+              "jamo": [
+                "ㄷ",
+                "ㅏ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/dal.mp3"
+            },
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        },
+        {
+          "word": "우겨",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ugyeo.mp3",
+          "chars": [
+            {
+              "char": "우",
+              "jamo": [
+                "ㅇ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/u_char.mp3"
+            },
+            {
+              "char": "겨",
+              "jamo": [
+                "ㄱ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/gyeo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "볼까요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/bolkkayo.mp3",
+          "chars": [
+            {
+              "char": "볼",
+              "jamo": [
+                "ㅂ",
+                "ㅗ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/bol.mp3"
+            },
+            {
+              "char": "까",
+              "jamo": [
+                "ㄲ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/kka.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 15,
+      "sentence": "그게 아니고.",
+      "sentence_ne": "त्यो होइन।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geuge.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "아니고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/anigo.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 16,
+      "sentence": "내 귀걸이까지 모자이크 돼버렸잖아.",
+      "sentence_ne": "मेरो कानको झुम्का समेत मोजाइक भइहाल्यो नि।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "내",
+          "meaning_ne": "",
+          "audio": "audio/chars/nae.mp3",
+          "chars": [
+            {
+              "char": "내",
+              "jamo": [
+                "ㄴ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/nae.mp3"
+            }
+          ]
+        },
+        {
+          "word": "귀걸이까지",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gwigeorikkaji.mp3",
+          "chars": [
+            {
+              "char": "귀",
+              "jamo": [
+                "ㄱ",
+                "ㅟ"
+              ],
+              "audio": "audio/chars/gwi.mp3"
+            },
+            {
+              "char": "걸",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/geol.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "까",
+              "jamo": [
+                "ㄲ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/kka.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            }
+          ]
+        },
+        {
+          "word": "모자이크",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mojaik.mp3",
+          "chars": [
+            {
+              "char": "모",
+              "jamo": [
+                "ㅁ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/mo.mp3"
+            },
+            {
+              "char": "자",
+              "jamo": [
+                "ㅈ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ja.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "크",
+              "jamo": [
+                "ㅋ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/keu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "돼버렸잖아",
+          "meaning_ne": "",
+          "audio": "audio/words_common/dwaeberyeotjana.mp3",
+          "chars": [
+            {
+              "char": "돼",
+              "jamo": [
+                "ㄷ",
+                "ㅙ"
+              ],
+              "audio": "audio/chars/dwae.mp3"
+            },
+            {
+              "char": "버",
+              "jamo": [
+                "ㅂ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/beo.mp3"
+            },
+            {
+              "char": "렸",
+              "jamo": [
+                "ㄹ",
+                "ㅕ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/ryeot.mp3"
+            },
+            {
+              "char": "잖",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㄴ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/jan.mp3"
+            },
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 17,
+      "sentence": "저게 이번 시즌 액세서리 라인에서 내가 제일 밀고 있는 애인데.",
+      "sentence_ne": "त्यो यो सिजनको एक्सेसरी लाइनमा मैले सबैभन्दा बढी प्रमोट गरिरहेको हो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "저게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeoge.mp3",
+          "chars": [
+            {
+              "char": "저",
+              "jamo": [
+                "ㅈ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/jeo.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "이번",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ibeon.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "번",
+              "jamo": [
+                "ㅂ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/beon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "시즌",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sijeun.mp3",
+          "chars": [
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            },
+            {
+              "char": "즌",
+              "jamo": [
+                "ㅈ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/jeun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "액세서리",
+          "meaning_ne": "",
+          "audio": "audio/words_common/aekseseori.mp3",
+          "chars": [
+            {
+              "char": "액",
+              "jamo": [
+                "ㅇ",
+                "ㅐ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/aek.mp3"
+            },
+            {
+              "char": "세",
+              "jamo": [
+                "ㅅ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/se.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            },
+            {
+              "char": "리",
+              "jamo": [
+                "ㄹ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ri.mp3"
+            }
+          ]
+        },
+        {
+          "word": "라인에서",
+          "meaning_ne": "",
+          "audio": "audio/words_common/raineseo.mp3",
+          "chars": [
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            },
+            {
+              "char": "인",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/in_char.mp3"
+            },
+            {
+              "char": "에",
+              "jamo": [
+                "ㅇ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/e_char.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "내가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/naega.mp3",
+          "chars": [
+            {
+              "char": "내",
+              "jamo": [
+                "ㄴ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/nae.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "제일",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeil.mp3",
+          "chars": [
+            {
+              "char": "제",
+              "jamo": [
+                "ㅈ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/je.mp3"
+            },
+            {
+              "char": "일",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/il.mp3"
+            }
+          ]
+        },
+        {
+          "word": "밀고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/milgo.mp3",
+          "chars": [
+            {
+              "char": "밀",
+              "jamo": [
+                "ㅁ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/mil.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        },
+        {
+          "word": "있는",
+          "meaning_ne": "",
+          "audio": "audio/words_common/inneun.mp3",
+          "chars": [
+            {
+              "char": "있",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/it.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "애인데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/aeinde.mp3",
+          "chars": [
+            {
+              "char": "애",
+              "jamo": [
+                "ㅇ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/ae.mp3"
+            },
+            {
+              "char": "인",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/in_char.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 18,
+      "sentence": "그 모자이크를 뭐랄까 좀 더 섬세하게 줄여서 귀걸이가 딱 보이게.",
+      "sentence_ne": "त्यो मोजाइक अलिकति सानो बनाएर कानको झुम्का देखिने गरी।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그",
+          "meaning_ne": "",
+          "audio": "audio/chars/geu.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "모자이크를",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mojaikreul.mp3",
+          "chars": [
+            {
+              "char": "모",
+              "jamo": [
+                "ㅁ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/mo.mp3"
+            },
+            {
+              "char": "자",
+              "jamo": [
+                "ㅈ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ja.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "크",
+              "jamo": [
+                "ㅋ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/keu.mp3"
+            },
+            {
+              "char": "를",
+              "jamo": [
+                "ㄹ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/reul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "뭐랄까",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mworalkka.mp3",
+          "chars": [
+            {
+              "char": "뭐",
+              "jamo": [
+                "ㅁ",
+                "ㅝ"
+              ],
+              "audio": "audio/chars/mwo.mp3"
+            },
+            {
+              "char": "랄",
+              "jamo": [
+                "ㄹ",
+                "ㅏ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/ral.mp3"
+            },
+            {
+              "char": "까",
+              "jamo": [
+                "ㄲ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/kka.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좀",
+          "meaning_ne": "",
+          "audio": "audio/chars/jom.mp3",
+          "chars": [
+            {
+              "char": "좀",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/jom.mp3"
+            }
+          ]
+        },
+        {
+          "word": "더",
+          "meaning_ne": "",
+          "audio": "audio/chars/deo.mp3",
+          "chars": [
+            {
+              "char": "더",
+              "jamo": [
+                "ㄷ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/deo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "섬세하게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seomsehage.mp3",
+          "chars": [
+            {
+              "char": "섬",
+              "jamo": [
+                "ㅅ",
+                "ㅓ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/seom.mp3"
+            },
+            {
+              "char": "세",
+              "jamo": [
+                "ㅅ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/se.mp3"
+            },
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        },
+        {
+          "word": "줄여서",
+          "meaning_ne": "",
+          "audio": "audio/words_common/juryeoseo.mp3",
+          "chars": [
+            {
+              "char": "줄",
+              "jamo": [
+                "ㅈ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/jul.mp3"
+            },
+            {
+              "char": "여",
+              "jamo": [
+                "ㅇ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/yeo_char.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "귀걸이가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gwigeoriga.mp3",
+          "chars": [
+            {
+              "char": "귀",
+              "jamo": [
+                "ㄱ",
+                "ㅟ"
+              ],
+              "audio": "audio/chars/gwi.mp3"
+            },
+            {
+              "char": "걸",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/geol.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "딱",
+          "meaning_ne": "",
+          "audio": "audio/chars/ttak.mp3",
+          "chars": [
+            {
+              "char": "딱",
+              "jamo": [
+                "ㄸ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/ttak.mp3"
+            }
+          ]
+        },
+        {
+          "word": "보이게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/boige.mp3",
+          "chars": [
+            {
+              "char": "보",
+              "jamo": [
+                "ㅂ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/bo.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 19,
+      "sentence": "가능하면 전신샷이면 좋겠는데?",
+      "sentence_ne": "सकेसम्म पूरा शरीर देखिने फोटो भए राम्रो हुन्थ्यो?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "가능하면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ganeunghamyeon.mp3",
+          "chars": [
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            },
+            {
+              "char": "능",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/neung.mp3"
+            },
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "전신샷이면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jeonsinsyasimyeon.mp3",
+          "chars": [
+            {
+              "char": "전",
+              "jamo": [
+                "ㅈ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/jeon.mp3"
+            },
+            {
+              "char": "신",
+              "jamo": [
+                "ㅅ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/sin.mp3"
+            },
+            {
+              "char": "샷",
+              "jamo": [
+                "ㅅ",
+                "ㅑ",
+                "ㅅ"
+              ],
+              "audio": "audio/chars/syat.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "좋겠는데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jokkenneunde.mp3",
+          "chars": [
+            {
+              "char": "좋",
+              "jamo": [
+                "ㅈ",
+                "ㅗ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/jot.mp3"
+            },
+            {
+              "char": "겠",
+              "jamo": [
+                "ㄱ",
+                "ㅔ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/get.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 20,
+      "sentence": "이왕이면 백이랑 구두도 노출이 되게.",
+      "sentence_ne": "सकेसम्म ब्याग र जुत्ता पनि देखिने गरी।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "이왕이면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/iwangimyeon.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "왕",
+              "jamo": [
+                "ㅇ",
+                "ㅘ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/wang.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "백이랑",
+          "meaning_ne": "",
+          "audio": "audio/words_common/baegirang.mp3",
+          "chars": [
+            {
+              "char": "백",
+              "jamo": [
+                "ㅂ",
+                "ㅐ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/baek.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "랑",
+              "jamo": [
+                "ㄹ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/rang.mp3"
+            }
+          ]
+        },
+        {
+          "word": "구두도",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gududo.mp3",
+          "chars": [
+            {
+              "char": "구",
+              "jamo": [
+                "ㄱ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/gu.mp3"
+            },
+            {
+              "char": "두",
+              "jamo": [
+                "ㄷ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/du.mp3"
+            },
+            {
+              "char": "도",
+              "jamo": [
+                "ㄷ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/do.mp3"
+            }
+          ]
+        },
+        {
+          "word": "노출이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/nochuri.mp3",
+          "chars": [
+            {
+              "char": "노",
+              "jamo": [
+                "ㄴ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/no.mp3"
+            },
+            {
+              "char": "출",
+              "jamo": [
+                "ㅊ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/chul.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "되게",
+          "meaning_ne": "",
+          "audio": "audio/words_common/doege.mp3",
+          "chars": [
+            {
+              "char": "되",
+              "jamo": [
+                "ㄷ",
+                "ㅚ"
+              ],
+              "audio": "audio/chars/doe.mp3"
+            },
+            {
+              "char": "게",
+              "jamo": [
+                "ㄱ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ge.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 21,
+      "sentence": "네.",
+      "sentence_ne": "हो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "네",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ne_word.mp3",
+          "chars": [
+            {
+              "char": "네",
+              "jamo": [
+                "ㄴ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ne_char.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 22,
+      "sentence": "구매팀장님, 지금 뭐 하셔야겠어요?",
+      "sentence_ne": "खरिद टोली प्रमुख, अहिले के गर्नुपर्छ?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "구매팀장님",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gumaetimjangnim.mp3",
+          "chars": [
+            {
+              "char": "구",
+              "jamo": [
+                "ㄱ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/gu.mp3"
+            },
+            {
+              "char": "매",
+              "jamo": [
+                "ㅁ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/mae.mp3"
+            },
+            {
+              "char": "팀",
+              "jamo": [
+                "ㅌ",
+                "ㅣ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/tim.mp3"
+            },
+            {
+              "char": "장",
+              "jamo": [
+                "ㅈ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/jang.mp3"
+            },
+            {
+              "char": "님",
+              "jamo": [
+                "ㄴ",
+                "ㅣ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/nim.mp3"
+            }
+          ]
+        },
+        {
+          "word": "지금",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jigeum.mp3",
+          "chars": [
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            },
+            {
+              "char": "금",
+              "jamo": [
+                "ㄱ",
+                "ㅡ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/geum.mp3"
+            }
+          ]
+        },
+        {
+          "word": "뭐",
+          "meaning_ne": "",
+          "audio": "audio/chars/mwo.mp3",
+          "chars": [
+            {
+              "char": "뭐",
+              "jamo": [
+                "ㅁ",
+                "ㅝ"
+              ],
+              "audio": "audio/chars/mwo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "하셔야겠어요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/hasyeoyagesseoyo.mp3",
+          "chars": [
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "셔",
+              "jamo": [
+                "ㅅ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/syeo.mp3"
+            },
+            {
+              "char": "야",
+              "jamo": [
+                "ㅇ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/ya.mp3"
+            },
+            {
+              "char": "겠",
+              "jamo": [
+                "ㄱ",
+                "ㅔ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/get.mp3"
+            },
+            {
+              "char": "어",
+              "jamo": [
+                "ㅇ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/eo_char.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 23,
+      "sentence": "귀걸이, 백, 구두 물량 확보하셔야죠.",
+      "sentence_ne": "कानको झुम्का, ब्याग, जुत्ताको स्टक सुनिश्चित गर्नुपर्छ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "귀걸이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gwigeori.mp3",
+          "chars": [
+            {
+              "char": "귀",
+              "jamo": [
+                "ㄱ",
+                "ㅟ"
+              ],
+              "audio": "audio/chars/gwi.mp3"
+            },
+            {
+              "char": "걸",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/geol.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "백",
+          "meaning_ne": "",
+          "audio": "audio/chars/baek.mp3",
+          "chars": [
+            {
+              "char": "백",
+              "jamo": [
+                "ㅂ",
+                "ㅐ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/baek.mp3"
+            }
+          ]
+        },
+        {
+          "word": "구두",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gudu.mp3",
+          "chars": [
+            {
+              "char": "구",
+              "jamo": [
+                "ㄱ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/gu.mp3"
+            },
+            {
+              "char": "두",
+              "jamo": [
+                "ㄷ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/du.mp3"
+            }
+          ]
+        },
+        {
+          "word": "물량",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mullyang.mp3",
+          "chars": [
+            {
+              "char": "물",
+              "jamo": [
+                "ㅁ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/mul.mp3"
+            },
+            {
+              "char": "량",
+              "jamo": [
+                "ㄹ",
+                "ㅑ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/ryang.mp3"
+            }
+          ]
+        },
+        {
+          "word": "확보하셔야죠",
+          "meaning_ne": "",
+          "audio": "audio/words_common/hwakbohasyeoyajyo.mp3",
+          "chars": [
+            {
+              "char": "확",
+              "jamo": [
+                "ㅎ",
+                "ㅘ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/hwak.mp3"
+            },
+            {
+              "char": "보",
+              "jamo": [
+                "ㅂ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/bo.mp3"
+            },
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "셔",
+              "jamo": [
+                "ㅅ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/syeo.mp3"
+            },
+            {
+              "char": "야",
+              "jamo": [
+                "ㅇ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/ya.mp3"
+            },
+            {
+              "char": "죠",
+              "jamo": [
+                "ㅈ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/jyo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 24,
+      "sentence": "실검뜨고 그러면 오더 막 쏟아질 텐데.",
+      "sentence_ne": "ट्रेन्डिङमा आउँछ भने अर्डर खुलेआम आउँछ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "실검뜨고",
+          "meaning_ne": "",
+          "audio": "audio/words_common/silgeomtteugo.mp3",
+          "chars": [
+            {
+              "char": "실",
+              "jamo": [
+                "ㅅ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/sil.mp3"
+            },
+            {
+              "char": "검",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/geom.mp3"
+            },
+            {
+              "char": "뜨",
+              "jamo": [
+                "ㄸ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/tteu.mp3"
+            },
+            {
+              "char": "고",
+              "jamo": [
+                "ㄱ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/go.mp3"
+            }
+          ]
+        },
+        {
+          "word": "그러면",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geureomyeon.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "러",
+              "jamo": [
+                "ㄹ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/reo.mp3"
+            },
+            {
+              "char": "면",
+              "jamo": [
+                "ㅁ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/myeon.mp3"
+            }
+          ]
+        },
+        {
+          "word": "오더",
+          "meaning_ne": "",
+          "audio": "audio/words_common/odeo.mp3",
+          "chars": [
+            {
+              "char": "오",
+              "jamo": [
+                "ㅇ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/o.mp3"
+            },
+            {
+              "char": "더",
+              "jamo": [
+                "ㄷ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/deo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "막",
+          "meaning_ne": "",
+          "audio": "audio/chars/mak.mp3",
+          "chars": [
+            {
+              "char": "막",
+              "jamo": [
+                "ㅁ",
+                "ㅏ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/mak.mp3"
+            }
+          ]
+        },
+        {
+          "word": "쏟아질",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ssodajil.mp3",
+          "chars": [
+            {
+              "char": "쏟",
+              "jamo": [
+                "ㅆ",
+                "ㅗ",
+                "ㄷ"
+              ],
+              "audio": "audio/chars/ssot.mp3"
+            },
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "질",
+              "jamo": [
+                "ㅈ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/jil.mp3"
+            }
+          ]
+        },
+        {
+          "word": "텐데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/tende.mp3",
+          "chars": [
+            {
+              "char": "텐",
+              "jamo": [
+                "ㅌ",
+                "ㅔ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/ten.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 25,
+      "sentence": "네.",
+      "sentence_ne": "हो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "네",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ne_word.mp3",
+          "chars": [
+            {
+              "char": "네",
+              "jamo": [
+                "ㄴ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ne_char.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 26,
+      "sentence": "그 여자 아니야?",
+      "sentence_ne": "त्यही महिला होइन?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "그",
+          "meaning_ne": "",
+          "audio": "audio/chars/geu.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            }
+          ]
+        },
+        {
+          "word": "여자",
+          "meaning_ne": "",
+          "audio": "audio/words_common/yeoja.mp3",
+          "chars": [
+            {
+              "char": "여",
+              "jamo": [
+                "ㅇ",
+                "ㅕ"
+              ],
+              "audio": "audio/chars/yeo_char.mp3"
+            },
+            {
+              "char": "자",
+              "jamo": [
+                "ㅈ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ja.mp3"
+            }
+          ]
+        },
+        {
+          "word": "아니야",
+          "meaning_ne": "",
+          "audio": "audio/words_common/aniya.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "야",
+              "jamo": [
+                "ㅇ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/ya.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 27,
+      "sentence": "배우 차상우랑 스캔들 난.",
+      "sentence_ne": "अभिनेता चा सांग-उसँग स्क्यान्डल भएको।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "배우",
+          "meaning_ne": "",
+          "audio": "audio/words_common/baeu.mp3",
+          "chars": [
+            {
+              "char": "배",
+              "jamo": [
+                "ㅂ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/bae.mp3"
+            },
+            {
+              "char": "우",
+              "jamo": [
+                "ㅇ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/u_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "차상우랑",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chasangurang.mp3",
+          "chars": [
+            {
+              "char": "차",
+              "jamo": [
+                "ㅊ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/cha.mp3"
+            },
+            {
+              "char": "상",
+              "jamo": [
+                "ㅅ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/sang.mp3"
+            },
+            {
+              "char": "우",
+              "jamo": [
+                "ㅇ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/u_char.mp3"
+            },
+            {
+              "char": "랑",
+              "jamo": [
+                "ㄹ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/rang.mp3"
+            }
+          ]
+        },
+        {
+          "word": "스캔들",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seukaendeul.mp3",
+          "chars": [
+            {
+              "char": "스",
+              "jamo": [
+                "ㅅ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/seu.mp3"
+            },
+            {
+              "char": "캔",
+              "jamo": [
+                "ㅋ",
+                "ㅐ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/kaen.mp3"
+            },
+            {
+              "char": "들",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/deul.mp3"
+            }
+          ]
+        },
+        {
+          "word": "난",
+          "meaning_ne": "",
+          "audio": "audio/chars/nan.mp3",
+          "chars": [
+            {
+              "char": "난",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nan.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 28,
+      "sentence": "아 맞네.",
+      "sentence_ne": "अ, सही हो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "아",
+          "meaning_ne": "",
+          "audio": "audio/words_common/a_word.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "맞네",
+          "meaning_ne": "",
+          "audio": "audio/words_common/manne.mp3",
+          "chars": [
+            {
+              "char": "맞",
+              "jamo": [
+                "ㅁ",
+                "ㅏ",
+                "ㅈ"
+              ],
+              "audio": "audio/chars/mat.mp3"
+            },
+            {
+              "char": "네",
+              "jamo": [
+                "ㄴ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/ne_char.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 29,
+      "sentence": "은혜인형이야?",
+      "sentence_ne": "शल्यक्रिया सुन्दरी हो?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "은혜인형이야",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eunhyeinhyeongiya.mp3",
+          "chars": [
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            },
+            {
+              "char": "혜",
+              "jamo": [
+                "ㅎ",
+                "ㅖ"
+              ],
+              "audio": "audio/chars/hye.mp3"
+            },
+            {
+              "char": "인",
+              "jamo": [
+                "ㅇ",
+                "ㅣ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/in_char.mp3"
+            },
+            {
+              "char": "형",
+              "jamo": [
+                "ㅎ",
+                "ㅕ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/hyeong.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "야",
+              "jamo": [
+                "ㅇ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/ya.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 30,
+      "sentence": "얼굴도 그냥 그렇구만.",
+      "sentence_ne": "अनुहार पनि त्यस्तै रहेछ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "얼굴도",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eolguldo.mp3",
+          "chars": [
+            {
+              "char": "얼",
+              "jamo": [
+                "ㅇ",
+                "ㅓ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/eol.mp3"
+            },
+            {
+              "char": "굴",
+              "jamo": [
+                "ㄱ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/gul.mp3"
+            },
+            {
+              "char": "도",
+              "jamo": [
+                "ㄷ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/do.mp3"
+            }
+          ]
+        },
+        {
+          "word": "그냥",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geunyang.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "냥",
+              "jamo": [
+                "ㄴ",
+                "ㅑ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/nyang.mp3"
+            }
+          ]
+        },
+        {
+          "word": "그렇구만",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geureokguman.mp3",
+          "chars": [
+            {
+              "char": "그",
+              "jamo": [
+                "ㄱ",
+                "ㅡ"
+              ],
+              "audio": "audio/chars/geu.mp3"
+            },
+            {
+              "char": "렇",
+              "jamo": [
+                "ㄹ",
+                "ㅓ",
+                "ㅎ"
+              ],
+              "audio": "audio/chars/reot.mp3"
+            },
+            {
+              "char": "구",
+              "jamo": [
+                "ㄱ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/gu.mp3"
+            },
+            {
+              "char": "만",
+              "jamo": [
+                "ㅁ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/man.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 31,
+      "sentence": "차상우가 아깝다.",
+      "sentence_ne": "चा सांग-उको लागि अफसोस।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "차상우가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chasanguga.mp3",
+          "chars": [
+            {
+              "char": "차",
+              "jamo": [
+                "ㅊ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/cha.mp3"
+            },
+            {
+              "char": "상",
+              "jamo": [
+                "ㅅ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/sang.mp3"
+            },
+            {
+              "char": "우",
+              "jamo": [
+                "ㅇ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/u_char.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "아깝다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/akkapda.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "깝",
+              "jamo": [
+                "ㄲ",
+                "ㅏ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/kkap.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 32,
+      "sentence": "나 지금 평소보다 더 주목받는 것 같은데.",
+      "sentence_ne": "मलाई अहिले सामान्यभन्दा बढी ध्यान दिइरहेको जस्तो छ।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "나",
+          "meaning_ne": "",
+          "audio": "audio/chars/na.mp3",
+          "chars": [
+            {
+              "char": "나",
+              "jamo": [
+                "ㄴ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/na.mp3"
+            }
+          ]
+        },
+        {
+          "word": "지금",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jigeum.mp3",
+          "chars": [
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            },
+            {
+              "char": "금",
+              "jamo": [
+                "ㄱ",
+                "ㅡ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/geum.mp3"
+            }
+          ]
+        },
+        {
+          "word": "평소보다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/pyeongsoboda.mp3",
+          "chars": [
+            {
+              "char": "평",
+              "jamo": [
+                "ㅍ",
+                "ㅕ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/pyeong.mp3"
+            },
+            {
+              "char": "소",
+              "jamo": [
+                "ㅅ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/so.mp3"
+            },
+            {
+              "char": "보",
+              "jamo": [
+                "ㅂ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/bo.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        },
+        {
+          "word": "더",
+          "meaning_ne": "",
+          "audio": "audio/chars/deo.mp3",
+          "chars": [
+            {
+              "char": "더",
+              "jamo": [
+                "ㄷ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/deo.mp3"
+            }
+          ]
+        },
+        {
+          "word": "주목받는",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jumokbanneun.mp3",
+          "chars": [
+            {
+              "char": "주",
+              "jamo": [
+                "ㅈ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/ju.mp3"
+            },
+            {
+              "char": "목",
+              "jamo": [
+                "ㅁ",
+                "ㅗ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/mok.mp3"
+            },
+            {
+              "char": "받",
+              "jamo": [
+                "ㅂ",
+                "ㅏ",
+                "ㄷ"
+              ],
+              "audio": "audio/chars/bat.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "것",
+          "meaning_ne": "",
+          "audio": "audio/words_common/geot.mp3",
+          "chars": [
+            {
+              "char": "것",
+              "jamo": [
+                "ㄱ",
+                "ㅓ",
+                "ㅅ"
+              ],
+              "audio": "audio/chars/geot.mp3"
+            }
+          ]
+        },
+        {
+          "word": "같은데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gateunde.mp3",
+          "chars": [
+            {
+              "char": "같",
+              "jamo": [
+                "ㄱ",
+                "ㅏ",
+                "ㅌ"
+              ],
+              "audio": "audio/chars/gat2.mp3"
+            },
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 33,
+      "sentence": "대체 이 경호원들은 뭐예요?",
+      "sentence_ne": "यी बडीगार्डहरू आखिर के हो?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "대체",
+          "meaning_ne": "",
+          "audio": "audio/words_common/daeche.mp3",
+          "chars": [
+            {
+              "char": "대",
+              "jamo": [
+                "ㄷ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/dae.mp3"
+            },
+            {
+              "char": "체",
+              "jamo": [
+                "ㅊ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/che.mp3"
+            }
+          ]
+        },
+        {
+          "word": "이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/i_word.mp3",
+          "chars": [
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "경호원들은",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gyeonghowondeureun.mp3",
+          "chars": [
+            {
+              "char": "경",
+              "jamo": [
+                "ㄱ",
+                "ㅕ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/gyeong.mp3"
+            },
+            {
+              "char": "호",
+              "jamo": [
+                "ㅎ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/ho.mp3"
+            },
+            {
+              "char": "원",
+              "jamo": [
+                "ㅇ",
+                "ㅝ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/won.mp3"
+            },
+            {
+              "char": "들",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/deul.mp3"
+            },
+            {
+              "char": "은",
+              "jamo": [
+                "ㅇ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "뭐예요",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mwoyeyo.mp3",
+          "chars": [
+            {
+              "char": "뭐",
+              "jamo": [
+                "ㅁ",
+                "ㅝ"
+              ],
+              "audio": "audio/chars/mwo.mp3"
+            },
+            {
+              "char": "예",
+              "jamo": [
+                "ㅇ",
+                "ㅖ"
+              ],
+              "audio": "audio/chars/ye_char.mp3"
+            },
+            {
+              "char": "요",
+              "jamo": [
+                "ㅇ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/yo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 34,
+      "sentence": "차상우의 성난팬들이 대표님 언제 공격할지 몰라서.",
+      "sentence_ne": "चा सांग-उका रिसाएका फ्यानहरूले प्रतिनिधिलाई कहिले आक्रमण गर्ने थाहा छैन।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "차상우의",
+          "meaning_ne": "",
+          "audio": "audio/words_common/chasanguui.mp3",
+          "chars": [
+            {
+              "char": "차",
+              "jamo": [
+                "ㅊ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/cha.mp3"
+            },
+            {
+              "char": "상",
+              "jamo": [
+                "ㅅ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/sang.mp3"
+            },
+            {
+              "char": "우",
+              "jamo": [
+                "ㅇ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/u_char.mp3"
+            },
+            {
+              "char": "의",
+              "jamo": [
+                "ㅇ",
+                "ㅢ"
+              ],
+              "audio": "audio/chars/ui_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "성난팬들이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seongnanpaendeuri.mp3",
+          "chars": [
+            {
+              "char": "성",
+              "jamo": [
+                "ㅅ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/seong.mp3"
+            },
+            {
+              "char": "난",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nan.mp3"
+            },
+            {
+              "char": "팬",
+              "jamo": [
+                "ㅍ",
+                "ㅐ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/paen.mp3"
+            },
+            {
+              "char": "들",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/deul.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "대표님",
+          "meaning_ne": "",
+          "audio": "audio/words_common/daepyonim.mp3",
+          "chars": [
+            {
+              "char": "대",
+              "jamo": [
+                "ㄷ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/dae.mp3"
+            },
+            {
+              "char": "표",
+              "jamo": [
+                "ㅍ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/pyo.mp3"
+            },
+            {
+              "char": "님",
+              "jamo": [
+                "ㄴ",
+                "ㅣ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/nim.mp3"
+            }
+          ]
+        },
+        {
+          "word": "언제",
+          "meaning_ne": "",
+          "audio": "audio/words_common/eonje.mp3",
+          "chars": [
+            {
+              "char": "언",
+              "jamo": [
+                "ㅇ",
+                "ㅓ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/eon.mp3"
+            },
+            {
+              "char": "제",
+              "jamo": [
+                "ㅈ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/je.mp3"
+            }
+          ]
+        },
+        {
+          "word": "공격할지",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gonggyeokhalji.mp3",
+          "chars": [
+            {
+              "char": "공",
+              "jamo": [
+                "ㄱ",
+                "ㅗ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/gong.mp3"
+            },
+            {
+              "char": "격",
+              "jamo": [
+                "ㄱ",
+                "ㅕ",
+                "ㄱ"
+              ],
+              "audio": "audio/chars/gyeok.mp3"
+            },
+            {
+              "char": "할",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/hal.mp3"
+            },
+            {
+              "char": "지",
+              "jamo": [
+                "ㅈ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ji.mp3"
+            }
+          ]
+        },
+        {
+          "word": "몰라서",
+          "meaning_ne": "",
+          "audio": "audio/words_common/mollaseo.mp3",
+          "chars": [
+            {
+              "char": "몰",
+              "jamo": [
+                "ㅁ",
+                "ㅗ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/mol.mp3"
+            },
+            {
+              "char": "라",
+              "jamo": [
+                "ㄹ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ra.mp3"
+            },
+            {
+              "char": "서",
+              "jamo": [
+                "ㅅ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/seo.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 35,
+      "sentence": "성난팬들?",
+      "sentence_ne": "रिसाएका फ्यानहरू?",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "성난팬들",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seongnanpaendeul.mp3",
+          "chars": [
+            {
+              "char": "성",
+              "jamo": [
+                "ㅅ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/seong.mp3"
+            },
+            {
+              "char": "난",
+              "jamo": [
+                "ㄴ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nan.mp3"
+            },
+            {
+              "char": "팬",
+              "jamo": [
+                "ㅍ",
+                "ㅐ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/paen.mp3"
+            },
+            {
+              "char": "들",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/deul.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 36,
+      "sentence": "아니, 개들이 왜 성이나 성질 누가 내야 되는데.",
+      "sentence_ne": "होइन, तिनीहरू किन रिसाउने, रिसाउनुपर्ने त म हो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "아니",
+          "meaning_ne": "",
+          "audio": "audio/words_common/ani.mp3",
+          "chars": [
+            {
+              "char": "아",
+              "jamo": [
+                "ㅇ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/a_char.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            }
+          ]
+        },
+        {
+          "word": "개들이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gaedeuri.mp3",
+          "chars": [
+            {
+              "char": "개",
+              "jamo": [
+                "ㄱ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/gae.mp3"
+            },
+            {
+              "char": "들",
+              "jamo": [
+                "ㄷ",
+                "ㅡ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/deul.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "왜",
+          "meaning_ne": "",
+          "audio": "audio/chars/wae.mp3",
+          "chars": [
+            {
+              "char": "왜",
+              "jamo": [
+                "ㅇ",
+                "ㅙ"
+              ],
+              "audio": "audio/chars/wae.mp3"
+            }
+          ]
+        },
+        {
+          "word": "성이나",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seongina.mp3",
+          "chars": [
+            {
+              "char": "성",
+              "jamo": [
+                "ㅅ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/seong.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            },
+            {
+              "char": "나",
+              "jamo": [
+                "ㄴ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/na.mp3"
+            }
+          ]
+        },
+        {
+          "word": "성질",
+          "meaning_ne": "",
+          "audio": "audio/words_common/seongjil.mp3",
+          "chars": [
+            {
+              "char": "성",
+              "jamo": [
+                "ㅅ",
+                "ㅓ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/seong.mp3"
+            },
+            {
+              "char": "질",
+              "jamo": [
+                "ㅈ",
+                "ㅣ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/jil.mp3"
+            }
+          ]
+        },
+        {
+          "word": "누가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/nuga.mp3",
+          "chars": [
+            {
+              "char": "누",
+              "jamo": [
+                "ㄴ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/nu.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        },
+        {
+          "word": "내야",
+          "meaning_ne": "",
+          "audio": "audio/words_common/naeya.mp3",
+          "chars": [
+            {
+              "char": "내",
+              "jamo": [
+                "ㄴ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/nae.mp3"
+            },
+            {
+              "char": "야",
+              "jamo": [
+                "ㅇ",
+                "ㅑ"
+              ],
+              "audio": "audio/chars/ya.mp3"
+            }
+          ]
+        },
+        {
+          "word": "되는데",
+          "meaning_ne": "",
+          "audio": "audio/words_common/doeneunde.mp3",
+          "chars": [
+            {
+              "char": "되",
+              "jamo": [
+                "ㄷ",
+                "ㅚ"
+              ],
+              "audio": "audio/chars/doe.mp3"
+            },
+            {
+              "char": "는",
+              "jamo": [
+                "ㄴ",
+                "ㅡ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/neun.mp3"
+            },
+            {
+              "char": "데",
+              "jamo": [
+                "ㄷ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/de.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 37,
+      "sentence": "대표님, 기분 푸십시오.",
+      "sentence_ne": "प्रतिनिधि, मन हल्का गर्नुहोस्।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "대표님",
+          "meaning_ne": "",
+          "audio": "audio/words_common/daepyonim.mp3",
+          "chars": [
+            {
+              "char": "대",
+              "jamo": [
+                "ㄷ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/dae.mp3"
+            },
+            {
+              "char": "표",
+              "jamo": [
+                "ㅍ",
+                "ㅛ"
+              ],
+              "audio": "audio/chars/pyo.mp3"
+            },
+            {
+              "char": "님",
+              "jamo": [
+                "ㄴ",
+                "ㅣ",
+                "ㅁ"
+              ],
+              "audio": "audio/chars/nim.mp3"
+            }
+          ]
+        },
+        {
+          "word": "기분",
+          "meaning_ne": "",
+          "audio": "audio/words_common/gibun.mp3",
+          "chars": [
+            {
+              "char": "기",
+              "jamo": [
+                "ㄱ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/gi.mp3"
+            },
+            {
+              "char": "분",
+              "jamo": [
+                "ㅂ",
+                "ㅜ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/bun.mp3"
+            }
+          ]
+        },
+        {
+          "word": "푸십시오",
+          "meaning_ne": "",
+          "audio": "audio/words_common/pusipsio.mp3",
+          "chars": [
+            {
+              "char": "푸",
+              "jamo": [
+                "ㅍ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/pu.mp3"
+            },
+            {
+              "char": "십",
+              "jamo": [
+                "ㅅ",
+                "ㅣ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/sip.mp3"
+            },
+            {
+              "char": "시",
+              "jamo": [
+                "ㅅ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/si.mp3"
+            },
+            {
+              "char": "오",
+              "jamo": [
+                "ㅇ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/o.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 38,
+      "sentence": "반년치 매출이 하루에 터졌습니다.",
+      "sentence_ne": "छ महिनाको बिक्री एक दिनमा भयो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "반년치",
+          "meaning_ne": "",
+          "audio": "audio/words_common/bannyeonchi.mp3",
+          "chars": [
+            {
+              "char": "반",
+              "jamo": [
+                "ㅂ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/ban.mp3"
+            },
+            {
+              "char": "년",
+              "jamo": [
+                "ㄴ",
+                "ㅕ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/nyeon.mp3"
+            },
+            {
+              "char": "치",
+              "jamo": [
+                "ㅊ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/chi.mp3"
+            }
+          ]
+        },
+        {
+          "word": "매출이",
+          "meaning_ne": "",
+          "audio": "audio/words_common/maechuri.mp3",
+          "chars": [
+            {
+              "char": "매",
+              "jamo": [
+                "ㅁ",
+                "ㅐ"
+              ],
+              "audio": "audio/chars/mae.mp3"
+            },
+            {
+              "char": "출",
+              "jamo": [
+                "ㅊ",
+                "ㅜ",
+                "ㄹ"
+              ],
+              "audio": "audio/chars/chul.mp3"
+            },
+            {
+              "char": "이",
+              "jamo": [
+                "ㅇ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/i.mp3"
+            }
+          ]
+        },
+        {
+          "word": "하루에",
+          "meaning_ne": "",
+          "audio": "audio/words_common/harue.mp3",
+          "chars": [
+            {
+              "char": "하",
+              "jamo": [
+                "ㅎ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ha.mp3"
+            },
+            {
+              "char": "루",
+              "jamo": [
+                "ㄹ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/ru.mp3"
+            },
+            {
+              "char": "에",
+              "jamo": [
+                "ㅇ",
+                "ㅔ"
+              ],
+              "audio": "audio/chars/e_char.mp3"
+            }
+          ]
+        },
+        {
+          "word": "터졌습니다",
+          "meaning_ne": "",
+          "audio": "audio/words_common/teojyeotsseumnida.mp3",
+          "chars": [
+            {
+              "char": "터",
+              "jamo": [
+                "ㅌ",
+                "ㅓ"
+              ],
+              "audio": "audio/chars/teo.mp3"
+            },
+            {
+              "char": "졌",
+              "jamo": [
+                "ㅈ",
+                "ㅕ",
+                "ㅆ"
+              ],
+              "audio": "audio/chars/jyeot.mp3"
+            },
+            {
+              "char": "습",
+              "jamo": [
+                "ㅅ",
+                "ㅡ",
+                "ㅂ"
+              ],
+              "audio": "audio/chars/seup.mp3"
+            },
+            {
+              "char": "니",
+              "jamo": [
+                "ㄴ",
+                "ㅣ"
+              ],
+              "audio": "audio/chars/ni.mp3"
+            },
+            {
+              "char": "다",
+              "jamo": [
+                "ㄷ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/da.mp3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_id": 39,
+      "sentence": "주가도 상한가.",
+      "sentence_ne": "शेयरको मूल्य पनि अधिकतम सीमामा पुग्यो।",
+      "sentence_end": 0,
+      "words": [
+        {
+          "word": "주가도",
+          "meaning_ne": "",
+          "audio": "audio/words_common/jugado.mp3",
+          "chars": [
+            {
+              "char": "주",
+              "jamo": [
+                "ㅈ",
+                "ㅜ"
+              ],
+              "audio": "audio/chars/ju.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            },
+            {
+              "char": "도",
+              "jamo": [
+                "ㄷ",
+                "ㅗ"
+              ],
+              "audio": "audio/chars/do.mp3"
+            }
+          ]
+        },
+        {
+          "word": "상한가",
+          "meaning_ne": "",
+          "audio": "audio/words_common/sanghanga.mp3",
+          "chars": [
+            {
+              "char": "상",
+              "jamo": [
+                "ㅅ",
+                "ㅏ",
+                "ㅇ"
+              ],
+              "audio": "audio/chars/sang.mp3"
+            },
+            {
+              "char": "한",
+              "jamo": [
+                "ㅎ",
+                "ㅏ",
+                "ㄴ"
+              ],
+              "audio": "audio/chars/han.mp3"
+            },
+            {
+              "char": "가",
+              "jamo": [
+                "ㄱ",
+                "ㅏ"
+              ],
+              "audio": "audio/chars/ga.mp3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
