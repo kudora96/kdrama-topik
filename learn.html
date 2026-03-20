@@ -1345,7 +1345,7 @@ function toggleQuizAudio() {
 function stopQuizAudio() { if (quizAudioEl) { quizAudioEl.pause(); quizAudioEl = null; } }
 
 // ── Writing Practice ──
-var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrKrAudio = null, wrKrTimer = null, wrAutoPlayTimer = null, wrSkipAllPending = false;
+var writingData = null, wrWritingSubId = -1, wrWordIdx = 0, wrCharIdx = 0, wrJamoIdx = 0, wrEnteredJamo = [], wrAdvanceTimer = null, wrWordAudio = null, wrSentenceAudio = null, wrSentenceIdx = -1, wrSentenceTimer = null, wrSkipping = false, wrSkipTarget = -1, wrSkipTimer = null, wrSkipAudio = null, wrPreloadedAudio = null, wrPreloadReady = false, wrKrAudio = null, wrKrTimer = null, wrAutoPlayTimer = null, wrSkipAllPending = false;
 
 var CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
 var JUNG = ['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
@@ -1397,7 +1397,7 @@ function openWritingOverlay(subId) {
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
   // Preload KR audio on user gesture to avoid autoplay block
   var krPath = getWritingKrAudioPath();
-  if (krPath) { try { wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } }
+  if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } }
 }
 
 function closeWritingOverlay() {
@@ -1588,7 +1588,7 @@ function wrPlayKrAudio(onDone) {
   }
   // Fallback: use KR sentence audio
   var endTime = writingData.sentence_end;
-  if (wrPreloadedAudio) {
+  if (wrPreloadedAudio && wrPreloadReady) {
     wrSentenceAudio = wrPreloadedAudio; wrSentenceAudio.currentTime = 0; wrSentenceAudio.volume = 1;
   } else {
     var path = getWritingKrAudioPath(); if (!path) return;
@@ -1624,7 +1624,7 @@ function toggleKrSentenceAudio() {
   if (wasPlaying) return;
   var btn = document.getElementById('wr-kr-btn') || document.getElementById('wr-kr-complete-btn');
   var endTime = writingData ? writingData.sentence_end : 0;
-  if (wrPreloadedAudio) {
+  if (wrPreloadedAudio && wrPreloadReady) {
     wrKrAudio = wrPreloadedAudio; wrKrAudio.currentTime = 0; wrKrAudio.volume = 1;
   } else {
     var path = getWritingKrAudioPath(); if (!path) return;
@@ -1676,7 +1676,7 @@ function wrSkipAll() {
   var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
   wrAutoTypeNext();
 }
-function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; }).catch(function(){ wrPreloadedAudio = null; }); } catch(e) { wrPreloadedAudio = null; } } }
+function wrPreloadKrForCompletion() { var p = getWritingKrAudioPath(); if (p) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(p); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 function wrStopSkip() { wrSkipping = false; wrSkipTarget = -1; wrSkipAllPending = false; if (wrSkipTimer) { clearTimeout(wrSkipTimer); wrSkipTimer = null; } if (wrSkipAudio) { wrSkipAudio.pause(); wrSkipAudio = null; } }
 function wrStopAll() {
   var wasSkipping = wrSkipping;
