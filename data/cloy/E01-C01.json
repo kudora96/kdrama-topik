@@ -619,7 +619,7 @@
       "words": [
         {
           "word": "네",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/ne_word.mp3",
           "chars": [
             {
@@ -634,7 +634,7 @@
         },
         {
           "word": "잠시",
-          "meaning_ne": "",
+          "meaning_ne": "केही समय",
           "audio": "audio/words_common/jamsi.mp3",
           "chars": [
             {
@@ -658,7 +658,7 @@
         },
         {
           "word": "후",
-          "meaning_ne": "",
+          "meaning_ne": "पछि",
           "audio": "audio/chars/hu.mp3",
           "chars": [
             {
@@ -673,7 +673,7 @@
         },
         {
           "word": "오전",
-          "meaning_ne": "",
+          "meaning_ne": "बिहान",
           "audio": "audio/words_common/ojeon.mp3",
           "chars": [
             {
@@ -697,7 +697,7 @@
         },
         {
           "word": "일곱시면",
-          "meaning_ne": "",
+          "meaning_ne": "सात बजे",
           "audio": "audio/words_common/ilgopsimyeon.mp3",
           "chars": [
             {
@@ -739,7 +739,7 @@
         },
         {
           "word": "기사가",
-          "meaning_ne": "",
+          "meaning_ne": "समाचार",
           "audio": "audio/words_common/gisaga.mp3",
           "chars": [
             {
@@ -770,7 +770,7 @@
         },
         {
           "word": "업데이트",
-          "meaning_ne": "",
+          "meaning_ne": "अपडेट",
           "audio": "audio/words_common/eobdeiteu.mp3",
           "chars": [
             {
@@ -810,7 +810,7 @@
         },
         {
           "word": "될",
-          "meaning_ne": "",
+          "meaning_ne": "हुने",
           "audio": "audio/chars/doel.mp3",
           "chars": [
             {
@@ -826,7 +826,7 @@
         },
         {
           "word": "예정입니다",
-          "meaning_ne": "",
+          "meaning_ne": "छ",
           "audio": "audio/words_common/yejeong-imnida.mp3",
           "chars": [
             {
@@ -883,7 +883,7 @@
       "words": [
         {
           "word": "그나마",
-          "meaning_ne": "",
+          "meaning_ne": "त्यसमा पनि",
           "audio": "audio/words_common/geunama.mp3",
           "chars": [
             {
@@ -914,7 +914,7 @@
         },
         {
           "word": "제가",
-          "meaning_ne": "",
+          "meaning_ne": "मैले",
           "audio": "audio/words_common/jega.mp3",
           "chars": [
             {
@@ -937,7 +937,7 @@
         },
         {
           "word": "데스패치",
-          "meaning_ne": "",
+          "meaning_ne": "डिस्प्याच",
           "audio": "audio/words_common/deseupaech.mp3",
           "chars": [
             {
@@ -976,7 +976,7 @@
         },
         {
           "word": "쪽에다가",
-          "meaning_ne": "",
+          "meaning_ne": "तर्फ",
           "audio": "audio/words_common/jjogedaga.mp3",
           "chars": [
             {
@@ -1024,7 +1024,7 @@
       "words": [
         {
           "word": "손깍지",
-          "meaning_ne": "",
+          "meaning_ne": "हात समाउनु",
           "audio": "audio/words_common/sonkkakji.mp3",
           "chars": [
             {
@@ -1057,7 +1057,7 @@
         },
         {
           "word": "끼면",
-          "meaning_ne": "",
+          "meaning_ne": "गर्नु",
           "audio": "audio/words_common/kkimyeon.mp3",
           "chars": [
             {
@@ -1081,7 +1081,7 @@
         },
         {
           "word": "전부",
-          "meaning_ne": "",
+          "meaning_ne": "सबै",
           "audio": "audio/words_common/jeonbu.mp3",
           "chars": [
             {
@@ -1105,7 +1105,7 @@
         },
         {
           "word": "사귀는",
-          "meaning_ne": "",
+          "meaning_ne": "प्रेम",
           "audio": "audio/words_common/sagwineun.mp3",
           "chars": [
             {
@@ -1137,7 +1137,7 @@
         },
         {
           "word": "거냐",
-          "meaning_ne": "",
+          "meaning_ne": "हो?",
           "audio": "audio/words_common/geonya.mp3",
           "chars": [
             {
@@ -1160,7 +1160,7 @@
         },
         {
           "word": "길을",
-          "meaning_ne": "",
+          "meaning_ne": "बाटो",
           "audio": "audio/words_common/gireul.mp3",
           "chars": [
             {
@@ -1185,7 +1185,7 @@
         },
         {
           "word": "막고",
-          "meaning_ne": "",
+          "meaning_ne": "रोकेर",
           "audio": "audio/words_common/makgo.mp3",
           "chars": [
             {
@@ -1209,7 +1209,7 @@
         },
         {
           "word": "물어봐라",
-          "meaning_ne": "",
+          "meaning_ne": "सोध",
           "audio": "audio/words_common/mureobwara.mp3",
           "chars": [
             {
@@ -1257,7 +1257,7 @@
       "words": [
         {
           "word": "또",
-          "meaning_ne": "",
+          "meaning_ne": "अनि",
           "audio": "audio/chars/tto.mp3",
           "chars": [
             {
@@ -1272,7 +1272,7 @@
         },
         {
           "word": "뭐",
-          "meaning_ne": "",
+          "meaning_ne": "के",
           "audio": "audio/chars/mwo.mp3",
           "chars": [
             {
@@ -1287,7 +1287,7 @@
         },
         {
           "word": "자세히",
-          "meaning_ne": "",
+          "meaning_ne": "राम्ररी",
           "audio": "audio/words_common/jasehi.mp3",
           "chars": [
             {
@@ -1318,7 +1318,7 @@
         },
         {
           "word": "보시면은",
-          "meaning_ne": "",
+          "meaning_ne": "हेर्नुभयो भने",
           "audio": "audio/words_common/bosimyeoneun.mp3",
           "chars": [
             {
@@ -1359,7 +1359,7 @@
         },
         {
           "word": "깍지가",
-          "meaning_ne": "",
+          "meaning_ne": "हात समाएको",
           "audio": "audio/words_common/kkakjiga.mp3",
           "chars": [
             {
@@ -1391,7 +1391,7 @@
         },
         {
           "word": "아니라",
-          "meaning_ne": "",
+          "meaning_ne": "होइन",
           "audio": "audio/words_common/anira.mp3",
           "chars": [
             {
@@ -1422,7 +1422,7 @@
         },
         {
           "word": "손목을",
-          "meaning_ne": "",
+          "meaning_ne": "नाडी",
           "audio": "audio/words_common/sonmogeul.mp3",
           "chars": [
             {
@@ -1456,7 +1456,7 @@
         },
         {
           "word": "붙잡으셨더라고요",
-          "meaning_ne": "",
+          "meaning_ne": "समाउनुभएको रहेछ",
           "audio": "audio/words_common/butjabeuryeotdeoragoyo.mp3",
           "chars": [
             {
@@ -1538,7 +1538,7 @@
       "words": [
         {
           "word": "이건",
-          "meaning_ne": "",
+          "meaning_ne": "यो",
           "audio": "audio/words_common/igeon.mp3",
           "chars": [
             {
@@ -1562,7 +1562,7 @@
         },
         {
           "word": "아니다",
-          "meaning_ne": "",
+          "meaning_ne": "होइन",
           "audio": "audio/words_common/anida.mp3",
           "chars": [
             {
@@ -1601,7 +1601,7 @@
       "words": [
         {
           "word": "이렇게",
-          "meaning_ne": "",
+          "meaning_ne": "यसरी",
           "audio": "audio/words_common/ireoke.mp3",
           "chars": [
             {
@@ -1633,7 +1633,7 @@
         },
         {
           "word": "강력히",
-          "meaning_ne": "",
+          "meaning_ne": "कडा",
           "audio": "audio/words_common/gangnyeokhi.mp3",
           "chars": [
             {
@@ -1666,7 +1666,7 @@
         },
         {
           "word": "항의를",
-          "meaning_ne": "",
+          "meaning_ne": "विरोध",
           "audio": "audio/words_common/hanguireul.mp3",
           "chars": [
             {
@@ -1699,7 +1699,7 @@
         },
         {
           "word": "해서",
-          "meaning_ne": "",
+          "meaning_ne": "गरेर",
           "audio": "audio/words_common/haeseo.mp3",
           "chars": [
             {
@@ -1722,7 +1722,7 @@
         },
         {
           "word": "장난기",
-          "meaning_ne": "",
+          "meaning_ne": "मजाक",
           "audio": "audio/words_common/jangnangi.mp3",
           "chars": [
             {
@@ -1755,7 +1755,7 @@
         },
         {
           "word": "가득한",
-          "meaning_ne": "",
+          "meaning_ne": "भरपूर",
           "audio": "audio/words_common/gadeukhan.mp3",
           "chars": [
             {
@@ -1788,7 +1788,7 @@
         },
         {
           "word": "좋은",
-          "meaning_ne": "",
+          "meaning_ne": "राम्रो",
           "audio": "audio/words_common/joeun.mp3",
           "chars": [
             {
@@ -1813,7 +1813,7 @@
         },
         {
           "word": "친구",
-          "meaning_ne": "",
+          "meaning_ne": "साथी",
           "audio": "audio/words_common/chingu.mp3",
           "chars": [
             {
@@ -1837,7 +1837,7 @@
         },
         {
           "word": "사이로",
-          "meaning_ne": "",
+          "meaning_ne": "भनेर",
           "audio": "audio/words_common/sairo.mp3",
           "chars": [
             {
@@ -1868,7 +1868,7 @@
         },
         {
           "word": "정리를",
-          "meaning_ne": "",
+          "meaning_ne": "सम्झौता",
           "audio": "audio/words_common/jeongrireul.mp3",
           "chars": [
             {
@@ -1901,7 +1901,7 @@
         },
         {
           "word": "했습니다",
-          "meaning_ne": "",
+          "meaning_ne": "भयो",
           "audio": "audio/words_common/haetsseumnida.mp3",
           "chars": [
             {
@@ -1950,7 +1950,7 @@
       "words": [
         {
           "word": "저게",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/words_common/jeoge.mp3",
           "chars": [
             {
@@ -1973,7 +1973,7 @@
         },
         {
           "word": "장난치는",
-          "meaning_ne": "",
+          "meaning_ne": "मजाक गरेको",
           "audio": "audio/words_common/jangnanchineun.mp3",
           "chars": [
             {
@@ -2015,7 +2015,7 @@
         },
         {
           "word": "거다",
-          "meaning_ne": "",
+          "meaning_ne": "हो?",
           "audio": "audio/words_common/geoda.mp3",
           "chars": [
             {
@@ -2046,7 +2046,7 @@
       "words": [
         {
           "word": "예",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/ye_word.mp3",
           "chars": [
             {
@@ -2061,7 +2061,7 @@
         },
         {
           "word": "두",
-          "meaning_ne": "",
+          "meaning_ne": "दुई",
           "audio": "audio/chars/du.mp3",
           "chars": [
             {
@@ -2076,7 +2076,7 @@
         },
         {
           "word": "분이",
-          "meaning_ne": "",
+          "meaning_ne": "जना",
           "audio": "audio/words_common/buni.mp3",
           "chars": [
             {
@@ -2100,7 +2100,7 @@
         },
         {
           "word": "워낙에",
-          "meaning_ne": "",
+          "meaning_ne": "एकदमै",
           "audio": "audio/words_common/wonage.mp3",
           "chars": [
             {
@@ -2132,7 +2132,7 @@
         },
         {
           "word": "친하셔서",
-          "meaning_ne": "",
+          "meaning_ne": "नजिक भएकाले",
           "audio": "audio/words_common/chinhasyeoseo.mp3",
           "chars": [
             {
@@ -2172,7 +2172,7 @@
         },
         {
           "word": "이렇게",
-          "meaning_ne": "",
+          "meaning_ne": "यसरी",
           "audio": "audio/words_common/ireoke.mp3",
           "chars": [
             {
@@ -2204,7 +2204,7 @@
         },
         {
           "word": "놀고",
-          "meaning_ne": "",
+          "meaning_ne": "खेलिरहेका",
           "audio": "audio/words_common/nolgo.mp3",
           "chars": [
             {
@@ -2228,7 +2228,7 @@
         },
         {
           "word": "있다고",
-          "meaning_ne": "",
+          "meaning_ne": "भन्ने",
           "audio": "audio/words_common/itdago.mp3",
           "chars": [
             {
@@ -2268,7 +2268,7 @@
       "words": [
         {
           "word": "아니",
-          "meaning_ne": "",
+          "meaning_ne": "होइन",
           "audio": "audio/words_common/ani.mp3",
           "chars": [
             {
@@ -2291,7 +2291,7 @@
         },
         {
           "word": "노시는",
-          "meaning_ne": "",
+          "meaning_ne": "खेल्नुभएको",
           "audio": "audio/words_common/nosineun.mp3",
           "chars": [
             {
@@ -2323,7 +2323,7 @@
         },
         {
           "word": "걸로",
-          "meaning_ne": "",
+          "meaning_ne": "भन्ने",
           "audio": "audio/words_common/geollo.mp3",
           "chars": [
             {
@@ -2355,7 +2355,7 @@
       "words": [
         {
           "word": "그래",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/geurae.mp3",
           "chars": [
             {
@@ -2378,7 +2378,7 @@
         },
         {
           "word": "친했지",
-          "meaning_ne": "",
+          "meaning_ne": "नजिक थियौं",
           "audio": "audio/words_common/chinhaetji.mp3",
           "chars": [
             {
@@ -2411,7 +2411,7 @@
         },
         {
           "word": "한",
-          "meaning_ne": "",
+          "meaning_ne": "एक",
           "audio": "audio/chars/han.mp3",
           "chars": [
             {
@@ -2427,7 +2427,7 @@
         },
         {
           "word": "땐",
-          "meaning_ne": "",
+          "meaning_ne": "समयमा",
           "audio": "audio/chars/ttaen.mp3",
           "chars": [
             {
@@ -2451,7 +2451,7 @@
       "words": [
         {
           "word": "이젠",
-          "meaning_ne": "",
+          "meaning_ne": "अब",
           "audio": "audio/words_common/ijen.mp3",
           "chars": [
             {
@@ -2475,7 +2475,7 @@
         },
         {
           "word": "다",
-          "meaning_ne": "",
+          "meaning_ne": "सबै",
           "audio": "audio/chars/da.mp3",
           "chars": [
             {
@@ -2490,7 +2490,7 @@
         },
         {
           "word": "끝났지만",
-          "meaning_ne": "",
+          "meaning_ne": "सकियो तर",
           "audio": "audio/words_common/kkeunnatjiman.mp3",
           "chars": [
             {
@@ -2540,7 +2540,7 @@
       "words": [
         {
           "word": "그래요",
-          "meaning_ne": "",
+          "meaning_ne": "ठिकै छ",
           "audio": "audio/words_common/geuraeyo.mp3",
           "chars": [
             {
@@ -2571,7 +2571,7 @@
         },
         {
           "word": "이왕",
-          "meaning_ne": "",
+          "meaning_ne": "जब",
           "audio": "audio/words_common/iwang.mp3",
           "chars": [
             {
@@ -2595,7 +2595,7 @@
         },
         {
           "word": "이렇게",
-          "meaning_ne": "",
+          "meaning_ne": "यसरी",
           "audio": "audio/words_common/ireoke.mp3",
           "chars": [
             {
@@ -2627,7 +2627,7 @@
         },
         {
           "word": "된",
-          "meaning_ne": "",
+          "meaning_ne": "भइसक्यो",
           "audio": "audio/chars/doen.mp3",
           "chars": [
             {
@@ -2643,7 +2643,7 @@
         },
         {
           "word": "거",
-          "meaning_ne": "",
+          "meaning_ne": "त",
           "audio": "audio/chars/geo.mp3",
           "chars": [
             {
@@ -2658,7 +2658,7 @@
         },
         {
           "word": "좋아요",
-          "meaning_ne": "",
+          "meaning_ne": "राम्रो",
           "audio": "audio/words_common/joayo.mp3",
           "chars": [
             {
@@ -2698,7 +2698,7 @@
       "words": [
         {
           "word": "다",
-          "meaning_ne": "",
+          "meaning_ne": "सबै",
           "audio": "audio/chars/da.mp3",
           "chars": [
             {
@@ -2713,7 +2713,7 @@
         },
         {
           "word": "좋은데",
-          "meaning_ne": "",
+          "meaning_ne": "ठिकै छ तर",
           "audio": "audio/words_common/joeunde.mp3",
           "chars": [
             {
@@ -2746,7 +2746,7 @@
         },
         {
           "word": "저",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/chars/jeo.mp3",
           "chars": [
             {
@@ -2761,7 +2761,7 @@
         },
         {
           "word": "모자이크",
-          "meaning_ne": "",
+          "meaning_ne": "मोजाइक",
           "audio": "audio/words_common/mojaik.mp3",
           "chars": [
             {
@@ -2800,7 +2800,7 @@
         },
         {
           "word": "좀",
-          "meaning_ne": "",
+          "meaning_ne": "अलि",
           "audio": "audio/chars/jom.mp3",
           "chars": [
             {
@@ -2816,7 +2816,7 @@
         },
         {
           "word": "어떻게",
-          "meaning_ne": "",
+          "meaning_ne": "कसरी",
           "audio": "audio/words_common/eotteoke.mp3",
           "chars": [
             {
@@ -2848,7 +2848,7 @@
         },
         {
           "word": "안",
-          "meaning_ne": "",
+          "meaning_ne": "गर्न",
           "audio": "audio/chars/an.mp3",
           "chars": [
             {
@@ -2864,7 +2864,7 @@
         },
         {
           "word": "될까",
-          "meaning_ne": "",
+          "meaning_ne": "मिल्दैन?",
           "audio": "audio/words_common/doelkka.mp3",
           "chars": [
             {
@@ -2896,7 +2896,7 @@
       "words": [
         {
           "word": "얼굴을",
-          "meaning_ne": "",
+          "meaning_ne": "अनुहार",
           "audio": "audio/words_common/eolgurul.mp3",
           "chars": [
             {
@@ -2930,7 +2930,7 @@
         },
         {
           "word": "좀",
-          "meaning_ne": "",
+          "meaning_ne": "अलि",
           "audio": "audio/chars/jom.mp3",
           "chars": [
             {
@@ -2946,7 +2946,7 @@
         },
         {
           "word": "더",
-          "meaning_ne": "",
+          "meaning_ne": "अझ",
           "audio": "audio/chars/deo.mp3",
           "chars": [
             {
@@ -2961,7 +2961,7 @@
         },
         {
           "word": "뭉개달라고",
-          "meaning_ne": "",
+          "meaning_ne": "धमिल्याइदिनोस्",
           "audio": "audio/words_common/munggaedalrago.mp3",
           "chars": [
             {
@@ -3010,7 +3010,7 @@
         },
         {
           "word": "우겨",
-          "meaning_ne": "",
+          "meaning_ne": "अनुरोध",
           "audio": "audio/words_common/ugyeo.mp3",
           "chars": [
             {
@@ -3033,7 +3033,7 @@
         },
         {
           "word": "볼까요",
-          "meaning_ne": "",
+          "meaning_ne": "गरौं?",
           "audio": "audio/words_common/bolkkayo.mp3",
           "chars": [
             {
@@ -3073,7 +3073,7 @@
       "words": [
         {
           "word": "그게",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/words_common/geuge.mp3",
           "chars": [
             {
@@ -3096,7 +3096,7 @@
         },
         {
           "word": "아니고",
-          "meaning_ne": "",
+          "meaning_ne": "होइन",
           "audio": "audio/words_common/anigo.mp3",
           "chars": [
             {
@@ -3135,7 +3135,7 @@
       "words": [
         {
           "word": "내",
-          "meaning_ne": "",
+          "meaning_ne": "मेरो",
           "audio": "audio/chars/nae.mp3",
           "chars": [
             {
@@ -3150,7 +3150,7 @@
         },
         {
           "word": "귀걸이까지",
-          "meaning_ne": "",
+          "meaning_ne": "कानको झुम्का समेत",
           "audio": "audio/words_common/gwigeorikkaji.mp3",
           "chars": [
             {
@@ -3198,7 +3198,7 @@
         },
         {
           "word": "모자이크",
-          "meaning_ne": "",
+          "meaning_ne": "मोजाइक",
           "audio": "audio/words_common/mojaik.mp3",
           "chars": [
             {
@@ -3237,7 +3237,7 @@
         },
         {
           "word": "돼버렸잖아",
-          "meaning_ne": "",
+          "meaning_ne": "भइहाल्यो नि",
           "audio": "audio/words_common/dwaeberyeotjana.mp3",
           "chars": [
             {
@@ -3295,7 +3295,7 @@
       "words": [
         {
           "word": "저게",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/words_common/jeoge.mp3",
           "chars": [
             {
@@ -3318,7 +3318,7 @@
         },
         {
           "word": "이번",
-          "meaning_ne": "",
+          "meaning_ne": "यो",
           "audio": "audio/words_common/ibeon.mp3",
           "chars": [
             {
@@ -3342,7 +3342,7 @@
         },
         {
           "word": "시즌",
-          "meaning_ne": "",
+          "meaning_ne": "सिजन",
           "audio": "audio/words_common/sijeun.mp3",
           "chars": [
             {
@@ -3366,7 +3366,7 @@
         },
         {
           "word": "액세서리",
-          "meaning_ne": "",
+          "meaning_ne": "एक्सेसरी",
           "audio": "audio/words_common/aekseseori.mp3",
           "chars": [
             {
@@ -3406,7 +3406,7 @@
         },
         {
           "word": "라인에서",
-          "meaning_ne": "",
+          "meaning_ne": "लाइनमा",
           "audio": "audio/words_common/raineseo.mp3",
           "chars": [
             {
@@ -3446,7 +3446,7 @@
         },
         {
           "word": "내가",
-          "meaning_ne": "",
+          "meaning_ne": "मैले",
           "audio": "audio/words_common/naega.mp3",
           "chars": [
             {
@@ -3469,7 +3469,7 @@
         },
         {
           "word": "제일",
-          "meaning_ne": "",
+          "meaning_ne": "सबैभन्दा",
           "audio": "audio/words_common/jeil.mp3",
           "chars": [
             {
@@ -3493,7 +3493,7 @@
         },
         {
           "word": "밀고",
-          "meaning_ne": "",
+          "meaning_ne": "प्रमोट गरिरहेको",
           "audio": "audio/words_common/milgo.mp3",
           "chars": [
             {
@@ -3517,7 +3517,7 @@
         },
         {
           "word": "있는",
-          "meaning_ne": "",
+          "meaning_ne": "रहेको",
           "audio": "audio/words_common/inneun.mp3",
           "chars": [
             {
@@ -3542,7 +3542,7 @@
         },
         {
           "word": "애인데",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/aeinde.mp3",
           "chars": [
             {
@@ -3582,7 +3582,7 @@
       "words": [
         {
           "word": "그",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/chars/geu.mp3",
           "chars": [
             {
@@ -3597,7 +3597,7 @@
         },
         {
           "word": "모자이크를",
-          "meaning_ne": "",
+          "meaning_ne": "मोजाइक",
           "audio": "audio/words_common/mojaikreul.mp3",
           "chars": [
             {
@@ -3645,7 +3645,7 @@
         },
         {
           "word": "뭐랄까",
-          "meaning_ne": "",
+          "meaning_ne": "भनौं",
           "audio": "audio/words_common/mworalkka.mp3",
           "chars": [
             {
@@ -3677,7 +3677,7 @@
         },
         {
           "word": "좀",
-          "meaning_ne": "",
+          "meaning_ne": "अलि",
           "audio": "audio/chars/jom.mp3",
           "chars": [
             {
@@ -3693,7 +3693,7 @@
         },
         {
           "word": "더",
-          "meaning_ne": "",
+          "meaning_ne": "अझ",
           "audio": "audio/chars/deo.mp3",
           "chars": [
             {
@@ -3708,7 +3708,7 @@
         },
         {
           "word": "섬세하게",
-          "meaning_ne": "",
+          "meaning_ne": "सानो बनाएर",
           "audio": "audio/words_common/seomsehage.mp3",
           "chars": [
             {
@@ -3748,7 +3748,7 @@
         },
         {
           "word": "줄여서",
-          "meaning_ne": "",
+          "meaning_ne": "कम गरेर",
           "audio": "audio/words_common/juryeoseo.mp3",
           "chars": [
             {
@@ -3780,7 +3780,7 @@
         },
         {
           "word": "귀걸이가",
-          "meaning_ne": "",
+          "meaning_ne": "कानको झुम्का",
           "audio": "audio/words_common/gwigeoriga.mp3",
           "chars": [
             {
@@ -3820,7 +3820,7 @@
         },
         {
           "word": "딱",
-          "meaning_ne": "",
+          "meaning_ne": "ठ्याक्कै",
           "audio": "audio/chars/ttak.mp3",
           "chars": [
             {
@@ -3836,7 +3836,7 @@
         },
         {
           "word": "보이게",
-          "meaning_ne": "",
+          "meaning_ne": "देखिने गरी",
           "audio": "audio/words_common/boige.mp3",
           "chars": [
             {
@@ -3875,7 +3875,7 @@
       "words": [
         {
           "word": "가능하면",
-          "meaning_ne": "",
+          "meaning_ne": "सकेसम्म",
           "audio": "audio/words_common/ganeunghamyeon.mp3",
           "chars": [
             {
@@ -3916,7 +3916,7 @@
         },
         {
           "word": "전신샷이면",
-          "meaning_ne": "",
+          "meaning_ne": "पूरा शरीर फोटो",
           "audio": "audio/words_common/jeonsinsyasimyeon.mp3",
           "chars": [
             {
@@ -3967,7 +3967,7 @@
         },
         {
           "word": "좋겠는데",
-          "meaning_ne": "",
+          "meaning_ne": "राम्रो हुन्थ्यो",
           "audio": "audio/words_common/jokkenneunde.mp3",
           "chars": [
             {
@@ -4017,7 +4017,7 @@
       "words": [
         {
           "word": "이왕이면",
-          "meaning_ne": "",
+          "meaning_ne": "सकेसम्म",
           "audio": "audio/words_common/iwangimyeon.mp3",
           "chars": [
             {
@@ -4058,7 +4058,7 @@
         },
         {
           "word": "백이랑",
-          "meaning_ne": "",
+          "meaning_ne": "ब्याग र",
           "audio": "audio/words_common/baegirang.mp3",
           "chars": [
             {
@@ -4091,7 +4091,7 @@
         },
         {
           "word": "구두도",
-          "meaning_ne": "",
+          "meaning_ne": "जुत्ता पनि",
           "audio": "audio/words_common/gududo.mp3",
           "chars": [
             {
@@ -4122,7 +4122,7 @@
         },
         {
           "word": "노출이",
-          "meaning_ne": "",
+          "meaning_ne": "देखिने",
           "audio": "audio/words_common/nochuri.mp3",
           "chars": [
             {
@@ -4154,7 +4154,7 @@
         },
         {
           "word": "되게",
-          "meaning_ne": "",
+          "meaning_ne": "गरी",
           "audio": "audio/words_common/doege.mp3",
           "chars": [
             {
@@ -4185,7 +4185,7 @@
       "words": [
         {
           "word": "네",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/ne_word.mp3",
           "chars": [
             {
@@ -4208,7 +4208,7 @@
       "words": [
         {
           "word": "구매팀장님",
-          "meaning_ne": "",
+          "meaning_ne": "खरिद टोली प्रमुख",
           "audio": "audio/words_common/gumaetimjangnim.mp3",
           "chars": [
             {
@@ -4258,7 +4258,7 @@
         },
         {
           "word": "지금",
-          "meaning_ne": "",
+          "meaning_ne": "अहिले",
           "audio": "audio/words_common/jigeum.mp3",
           "chars": [
             {
@@ -4282,7 +4282,7 @@
         },
         {
           "word": "뭐",
-          "meaning_ne": "",
+          "meaning_ne": "के",
           "audio": "audio/chars/mwo.mp3",
           "chars": [
             {
@@ -4297,7 +4297,7 @@
         },
         {
           "word": "하셔야겠어요",
-          "meaning_ne": "",
+          "meaning_ne": "गर्नुपर्छ?",
           "audio": "audio/words_common/hasyeoyagesseoyo.mp3",
           "chars": [
             {
@@ -4361,7 +4361,7 @@
       "words": [
         {
           "word": "귀걸이",
-          "meaning_ne": "",
+          "meaning_ne": "कानको झुम्का",
           "audio": "audio/words_common/gwigeori.mp3",
           "chars": [
             {
@@ -4393,7 +4393,7 @@
         },
         {
           "word": "백",
-          "meaning_ne": "",
+          "meaning_ne": "ब्याग",
           "audio": "audio/chars/baek.mp3",
           "chars": [
             {
@@ -4409,7 +4409,7 @@
         },
         {
           "word": "구두",
-          "meaning_ne": "",
+          "meaning_ne": "जुत्ता",
           "audio": "audio/words_common/gudu.mp3",
           "chars": [
             {
@@ -4432,7 +4432,7 @@
         },
         {
           "word": "물량",
-          "meaning_ne": "",
+          "meaning_ne": "स्टक",
           "audio": "audio/words_common/mullyang.mp3",
           "chars": [
             {
@@ -4457,7 +4457,7 @@
         },
         {
           "word": "확보하셔야죠",
-          "meaning_ne": "",
+          "meaning_ne": "सुनिश्चित गर्नुपर्छ",
           "audio": "audio/words_common/hwakbohasyeoyajyo.mp3",
           "chars": [
             {
@@ -4521,7 +4521,7 @@
       "words": [
         {
           "word": "실검뜨고",
-          "meaning_ne": "",
+          "meaning_ne": "ट्रेन्डिङमा आउँछ",
           "audio": "audio/words_common/silgeomtteugo.mp3",
           "chars": [
             {
@@ -4562,7 +4562,7 @@
         },
         {
           "word": "그러면",
-          "meaning_ne": "",
+          "meaning_ne": "भने",
           "audio": "audio/words_common/geureomyeon.mp3",
           "chars": [
             {
@@ -4594,7 +4594,7 @@
         },
         {
           "word": "오더",
-          "meaning_ne": "",
+          "meaning_ne": "अर्डर",
           "audio": "audio/words_common/odeo.mp3",
           "chars": [
             {
@@ -4617,7 +4617,7 @@
         },
         {
           "word": "막",
-          "meaning_ne": "",
+          "meaning_ne": "खुलेआम",
           "audio": "audio/chars/mak.mp3",
           "chars": [
             {
@@ -4633,7 +4633,7 @@
         },
         {
           "word": "쏟아질",
-          "meaning_ne": "",
+          "meaning_ne": "आउँछ",
           "audio": "audio/words_common/ssodajil.mp3",
           "chars": [
             {
@@ -4666,7 +4666,7 @@
         },
         {
           "word": "텐데",
-          "meaning_ne": "",
+          "meaning_ne": "होला",
           "audio": "audio/words_common/tende.mp3",
           "chars": [
             {
@@ -4698,7 +4698,7 @@
       "words": [
         {
           "word": "네",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/ne_word.mp3",
           "chars": [
             {
@@ -4721,7 +4721,7 @@
       "words": [
         {
           "word": "그",
-          "meaning_ne": "",
+          "meaning_ne": "त्यो",
           "audio": "audio/chars/geu.mp3",
           "chars": [
             {
@@ -4736,7 +4736,7 @@
         },
         {
           "word": "여자",
-          "meaning_ne": "",
+          "meaning_ne": "महिला",
           "audio": "audio/words_common/yeoja.mp3",
           "chars": [
             {
@@ -4759,7 +4759,7 @@
         },
         {
           "word": "아니야",
-          "meaning_ne": "",
+          "meaning_ne": "होइन?",
           "audio": "audio/words_common/aniya.mp3",
           "chars": [
             {
@@ -4798,7 +4798,7 @@
       "words": [
         {
           "word": "배우",
-          "meaning_ne": "",
+          "meaning_ne": "अभिनेता",
           "audio": "audio/words_common/baeu.mp3",
           "chars": [
             {
@@ -4821,7 +4821,7 @@
         },
         {
           "word": "차상우랑",
-          "meaning_ne": "",
+          "meaning_ne": "चा सांग-उसँग",
           "audio": "audio/words_common/chasangurang.mp3",
           "chars": [
             {
@@ -4862,7 +4862,7 @@
         },
         {
           "word": "스캔들",
-          "meaning_ne": "",
+          "meaning_ne": "स्क्यान्डल",
           "audio": "audio/words_common/seukaendeul.mp3",
           "chars": [
             {
@@ -4895,7 +4895,7 @@
         },
         {
           "word": "난",
-          "meaning_ne": "",
+          "meaning_ne": "भएको",
           "audio": "audio/chars/nan.mp3",
           "chars": [
             {
@@ -4919,7 +4919,7 @@
       "words": [
         {
           "word": "아",
-          "meaning_ne": "",
+          "meaning_ne": "अ",
           "audio": "audio/words_common/a_word.mp3",
           "chars": [
             {
@@ -4934,7 +4934,7 @@
         },
         {
           "word": "맞네",
-          "meaning_ne": "",
+          "meaning_ne": "सही हो",
           "audio": "audio/words_common/manne.mp3",
           "chars": [
             {
@@ -4966,7 +4966,7 @@
       "words": [
         {
           "word": "은혜인형이야",
-          "meaning_ne": "",
+          "meaning_ne": "शल्यक्रिया सुन्दरी हो?",
           "audio": "audio/words_common/eunhyeinhyeongiya.mp3",
           "chars": [
             {
@@ -5032,7 +5032,7 @@
       "words": [
         {
           "word": "얼굴도",
-          "meaning_ne": "",
+          "meaning_ne": "अनुहार पनि",
           "audio": "audio/words_common/eolguldo.mp3",
           "chars": [
             {
@@ -5065,7 +5065,7 @@
         },
         {
           "word": "그냥",
-          "meaning_ne": "",
+          "meaning_ne": "त्यस्तै",
           "audio": "audio/words_common/geunyang.mp3",
           "chars": [
             {
@@ -5089,7 +5089,7 @@
         },
         {
           "word": "그렇구만",
-          "meaning_ne": "",
+          "meaning_ne": "रहेछ",
           "audio": "audio/words_common/geureokguman.mp3",
           "chars": [
             {
@@ -5138,7 +5138,7 @@
       "words": [
         {
           "word": "차상우가",
-          "meaning_ne": "",
+          "meaning_ne": "चा सांग-उको लागि",
           "audio": "audio/words_common/chasanguga.mp3",
           "chars": [
             {
@@ -5178,7 +5178,7 @@
         },
         {
           "word": "아깝다",
-          "meaning_ne": "",
+          "meaning_ne": "अफसोस",
           "audio": "audio/words_common/akkapda.mp3",
           "chars": [
             {
@@ -5218,7 +5218,7 @@
       "words": [
         {
           "word": "나",
-          "meaning_ne": "",
+          "meaning_ne": "मलाई",
           "audio": "audio/chars/na.mp3",
           "chars": [
             {
@@ -5233,7 +5233,7 @@
         },
         {
           "word": "지금",
-          "meaning_ne": "",
+          "meaning_ne": "अहिले",
           "audio": "audio/words_common/jigeum.mp3",
           "chars": [
             {
@@ -5257,7 +5257,7 @@
         },
         {
           "word": "평소보다",
-          "meaning_ne": "",
+          "meaning_ne": "सामान्यभन्दा",
           "audio": "audio/words_common/pyeongsoboda.mp3",
           "chars": [
             {
@@ -5297,7 +5297,7 @@
         },
         {
           "word": "더",
-          "meaning_ne": "",
+          "meaning_ne": "अझ",
           "audio": "audio/chars/deo.mp3",
           "chars": [
             {
@@ -5312,7 +5312,7 @@
         },
         {
           "word": "주목받는",
-          "meaning_ne": "",
+          "meaning_ne": "ध्यान दिइरहेको",
           "audio": "audio/words_common/jumokbanneun.mp3",
           "chars": [
             {
@@ -5354,7 +5354,7 @@
         },
         {
           "word": "것",
-          "meaning_ne": "",
+          "meaning_ne": "कुरा",
           "audio": "audio/words_common/geot.mp3",
           "chars": [
             {
@@ -5370,7 +5370,7 @@
         },
         {
           "word": "같은데",
-          "meaning_ne": "",
+          "meaning_ne": "जस्तो छ",
           "audio": "audio/words_common/gateunde.mp3",
           "chars": [
             {
@@ -5411,7 +5411,7 @@
       "words": [
         {
           "word": "대체",
-          "meaning_ne": "",
+          "meaning_ne": "आखिर",
           "audio": "audio/words_common/daeche.mp3",
           "chars": [
             {
@@ -5434,7 +5434,7 @@
         },
         {
           "word": "이",
-          "meaning_ne": "",
+          "meaning_ne": "यी",
           "audio": "audio/words_common/i_word.mp3",
           "chars": [
             {
@@ -5449,7 +5449,7 @@
         },
         {
           "word": "경호원들은",
-          "meaning_ne": "",
+          "meaning_ne": "बडीगार्डहरू",
           "audio": "audio/words_common/gyeonghowondeureun.mp3",
           "chars": [
             {
@@ -5500,7 +5500,7 @@
         },
         {
           "word": "뭐예요",
-          "meaning_ne": "",
+          "meaning_ne": "के हो?",
           "audio": "audio/words_common/mwoyeyo.mp3",
           "chars": [
             {
@@ -5539,7 +5539,7 @@
       "words": [
         {
           "word": "차상우의",
-          "meaning_ne": "",
+          "meaning_ne": "चा सांग-उका",
           "audio": "audio/words_common/chasanguui.mp3",
           "chars": [
             {
@@ -5579,7 +5579,7 @@
         },
         {
           "word": "성난팬들이",
-          "meaning_ne": "",
+          "meaning_ne": "रिसाएका फ्यानहरूले",
           "audio": "audio/words_common/seongnanpaendeuri.mp3",
           "chars": [
             {
@@ -5630,7 +5630,7 @@
         },
         {
           "word": "대표님",
-          "meaning_ne": "",
+          "meaning_ne": "प्रतिनिधि",
           "audio": "audio/words_common/daepyonim.mp3",
           "chars": [
             {
@@ -5662,7 +5662,7 @@
         },
         {
           "word": "언제",
-          "meaning_ne": "",
+          "meaning_ne": "कहिले",
           "audio": "audio/words_common/eonje.mp3",
           "chars": [
             {
@@ -5686,7 +5686,7 @@
         },
         {
           "word": "공격할지",
-          "meaning_ne": "",
+          "meaning_ne": "आक्रमण गर्ने",
           "audio": "audio/words_common/gonggyeokhalji.mp3",
           "chars": [
             {
@@ -5728,7 +5728,7 @@
         },
         {
           "word": "몰라서",
-          "meaning_ne": "",
+          "meaning_ne": "थाहा नभएर",
           "audio": "audio/words_common/mollaseo.mp3",
           "chars": [
             {
@@ -5768,7 +5768,7 @@
       "words": [
         {
           "word": "성난팬들",
-          "meaning_ne": "",
+          "meaning_ne": "रिसाएका फ्यानहरू?",
           "audio": "audio/words_common/seongnanpaendeul.mp3",
           "chars": [
             {
@@ -5819,7 +5819,7 @@
       "words": [
         {
           "word": "아니",
-          "meaning_ne": "",
+          "meaning_ne": "होइन",
           "audio": "audio/words_common/ani.mp3",
           "chars": [
             {
@@ -5842,7 +5842,7 @@
         },
         {
           "word": "개들이",
-          "meaning_ne": "",
+          "meaning_ne": "तिनीहरू",
           "audio": "audio/words_common/gaedeuri.mp3",
           "chars": [
             {
@@ -5874,7 +5874,7 @@
         },
         {
           "word": "왜",
-          "meaning_ne": "",
+          "meaning_ne": "किन",
           "audio": "audio/chars/wae.mp3",
           "chars": [
             {
@@ -5889,7 +5889,7 @@
         },
         {
           "word": "성이나",
-          "meaning_ne": "",
+          "meaning_ne": "रिसाउने",
           "audio": "audio/words_common/seongina.mp3",
           "chars": [
             {
@@ -5921,7 +5921,7 @@
         },
         {
           "word": "성질",
-          "meaning_ne": "",
+          "meaning_ne": "रिसाउनुपर्ने",
           "audio": "audio/words_common/seongjil.mp3",
           "chars": [
             {
@@ -5946,7 +5946,7 @@
         },
         {
           "word": "누가",
-          "meaning_ne": "",
+          "meaning_ne": "को",
           "audio": "audio/words_common/nuga.mp3",
           "chars": [
             {
@@ -5969,7 +5969,7 @@
         },
         {
           "word": "내야",
-          "meaning_ne": "",
+          "meaning_ne": "हो",
           "audio": "audio/words_common/naeya.mp3",
           "chars": [
             {
@@ -5992,7 +5992,7 @@
         },
         {
           "word": "되는데",
-          "meaning_ne": "",
+          "meaning_ne": "त म हो",
           "audio": "audio/words_common/doeneunde.mp3",
           "chars": [
             {
@@ -6032,7 +6032,7 @@
       "words": [
         {
           "word": "대표님",
-          "meaning_ne": "",
+          "meaning_ne": "प्रतिनिधि",
           "audio": "audio/words_common/daepyonim.mp3",
           "chars": [
             {
@@ -6064,7 +6064,7 @@
         },
         {
           "word": "기분",
-          "meaning_ne": "",
+          "meaning_ne": "मन",
           "audio": "audio/words_common/gibun.mp3",
           "chars": [
             {
@@ -6088,7 +6088,7 @@
         },
         {
           "word": "푸십시오",
-          "meaning_ne": "",
+          "meaning_ne": "हल्का गर्नुहोस्",
           "audio": "audio/words_common/pusipsio.mp3",
           "chars": [
             {
@@ -6136,7 +6136,7 @@
       "words": [
         {
           "word": "반년치",
-          "meaning_ne": "",
+          "meaning_ne": "छ महिनाको",
           "audio": "audio/words_common/bannyeonchi.mp3",
           "chars": [
             {
@@ -6169,7 +6169,7 @@
         },
         {
           "word": "매출이",
-          "meaning_ne": "",
+          "meaning_ne": "बिक्री",
           "audio": "audio/words_common/maechuri.mp3",
           "chars": [
             {
@@ -6201,7 +6201,7 @@
         },
         {
           "word": "하루에",
-          "meaning_ne": "",
+          "meaning_ne": "एक दिनमा",
           "audio": "audio/words_common/harue.mp3",
           "chars": [
             {
@@ -6232,7 +6232,7 @@
         },
         {
           "word": "터졌습니다",
-          "meaning_ne": "",
+          "meaning_ne": "भयो",
           "audio": "audio/words_common/teojyeotsseumnida.mp3",
           "chars": [
             {
@@ -6289,7 +6289,7 @@
       "words": [
         {
           "word": "주가도",
-          "meaning_ne": "",
+          "meaning_ne": "शेयरको मूल्य पनि",
           "audio": "audio/words_common/jugado.mp3",
           "chars": [
             {
@@ -6320,7 +6320,7 @@
         },
         {
           "word": "상한가",
-          "meaning_ne": "",
+          "meaning_ne": "अधिकतम सीमा",
           "audio": "audio/words_common/sanghanga.mp3",
           "chars": [
             {
