@@ -10,6 +10,53 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/style.css">
+<style>
+/* ── 가독성 개선: 모바일 PWA ── */
+.wrap { padding: 0 20px; }
+
+/* 드라마 카드 */
+.drama { margin-bottom: 16px; }
+.drama-inner { padding: 18px; gap: 18px; }
+.poster { width: 110px; height: 155px; border-radius: 12px; }
+.dinfo h3 { font-size: 1.4rem; font-weight: 800; }
+.dinfo .sub { font-size: 0.92rem; color: var(--t2); }
+.tags { gap: 6px; margin-top: 6px; }
+.t { font-size: 0.78rem; font-weight: 700; padding: 5px 12px; }
+
+/* 다음 드라마 준비 중 */
+.coming { padding: 18px; gap: 14px; opacity: 0.5; margin-bottom: 16px; }
+.coming .ic { font-size: 1.8rem; }
+.coming h4 { font-size: 1.1rem; font-weight: 700; }
+.coming p { font-size: 0.88rem; }
+
+/* 섹션 헤더 */
+.sec { font-size: 0.82rem; letter-spacing: 2px; margin: 32px 0 14px; }
+
+/* 에피소드 그리드 */
+.ep-grid { gap: 10px; margin: 10px 0 18px; }
+.ep { padding: 16px 10px; }
+.ep .n { font-size: 1.4rem; }
+.ep .c { font-size: 0.92rem; }
+.ep .fb { font-size: 0.52rem; padding: 3px 8px; }
+
+/* 클립 리스트 */
+.clip { padding: 10px; margin-bottom: 8px; gap: 12px; }
+.clip-th { width: 110px; height: 62px; }
+.clip .cid { font-size: 0.95rem; }
+.clip .cd { font-size: 0.88rem; }
+.clip .hint { font-size: 0.75rem; }
+
+/* 뒤로 버튼 */
+.back { font-size: 0.95rem; padding: 8px 18px; margin-bottom: 16px; }
+
+/* 하단 copyright */
+.footer { font-size: 0.82rem; padding: 36px 20px; }
+
+/* 시트 모달 */
+.sheet h3 { font-size: 1.5rem; }
+.sheet p { font-size: 0.88rem; }
+.sbtn { font-size: 0.92rem; padding: 15px; }
+</style>
 </head>
 <body>
 
