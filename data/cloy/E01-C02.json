@@ -772,7 +772,7 @@
       "sub_id": 1,
       "sentence": "대대보위 지도원 동지",
       "sentence_ne": "ब्याटालियन सुरक्षा निर्देशक साथी",
-      "sentence_end": 12.659,
+      "sentence_end": 1.808,
       "words": [
         {
           "word": "대대보위",
@@ -1329,7 +1329,7 @@
       "sub_id": 3,
       "sentence": "5중대장 대위 리정혁",
       "sentence_ne": "पाँचौं कम्पनी कमाण्डर क्याप्टेन रिजोङह्योक",
-      "sentence_end": 20.141,
+      "sentence_end": 2.12,
       "words": [
         {
           "word": "오중대장",
@@ -1434,7 +1434,7 @@
       "sub_id": 4,
       "sentence": "수고했소",
       "sentence_ne": "राम्रो काम गर्यौ",
-      "sentence_end": 9.043,
+      "sentence_end": 0.952,
       "words": [
         {
           "word": "수고했소",
@@ -1482,7 +1482,7 @@
       "sub_id": 5,
       "sentence": "또 남은 일이 있나?",
       "sentence_ne": "अरू बाँकी काम छ?",
-      "sentence_end": 14.561,
+      "sentence_end": 1.462,
       "words": [
         {
           "word": "또",
@@ -2200,7 +2200,7 @@
       "sub_id": 8,
       "sentence": "원상 복구하기 전까지는 파손된 철책 구간에 대한 경계감시 근무를 강화해야 할 것으로 보입니다.",
       "sentence_ne": "मूल अवस्थामा पुनर्स्थापना नभएसम्म बिग्रिएको तारबार क्षेत्रको गस्ती सेवा बलियो बनाउनुपर्ने देखिन्छ।",
-      "sentence_end": 14.67,
+      "sentence_end": 6.731,
       "words": [
         {
           "word": "원상",
@@ -2701,7 +2701,7 @@
       "sub_id": 10,
       "sentence": "내일인가?",
       "sentence_ne": "भोलि हो?",
-      "sentence_end": 6.408,
+      "sentence_end": 1.109,
       "words": [
         {
           "word": "내일인가",
@@ -3147,7 +3147,7 @@
       "sub_id": 15,
       "sentence": "일 없습니다.",
       "sentence_ne": "ठीक छ।",
-      "sentence_end": 6.709,
+      "sentence_end": 1.355,
       "words": [
         {
           "word": "일",
@@ -3213,7 +3213,7 @@
       "sub_id": 16,
       "sentence": "그런데 말이야 저자들 뭔가 착각을 하고 난방 한계선을 넘었댔나 본데 융통성 있게 넘기자우?",
       "sentence_ne": "तर कुरो के भने ती मान्छेहरूले केही गल्ती गरेर नान्बाङ हान्ग्येसोन पार गरेका रहेछन्, लचिलो ढङ्गले मिलाऔं न?",
-      "sentence_end": 4.816,
+      "sentence_end": 7.243,
       "words": [
         {
           "word": "그런데",
@@ -5403,7 +5403,7 @@
       "sub_id": 25,
       "sentence": "지키고 싶습니다.",
       "sentence_ne": "त्यो वाचा पालना गर्न चाहन्छु।",
-      "sentence_end": 14.151,
+      "sentence_end": 1.471,
       "words": [
         {
           "word": "지키고",
@@ -5483,7 +5483,7 @@
       "sub_id": 26,
       "sentence": "기래, 본때 있게 그 약속 지키라우.",
       "sentence_ne": "ठीक छ, राम्ररी त्यो वाचा पालना गर।",
-      "sentence_end": 0.364,
+      "sentence_end": 3.133,
       "words": [
         {
           "word": "기래",
@@ -5641,7 +5641,7 @@
       "sub_id": 27,
       "sentence": "긴데(그런데) 말이야, 나도 약속 하나 할까, 대위 동무.",
       "sentence_ne": "तर कुरो के भने, मैले पनि एउटा वाचा गरौं कि, क्याप्टेन साथी।",
-      "sentence_end": 0.78,
+      "sentence_end": 4.296,
       "words": [
         {
           "word": "긴데",
@@ -8756,7 +8756,7 @@
       "sub_id": 50,
       "sentence": "비공개 표창받을 준비들이나 하라.",
       "sentence_ne": "गोप्य प्रशंसापत्र पाउने तयारी गर।",
-      "sentence_end": 1.993,
+      "sentence_end": 0.83,
       "words": [
         {
           "word": "비공개",
