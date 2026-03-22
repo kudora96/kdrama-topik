@@ -772,7 +772,7 @@
       "sub_id": 1,
       "sentence": "대대보위 지도원 동지",
       "sentence_ne": "ब्याटालियन सुरक्षा निर्देशक साथी",
-      "sentence_end": 0,
+      "sentence_end": 12.659,
       "words": [
         {
           "word": "대대보위",
@@ -875,7 +875,7 @@
       "sub_id": 2,
       "sentence": "제5중대는 비무장지대 경계근무 과정에서 체포한 도굴꾼들의 신병을 인계하기 위해서 대기중에 있습니다",
       "sentence_ne": "पाँचौं कम्पनीले पिमुजाङ्जिदेमा गस्ती सेवाको क्रममा पक्राउ गरिएका दोगुल्क्कुनहरूलाई हस्तान्तरण गर्न पर्खिरहेको छ",
-      "sentence_end": 0,
+      "sentence_end": 7.429,
       "words": [
         {
           "word": "제오중대는",
@@ -1329,7 +1329,7 @@
       "sub_id": 3,
       "sentence": "5중대장 대위 리정혁",
       "sentence_ne": "पाँचौं कम्पनी कमाण्डर क्याप्टेन रिजोङह्योक",
-      "sentence_end": 0,
+      "sentence_end": 20.141,
       "words": [
         {
           "word": "오중대장",
@@ -1434,7 +1434,7 @@
       "sub_id": 4,
       "sentence": "수고했소",
       "sentence_ne": "राम्रो काम गर्यौ",
-      "sentence_end": 0,
+      "sentence_end": 9.043,
       "words": [
         {
           "word": "수고했소",
@@ -1482,7 +1482,7 @@
       "sub_id": 5,
       "sentence": "또 남은 일이 있나?",
       "sentence_ne": "अरू बाँकी काम छ?",
-      "sentence_end": 0,
+      "sentence_end": 14.561,
       "words": [
         {
           "word": "또",
@@ -1578,7 +1578,7 @@
       "sub_id": 6,
       "sentence": "오늘 오후에 불어온 돌개바람 탓에 철책 여러 구간이 진대나무(넘어지거나 쓰러진 나무)에 깔려 무너져내렸습니다.",
       "sentence_ne": "आज दिउँसो आएको तोल्गेबारामले गर्दा धेरै ठाउँको तारबार बाँसमा च्यापिएर भत्किएको छ।",
-      "sentence_end": 0,
+      "sentence_end": 5.775,
       "words": [
         {
           "word": "오늘",
@@ -1964,7 +1964,7 @@
       "sub_id": 7,
       "sentence": "전기철조망 고압 변압기도 전부 나가버린 상태입니다.",
       "sentence_ne": "विद्युत तारबारको उच्च भोल्टेज ट्रान्सफर्मर पनि सबै बिग्रिएको छ।",
-      "sentence_end": 0,
+      "sentence_end": 3.754,
       "words": [
         {
           "word": "전기철조망",
@@ -2200,7 +2200,7 @@
       "sub_id": 8,
       "sentence": "원상 복구하기 전까지는 파손된 철책 구간에 대한 경계감시 근무를 강화해야 할 것으로 보입니다.",
       "sentence_ne": "मूल अवस्थामा पुनर्स्थापना नभएसम्म बिग्रिएको तारबार क्षेत्रको गस्ती सेवा बलियो बनाउनुपर्ने देखिन्छ।",
-      "sentence_end": 0,
+      "sentence_end": 14.67,
       "words": [
         {
           "word": "원상",
@@ -2630,7 +2630,7 @@
       "sub_id": 9,
       "sentence": "그렇게 해야디.",
       "sentence_ne": "त्यसो गर्नुपर्छ।",
-      "sentence_end": 0,
+      "sentence_end": 0.909,
       "words": [
         {
           "word": "그렇게",
@@ -2701,7 +2701,7 @@
       "sub_id": 10,
       "sentence": "내일인가?",
       "sentence_ne": "भोलि हो?",
-      "sentence_end": 0,
+      "sentence_end": 6.408,
       "words": [
         {
           "word": "내일인가",
@@ -2750,7 +2750,7 @@
       "sub_id": 11,
       "sentence": "중대근무 교방이.",
       "sentence_ne": "कम्पनी ड्युटी साटफेर दिन।",
-      "sentence_end": 0,
+      "sentence_end": 1.164,
       "words": [
         {
           "word": "중대근무",
@@ -2831,7 +2831,7 @@
       "sub_id": 12,
       "sentence": "그렇습니다.",
       "sentence_ne": "हो।",
-      "sentence_end": 0,
+      "sentence_end": 0.975,
       "words": [
         {
           "word": "그렇습니다",
@@ -2888,7 +2888,7 @@
       "sub_id": 13,
       "sentence": "마지막 날 딱하게 됐구먼, 기레.",
       "sentence_ne": "अन्तिम दिनमा अप्ठ्यारो भयो, होइन।",
-      "sentence_end": 0,
+      "sentence_end": 2.179,
       "words": [
         {
           "word": "마지막",
@@ -3032,7 +3032,7 @@
       "sub_id": 14,
       "sentence": "돌개바람에 도굴꾼들까지.",
       "sentence_ne": "तोल्गेबारामसँग दोगुल्क्कुनहरू समेत।",
-      "sentence_end": 0,
+      "sentence_end": 1.91,
       "words": [
         {
           "word": "돌개바람에",
@@ -3147,7 +3147,7 @@
       "sub_id": 15,
       "sentence": "일 없습니다.",
       "sentence_ne": "ठीक छ।",
-      "sentence_end": 0,
+      "sentence_end": 6.709,
       "words": [
         {
           "word": "일",
@@ -3213,7 +3213,7 @@
       "sub_id": 16,
       "sentence": "그런데 말이야 저자들 뭔가 착각을 하고 난방 한계선을 넘었댔나 본데 융통성 있게 넘기자우?",
       "sentence_ne": "तर कुरो के भने ती मान्छेहरूले केही गल्ती गरेर नान्बाङ हान्ग्येसोन पार गरेका रहेछन्, लचिलो ढङ्गले मिलाऔं न?",
-      "sentence_end": 0,
+      "sentence_end": 4.816,
       "words": [
         {
           "word": "그런데",
@@ -3629,7 +3629,7 @@
       "sub_id": 17,
       "sentence": "저희 중대 위수구역에서 발생한 사건입니다.",
       "sentence_ne": "हाम्रो कम्पनीको सुरक्षा क्षेत्रमा भएको घटना हो।",
-      "sentence_end": 0,
+      "sentence_end": 2.727,
       "words": [
         {
           "word": "저희",
@@ -3823,7 +3823,7 @@
       "sub_id": 18,
       "sentence": "가볍게 넘길 수 없습니다.",
       "sentence_ne": "हल्का रूपमा बेवास्ता गर्न सकिँदैन।",
-      "sentence_end": 0,
+      "sentence_end": 1.747,
       "words": [
         {
           "word": "가볍게",
@@ -3945,7 +3945,7 @@
       "sub_id": 19,
       "sentence": "우리 보위 사령부에서 비무장지대 출입 허가증을 내줬다는 건 동무도 잘 알지 않나.",
       "sentence_ne": "हाम्रो पोवि सार्योङ्बुले पिमुजाङ्जिदे प्रवेश अनुमति पत्र दिएको कुरा तिमीलाई पनि थाहा छ नि।",
-      "sentence_end": 0,
+      "sentence_end": 5.302,
       "words": [
         {
           "word": "우리",
@@ -4315,7 +4315,7 @@
       "sub_id": 20,
       "sentence": "상부 최종심의에서 문제돼서 좋을 일이 뭐있갔어?",
       "sentence_ne": "माथिल्लो तहको अन्तिम समीक्षामा समस्या भए राम्रो हुने कुरा के छ र?",
-      "sentence_end": 0,
+      "sentence_end": 3.093,
       "words": [
         {
           "word": "상부",
@@ -4534,7 +4534,7 @@
       "sub_id": 21,
       "sentence": "보위 사령부에서 도굴꾼들에게 난방 한계선 넘어가 문화재 도굴을 해오라고 허가해 줬다.",
       "sentence_ne": "पोवि सार्योङ्बुले दोगुल्क्कुनहरूलाई नान्बाङ हान्ग्येसोन पार गरेर सांस्कृतिक सम्पदा चोरी गरेर ल्याउनू भनेर अनुमति दिएको हो।",
-      "sentence_end": 0,
+      "sentence_end": 6.916,
       "words": [
         {
           "word": "보위",
@@ -4920,7 +4920,7 @@
       "sub_id": 22,
       "sentence": "기런 말입니까?",
       "sentence_ne": "त्यस्तो भन्नुभएको हो?",
-      "sentence_end": 0,
+      "sentence_end": 1.088,
       "words": [
         {
           "word": "기런",
@@ -4993,7 +4993,7 @@
       "sub_id": 23,
       "sentence": "그럴 리가 있나, 대위 동무.",
       "sentence_ne": "त्यसो हुन्छ र, क्याप्टेन साथी।",
-      "sentence_end": 0,
+      "sentence_end": 1.54,
       "words": [
         {
           "word": "그럴",
@@ -5119,7 +5119,7 @@
       "sub_id": 24,
       "sentence": "조국의 명예를 걸고 조사하갔다고 남조선 대위에게 약속했습니다.",
       "sentence_ne": "देशको सम्मान राखेर अनुसन्धान गर्छु भनेर दक्षिण कोरियाली क्याप्टेनलाई वाचा गरेको थिएँ।",
-      "sentence_end": 0,
+      "sentence_end": 4.252,
       "words": [
         {
           "word": "조국의",
@@ -5403,7 +5403,7 @@
       "sub_id": 25,
       "sentence": "지키고 싶습니다.",
       "sentence_ne": "त्यो वाचा पालना गर्न चाहन्छु।",
-      "sentence_end": 0,
+      "sentence_end": 14.151,
       "words": [
         {
           "word": "지키고",
@@ -5483,7 +5483,7 @@
       "sub_id": 26,
       "sentence": "기래, 본때 있게 그 약속 지키라우.",
       "sentence_ne": "ठीक छ, राम्ररी त्यो वाचा पालना गर।",
-      "sentence_end": 0,
+      "sentence_end": 0.364,
       "words": [
         {
           "word": "기래",
@@ -5641,7 +5641,7 @@
       "sub_id": 27,
       "sentence": "긴데(그런데) 말이야, 나도 약속 하나 할까, 대위 동무.",
       "sentence_ne": "तर कुरो के भने, मैले पनि एउटा वाचा गरौं कि, क्याप्टेन साथी।",
-      "sentence_end": 0,
+      "sentence_end": 0.78,
       "words": [
         {
           "word": "긴데",
@@ -5847,7 +5847,7 @@
       "sub_id": 28,
       "sentence": "나 조철강이는 토대  높다고 봐주는 거 없어.",
       "sentence_ne": "म चोचोल्गाङइले पारिवारिक पृष्ठभूमि राम्रो भनेर छुट दिने छैन।",
-      "sentence_end": 0,
+      "sentence_end": 3.112,
       "words": [
         {
           "word": "나",
@@ -6047,7 +6047,7 @@
       "sub_id": 29,
       "sentence": "우리 군의 안보를 위협하는 그 어떤 행위라도 내 눈에 띄는 날에는 그날로 끝이야.",
       "sentence_ne": "हाम्रो सेनाको सुरक्षालाई खतरा पुर्‍याउने जुनसुकै कार्य मेरो नजरमा पर्ने दिन त्यही दिन अन्त्य हो।",
-      "sentence_end": 0,
+      "sentence_end": 5.549,
       "words": [
         {
           "word": "우리",
@@ -6415,7 +6415,7 @@
       "sub_id": 30,
       "sentence": "물론 우리 리정혁 중대장 동무야 그럴 일은 없갔지만",
       "sentence_ne": "अवश्य हाम्रो रिजोङह्योक कम्पनी कमाण्डर साथीलाई त्यस्तो हुने छैन तर",
-      "sentence_end": 0,
+      "sentence_end": 3.024,
       "words": [
         {
           "word": "물론",
@@ -6661,7 +6661,7 @@
       "sub_id": 31,
       "sentence": "그래도 작년 이랑이 금년 고랑되고 작년 고랑이 금년 이랑된다는 말도 있지 않아.",
       "sentence_ne": "गएको वर्षको डाँडो यो वर्षको बेँसी हुन्छ, गएको वर्षको बेँसी यो वर्षको डाँडो हुन्छ भन्ने उखान पनि छ नि।",
-      "sentence_end": 0,
+      "sentence_end": 5.119,
       "words": [
         {
           "word": "그래도",
@@ -7027,7 +7027,7 @@
       "sub_id": 32,
       "sentence": "인생 사 다 그런 거 아니갔어?",
       "sentence_ne": "जिन्दगी त्यस्तै हो, होइन?",
-      "sentence_end": 0,
+      "sentence_end": 1.956,
       "words": [
         {
           "word": "인생",
@@ -7169,7 +7169,7 @@
       "sub_id": 34,
       "sentence": "소좌 동지.",
       "sentence_ne": "लेफ्टिनेन्ट कर्नल।",
-      "sentence_end": 0,
+      "sentence_end": 0.692,
       "words": [
         {
           "word": "소좌",
@@ -7224,7 +7224,7 @@
       "sub_id": 35,
       "sentence": "아, 앉으라.",
       "sentence_ne": "आ, बस।",
-      "sentence_end": 0,
+      "sentence_end": 0.946,
       "words": [
         {
           "word": "아",
@@ -7280,7 +7280,7 @@
       "sub_id": 36,
       "sentence": "편히들 먹으라.",
       "sentence_ne": "आरामसँग खाऊ।",
-      "sentence_end": 0,
+      "sentence_end": 0.904,
       "words": [
         {
           "word": "편히들",
@@ -7353,7 +7353,7 @@
       "sub_id": 38,
       "sentence": "이번에 성과가 아주 좋았습니다.",
       "sentence_ne": "यसपटकको नतिजा एकदमै राम्रो भयो।",
-      "sentence_end": 0,
+      "sentence_end": 1.936,
       "words": [
         {
           "word": "이번에",
@@ -7498,7 +7498,7 @@
       "sub_id": 39,
       "sentence": "고려청자에 금불상도 있습니다.",
       "sentence_ne": "कोरियाली सेलाडोनसँग सुनको बुद्ध मूर्ति पनि छ।",
-      "sentence_end": 0,
+      "sentence_end": 2.064,
       "words": [
         {
           "word": "고려청자에",
@@ -7637,7 +7637,7 @@
       "sub_id": 40,
       "sentence": "금불상은 뱅끕(최상급을 뜻하는 은어)입니다, 뱅끕.",
       "sentence_ne": "सुनको बुद्ध मूर्ति त सर्वोत्तम छ, सर्वोत्तम।",
-      "sentence_end": 0,
+      "sentence_end": 2.126,
       "words": [
         {
           "word": "금불상은",
@@ -7763,7 +7763,7 @@
       "sub_id": 41,
       "sentence": "황금타구(금으로 만든 '타구(침을 뱉는 그릇),과거 왕실이나 귀족층에서는 일상적으로 사용하던 고급 생활 용품)도 있습니다.",
       "sentence_ne": "सुनको थुक्दानी पनि छ।",
-      "sentence_end": 0,
+      "sentence_end": 1.652,
       "words": [
         {
           "word": "황금타구도",
@@ -7861,7 +7861,7 @@
       "sub_id": 42,
       "sentence": "수고들 했어.",
       "sentence_ne": "राम्रो काम गर्यौ।",
-      "sentence_end": 0,
+      "sentence_end": 0.812,
       "words": [
         {
           "word": "수고들",
@@ -7925,7 +7925,7 @@
       "sub_id": 43,
       "sentence": "물건 어디 있어?",
       "sentence_ne": "सामान कहाँ छ?",
-      "sentence_end": 0,
+      "sentence_end": 0.889,
       "words": [
         {
           "word": "물건",
@@ -8005,7 +8005,7 @@
       "sub_id": 44,
       "sentence": "확실하디?",
       "sentence_ne": "पक्का हो?",
-      "sentence_end": 0,
+      "sentence_end": 0.822,
       "words": [
         {
           "word": "확실하디",
@@ -8054,7 +8054,7 @@
       "sub_id": 45,
       "sentence": "여부 있겠습니까?",
       "sentence_ne": "निश्चित रूपमा हो।",
-      "sentence_end": 0,
+      "sentence_end": 1.093,
       "words": [
         {
           "word": "여부",
@@ -8135,7 +8135,7 @@
       "sub_id": 46,
       "sentence": "긴데 저희는 어캐 됩니까?",
       "sentence_ne": "तर हामीलाई के हुन्छ?",
-      "sentence_end": 0,
+      "sentence_end": 1.671,
       "words": [
         {
           "word": "긴데",
@@ -8254,7 +8254,7 @@
       "sub_id": 47,
       "sentence": "그 망할 대위 놈 때문에 일이 커졌습니다.",
       "sentence_ne": "त्यो नमिल्ने क्याप्टेनको कारणले काम ठूलो भएको छ।",
-      "sentence_end": 0,
+      "sentence_end": 2.837,
       "words": [
         {
           "word": "그",
@@ -8446,7 +8446,7 @@
       "sub_id": 48,
       "sentence": "평양으로 송환이 된다는데 일없갔디요?",
       "sentence_ne": "प्योङयाङमा फिर्ता पठाइन्छ रे, ठीक हुन्छ होला?",
-      "sentence_end": 0,
+      "sentence_end": 2.582,
       "words": [
         {
           "word": "평양으로",
@@ -8620,7 +8620,7 @@
       "sub_id": 49,
       "sentence": "리정혁이는 내 상대가 안 돼.",
       "sentence_ne": "रिजोङह्योक मेरो प्रतिद्वन्द्वी हुँदैन।",
-      "sentence_end": 0,
+      "sentence_end": 1.687,
       "words": [
         {
           "word": "리정혁이는",
@@ -8756,7 +8756,7 @@
       "sub_id": 50,
       "sentence": "비공개 표창받을 준비들이나 하라.",
       "sentence_ne": "गोप्य प्रशंसापत्र पाउने तयारी गर।",
-      "sentence_end": 0,
+      "sentence_end": 1.993,
       "words": [
         {
           "word": "비공개",
@@ -8910,7 +8910,7 @@
       "sub_id": 51,
       "sentence": "고맙습니다.",
       "sentence_ne": "धन्यवाद।",
-      "sentence_end": 0,
+      "sentence_end": 0.787,
       "words": [
         {
           "word": "고맙습니다",
@@ -8967,7 +8967,7 @@
       "sub_id": 52,
       "sentence": "식갔어?",
       "sentence_ne": "खाना खाएका?",
-      "sentence_end": 0,
+      "sentence_end": 9.284,
       "words": [
         {
           "word": "식갔어",
@@ -9008,7 +9008,7 @@
       "sub_id": 53,
       "sentence": "네, 먹으라.",
       "sentence_ne": "हजुर, खानुस्।",
-      "sentence_end": 0,
+      "sentence_end": 0.79,
       "words": [
         {
           "word": "네",
@@ -9063,7 +9063,7 @@
       "sub_id": 55,
       "sentence": "아, 뭐, 뭐이가? 문열어! 문열어!",
       "sentence_ne": "अ, के, के हो? ढोका खोल! ढोका खोल!",
-      "sentence_end": 0,
+      "sentence_end": 1.935,
       "words": [
         {
           "word": "아",
@@ -9198,7 +9198,7 @@
       "sub_id": 56,
       "sentence": "저 안에 사람이",
       "sentence_ne": "त्यो भित्र मान्छे",
-      "sentence_end": 0,
+      "sentence_end": 1.278,
       "words": [
         {
           "word": "저",
@@ -9277,7 +9277,7 @@
       "sub_id": 57,
       "sentence": "아이고야",
       "sentence_ne": "अइगोया",
-      "sentence_end": 0,
+      "sentence_end": 0.971,
       "words": [
         {
           "word": "아이고야",
