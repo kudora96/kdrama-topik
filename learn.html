@@ -333,7 +333,7 @@
     .wr-prog-btn.prog-done { border-color: #D1D5DB; background: #fff; color: #6B7280; }
     .wr-body { padding: 10px 14px; }
     .wr-sentence { font-size: 22px; font-weight: 800; text-align: center; padding: 8px 10px; border-bottom: 1px solid #E5E7EB; margin-bottom: 10px; line-height: 1.5; color: #1A1A1A; }
-    .wr-sentence .wr-w { transition: color 0.2s; color: #6B7280; }
+    .wr-sentence .wr-w { transition: color 0.2s; color: #6B7280; cursor: pointer; }
     .wr-sentence .wr-w-done { color: #16A34A; }
     .wr-sentence .wr-w-active { color: #2563EB; text-decoration: underline; text-underline-offset: 4px; }
     .wr-word-info { text-align: center; margin-bottom: 8px; font-size: 18px; color: #374151; font-weight: 600; }
@@ -1468,7 +1468,7 @@ function renderWriting() {
     html += '</div><div class="wr-complete-ne">' + escHtml(writingData.sentence_ne) + '</div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-repeat" id="wr-complete-play-btn" onclick="toggleCompleteAudio()">🔊 ' + L('btn_listen','वाक्य सुन्नुहोस्') + '</button><button class="wr-cbtn wr-cbtn-repeat" id="wr-kr-complete-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div><div class="wr-complete-btns"><button class="wr-cbtn wr-cbtn-retry" onclick="retryWriting()">🔄 ' + L('retry_writing','다시 연습') + '</button></div></div>';
     body.innerHTML = html; playQuizSound(true); if (wrAutoPlayTimer) clearTimeout(wrAutoPlayTimer); wrAutoPlayTimer = setTimeout(function() { wrAutoPlayTimer = null; playSentenceAudioWithBtn(); }, 800); return;
   }
-  html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
+  html += '<div class="wr-sentence">'; for (var i = 0; i < words.length; i++) { var cls = 'wr-w'; if (i === wrWordIdx) cls += ' wr-w-active'; html += '<span class="' + cls + '" onclick="wrGoToWord(' + i + ')">' + escHtml(words[i].word) + '</span>'; if (i < words.length - 1) html += ' '; } html += '</div>';
   var cw = words[wrWordIdx]; var cc = cw.chars;
   if (wrCharIdx >= cc.length) {
     html += '<div class="wr-word-done"' + (cw.audio ? ' onclick="wrReplayWordAudio(\'' + escHtml(cw.audio).replace(/'/g, "\\'") + '\')" style="cursor:pointer"' : '') + '>✅ ' + escHtml(cw.word) + (cw.meaning_ne ? ' (' + escHtml(cw.meaning_ne) + ')' : '');
