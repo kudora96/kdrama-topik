@@ -29,6 +29,9 @@
     .nav-arrow { border: none; background: #F8F9FA; border-radius: 8px; padding: 6px 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; color: #1A1A1A; }
     .nav-arrow:active { background: #E5E7EB; }
     .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+    .wr-nav-row { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .wr-nav-ne { flex: 1; min-width: 0; font-size: 0.75rem; font-weight: 700; color: #1A1A1A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wr-nav-row-btns { display: flex; gap: 4px; flex-shrink: 0; }
 
     /* ── Container ── */
     .container { max-width: 640px; margin: 0 auto; padding: 12px; }
@@ -460,6 +463,7 @@
     html[data-theme="dark"] .nav-clip-id { color: #9ba4b8; }
     html[data-theme="dark"] .nav-clip-name { color: #f0f0f5; }
     html[data-theme="dark"] .nav-arrow { background: rgba(255,255,255,0.08); color: #f0f0f5; }
+    html[data-theme="dark"] .wr-nav-ne { color: #f0f0f5; }
     html[data-theme="dark"] .player-wrap { border-color: rgba(255,255,255,0.08); }
     html[data-theme="dark"] .btn-action { background: rgba(255,255,255,0.08); color: #f0f0f5; border-color: rgba(255,255,255,0.12); }
     html[data-theme="dark"] .loop-bar { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
@@ -503,8 +507,13 @@
     <button class="learn-theme-btn" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'light';var n=c==='light'?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('kt-theme',n)" aria-label="Theme"></button>
     <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
     <button class="nav-arrow" id="btn-next-clip" onclick="goNextClip()" disabled>&#9654;</button>
-    <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)" style="display:none">&#9664; अघिल्लो</button>
-    <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)" style="display:none">अर्को &#9654;</button>
+  </div>
+  <div class="wr-nav-row" id="wr-nav-row" style="display:none">
+    <div class="wr-nav-ne" id="wr-nav-ne"></div>
+    <div class="wr-nav-row-btns">
+      <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)">&#9664;</button>
+      <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)">&#9654;</button>
+    </div>
   </div>
 </div>
 
@@ -1396,8 +1405,10 @@ function openWritingOverlay(subId) {
   document.getElementById('loop-bar').classList.add('disabled');
   document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('writing-overlay').classList.add('open');
-  document.getElementById('btn-prev-clip').style.display = 'none';
-  document.getElementById('btn-next-clip').style.display = 'none';
+  document.querySelector('.nav-back').style.display = 'none';
+  document.querySelector('.nav-title').style.display = 'none';
+  document.querySelector('.nav-btns').style.display = 'none';
+  document.getElementById('wr-nav-row').style.display = '';
   wrUpdateNavBtns();
   applyWritingTheme(); renderWriting(); preloadJamoAudio();
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
@@ -1412,10 +1423,10 @@ function closeWritingOverlay() {
   if (wrWordAudio) { wrWordAudio.pause(); wrWordAudio = null; } stopSentenceAudio(); stopKrAudio();
   document.getElementById('writing-overlay').classList.remove('open');
   document.body.style.overflow = '';
-  document.getElementById('btn-prev-clip').style.display = '';
-  document.getElementById('btn-next-clip').style.display = '';
-  document.getElementById('btn-wr-prev').style.display = 'none';
-  document.getElementById('btn-wr-next').style.display = 'none';
+  document.querySelector('.nav-back').style.display = '';
+  document.querySelector('.nav-title').style.display = '';
+  document.querySelector('.nav-btns').style.display = '';
+  document.getElementById('wr-nav-row').style.display = 'none';
   document.getElementById('player-wrap').style.display = '';
   document.getElementById('sub-list').classList.remove('disabled');
   document.getElementById('loop-bar').classList.remove('disabled');
@@ -1423,7 +1434,7 @@ function closeWritingOverlay() {
 }
 
 function wrScrollToTop() { document.body.style.overflow = ''; var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); document.body.style.overflow = 'hidden'; }
-function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.style.display = ci > 0 ? '' : 'none'; bn.style.display = (ci >= 0 && ci < ids.length - 1) ? '' : 'none'; }
+function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.style.display = ci > 0 ? '' : 'none'; bn.style.display = (ci >= 0 && ci < ids.length - 1) ? '' : 'none'; var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = writingData.sentence_ne || ''; }
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
 function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } wrUpdateNavBtns(); renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 
