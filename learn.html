@@ -1431,6 +1431,7 @@ function closeWritingOverlay() {
   document.getElementById('sub-list').classList.remove('disabled');
   document.getElementById('loop-bar').classList.remove('disabled');
   document.querySelector('.sub-list-header').classList.remove('disabled');
+  highlightSub(wrWritingSubId);
   var subEl = document.getElementById('sub-' + wrWritingSubId);
   if (subEl) subEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
