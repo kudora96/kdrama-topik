@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/style.css">
 <style>
-/* ── 가독성 개선: 모바일 PWA ── */
-.wrap { padding: 0 20px; }
+/* ── 모바일 PWA 가독성 개선 ── */
+.wrap { padding: 0 16px; }
 
 /* 드라마 카드 */
 .drama { margin-bottom: 16px; }
@@ -23,28 +23,50 @@
 .tags { gap: 6px; margin-top: 6px; }
 .t { font-size: 0.78rem; font-weight: 700; padding: 5px 12px; }
 
-/* 다음 드라마 준비 중 */
+/* 다음 드라마 */
 .coming { padding: 18px; gap: 14px; opacity: 0.5; margin-bottom: 16px; }
 .coming .ic { font-size: 1.8rem; }
 .coming h4 { font-size: 1.1rem; font-weight: 700; }
 .coming p { font-size: 0.88rem; }
 
 /* 섹션 헤더 */
-.sec { font-size: 0.82rem; letter-spacing: 2px; margin: 32px 0 14px; }
+.sec { font-size: 0.82rem; letter-spacing: 2px; margin: 24px 0 14px; }
 
-/* 에피소드 그리드 */
-.ep-grid { gap: 10px; margin: 10px 0 18px; }
-.ep { padding: 16px 10px; }
-.ep .n { font-size: 1.4rem; }
-.ep .c { font-size: 0.92rem; }
-.ep .fb { font-size: 0.52rem; padding: 3px 8px; }
+/* ── 에피소드 리스트 (아코디언) ── */
+.ep-list { display: flex; flex-direction: column; gap: 8px; margin: 10px 0 18px; }
+.ep-card { background: var(--glass); border: 1px solid var(--bd); border-radius: 14px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+.ep-card.active { border-color: var(--teal); box-shadow: 0 0 16px rgba(0,206,201,0.1); }
+.ep-card.free { background: var(--teal-g); border-color: rgba(0,206,201,0.2); }
+.ep-card.free.active { border-color: var(--teal); }
 
-/* 클립 리스트 */
-.clip { padding: 10px; margin-bottom: 8px; gap: 12px; }
-.clip-th { width: 110px; height: 62px; }
-.clip .cid { font-size: 0.95rem; }
-.clip .cd { font-size: 0.88rem; }
-.clip .hint { font-size: 0.75rem; }
+.ep-header { display: flex; align-items: center; padding: 16px 18px; cursor: pointer; gap: 14px; -webkit-tap-highlight-color: transparent; }
+.ep-header:active { opacity: 0.7; }
+.ep-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: var(--t1); min-width: 52px; }
+.ep-card.free .ep-num { color: var(--teal); }
+.ep-card.active .ep-num { color: var(--teal); }
+.ep-info { flex: 1; min-width: 0; }
+.ep-clips-count { font-size: 0.95rem; font-weight: 600; color: var(--t2); }
+.ep-badge { display: inline-block; font-family: 'Space Mono'; font-size: 0.58rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; background: var(--teal); color: var(--bg); letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
+.ep-lock { font-size: 0.85rem; flex-shrink: 0; }
+.ep-arrow { font-size: 0.8rem; color: var(--t3); flex-shrink: 0; transition: transform 0.2s; }
+.ep-card.active .ep-arrow { transform: rotate(90deg); color: var(--teal); }
+
+/* 클립 목록 (접힘) */
+.ep-clips { display: none; padding: 0 14px 14px; }
+.ep-card.active .ep-clips { display: block; }
+
+.ep-clip { display: flex; gap: 12px; align-items: center; background: var(--bg2); border: 1px solid var(--bd); border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.15s; }
+.ep-clip:last-child { margin-bottom: 0; }
+.ep-clip:active { transform: scale(0.98); }
+.ep-clip:hover { border-color: var(--teal); }
+.ep-clip-th { position: relative; width: 100px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.ep-clip-th img { width: 100%; height: 100%; object-fit: cover; }
+.ep-clip-th .ol { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.ep-clip-info { flex: 1; overflow: hidden; }
+.ep-clip-id { font-family: 'Space Mono'; font-size: 0.92rem; font-weight: 700; color: var(--teal); display: flex; align-items: center; gap: 6px; }
+.ep-clip-id .srt { font-size: 0.52rem; font-weight: 700; background: var(--teal-g); color: var(--teal); padding: 1px 6px; border-radius: 100px; }
+.ep-clip-title { font-size: 0.88rem; color: var(--t2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.ep-clip-hint { font-size: 0.75rem; color: var(--gold); font-weight: 600; margin-top: 2px; }
 
 /* 뒤로 버튼 */
 .back { font-size: 0.95rem; padding: 8px 18px; margin-bottom: 16px; }
@@ -70,7 +92,7 @@
 <div class="wrap">
 
 <!-- ═══════════════════════════════════════ -->
-<!-- DRAMA (에피소드 그리드)                  -->
+<!-- DRAMA (드라마 선택 + 에피소드 아코디언)  -->
 <!-- ═══════════════════════════════════════ -->
 <div id="v-drama" class="hidden">
 <div class="drama" onclick="go('v-eplist')">
@@ -94,22 +116,16 @@
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!-- EPISODE LIST (에피소드 그리드)           -->
+<!-- EPISODE LIST (아코디언 방식)             -->
 <!-- ═══════════════════════════════════════ -->
 <div id="v-eplist" class="hidden">
 <button class="back" onclick="go('v-drama')">← 드라마</button>
 <div class="sec">사랑의 불시착 · EPISODES</div>
-<div class="ep-grid" id="epg"></div>
+<div class="ep-list" id="epg"></div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- EPISODE (클립 리스트)                    -->
-<!-- ═══════════════════════════════════════ -->
-<div id="v-ep" class="hidden">
-<button class="back" onclick="go('v-eplist')">← EPISODES</button>
-<div class="sec" id="ept"></div>
-<div id="clist"></div>
-</div>
+<!-- v-ep는 더 이상 사용하지 않지만 go() 호환을 위해 유지 -->
+<div id="v-ep" class="hidden"></div>
 
 </div>
 
@@ -164,7 +180,6 @@ var epLang = {};
 function EL(k, fb) { return epLang[k] || fb; }
 
 function applyEpLang() {
-  // static HTML texts
   var backBtn = document.querySelector('#v-eplist .back');
   if (backBtn) backBtn.textContent = EL('back_to_drama', '← 드라마');
   var nextH4 = document.querySelector('.coming h4');
@@ -173,7 +188,6 @@ function applyEpLang() {
   if (tagPurple) tagPurple.textContent = '16' + EL('episode_unit', '화') + ' · 249' + EL('clip_unit', '클립');
   var tagTeal = document.querySelector('.t-teal');
   if (tagTeal) tagTeal.textContent = '1' + EL('episode_unit', '화') + ' ' + EL('free', 'FREE');
-  // unlock sheet
   var unlockP = document.querySelector('#o-unlock .sheet p');
   if (unlockP) unlockP.textContent = EL('premium_content_desc', '자막 해설 · EPS-TOPIK 퀴즈 · 쓰기 연습');
   var adBtn = document.querySelector('.sbtn-ad');
@@ -181,77 +195,111 @@ function applyEpLang() {
   var proBtn = document.querySelector('#o-unlock .sbtn-pro');
   if (proBtn) proBtn.textContent = '👑 ' + EL('pro_unlimited_full', 'PRO — 전체 무제한');
   document.querySelectorAll('.sbtn-close').forEach(function(b) { b.textContent = EL('btn_close', '닫기'); });
-  // sub sheet
   var subP = document.querySelector('#o-sub .sheet p');
   if (subP) subP.textContent = EL('all_drama_unlimited', '모든 드라마 · 모든 클립 · 광고 없이 무제한');
   var subBtn = document.querySelector('#o-sub .sbtn-pro');
   if (subBtn) subBtn.textContent = EL('start_subscription', '구독 시작하기');
 }
 
-// Override renderEpGrid to use lang
-var _origRenderEpGrid = renderEpGrid;
+// ── 에피소드 아코디언 렌더링 ──
+var activeEpCard = null;
+
 renderEpGrid = function() {
   var g = document.getElementById('epg');
   if (!g || !episodesData) return;
   g.innerHTML = '';
-  episodesData.episodes.forEach(function (ep) {
-    var d = document.createElement('div');
+  episodesData.episodes.forEach(function(ep) {
+    var card = document.createElement('div');
     var isFree = ep.free;
-    d.className = 'ep' + (isFree ? ' free' : '');
-    d.innerHTML = '<div class="n">' + ep.ep + EL('episode_unit', '화') + '</div><div class="c">' + ep.clips.length + EL('clip_unit', '클립') + '</div>' +
-      (isFree ? '<span class="fb">' + EL('free', 'FREE') + '</span>' : '<span class="lk">🔒</span>');
-    d.onclick = function () { showEp(ep); };
-    g.appendChild(d);
+    var epNum = ep.ep < 10 ? '0' + ep.ep : '' + ep.ep;
+    card.className = 'ep-card' + (isFree ? ' free' : '');
+
+    // 헤더
+    var header = document.createElement('div');
+    header.className = 'ep-header';
+    header.innerHTML =
+      '<div class="ep-num">EP' + epNum + '</div>' +
+      '<div class="ep-info"><span class="ep-clips-count">' + ep.clips.length + ' ' + EL('clip_unit', '클립') +
+      '</span>' + (isFree ? '<span class="ep-badge">' + EL('free', 'FREE') + '</span>' : '') + '</div>' +
+      (!isFree ? '<span class="ep-lock">🔒</span>' : '') +
+      '<span class="ep-arrow">▶</span>';
+
+    // 클립 목록 컨테이너
+    var clipsDiv = document.createElement('div');
+    clipsDiv.className = 'ep-clips';
+
+    header.onclick = function() {
+      if (activeEpCard && activeEpCard !== card) {
+        activeEpCard.classList.remove('active');
+      }
+      var isOpen = card.classList.contains('active');
+      if (isOpen) {
+        card.classList.remove('active');
+        activeEpCard = null;
+      } else {
+        card.classList.add('active');
+        activeEpCard = card;
+        if (!clipsDiv.hasChildNodes()) {
+          renderClipsInCard(ep, clipsDiv);
+        }
+        setTimeout(function() {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    };
+
+    card.appendChild(header);
+    card.appendChild(clipsDiv);
+    g.appendChild(card);
   });
 };
 
-// Override showEp to use lang
-var _origShowEp = showEp;
-showEp = function(ep) {
-  var p = ep.ep < 10 ? '0' + ep.ep : '' + ep.ep;
+function renderClipsInCard(ep, container) {
   var isFree = ep.free;
-  document.getElementById('ept').innerHTML = 'EP' + p + ' · ' + ep.clips.length + ' ' + EL('clip_unit', 'CLIPS') + ' ' +
-    (isFree ? '<span style="color:var(--teal)">' + EL('free', 'FREE') + '</span>' : '<span style="color:var(--purple)">PREMIUM</span>');
-  var h = '';
-  ep.clips.forEach(function (clip) {
+  var hasSrt = ep.ep <= 2;
+  var lc = ''; try { lc = localStorage.getItem('kt-lang') || ''; } catch(e) {}
+
+  ep.clips.forEach(function(clip) {
     var vid = clip.vid;
     var thumb = vid ? ytThumb(vid) : '';
-    var hasSrt = ep.ep <= 2;
     var title = clip.title || clip.id;
+    var div = document.createElement('div');
+    div.className = 'ep-clip';
+    div.setAttribute('data-clip-id', clip.id);
+
     if (isFree) {
-      h += '<div class="clip" onclick="goClip(\'' + clip.id + '\')">' +
-        '<div class="clip-th"><img src="' + thumb + '" loading="lazy"></div>' +
-        '<div class="ci"><div class="cid">' + clip.id +
+      div.innerHTML =
+        '<div class="ep-clip-th"><img src="' + thumb + '" loading="lazy"></div>' +
+        '<div class="ep-clip-info"><div class="ep-clip-id">' + escHtml(clip.id) +
         (hasSrt ? ' <span class="srt">SRT</span>' : '') +
-        '</div><div class="cd">' + escHtml(title) + '</div></div></div>';
+        '</div><div class="ep-clip-title">' + escHtml(title) + '</div></div>';
+      div.onclick = function() { goClip(clip.id); };
     } else {
-      h += '<div class="clip" onclick="showUnlock(\'' + clip.id + '\')">' +
-        '<div class="clip-th"><img src="' + thumb + '" loading="lazy"><div class="ol">🔒</div></div>' +
-        '<div class="ci"><div class="cid">' + clip.id +
-        '</div><div class="cd">' + escHtml(title) + '</div>' +
-        '<div class="hint">🔒 AD or PRO</div></div></div>';
+      div.innerHTML =
+        '<div class="ep-clip-th"><img src="' + thumb + '" loading="lazy"><div class="ol">🔒</div></div>' +
+        '<div class="ep-clip-info"><div class="ep-clip-id">' + escHtml(clip.id) +
+        '</div><div class="ep-clip-title">' + escHtml(title) + '</div>' +
+        '<div class="ep-clip-hint">🔒 AD or PRO</div></div>';
+      div.onclick = function() { showUnlock(clip.id); };
     }
+    container.appendChild(div);
   });
-  document.getElementById('clist').innerHTML = h;
-  go('v-ep');
-  // Load title_ne for each clip
-  var lc = ''; try { lc = localStorage.getItem('kt-lang') || ''; } catch(e) {}
+
+  // 네팔어 제목 로드
   if (lc === 'ne') {
     ep.clips.forEach(function(clip) {
       fetch('data/cloy/' + clip.id + '.json').then(function(r) { return r.json(); }).then(function(d) {
         if (d.title_ne) {
-          var els = document.querySelectorAll('#clist .clip .cd');
-          els.forEach(function(el) {
-            var cidEl = el.previousElementSibling;
-            if (cidEl && cidEl.textContent.trim().indexOf(clip.id) === 0) {
-              el.textContent = d.title_ne;
-            }
-          });
+          var el = container.querySelector('[data-clip-id="' + clip.id + '"] .ep-clip-title');
+          if (el) el.textContent = d.title_ne;
         }
       }).catch(function() {});
     });
   }
-};
+}
+
+// showEp은 더 이상 뷰 전환하지 않음 (app.js 호환)
+showEp = function(ep) {};
 
 document.addEventListener('DOMContentLoaded', function () {
   try { localStorage.setItem('kt-visited', '1'); } catch (e) {}
