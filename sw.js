@@ -1,4 +1,4 @@
-var CACHE_NAME = 'kdrama-topik-v10-20260322';
+var CACHE_NAME = 'kdrama-topik-v2026-03-22';
 var ASSETS = [
   './',
   './index.html',
@@ -39,20 +39,47 @@ self.addEventListener('activate', function(event) {
   self.clients.claim();
 });
 
+function isCacheFirstResource(url) {
+  return /\.(mp3|wav|ogg|mp4|webm|png|jpg|jpeg|gif|webp|svg|ico|woff2?|ttf|eot)(\?|$)/i.test(url);
+}
+
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request).then(function(response) {
-      if (response.status === 200) {
-        var clone = response.clone();
-        caches.open(CACHE_NAME).then(function(cache) {
-          cache.put(event.request, clone);
+  var url = event.request.url;
+
+  if (isCacheFirstResource(url)) {
+    // Cache-first: 오디오, 이미지 등 큰 파일
+    event.respondWith(
+      caches.match(event.request).then(function(cached) {
+        if (cached) return cached;
+        return fetch(event.request).then(function(response) {
+          if (response.status === 200) {
+            var clone = response.clone();
+            caches.open(CACHE_NAME).then(function(cache) {
+              cache.put(event.request, clone);
+            });
+          }
+          return response;
         });
-      }
-      return response;
-    }).catch(function() {
-      return caches.match(event.request).then(function(cached) {
-        return cached || (event.request.destination === 'document' ? caches.match('./index.html') : undefined);
-      });
-    })
-  );
+      }).catch(function() {
+        return undefined;
+      })
+    );
+  } else {
+    // Network-first: HTML, JS, CSS, JSON 등
+    event.respondWith(
+      fetch(event.request).then(function(response) {
+        if (response.status === 200) {
+          var clone = response.clone();
+          caches.open(CACHE_NAME).then(function(cache) {
+            cache.put(event.request, clone);
+          });
+        }
+        return response;
+      }).catch(function() {
+        return caches.match(event.request).then(function(cached) {
+          return cached || (event.request.destination === 'document' ? caches.match('./index.html') : undefined);
+        });
+      })
+    );
+  }
 });
