@@ -322,7 +322,7 @@
     .quiz-dark .qo-body .eo-seek-input { background: rgba(255,255,255,0.2); }
 
     /* ── Writing Overlay ── */
-    .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; }
+    .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .writing-overlay.open { display: flex; }
     .writing-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
     .writing-overlay .eo-btn:active { background: #E5E7EB; }
@@ -339,9 +339,9 @@
     .wr-word-info { text-align: center; margin-bottom: 8px; font-size: 18px; color: #374151; font-weight: 600; }
     .wr-word-info strong { color: #2563EB; font-size: 22px; }
     .wr-char-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 10px; }
-    .wr-char-box { position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
-    .wr-target-char { font-size: 56px; color: #E5E7EB; position: absolute; font-weight: 700; }
-    .wr-composed { font-size: 56px; color: #1A1A1A; position: relative; font-weight: 800; }
+    .wr-char-box { position: relative; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+    .wr-target-char { font-size: 44px; color: #E5E7EB; position: absolute; font-weight: 700; }
+    .wr-composed { font-size: 44px; color: #1A1A1A; position: relative; font-weight: 800; }
     .wr-composed.flash-correct { color: #16A34A; transition: color 0.2s; }
     .wr-jamo-slots { display: flex; gap: 5px; justify-content: center; }
     .wr-slot { min-width: 32px; height: 36px; border-radius: 6px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #9CA3AF; }
@@ -354,7 +354,7 @@
     .wr-char-audio-btn { border: none; background: rgba(22,163,74,0.1); border-radius: 8px; cursor: pointer; font-size: 18px; padding: 6px 10px; opacity: 0.8; transition: opacity 0.15s, transform 0.1s; }
     .wr-char-audio-btn:active { opacity: 1; transform: scale(1.15); }
     .wr-char-next-row { display: flex; gap: 14px; justify-content: center; margin-top: 18px; margin-bottom: 8px; }
-    .wr-char-next-btn { border: none; border-radius: 12px; padding: 16px 28px; font-size: 18px; font-weight: 700; cursor: pointer; font-family: inherit; transition: transform 0.1s; min-height: 52px; }
+    .wr-char-next-btn { border: none; border-radius: 10px; padding: 12px 22px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: transform 0.1s; min-height: 44px; }
     .wr-char-next-btn:active { opacity: 0.8; transform: scale(0.95); }
     .wr-char-replay-btn { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-char-advance-btn { background: #2563EB; color: #fff; }
@@ -362,9 +362,9 @@
     .wr-char-audio-play { border: none; border-radius: 8px; padding: 4px 10px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; background: rgba(255,255,255,0.5); color: #15803D; transition: transform 0.1s; line-height: 1.3; }
     .wr-char-audio-play:active { opacity: 0.8; transform: scale(0.95); }
     .wr-keyboard { margin-bottom: 8px; }
-    .wr-kb-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; justify-content: center; }
+    .wr-kb-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; justify-content: center; }
     .wr-kb-label { font-size: 0.65rem; color: #4B5563; text-align: center; margin-bottom: 2px; font-weight: 600; }
-    .wr-kb-btn { border: none; border-radius: 8px; padding: 10px 0; font-size: 19px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 36px; text-align: center; }
+    .wr-kb-btn { border: none; border-radius: 6px; padding: 7px 0; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 30px; text-align: center; }
     .wr-kb-btn.consonant { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-kb-btn.vowel { background: rgba(22,163,74,0.12); color: #15803D; }
     .wr-kb-btn:active { opacity: 0.7; transform: scale(0.93); }
