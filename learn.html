@@ -319,7 +319,7 @@
     .quiz-dark .qo-body .eo-seek-input { background: rgba(255,255,255,0.2); }
 
     /* ── Writing Overlay ── */
-    .writing-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 10000; background: #FFFFFF; flex-direction: column; overflow-y: auto; }
+    .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; }
     .writing-overlay.open { display: flex; }
     .wr-nav-btns { display: flex; gap: 8px; margin-bottom: 4px; }
     .wr-nav-btn { flex: 1; padding: 10px 6px; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; background: #DBEAFE; color: #1D4ED8; }
@@ -1295,7 +1295,7 @@ function renderQuizQuestion(q, idx, total) {
   body.innerHTML = html;
 }
 
-function scrollQuizToTop() { var el = document.getElementById('quiz-overlay'); if (el) el.scrollTop = 0; }
+function scrollQuizToTop() { var el = document.getElementById('quiz-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
 
 function renderQuizNav(idx, total) {
   var nav = document.getElementById('qo-nav'); var html = '';
@@ -1397,9 +1397,9 @@ function openWritingOverlay(subId) {
   document.getElementById('loop-bar').classList.add('disabled');
   document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('writing-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
   applyWritingTheme(); renderWriting(); preloadJamoAudio();
-  var el = document.getElementById('writing-overlay'); if (el) el.scrollTop = 0;
+  var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  document.body.style.overflow = 'hidden';
   // Preload KR audio on user gesture to avoid autoplay block
   var krPath = getWritingKrAudioPath();
   if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } }
@@ -1416,8 +1416,9 @@ function closeWritingOverlay() {
   document.querySelector('.sub-list-header').classList.remove('disabled');
 }
 
+function wrScrollToTop() { document.body.style.overflow = ''; var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); document.body.style.overflow = 'hidden'; }
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
-function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollTop = 0; var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
+function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 
 function applyWritingTheme() { var o = document.getElementById('writing-overlay'); var b = document.getElementById('wr-theme-btn'); var s = localStorage.getItem('quizTheme') || 'light'; if (s === 'dark') { o.classList.add('quiz-dark'); b.innerHTML = '&#9728;&#65039;'; } else { o.classList.remove('quiz-dark'); b.innerHTML = '&#127769;'; } }
 function toggleWritingTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyWritingTheme(); }
@@ -1557,7 +1558,7 @@ function wrNextWord() {
   var resumeSkipAll = wrSkipAllPending; wrSkipAllPending = false;
   var words = writingData.words;
   wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
-  renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollTop = 0;
+  renderWriting(); wrScrollToTop();
   // Resume skip-all auto-typing for next word
   if (resumeSkipAll && wrWordIdx < words.length) {
     wrSkipping = true; wrSkipTarget = words.length - 1;
@@ -1573,7 +1574,7 @@ function wrGoToWord(idx) {
   wrStopAll();
   wrWordIdx = idx; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = [];
   renderWriting();
-  var el = document.getElementById('writing-overlay'); if (el) el.scrollTop = 0;
+  wrScrollToTop();
   if (wasSkipAll) {
     wrSkipping = true; wrSkipTarget = words.length - 1; wrPreloadKrForCompletion();
     var btn = document.getElementById('wr-skip-all-btn'); if (btn) btn.innerHTML = '⏹ ' + L('btn_stop','रोक्नुहोस्');
@@ -1798,7 +1799,7 @@ function wrAutoPlayWordThenNext(cw) {
   wrSkipTimer = setTimeout(function() { if (!wrSkipping) return; wrWordIdx++; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrSkipTimer = setTimeout(wrAutoTypeNext, 500); }, 2400);
 }
 
-function retryWriting() { wrStopAll(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); var el = document.getElementById('writing-overlay'); if (el) el.scrollTop = 0; }
+function retryWriting() { wrStopAll(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; renderWriting(); wrScrollToTop(); }
 
 // ── Seekbar events ──
 (function() {
