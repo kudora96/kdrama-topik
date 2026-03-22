@@ -41,20 +41,18 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(cached) {
-      return cached || fetch(event.request).then(function(response) {
-        if (response.status === 200) {
-          var clone = response.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, clone);
-          });
-        }
-        return response;
-      });
-    }).catch(function() {
-      if (event.request.destination === 'document') {
-        return caches.match('./index.html');
+    fetch(event.request).then(function(response) {
+      if (response.status === 200) {
+        var clone = response.clone();
+        caches.open(CACHE_NAME).then(function(cache) {
+          cache.put(event.request, clone);
+        });
       }
+      return response;
+    }).catch(function() {
+      return caches.match(event.request).then(function(cached) {
+        return cached || (event.request.destination === 'document' ? caches.match('./index.html') : undefined);
+      });
     })
   );
 });
