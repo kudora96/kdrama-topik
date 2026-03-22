@@ -1431,6 +1431,8 @@ function closeWritingOverlay() {
   document.getElementById('sub-list').classList.remove('disabled');
   document.getElementById('loop-bar').classList.remove('disabled');
   document.querySelector('.sub-list-header').classList.remove('disabled');
+  var subEl = document.getElementById('sub-' + wrWritingSubId);
+  if (subEl) subEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function wrScrollToTop() { document.body.style.overflow = ''; var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); document.body.style.overflow = 'hidden'; }
