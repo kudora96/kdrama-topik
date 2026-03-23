@@ -1148,7 +1148,7 @@ function renderExplainParas(text) {
   container.innerHTML = html;
 }
 
-function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer = setInterval(updateExplainHighlight, 80); }
+function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer = setInterval(updateExplainHighlight, 30); }
 function stopExplainHighlight() { if (explainHighlightTimer) { clearInterval(explainHighlightTimer); explainHighlightTimer = null; } }
 
 function getParaIndexAtTime(t, dur) {
