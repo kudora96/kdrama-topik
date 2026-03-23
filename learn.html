@@ -1260,13 +1260,35 @@ function closeExplainOverlay() {
   explainCurrentSubId = null;
 }
 
-// eo-body tap to toggle audio (scroll-safe)
+// eo-para tap to seek/toggle audio (scroll-safe, delegated)
 (function() {
   var body = document.getElementById('eo-body');
   var touchY = 0; var wasTouched = false;
   body.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; wasTouched = true; }, { passive: true });
-  body.addEventListener('touchend', function(e) { if (Math.abs(e.changedTouches[0].clientY - touchY) < 5) toggleModalAudio(); });
-  body.addEventListener('click', function() { if (wasTouched) { wasTouched = false; return; } toggleModalAudio(); });
+  function getParaTime(idx) {
+    function cleanLen(s) { return s.replace(/\([^)]*\)/g, '').length; }
+    var total = 0; for (var i = 0; i < explainParas.length; i++) total += cleanLen(explainParas[i]);
+    if (total === 0) return 0; var cum = 0;
+    for (var i = 0; i < idx; i++) cum += cleanLen(explainParas[i]);
+    return cum / total;
+  }
+  function handleParaTap(target) {
+    var el = target.closest('.eo-para'); if (!el) return;
+    var idStr = el.id.replace('eo-para-', ''); var idx = parseInt(idStr, 10);
+    if (isNaN(idx)) return;
+    if (idx === explainActivePara) { toggleModalAudio(); return; }
+    if (!explainAudio || !explainAudio.duration) return;
+    var ratio = getParaTime(idx);
+    explainAudio.currentTime = ratio * explainAudio.duration;
+    highlightPara(idx);
+    if (explainAudio.paused) { var playBtn = document.getElementById('eo-play-btn'); try { explainAudio.play().catch(function(){}); } catch(e) {} playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); }
+  }
+  body.addEventListener('touchend', function(e) {
+    if (Math.abs(e.changedTouches[0].clientY - touchY) < 5) handleParaTap(e.target);
+  });
+  body.addEventListener('click', function(e) {
+    if (wasTouched) { wasTouched = false; return; } handleParaTap(e.target);
+  });
 })();
 
 function toggleModalAudio() {
