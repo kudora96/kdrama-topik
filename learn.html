@@ -1159,9 +1159,14 @@ function updateEoLangBtns(lang) {
   else { kr.classList.add('active'); np.classList.remove('active'); }
 }
 
+var _eoSwitchPara = -1;
+var _eoSwitchRatio = -1;
+
 function switchExplainLang(lang) {
   if (!explainCurrentSubId) return;
   if (explainAudioLang === lang && explainAudioId === explainCurrentSubId) return;
+  _eoSwitchPara = explainActivePara;
+  _eoSwitchRatio = (explainAudio && explainAudio.duration > 0) ? (explainAudio.currentTime / explainAudio.duration) : -1;
   destroyExplainAudio();
   openExplainOverlay(explainCurrentSubId, lang);
 }
@@ -1224,13 +1229,21 @@ function openExplainOverlay(id, lang) {
     renderExplainParas(data[lang]); try { explainAudio.play().catch(function(){}); } catch(e) {} playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
+  var restorePara = _eoSwitchPara; var restoreRatio = _eoSwitchRatio;
+  _eoSwitchPara = -1; _eoSwitchRatio = -1;
+  if (restorePara >= 0 && restorePara < explainParas.length) { highlightPara(restorePara); }
   var audioFile = data['audio_' + lang];
   var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260305b';
   try { explainAudio = new Audio(path); } catch(e) { return; }
   playBtn.textContent = '⏸'; playBtn.classList.add('playing');
   explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
   explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
-  try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight();
+  if (restoreRatio > 0) {
+    explainAudio.addEventListener('loadedmetadata', function() { explainAudio.currentTime = restoreRatio * explainAudio.duration; try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight(); }, { once: true });
+    explainAudio.load();
+  } else {
+    try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight();
+  }
 }
 
 function closeExplainOverlay() {
