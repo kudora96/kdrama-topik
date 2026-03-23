@@ -151,7 +151,9 @@
     .eo-seek-input { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: #E5E7EB; outline: none; cursor: pointer; }
     .eo-seek-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; cursor: pointer; }
     .eo-seek-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; border: none; cursor: pointer; }
-    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+    .eo-lang-btn.active { background: #4A9EFF !important; border-color: #4A9EFF !important; }
+    .eo-lang-btn.active .lb-label { color: #fff !important; }
+    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; cursor: pointer; }
     .eo-para { font-size: 1.1rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
     .eo-para.active { color: #1A1A1A; background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
 
@@ -486,6 +488,10 @@
     html[data-theme="dark"] .learn-bar { background: rgba(14,16,24,0.95); border-top-color: rgba(255,255,255,0.08); }
     html[data-theme="dark"] .learn-bar-btn { color: #9ba4b8; }
     html[data-theme="dark"] .learn-bar-btn.active { color: #00cec9; }
+    html[data-theme="dark"] .eo-lang-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+    html[data-theme="dark"] .eo-lang-btn .lb-label { color: #9ba4b8; }
+    html[data-theme="dark"] .eo-lang-btn.active { background: #4A9EFF !important; border-color: #4A9EFF !important; }
+    html[data-theme="dark"] .eo-lang-btn.active .lb-label { color: #fff !important; }
     html[data-theme="dark"] .tip-banner { background: #3a8ae6; color: #fff; }
     html[data-theme="dark"] .empty-state { color: #9ba4b8; }
     html[data-theme="dark"] .lock-sheet { background: #151822; color: #f0f0f5; }
@@ -536,6 +542,10 @@
       <div class="eo-title" id="eo-title"></div>
       <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">&#9654;</button>
       <button class="eo-btn" onclick="closeExplainOverlay()">&#10005;</button>
+    </div>
+    <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;gap:6px;padding:8px 14px 4px 14px;">
+      <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
+      <button class="learn-bar-btn eo-lang-btn" id="eo-lang-kr" onclick="switchExplainLang('kr')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">KR</span></button>
     </div>
     <div class="eo-seekbar">
       <span class="eo-seek-time" id="eo-cur-time">0:00</span>
@@ -1141,6 +1151,21 @@ function resetAllState() {
 }
 
 // ── Explain Overlay ──
+var explainCurrentSubId = null;
+
+function updateEoLangBtns(lang) {
+  var np = document.getElementById('eo-lang-np'); var kr = document.getElementById('eo-lang-kr');
+  if (lang === 'np') { np.classList.add('active'); kr.classList.remove('active'); }
+  else { kr.classList.add('active'); np.classList.remove('active'); }
+}
+
+function switchExplainLang(lang) {
+  if (!explainCurrentSubId) return;
+  if (explainAudioLang === lang && explainAudioId === explainCurrentSubId) return;
+  destroyExplainAudio();
+  openExplainOverlay(explainCurrentSubId, lang);
+}
+
 function renderExplainParas(text) {
   var parts = text.split('\n\n'); explainParas = parts; explainActivePara = -1;
   var container = document.getElementById('eo-text'); var html = '';
@@ -1182,7 +1207,9 @@ function openExplainOverlay(id, lang) {
   var data = explanationsMap[String(id)]; if (!data) return;
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
+  explainCurrentSubId = id;
   document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 ' + L('btn_kr_explain','KR 한국어 설명') + ' #' : '🎧 ' + L('btn_np_explain','NP 네팔어 설명') + ' #') + id;
+  updateEoLangBtns(lang);
   document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('sub-list').classList.add('disabled');
   document.getElementById('loop-bar').classList.add('disabled');
@@ -1216,7 +1243,17 @@ function closeExplainOverlay() {
   document.querySelector('.nav-back').style.display = '';
   document.querySelector('.nav-title').style.display = '';
   document.querySelector('.nav-btns').style.display = '';
+  explainCurrentSubId = null;
 }
+
+// eo-body tap to toggle audio (scroll-safe)
+(function() {
+  var body = document.getElementById('eo-body');
+  var touchY = 0; var wasTouched = false;
+  body.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; wasTouched = true; }, { passive: true });
+  body.addEventListener('touchend', function(e) { if (Math.abs(e.changedTouches[0].clientY - touchY) < 5) toggleModalAudio(); });
+  body.addEventListener('click', function() { if (wasTouched) { wasTouched = false; return; } toggleModalAudio(); });
+})();
 
 function toggleModalAudio() {
   if (!explainAudio) return; var playBtn = document.getElementById('eo-play-btn');
@@ -1840,7 +1877,7 @@ function retryWriting() { wrStopAll(); wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx =
 })();
 
 // ── Keyboard shortcuts ──
-document.addEventListener('keydown', function(e) { if (e.code !== 'Space') return; var tag = e.target.tagName; if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return; e.preventDefault(); if (!player || !player.getPlayerState) return; var s = player.getPlayerState(); if (s === YT.PlayerState.PLAYING) { userPaused = true; player.pauseVideo(); } else { userPaused = false; player.playVideo(); } });
+document.addEventListener('keydown', function(e) { if (e.code !== 'Space') return; var tag = e.target.tagName; if (tag === 'INPUT' || tag === 'BUTTON' || tag === 'TEXTAREA') return; e.preventDefault(); var eo = document.getElementById('explain-overlay'); if (eo && eo.classList.contains('open')) { toggleModalAudio(); return; } if (!player || !player.getPlayerState) return; var s = player.getPlayerState(); if (s === YT.PlayerState.PLAYING) { userPaused = true; player.pauseVideo(); } else { userPaused = false; player.playVideo(); } });
 
 // ── Iframe blur ──
 window.addEventListener('blur', function() { setTimeout(function() { if (document.activeElement && document.activeElement.tagName === 'IFRAME') document.activeElement.blur(); }, 0); });
