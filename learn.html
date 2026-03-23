@@ -786,7 +786,7 @@ Promise.all([
   // Show lock badge on header
   if (isLocked) {
     var hdr = document.querySelector('.sub-list-header h2');
-    if (hdr) hdr.innerHTML = (langData.subtitle_list || '자막 목록') + ' <span class="lock-badge">&#128274; PREMIUM</span>';
+    if (hdr) hdr.innerHTML = L('subtitle_list','उपशीर्षक सूची') + ' <span class="lock-badge">&#128274; PREMIUM</span>';
   }
 
   // Render
@@ -915,7 +915,7 @@ function doAdUnlock() {
   if (subtitles.length > 0) renderList();
   // Reset header badge
   var hdr = document.querySelector('.sub-list-header h2');
-  if (hdr) hdr.innerHTML = langData.subtitle_list || '자막 목록';
+  if (hdr) hdr.innerHTML = L('subtitle_list','उपशीर्षक सूची');
   alert('🎬 ' + L('unlocked_24h','24시간 학습 기능 해제!'));
 }
 
@@ -1366,7 +1366,7 @@ function renderQuizQuestion(q, idx, total) {
     }
     html += '</div>';
   }
-  if (q.image && !q.image_choices) { html += '<div class="qo-image-wrap"><img class="qo-image" src="' + escHtml(q.image) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style=""><div class="qo-image-placeholder" style="display:none">🖼️ 이미지 준비 중</div></div>'; }
+  if (q.image && !q.image_choices) { html += '<div class="qo-image-wrap"><img class="qo-image" src="' + escHtml(q.image) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" style=""><div class="qo-image-placeholder" style="display:none">🖼️ ' + L('image_preparing','तस्बिर तयार हुँदैछ') + '</div></div>'; }
   if (q.passage) { html += '<div class="qo-passage">' + escHtml(q.passage) + '</div>'; }
   if (q.question) { html += '<div class="qo-question">' + escHtml(q.question).replace(/\n/g,'<br>').replace(/\( {2,10}\)/g,'<span class="qo-blank">(      )</span>') + '</div>'; }
   if (q.image_choices) {

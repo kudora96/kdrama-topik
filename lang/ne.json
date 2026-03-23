@@ -92,5 +92,11 @@
   "cancel_anytime": "जुनसुकै बेला रद्द गर्न सकिन्छ",
   "per_month": "/महिना",
   "per_year": "/वर्ष",
-  "start_subscription": "सदस्यता सुरु गर्नुहोस्"
+  "start_subscription": "सदस्यता सुरु गर्नुहोस्",
+
+  "image_preparing": "तस्बिर तयार हुँदैछ",
+  "listen_original": "शब्द सुन्नुहोस्",
+  "listen_sentence": "पूरा वाक्य मूल सुन्नुहोस्",
+  "writing_preparing": "लेखन अभ्यास तयार हुँदैछ",
+  "writing_preparing_desc": "यो उपशीर्षकको लेखन अभ्यास डाटा अझै तयार भएको छैन।"
 }
