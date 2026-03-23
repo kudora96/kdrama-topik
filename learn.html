@@ -1177,9 +1177,10 @@ function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer
 function stopExplainHighlight() { if (explainHighlightTimer) { clearInterval(explainHighlightTimer); explainHighlightTimer = null; } }
 
 function getParaIndexAtTime(t, dur) {
-  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParas[i].length;
+  function cleanLen(s) { return s.replace(/\([^)]*\)/g, '').length; }
+  var total = 0; for (var i = 0; i < explainParas.length; i++) total += cleanLen(explainParas[i]);
   if (total === 0) return 0; var cum = 0;
-  for (var i = 0; i < explainParas.length; i++) { if (t < ((cum + explainParas[i].length) / total) * dur) return i; cum += explainParas[i].length; }
+  for (var i = 0; i < explainParas.length; i++) { var cl = cleanLen(explainParas[i]); if (t < ((cum + cl) / total) * dur) return i; cum += cl; }
   return explainParas.length - 1;
 }
 
