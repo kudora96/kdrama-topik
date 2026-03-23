@@ -139,7 +139,7 @@
     @keyframes tipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
     /* ── Explain Overlay ── */
-    .explain-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #FFFFFF; z-index: 10; flex-direction: column; border-radius: 12px; }
+    .explain-overlay { display: none; background: #FFFFFF; flex-direction: column; border-radius: 12px; border: 1px solid #E5E7EB; margin-top: 10px; max-height: 85vh; overflow-y: auto; }
     .explain-overlay.open { display: flex; }
     .eo-header { display: flex; align-items: center; padding: 8px 12px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; }
     .eo-title { flex: 1; font-size: 0.85rem; font-weight: 700; color: #1A1A1A; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -152,7 +152,7 @@
     .eo-seek-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; cursor: pointer; }
     .eo-seek-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; border: none; cursor: pointer; }
     .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
-    .eo-para { font-size: 0.85rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
+    .eo-para { font-size: 1.1rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
     .eo-para.active { color: #1A1A1A; background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
 
     /* ── Tip banner ── */
@@ -529,19 +529,20 @@
         <button class="vl-btn vl-btn-pro" onclick="openProSheet()">&#128081; PRO 구독</button>
       </div>
     </div>
-    <div class="explain-overlay" id="explain-overlay">
-      <div class="eo-header">
-        <div class="eo-title" id="eo-title"></div>
-        <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">&#9654;</button>
-        <button class="eo-btn" onclick="closeExplainOverlay()">&#10005;</button>
-      </div>
-      <div class="eo-seekbar">
-        <span class="eo-seek-time" id="eo-cur-time">0:00</span>
-        <input type="range" class="eo-seek-input" id="eo-seek" min="0" max="100" value="0" step="0.1">
-        <span class="eo-seek-time" id="eo-dur-time">0:00</span>
-      </div>
-      <div class="eo-body" id="eo-body"><div id="eo-text"></div></div>
+  </div>
+
+  <div class="explain-overlay" id="explain-overlay">
+    <div class="eo-header">
+      <div class="eo-title" id="eo-title"></div>
+      <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">&#9654;</button>
+      <button class="eo-btn" onclick="closeExplainOverlay()">&#10005;</button>
     </div>
+    <div class="eo-seekbar">
+      <span class="eo-seek-time" id="eo-cur-time">0:00</span>
+      <input type="range" class="eo-seek-input" id="eo-seek" min="0" max="100" value="0" step="0.1">
+      <span class="eo-seek-time" id="eo-dur-time">0:00</span>
+    </div>
+    <div class="eo-body" id="eo-body"><div id="eo-text"></div></div>
   </div>
 
   <div class="quiz-overlay" id="quiz-overlay">
@@ -1182,6 +1183,10 @@ function openExplainOverlay(id, lang) {
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
   document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 ' + L('btn_kr_explain','KR 한국어 설명') + ' #' : '🎧 ' + L('btn_np_explain','NP 네팔어 설명') + ' #') + id;
+  document.getElementById('player-wrap').style.display = 'none';
+  document.getElementById('sub-list').classList.add('disabled');
+  document.getElementById('loop-bar').classList.add('disabled');
+  document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('explain-overlay').classList.add('open');
   var playBtn = document.getElementById('eo-play-btn');
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
@@ -1201,6 +1206,10 @@ function closeExplainOverlay() {
   document.getElementById('explain-overlay').classList.remove('open'); stopExplainHighlight();
   if (explainAudio && !explainAudio.paused) explainAudio.pause();
   var playBtn = document.getElementById('eo-play-btn'); playBtn.textContent = '▶'; playBtn.classList.remove('playing');
+  document.getElementById('player-wrap').style.display = '';
+  document.getElementById('sub-list').classList.remove('disabled');
+  document.getElementById('loop-bar').classList.remove('disabled');
+  document.querySelector('.sub-list-header').classList.remove('disabled');
 }
 
 function toggleModalAudio() {
