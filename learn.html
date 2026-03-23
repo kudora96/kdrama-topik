@@ -99,7 +99,7 @@
     .font-controls { display: flex; gap: 4px; }
     .btn-font { background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: #1A1A1A; cursor: pointer; font-family: inherit; }
     .btn-font:active { background: #E5E7EB; }
-    .sub-list { margin-top: 8px; max-height: calc(240px * var(--font-scale, 1)); overflow-y: auto; border-radius: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+    .sub-list { margin-top: 8px; max-height: calc(100vh - 280px); overflow-y: auto; border-radius: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
     .sub-list::-webkit-scrollbar { width: 4px; }
     .sub-list::-webkit-scrollbar-track { background: transparent; }
     .sub-list::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 4px; }
@@ -139,21 +139,21 @@
     @keyframes tipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
     /* ── Explain Overlay ── */
-    .explain-overlay { display: none; background: #FFFFFF; flex-direction: column; border-radius: 0 0 12px 12px; border: 1px solid #E5E7EB; border-top: none; margin-top: 0; max-height: 85vh; overflow-y: auto; }
+    .explain-overlay { display: none; background: #FFFFFF; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; margin: 0; border-radius: 0; border: none; max-width: 100%; overflow-y: auto; }
     .explain-overlay.open { display: flex; }
-    .eo-header { display: flex; align-items: center; padding: 8px 12px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; }
+    .eo-header { display: flex; align-items: center; padding: 8px 12px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
     .eo-title { flex: 1; font-size: 0.85rem; font-weight: 700; color: #1A1A1A; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .eo-btn { flex-shrink: 0; border: none; background: #F8F9FA; color: #1A1A1A; border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; }
     .eo-btn:active { background: #E5E7EB; }
     .eo-btn.playing { background: #4A9EFF; color: #fff; }
-    .eo-seekbar { flex-shrink: 0; padding: 6px 12px 2px; display: flex; align-items: center; gap: 8px; }
+    .eo-seekbar { flex-shrink: 0; padding: 6px 12px 2px; display: flex; align-items: center; gap: 8px; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
     .eo-seek-time { font-size: 0.7rem; color: #6B7280; flex-shrink: 0; min-width: 32px; text-align: center; }
     .eo-seek-input { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: #E5E7EB; outline: none; cursor: pointer; }
     .eo-seek-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; cursor: pointer; }
     .eo-seek-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; border: none; cursor: pointer; }
     .eo-lang-btn.active { background: #4A9EFF !important; border-color: #4A9EFF !important; }
     .eo-lang-btn.active .lb-label { color: #fff !important; }
-    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; cursor: pointer; }
+    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; cursor: pointer; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
     .eo-para { font-size: 1.1rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
     .eo-para.active { color: #1A1A1A; background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
 
