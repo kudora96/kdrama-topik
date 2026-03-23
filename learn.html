@@ -952,7 +952,7 @@ function dismissLearnTip() { var tip = document.getElementById('learn-tip'); if 
 function getSubOrder() { return localStorage.getItem('kt-sub-order') || 'ne'; }
 function updateSubOrderBtn() { var btn = document.getElementById('btn-sub-order'); if (btn) btn.textContent = getSubOrder() === 'ne' ? L('toggle_ne_first','ने→한') : L('toggle_ko_first','한→ने'); }
 function updateClipTitle() { if (!clipData) return; var el = document.getElementById('nav-clip-name'); if (!el) return; var useNe = getSubOrder() === 'ne' && clipData.title_ne; el.textContent = useNe ? clipData.title_ne : (clipData.title || CLIP_ID); }
-function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); updateClipTitle(); renderList(); }
+function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() === 'ne' ? 'ko' : 'ne'); updateSubOrderBtn(); updateClipTitle(); renderList(); if (document.getElementById('loop-bar').classList.contains('active') && currentSub) { var info = document.getElementById('loop-info'); var strong = info.querySelector('strong'); if (strong) { var barText = getSubOrder() === 'ne' ? currentSub.ne : stripParen(currentSub.ko); var label = '#' + currentSub.id + ' ' + escHtml(barText.substring(0, 25)) + (barText.length > 25 ? '...' : ''); info.innerHTML = '<strong>' + strong.innerHTML + '</strong> ' + label; } } }
 
 // ── Render Subtitle List ──
 function renderList() {
@@ -1123,8 +1123,8 @@ function showBar(mode) {
   var sub = currentSub;
   if (!sub) return;
   bar.classList.add('active');
-  var koLabel = stripParen(sub.ko);
-  var label = '#' + sub.id + ' ' + escHtml(koLabel.substring(0, 25)) + (koLabel.length > 25 ? '...' : '');
+  var barText = getSubOrder() === 'ne' ? sub.ne : stripParen(sub.ko);
+  var label = '#' + sub.id + ' ' + escHtml(barText.substring(0, 25)) + (barText.length > 25 ? '...' : '');
   if (mode === 'once') {
     info.innerHTML = '<strong>▶ ' + (langData.playing || '재생 중') + '</strong> ' + label;
     document.getElementById('btn-repeat').style.display = '';
