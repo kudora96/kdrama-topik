@@ -540,9 +540,10 @@
   <div class="explain-overlay" id="explain-overlay">
     <div style="max-width:960px;margin:0 auto;height:100%;display:flex;flex-direction:column">
     <div class="eo-header">
-      <div class="eo-title" id="eo-title"></div>
-      <button class="eo-btn" id="eo-play-btn" onclick="toggleModalAudio()">&#9654;</button>
-      <button class="eo-btn" onclick="closeExplainOverlay()">&#10005;</button>
+      <div class="eo-title" id="eo-title" style="flex-shrink:0"></div>
+      <div id="eo-sub-label" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;color:#6B7280"></div>
+      <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()">&#9664;</button>
+      <button class="nav-arrow" id="eo-next" onclick="eoNavNext()">&#9654;</button>
     </div>
     <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;justify-content:center;gap:8px;padding:8px 14px;">
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
@@ -1176,6 +1177,44 @@ function updateEoLangBtns(lang) {
   else { kr.classList.add('active'); np.classList.remove('active'); }
 }
 
+function getExplainSubs() {
+  var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
+  return visibleSubs.filter(function(s) { return explanationsMap[String(s.id)]; });
+}
+
+function updateEoHeader(id, lang) {
+  var title = document.getElementById('eo-title');
+  title.textContent = lang === 'kr' ? '🎧 KR' : '🎧 NP';
+  var label = document.getElementById('eo-sub-label');
+  var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
+  var visIdx = 0; for (var i = 0; i < visibleSubs.length; i++) { if (visibleSubs[i].id === id) { visIdx = i + 1; break; } }
+  var sub = null; for (var i = 0; i < subtitles.length; i++) { if (subtitles[i].id === id) { sub = subtitles[i]; break; } }
+  var text = sub ? (lang === 'np' ? sub.ne : stripParen(sub.ko)) : '';
+  label.textContent = '#' + (visIdx < 10 ? '0' + visIdx : visIdx) + ' ' + text;
+  var eSubs = getExplainSubs();
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === id) { curIdx = i; break; } }
+  document.getElementById('eo-prev').style.display = curIdx > 0 ? '' : 'none';
+  document.getElementById('eo-next').style.display = curIdx < eSubs.length - 1 ? '' : 'none';
+}
+
+function eoNavPrev() {
+  var eSubs = getExplainSubs();
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === explainCurrentSubId) { curIdx = i; break; } }
+  if (curIdx <= 0) return;
+  var lang = explainAudioLang || 'np';
+  destroyExplainAudio();
+  openExplainOverlay(eSubs[curIdx - 1].id, lang);
+}
+
+function eoNavNext() {
+  var eSubs = getExplainSubs();
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === explainCurrentSubId) { curIdx = i; break; } }
+  if (curIdx < 0 || curIdx >= eSubs.length - 1) return;
+  var lang = explainAudioLang || 'np';
+  destroyExplainAudio();
+  openExplainOverlay(eSubs[curIdx + 1].id, lang);
+}
+
 var _eoSwitchPara = -1;
 var _eoSwitchRatio = -1;
 
@@ -1231,7 +1270,7 @@ function openExplainOverlay(id, lang) {
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
   explainCurrentSubId = id;
-  document.getElementById('eo-title').textContent = (lang === 'kr' ? '🎧 ' + L('btn_kr_explain','KR 한국어 설명') + ' #' : '🎧 ' + L('btn_np_explain','NP 네팔어 설명') + ' #') + id;
+  updateEoHeader(id, lang);
   updateEoLangBtns(lang);
   document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('sub-list').classList.add('disabled');
@@ -1242,9 +1281,8 @@ function openExplainOverlay(id, lang) {
   document.querySelector('.nav-back').style.display = 'none';
   document.querySelector('.nav-title').style.display = 'none';
   document.querySelector('.nav-btns').style.display = 'none';
-  var playBtn = document.getElementById('eo-play-btn');
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
-    renderExplainParas(data[lang]); try { explainAudio.play().catch(function(){}); } catch(e) {} playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); return;
+    renderExplainParas(data[lang]); try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight(); return;
   }
   destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
   var restorePara = _eoSwitchPara; var restoreRatio = _eoSwitchRatio;
@@ -1253,9 +1291,8 @@ function openExplainOverlay(id, lang) {
   var audioFile = data['audio_' + lang];
   var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260305b';
   try { explainAudio = new Audio(path); } catch(e) { return; }
-  playBtn.textContent = '⏸'; playBtn.classList.add('playing');
-  explainAudio.onended = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
-  explainAudio.onerror = function() { playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); };
+  explainAudio.onended = function() { stopExplainHighlight(); };
+  explainAudio.onerror = function() { stopExplainHighlight(); };
   if (restoreRatio > 0) {
     explainAudio.addEventListener('loadedmetadata', function() { explainAudio.currentTime = restoreRatio * explainAudio.duration; try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight(); }, { once: true });
     explainAudio.load();
@@ -1267,7 +1304,6 @@ function openExplainOverlay(id, lang) {
 function closeExplainOverlay() {
   document.getElementById('explain-overlay').classList.remove('open'); stopExplainHighlight();
   if (explainAudio && !explainAudio.paused) explainAudio.pause();
-  var playBtn = document.getElementById('eo-play-btn'); playBtn.textContent = '▶'; playBtn.classList.remove('playing');
   document.getElementById('player-wrap').style.display = '';
   document.getElementById('sub-list').classList.remove('disabled');
   document.getElementById('loop-bar').classList.remove('disabled');
@@ -1300,7 +1336,7 @@ function closeExplainOverlay() {
     var ratio = getParaTime(idx);
     explainAudio.currentTime = ratio * explainAudio.duration;
     highlightPara(idx);
-    if (explainAudio.paused) { var playBtn = document.getElementById('eo-play-btn'); try { explainAudio.play().catch(function(){}); } catch(e) {} playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); }
+    if (explainAudio.paused) { try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight(); }
   }
   body.addEventListener('touchend', function(e) {
     if (Math.abs(e.changedTouches[0].clientY - touchY) < 5) handleParaTap(e.target);
@@ -1311,9 +1347,9 @@ function closeExplainOverlay() {
 })();
 
 function toggleModalAudio() {
-  if (!explainAudio) return; var playBtn = document.getElementById('eo-play-btn');
-  if (explainAudio.paused) { explainAudio.play(); playBtn.textContent = '⏸'; playBtn.classList.add('playing'); startExplainHighlight(); }
-  else { explainAudio.pause(); playBtn.textContent = '▶'; playBtn.classList.remove('playing'); stopExplainHighlight(); }
+  if (!explainAudio) return;
+  if (explainAudio.paused) { explainAudio.play(); startExplainHighlight(); }
+  else { explainAudio.pause(); stopExplainHighlight(); }
 }
 
 function destroyExplainAudio() {
