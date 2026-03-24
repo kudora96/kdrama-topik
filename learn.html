@@ -541,9 +541,9 @@
     <div style="max-width:960px;margin:0 auto;height:100%;display:flex;flex-direction:column">
     <div class="eo-header">
       <div class="eo-title" id="eo-title" style="flex-shrink:0"></div>
-      <div id="eo-sub-label" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;color:#6B7280"></div>
-      <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()">&#9664;</button>
-      <button class="nav-arrow" id="eo-next" onclick="eoNavNext()">&#9654;</button>
+      <div id="eo-sub-label" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;color:#6B7280"></div>
+      <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()" style="flex-shrink:0;color:#1A1A1A">&#9664;</button>
+      <button class="nav-arrow" id="eo-next" onclick="eoNavNext()" style="flex-shrink:0;color:#1A1A1A">&#9654;</button>
     </div>
     <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;justify-content:center;gap:8px;padding:8px 14px;">
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
@@ -1192,14 +1192,15 @@ function updateEoHeader(id, lang) {
   var text = sub ? (lang === 'np' ? sub.ne : stripParen(sub.ko)) : '';
   label.textContent = '#' + (visIdx < 10 ? '0' + visIdx : visIdx) + ' ' + text;
   var eSubs = getExplainSubs();
-  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === id) { curIdx = i; break; } }
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(id)) { curIdx = i; break; } }
   document.getElementById('eo-prev').style.display = curIdx > 0 ? '' : 'none';
   document.getElementById('eo-next').style.display = curIdx < eSubs.length - 1 ? '' : 'none';
 }
 
 function eoNavPrev() {
   var eSubs = getExplainSubs();
-  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === explainCurrentSubId) { curIdx = i; break; } }
+  var sid = explainCurrentSubId;
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(sid)) { curIdx = i; break; } }
   if (curIdx <= 0) return;
   var lang = explainAudioLang || 'np';
   destroyExplainAudio();
@@ -1208,7 +1209,8 @@ function eoNavPrev() {
 
 function eoNavNext() {
   var eSubs = getExplainSubs();
-  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (eSubs[i].id === explainCurrentSubId) { curIdx = i; break; } }
+  var sid = explainCurrentSubId;
+  var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(sid)) { curIdx = i; break; } }
   if (curIdx < 0 || curIdx >= eSubs.length - 1) return;
   var lang = explainAudioLang || 'np';
   destroyExplainAudio();
