@@ -979,20 +979,33 @@ function renderList() {
   document.getElementById('sub-count').textContent = '--/' + totalPad + ' ' + L('count_unit','개');
   var koFirst = getSubOrder() === 'ko';
   var html = '';
-  visibleSubs.forEach(function(sub, idx) {
-    var displayNum = idx + 1;
-    var koDisplay = stripParen(sub.ko);
-    var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(koDisplay) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
-    var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(koDisplay) + '</div>';
-    html += '<div class="sub-item" id="sub-' + sub.id + '">' +
-      '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
-        '<div class="sub-num">' + displayNum + '</div>' +
-        '<div class="sub-text">' + first + second + '</div>' +
-        '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
-        '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
-      '</div>' +
-      '<div class="sub-detail" id="detail-' + sub.id + '">' + buildDetail(sub.id) + '</div>' +
-    '</div>';
+  var visNum = 0;
+  subtitles.forEach(function(sub) {
+    var isEmpty = !sub.ko || sub.ko.trim() === '';
+    if (!isEmpty) visNum++;
+    if (isEmpty) {
+      html += '<div class="sub-item" id="sub-' + sub.id + '">' +
+        '<div class="sub-row" onclick="onEmptySubClick(' + sub.id + ')" style="color:#9CA3AF;font-style:italic">' +
+          '<div class="sub-num">♪</div>' +
+          '<div class="sub-text"><div class="sub-ko sub-primary" style="color:inherit;font-style:inherit">...</div></div>' +
+          '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
+          '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
+        '</div>' +
+      '</div>';
+    } else {
+      var koDisplay = stripParen(sub.ko);
+      var first = koFirst ? '<div class="sub-ko sub-primary">' + escHtml(koDisplay) + '</div>' : '<div class="sub-ne sub-primary">' + escHtml(sub.ne) + '</div>';
+      var second = koFirst ? '<div class="sub-ne sub-secondary">' + escHtml(sub.ne) + '</div>' : '<div class="sub-ko sub-secondary">' + escHtml(koDisplay) + '</div>';
+      html += '<div class="sub-item" id="sub-' + sub.id + '">' +
+        '<div class="sub-row" onclick="onSubClick(' + sub.id + ')">' +
+          '<div class="sub-num">' + visNum + '</div>' +
+          '<div class="sub-text">' + first + second + '</div>' +
+          '<div class="loop-badge" id="loop-icon-' + sub.id + '"></div>' +
+          '<div class="sub-time">' + formatTime(sub.s) + '</div>' +
+        '</div>' +
+        '<div class="sub-detail" id="detail-' + sub.id + '">' + buildDetail(sub.id) + '</div>' +
+      '</div>';
+    }
   });
   html += '<div style="height:60vh"></div>';
   list.innerHTML = html;
@@ -1057,6 +1070,16 @@ function onSubClick(id) {
   if (el) el.classList.add('open');
   highlightSub(id);
   showBar('once');
+}
+
+function onEmptySubClick(id) {
+  var sub = findSub(id);
+  if (!sub) return;
+  if (openDetailId !== -1) { closeDetail(openDetailId); openDetailId = -1; }
+  cancelLoop();
+  userPaused = false;
+  if (player && player.seekTo) { player.seekTo(sub.s, true); player.playVideo(); }
+  highlightSub(id);
 }
 
 // ── Highlight ──
