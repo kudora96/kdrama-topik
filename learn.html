@@ -595,7 +595,7 @@
   </div>
 
   <div class="sub-list-header">
-    <h2>자막 목록</h2>
+    <h2></h2>
     <button class="btn-sub-order" id="btn-sub-order" onclick="toggleSubOrder()"></button>
     <div class="font-controls">
       <button class="btn-font" onclick="changeFontSize(-1)">A-</button>
@@ -680,7 +680,7 @@ function applyLangUI() {
   var s = document.getElementById('btn-stop');
   if (s) s.innerHTML = '&#9209; ' + L('btn_stop', '중지');
   var h = document.querySelector('.sub-list-header h2');
-  if (h && !h.querySelector('.lock-badge')) h.textContent = L('subtitle_list', '자막 목록');
+  if (h && !h.querySelector('.lock-badge')) h.textContent = '';
   // next clip banner
   var ncb = document.querySelector('.ncb-btn');
   if (ncb) ncb.innerHTML = L('next_clip', '다음 클립') + ' &#9654;';
@@ -786,7 +786,7 @@ Promise.all([
   // Show lock badge on header
   if (isLocked) {
     var hdr = document.querySelector('.sub-list-header h2');
-    if (hdr) hdr.innerHTML = L('subtitle_list','उपशीर्षक सूची') + ' <span class="lock-badge">&#128274; PREMIUM</span>';
+    if (hdr) hdr.innerHTML = '<span class="lock-badge">&#128274; PREMIUM</span>';
   }
 
   // Render
@@ -915,7 +915,7 @@ function doAdUnlock() {
   if (subtitles.length > 0) renderList();
   // Reset header badge
   var hdr = document.querySelector('.sub-list-header h2');
-  if (hdr) hdr.innerHTML = L('subtitle_list','उपशीर्षक सूची');
+  if (hdr) hdr.innerHTML = '';
   alert('🎬 ' + L('unlocked_24h','24시간 학습 기능 해제!'));
 }
 
@@ -958,7 +958,8 @@ function toggleSubOrder() { localStorage.setItem('kt-sub-order', getSubOrder() =
 function renderList() {
   var list = document.getElementById('sub-list');
   var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
-  document.getElementById('sub-count').textContent = visibleSubs.length + ' ' + L('count_unit','개');
+  var totalPad = visibleSubs.length < 10 ? '0' + visibleSubs.length : '' + visibleSubs.length;
+  document.getElementById('sub-count').textContent = '--/' + totalPad + ' ' + L('count_unit','개');
   var koFirst = getSubOrder() === 'ko';
   var html = '';
   visibleSubs.forEach(function(sub, idx) {
@@ -1047,9 +1048,20 @@ function highlightSub(id) {
       list.scrollTop = Math.max(0, top - list.clientHeight / 2 + el.offsetHeight / 2);
     }
   }
+  updateSubCount(id);
 }
 
-function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } }
+function updateSubCount(activeId) {
+  var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
+  var total = visibleSubs.length;
+  var totalPad = total < 10 ? '0' + total : '' + total;
+  var idx = -1;
+  for (var i = 0; i < visibleSubs.length; i++) { if (visibleSubs[i].id === activeId) { idx = i + 1; break; } }
+  var cur = idx > 0 ? (idx < 10 ? '0' + idx : '' + idx) : '--';
+  document.getElementById('sub-count').textContent = cur + '/' + totalPad + ' ' + L('count_unit','개');
+}
+
+function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } updateSubCount(null); }
 
 // ── Subtitle Sync ──
 function startSubtitleSync() { stopSubtitleSync(); subtitleTimer = setInterval(updateSubtitle, 200); }
