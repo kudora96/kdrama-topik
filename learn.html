@@ -1375,7 +1375,8 @@ function closeExplainOverlay() {
     showBar('once');
     setTimeout(function() {
       var el = document.getElementById('sub-' + lastSubId);
-      if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      var list = document.getElementById('sub-list');
+      if (el && list) list.scrollTop = el.offsetTop - list.offsetTop;
     }, 100);
   }
   explainCurrentSubId = null;
