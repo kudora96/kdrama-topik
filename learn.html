@@ -1373,10 +1373,9 @@ function closeExplainOverlay() {
     if (det) det.classList.add('open');
     highlightSub(lastSubId);
     setTimeout(function() {
-      var list = document.getElementById('sub-list');
       var el = document.getElementById('sub-' + lastSubId);
-      if (list && el) list.scrollTop = el.offsetTop - list.offsetTop;
-    }, 50);
+      if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 100);
   }
   explainCurrentSubId = null;
 }
