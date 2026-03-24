@@ -1174,7 +1174,7 @@ function cancelLoop() {
 function playAll() {
   closeExplainOverlay(); closeQuizOverlay(); closeWritingOverlay();
   cancelLoop(); resetSpeed();
-  loopPausing = false; userPaused = false;
+  currentSub = null; loopPausing = false; userPaused = false;
   document.getElementById('loop-bar').classList.remove('active');
   if (player && player.playVideo) player.playVideo();
 }
