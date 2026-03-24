@@ -1136,7 +1136,9 @@ function showBar(mode) {
   if (!sub) return;
   bar.classList.add('active');
   var barText = getSubOrder() === 'ne' ? sub.ne : stripParen(sub.ko);
-  var label = '#' + sub.id + ' ' + escHtml(barText.substring(0, 25)) + (barText.length > 25 ? '...' : '');
+  var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
+  var visIdx = 0; for (var i = 0; i < visibleSubs.length; i++) { if (visibleSubs[i].id === sub.id) { visIdx = i + 1; break; } }
+  var label = '#' + (visIdx < 10 ? '0' + visIdx : visIdx) + ' ' + escHtml(barText.substring(0, 25)) + (barText.length > 25 ? '...' : '');
   if (mode === 'once') {
     info.innerHTML = label;
     document.getElementById('btn-repeat').style.display = '';
