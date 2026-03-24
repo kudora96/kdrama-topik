@@ -1040,7 +1040,13 @@ function onSubClick(id) {
   dismissLearnTip();
   var sub = findSub(id);
   if (!sub) return;
-  if (openDetailId !== -1 && openDetailId !== id) closeDetail(openDetailId);
+  if (openDetailId === id) {
+    closeDetail(openDetailId);
+    openDetailId = -1;
+    playAll();
+    return;
+  }
+  if (openDetailId !== -1) closeDetail(openDetailId);
   closeExplainOverlay();
   cancelLoop();
   userPaused = false;
@@ -1142,7 +1148,13 @@ function cancelLoop() {
   }
 }
 
-function playAll() { resetAllState(); if (player && player.playVideo) player.playVideo(); }
+function playAll() {
+  closeExplainOverlay(); closeQuizOverlay(); closeWritingOverlay();
+  cancelLoop(); resetSpeed();
+  loopPausing = false; userPaused = false;
+  document.getElementById('loop-bar').classList.remove('active');
+  if (player && player.playVideo) player.playVideo();
+}
 
 function showBar(mode) {
   var bar = document.getElementById('loop-bar');
