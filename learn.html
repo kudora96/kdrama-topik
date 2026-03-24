@@ -994,6 +994,7 @@ function renderList() {
       '<div class="sub-detail" id="detail-' + sub.id + '">' + buildDetail(sub.id) + '</div>' +
     '</div>';
   });
+  html += '<div style="height:60vh"></div>';
   list.innerHTML = html;
   updateSubOrderBtn();
   if (currentSub) {
