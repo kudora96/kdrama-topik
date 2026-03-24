@@ -1059,7 +1059,8 @@ function highlightSub(id) {
   if (el) {
     el.classList.add('active');
     activeEl = el;
-    el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    var list = document.getElementById('sub-list');
+    if (list) list.scrollTop = el.offsetTop - list.offsetTop;
   }
   updateSubCount(id);
 }
