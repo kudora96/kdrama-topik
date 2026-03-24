@@ -1045,7 +1045,7 @@ function highlightSub(id) {
     if (!loopSub) {
       var list = document.getElementById('sub-list');
       var top = el.offsetTop - list.offsetTop;
-      list.scrollTop = Math.max(0, top - list.clientHeight / 2 + el.offsetHeight / 2);
+      list.scrollTop = top;
     }
   }
   updateSubCount(id);
