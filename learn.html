@@ -546,9 +546,11 @@
       <div id="eo-sub-num" style="flex-shrink:0;font-size:0.85rem;font-weight:800;color:#1A1A1A"></div>
       <div id="eo-sub-label" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;color:#6B7280"></div>
     </div>
-    <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;justify-content:center;gap:8px;padding:8px 14px;">
+    <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;justify-content:flex-start;align-items:center;gap:8px;padding:8px 14px;">
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-kr" onclick="switchExplainLang('kr')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">KR</span></button>
+      <button class="btn-font" onclick="changeEoFontSize(-1)">A-</button>
+      <button class="btn-font" onclick="changeEoFontSize(1)">A+</button>
     </div>
     <div class="eo-seekbar">
       <span class="eo-seek-time" id="eo-cur-time">0:00</span>
@@ -1170,6 +1172,12 @@ function resetAllState() {
 }
 
 // ── Explain Overlay ──
+var eoFontSize = 1.1;
+function changeEoFontSize(dir) {
+  eoFontSize = Math.min(2, Math.max(0.7, eoFontSize + dir * 0.15));
+  var paras = document.querySelectorAll('.eo-para');
+  for (var i = 0; i < paras.length; i++) paras[i].style.fontSize = eoFontSize + 'rem';
+}
 var explainCurrentSubId = null;
 
 function updateEoLangBtns(lang) {
