@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -139,10 +139,10 @@
     @keyframes tipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
     /* ── Explain Overlay ── */
-    .explain-overlay { display: none; background: #FFFFFF; flex-direction: column; position: fixed; top: 0; left: 0; z-index: 200; margin: 0; border-radius: 0; border: none; width: 100vw; max-width: 100vw; height: 100vh; height: 100dvh; max-height: 100vh; max-height: 100dvh; overflow: hidden; }
+    .explain-overlay { display: none; background: #FFFFFF; flex-direction: column; position: fixed; top: 0; left: 0; z-index: 200; margin: 0; border-radius: 0; border: none; width: 100%; height: 100%; overflow: hidden; }
     .explain-overlay.open { display: flex; }
     .eo-header { display: flex; align-items: center; padding: 8px 12px; flex-shrink: 0; border-bottom: 1px solid #E5E7EB; gap: 8px; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
-    .eo-title { flex: 1; font-size: 0.85rem; font-weight: 700; color: #1A1A1A; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .eo-title { flex-shrink: 0; font-size: 0.85rem; font-weight: 700; color: #1A1A1A; white-space: nowrap; }
     .eo-btn { flex-shrink: 0; border: none; background: #F8F9FA; color: #1A1A1A; border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; }
     .eo-btn:active { background: #E5E7EB; }
     .eo-btn.playing { background: #4A9EFF; color: #fff; }
@@ -153,7 +153,7 @@
     .eo-seek-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #4A9EFF; border: none; cursor: pointer; }
     .eo-lang-btn.active { background: #4A9EFF !important; border-color: #4A9EFF !important; }
     .eo-lang-btn.active .lb-label { color: #fff !important; }
-    .eo-body { flex: 1; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; cursor: pointer; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
+    .eo-body { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 14px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; cursor: pointer; max-width: 960px; width: 100%; margin: 0 auto; box-sizing: border-box; }
     .eo-para { font-size: 1.1rem; color: #6B7280; line-height: 1.8; word-break: keep-all; padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; transition: color 0.3s, background 0.3s; }
     .eo-para.active { color: #1A1A1A; background: rgba(74,158,255,0.08); border-left: 3px solid #4A9EFF; }
 
@@ -538,7 +538,7 @@
   </div>
 
   <div class="explain-overlay" id="explain-overlay">
-    <div style="max-width:960px;margin:0 auto;height:100%;display:flex;flex-direction:column;overflow:hidden">
+    <div style="max-width:960px;margin:0 auto;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden">
     <div class="eo-header">
       <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()" style="flex-shrink:0;color:#1A1A1A">&#9664;</button>
       <button class="nav-arrow" id="eo-next" onclick="eoNavNext()" style="flex-shrink:0;color:#1A1A1A">&#9654;</button>
