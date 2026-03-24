@@ -1304,6 +1304,7 @@ function openExplainOverlay(id, lang) {
 }
 
 function closeExplainOverlay() {
+  var lastSubId = explainCurrentSubId;
   document.getElementById('explain-overlay').classList.remove('open'); stopExplainHighlight();
   if (explainAudio && !explainAudio.paused) explainAudio.pause();
   document.getElementById('player-wrap').style.display = '';
@@ -1314,6 +1315,7 @@ function closeExplainOverlay() {
   document.querySelector('.nav-back').style.display = '';
   document.querySelector('.nav-title').style.display = '';
   document.querySelector('.nav-btns').style.display = '';
+  if (lastSubId) highlightSub(lastSubId);
   explainCurrentSubId = null;
 }
 
