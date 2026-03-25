@@ -326,6 +326,20 @@
     .quiz-dark .qo-body .eo-para.active { color: #fff; background: rgba(255,193,7,0.2); border-left-color: #ffc107; }
     .quiz-dark .qo-body .eo-seek-time { color: rgba(255,255,255,0.5); }
     .quiz-dark .qo-body .eo-seek-input { background: rgba(255,255,255,0.2); }
+    .quiz-dark.explain-overlay { background: #1a1a2e; }
+    .quiz-dark.explain-overlay .eo-header { border-bottom-color: rgba(255,255,255,0.1); }
+    .quiz-dark.explain-overlay .eo-title { color: #fff; }
+    .quiz-dark.explain-overlay .eo-ctrl-btn { color: #f0f0f5; }
+    .quiz-dark.explain-overlay .eo-seek-time { color: rgba(255,255,255,0.5); }
+    .quiz-dark.explain-overlay .eo-seek-input { background: rgba(255,255,255,0.2); }
+    .quiz-dark.explain-overlay .eo-body { color: #f0f0f5; }
+    .quiz-dark.explain-overlay .eo-para { color: rgba(255,255,255,0.6); }
+    .quiz-dark.explain-overlay .eo-para.active { color: #fff; background: rgba(255,193,7,0.2); border-left-color: #ffc107; }
+    .quiz-dark.explain-overlay .nav-arrow { background: rgba(255,255,255,0.08); color: #f0f0f5; }
+    .quiz-dark.explain-overlay .btn-font { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #f0f0f5; }
+    .quiz-dark.explain-overlay .wr-cbtn { background: rgba(255,255,255,0.1); color: #f0f0f5; }
+    .quiz-dark.explain-overlay .eo-sub-num { color: #f0f0f5 !important; }
+    .quiz-dark.explain-overlay .eo-sub-label { color: #9ba4b8 !important; }
 
     /* ── Writing Overlay ── */
     .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
@@ -535,7 +549,7 @@
     <div class="nav-clip-name" id="nav-clip-name">...</div>
   </div>
   <div class="nav-btns">
-    <button class="learn-theme-btn" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'light';var n=c==='light'?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('kt-theme',n)" aria-label="Theme"></button>
+    <button class="learn-theme-btn" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'light';var n=c==='light'?'dark':'light';h.setAttribute('data-theme',n);localStorage.setItem('kt-theme',n);syncOverlayThemes()" aria-label="Theme"></button>
     <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
     <button class="nav-arrow" id="btn-next-clip" onclick="goNextClip()" disabled>&#9654;</button>
   </div>
@@ -565,15 +579,15 @@
   <div class="explain-overlay" id="explain-overlay">
     <div style="max-width:960px;margin:0 auto;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden">
     <div class="eo-header">
-      <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()" style="flex-shrink:0;color:#1A1A1A">&#9664;</button>
-      <button class="nav-arrow" id="eo-next" onclick="eoNavNext()" style="flex-shrink:0;color:#1A1A1A">&#9654;</button>
+      <button class="nav-arrow" id="eo-prev" onclick="eoNavPrev()" style="flex-shrink:0">&#9664;</button>
+      <button class="nav-arrow" id="eo-next" onclick="eoNavNext()" style="flex-shrink:0">&#9654;</button>
       <div class="eo-title" id="eo-title" style="flex-shrink:0"></div>
-      <div id="eo-sub-num" style="flex-shrink:0;font-size:0.85rem;font-weight:800;color:#1A1A1A"></div>
-      <div id="eo-sub-label" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;font-weight:800;color:#6B7280"></div>
+      <div class="eo-sub-num" id="eo-sub-num" style="flex-shrink:0;font-size:0.85rem;font-weight:800;color:#1A1A1A"></div>
+      <div class="eo-sub-label" id="eo-sub-label" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;font-weight:800;color:#6B7280"></div>
     </div>
     <div class="eo-lang-bar" id="eo-lang-bar" style="display:flex;align-items:center;gap:8px;padding:8px 14px;">
-      <button class="btn-font" onclick="changeEoFontSize(-1)" style="color:#1A1A1A;font-weight:800;border-color:#9CA3AF">A-</button>
-      <button class="btn-font" onclick="changeEoFontSize(1)" style="color:#1A1A1A;font-weight:800;border-color:#9CA3AF">A+</button>
+      <button class="btn-font eo-font-btn" onclick="changeEoFontSize(-1)" style="font-weight:800;border-color:#9CA3AF">A-</button>
+      <button class="btn-font eo-font-btn" onclick="changeEoFontSize(1)" style="font-weight:800;border-color:#9CA3AF">A+</button>
       <div style="flex:1"></div>
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
       <button class="learn-bar-btn eo-lang-btn" id="eo-lang-kr" onclick="switchExplainLang('kr')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">KR</span></button>
@@ -598,7 +612,6 @@
   <div class="quiz-overlay" id="quiz-overlay">
     <div class="qo-header">
       <div class="qo-header-title">&#128221; EPS-TOPIK</div>
-      <button class="qo-theme-btn" id="qo-theme-btn" onclick="toggleQuizTheme()">&#9788;&#65039;</button>
       <button class="eo-btn" onclick="closeQuizOverlay()">&#10005;</button>
     </div>
     <div class="qo-pbar" id="qo-pbar"></div>
@@ -609,7 +622,6 @@
   <div class="writing-overlay" id="writing-overlay">
     <div class="qo-header">
       <div class="qo-header-title">&#9997;&#65039; 쓰기연습</div>
-      <button class="qo-theme-btn" id="wr-theme-btn" onclick="toggleWritingTheme()">&#127769;</button>
       <button class="eo-btn" onclick="closeWritingOverlay()">&#10005;</button>
     </div>
     <div class="wr-body" id="wr-body"></div>
@@ -1489,6 +1501,7 @@ function openExplainOverlay(id, lang) {
   document.getElementById('loop-bar').classList.add('disabled');
   document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('explain-overlay').classList.add('open');
+  syncOverlayThemes();
   document.querySelector('.container').style.paddingTop = '0';
   document.querySelector('.nav-back').style.display = 'none';
   document.querySelector('.nav-title').style.display = 'none';
@@ -1610,12 +1623,11 @@ function destroyExplainAudio() {
 function buildQuizAllQuestions() { if (!quizData) return []; return (quizData.reading || []).concat(quizData.listening || []); }
 function getQuizSection(q) { if (!quizData) return 'reading'; var r = quizData.reading || []; for (var i = 0; i < r.length; i++) { if (r[i].id === q.id) return 'reading'; } return 'listening'; }
 
-function applyQuizTheme() {
-  var o = document.getElementById('quiz-overlay'); var b = document.getElementById('qo-theme-btn');
-  var s = localStorage.getItem('quizTheme') || 'light';
-  if (s === 'dark') { o.classList.add('quiz-dark'); b.innerHTML = '&#9728;&#65039;'; } else { o.classList.remove('quiz-dark'); b.innerHTML = '&#127769;'; }
+function syncOverlayThemes() {
+  var isDark = (document.documentElement.getAttribute('data-theme') || 'light') === 'dark';
+  var ids = ['quiz-overlay', 'writing-overlay', 'explain-overlay'];
+  for (var i = 0; i < ids.length; i++) { var el = document.getElementById(ids[i]); if (el) { if (isDark) el.classList.add('quiz-dark'); else el.classList.remove('quiz-dark'); } }
 }
-function toggleQuizTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyQuizTheme(); }
 
 function openQuizOverlay() {
   if (isLocked) { showLockOverlay(); return; }
@@ -1626,7 +1638,7 @@ function openQuizOverlay() {
   document.getElementById('loop-bar').classList.add('disabled');
   document.querySelector('.sub-list-header').classList.add('disabled');
   document.getElementById('quiz-overlay').classList.add('open');
-  applyQuizTheme(); renderQuiz(); scrollQuizToTop();
+  syncOverlayThemes(); renderQuiz(); scrollQuizToTop();
 }
 
 function closeQuizOverlay() {
@@ -1802,7 +1814,7 @@ function openWritingOverlay(subId) {
   document.querySelector('.nav-btns').style.display = 'none';
   document.getElementById('wr-nav-row').style.display = '';
   wrUpdateNavBtns();
-  applyWritingTheme(); renderWriting(); preloadJamoAudio();
+  syncOverlayThemes(); renderWriting(); preloadJamoAudio();
   var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
   document.body.style.overflow = 'hidden';
   // Preload KR audio on user gesture to avoid autoplay block
@@ -1831,8 +1843,7 @@ function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (v
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
 function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } wrUpdateNavBtns(); renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 
-function applyWritingTheme() { var o = document.getElementById('writing-overlay'); var b = document.getElementById('wr-theme-btn'); var s = localStorage.getItem('quizTheme') || 'light'; if (s === 'dark') { o.classList.add('quiz-dark'); b.innerHTML = '&#9728;&#65039;'; } else { o.classList.remove('quiz-dark'); b.innerHTML = '&#127769;'; } }
-function toggleWritingTheme() { var c = localStorage.getItem('quizTheme') || 'light'; localStorage.setItem('quizTheme', c === 'light' ? 'dark' : 'light'); applyWritingTheme(); }
+// Writing theme now handled by syncOverlayThemes()
 
 function renderWriting() {
   var body = document.getElementById('wr-body');
