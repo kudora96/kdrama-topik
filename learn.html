@@ -1057,6 +1057,8 @@ function onSubClick(id) {
     closeDetail(openDetailId);
     openDetailId = -1;
     playAll();
+    highlightSub(id);
+    lastSubId = id;
     return;
   }
   if (openDetailId !== -1) closeDetail(openDetailId);
