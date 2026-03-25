@@ -357,7 +357,7 @@
     .wr-sentence .wr-w { transition: color 0.2s; color: #6B7280; cursor: pointer; }
     .wr-sentence .wr-w-done { color: #16A34A; }
     .wr-sentence .wr-w-active { color: #2563EB; text-decoration: underline; text-underline-offset: 4px; }
-    .wr-char-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
+    .wr-char-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 8px; }
     .wr-char-inline { display: flex; align-items: center; justify-content: center; gap: 8px; }
     .wr-char-ne { font-size: 13px; font-weight: 700; color: #6B7280; max-width: 200px; line-height: 1.4; text-align: center; }
     .wr-char-ne .wr-cn-hi { color: #2563EB; font-weight: 800; }
@@ -384,19 +384,16 @@
     .wr-char-audio-row { display: inline-flex; gap: 6px; margin-left: 12px; vertical-align: middle; }
     .wr-char-audio-play { border: none; border-radius: 8px; padding: 4px 10px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; background: rgba(255,255,255,0.5); color: #15803D; transition: transform 0.1s; line-height: 1.3; }
     .wr-char-audio-play:active { opacity: 0.8; transform: scale(0.95); }
-    .wr-keyboard { margin-bottom: 4px; }
-    .wr-kb-row { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 3px; justify-content: center; }
+    .wr-keyboard { margin-bottom: 8px; }
+    .wr-kb-row { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 5px; justify-content: center; }
     .wr-kb-label { font-size: 0.55rem; color: #4B5563; text-align: center; margin-bottom: 1px; font-weight: 600; }
-    .wr-kb-desktop { display: none; }
-    .wr-kb-mobile { display: flex; }
-    .wr-kb-label.wr-kb-mobile { display: block; }
-    .wr-kb-btn { border: none; border-radius: 5px; padding: 6px 0; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 27px; text-align: center; }
+    .wr-kb-btn { border: none; border-radius: 5px; padding: 8px 0; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 27px; text-align: center; }
     .wr-kb-btn.consonant { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-kb-btn.vowel { background: rgba(22,163,74,0.12); color: #15803D; }
     .wr-kb-btn:active { opacity: 0.7; transform: scale(0.93); }
     .wr-kb-btn.correct-anim { background: #16A34A !important; color: #fff !important; }
     .wr-kb-btn.wrong-anim { background: #DC2626 !important; color: #fff !important; }
-    .wr-skip-row { display: flex; justify-content: center; gap: 6px; margin-top: 3px; flex-wrap: wrap; }
+    .wr-skip-row { display: flex; justify-content: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
     .wr-skip-btn { border: none; background: rgba(0,0,0,0.06); color: #374151; font-size: 0.72rem; font-weight: 600; cursor: pointer; font-family: inherit; padding: 5px 10px; border-radius: 6px; transition: background 0.1s, transform 0.1s; }
     .wr-skip-btn:active { color: #1A1A1A; background: rgba(0,0,0,0.15); transform: scale(0.95); }
     .wr-word-done { text-align: center; padding: 14px; margin-bottom: 8px; background: rgba(22,163,74,0.1); border-radius: 10px; font-size: 20px; font-weight: 800; color: #15803D; transition: background 0.1s, transform 0.1s; }
@@ -498,9 +495,6 @@
       .wr-cbtn { font-size: 18px; padding: 16px; }
       .wr-char-area { margin-bottom: 16px; }
       .wr-keyboard { margin-bottom: 8px; }
-      .wr-kb-mobile { display: none !important; }
-      .wr-kb-desktop { display: flex; }
-      .wr-kb-label.wr-kb-desktop { display: block; }
       .writing-overlay .qo-header { padding: 10px 14px; }
     }
 
@@ -1900,32 +1894,20 @@ function renderWriting() {
   var basicVow = ['ㅏ','ㅑ','ㅓ','ㅕ','ㅗ','ㅛ','ㅜ','ㅠ','ㅡ','ㅣ'];
   var compVow = ['ㅐ','ㅒ','ㅔ','ㅖ','ㅘ','ㅙ','ㅚ','ㅝ','ㅞ','ㅟ','ㅢ'];
   html += '<div class="wr-keyboard">';
-  // Mobile: single row for all consonants
-  html += '<div class="wr-kb-label wr-kb-mobile">' + L('consonants','자음 Consonants') + '</div>';
-  html += '<div class="wr-kb-row wr-kb-mobile">';
-  for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
-  html += '</div>';
-  // Desktop: split consonants
-  html += '<div class="wr-kb-label wr-kb-desktop">기본 자음 Basic Consonants</div>';
-  html += '<div class="wr-kb-row wr-kb-desktop">';
+  html += '<div class="wr-kb-label">기본 자음 Basic Consonants</div>';
+  html += '<div class="wr-kb-row">';
   for (var i = 0; i < basicCho.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + basicCho[i] + '\')">' + basicCho[i] + '</button>';
   html += '</div>';
-  html += '<div class="wr-kb-label wr-kb-desktop">쌍자음 Double Consonants</div>';
-  html += '<div class="wr-kb-row wr-kb-desktop">';
+  html += '<div class="wr-kb-label">쌍자음 Double Consonants</div>';
+  html += '<div class="wr-kb-row">';
   for (var i = 0; i < doubleCho.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + doubleCho[i] + '\')">' + doubleCho[i] + '</button>';
   html += '</div>';
-  // Mobile: single row for all vowels
-  html += '<div class="wr-kb-label wr-kb-mobile">' + L('vowels','모음 Vowels') + '</div>';
-  html += '<div class="wr-kb-row wr-kb-mobile">';
-  for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
-  html += '</div>';
-  // Desktop: split vowels
-  html += '<div class="wr-kb-label wr-kb-desktop">기본 모음 Basic Vowels</div>';
-  html += '<div class="wr-kb-row wr-kb-desktop">';
+  html += '<div class="wr-kb-label">기본 모음 Basic Vowels</div>';
+  html += '<div class="wr-kb-row">';
   for (var i = 0; i < basicVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + basicVow[i] + '\')">' + basicVow[i] + '</button>';
   html += '</div>';
-  html += '<div class="wr-kb-label wr-kb-desktop">복합 모음 Compound Vowels</div>';
-  html += '<div class="wr-kb-row wr-kb-desktop">';
+  html += '<div class="wr-kb-label">복합 모음 Compound Vowels</div>';
+  html += '<div class="wr-kb-row">';
   for (var i = 0; i < compVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + compVow[i] + '\')">' + compVow[i] + '</button>';
   html += '</div>';
   html += '</div>';
