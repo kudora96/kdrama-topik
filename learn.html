@@ -1162,12 +1162,19 @@ function updateSubtitle() {
   }
   var found = null;
   for (var i = 0; i < subtitles.length; i++) { if (t >= subtitles[i].s && t < subtitles[i].e) { found = subtitles[i]; break; } }
-  if (found && found.id !== lastSubId) { lastSubId = found.id; highlightGap(null); highlightSub(found.id); }
-  else if (!found) {
-    if (lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+  if (found) {
+    if (found.id !== lastSubId) { lastSubId = found.id; highlightGap(null); highlightSub(found.id); }
+  } else {
     var gapFound = null;
     for (var g = 0; g < gapIntervals.length; g++) { if (t >= gapIntervals[g].s && t < gapIntervals[g].e) { gapFound = gapIntervals[g]; break; } }
-    highlightGap(gapFound);
+    if (gapFound) {
+      if (lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+      highlightGap(gapFound);
+    } else if (t >= subtitles[subtitles.length - 1].e) {
+      highlightGap(null);
+      var lastId = subtitles[subtitles.length - 1].id;
+      if (lastSubId !== lastId) { lastSubId = lastId; highlightSub(lastId); }
+    }
   }
 }
 
