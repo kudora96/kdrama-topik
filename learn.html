@@ -1387,8 +1387,8 @@ function updateEoHeader(id, lang) {
   label.textContent = text;
   var eSubs = getExplainSubs();
   var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(id)) { curIdx = i; break; } }
-  document.getElementById('eo-prev').style.display = curIdx > 0 ? '' : 'none';
-  document.getElementById('eo-next').style.display = curIdx < eSubs.length - 1 ? '' : 'none';
+  document.getElementById('eo-prev').disabled = !(curIdx > 0);
+  document.getElementById('eo-next').disabled = !(curIdx < eSubs.length - 1);
 }
 
 function eoNavPrev() {
@@ -1839,7 +1839,7 @@ function closeWritingOverlay() {
 }
 
 function wrScrollToTop() { document.body.style.overflow = ''; var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); document.body.style.overflow = 'hidden'; }
-function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.style.display = ci > 0 ? '' : 'none'; bn.style.display = (ci >= 0 && ci < ids.length - 1) ? '' : 'none'; var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = wrWritingSubId + '. ' + (writingData.sentence_ne || ''); }
+function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.disabled = !(ci > 0); bn.disabled = !(ci >= 0 && ci < ids.length - 1); var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = wrWritingSubId + '. ' + (writingData.sentence_ne || ''); }
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
 function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } wrUpdateNavBtns(); renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 
