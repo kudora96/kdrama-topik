@@ -980,7 +980,19 @@ function renderList() {
   var koFirst = getSubOrder() === 'ko';
   var html = '';
   var visNum = 0;
-  subtitles.forEach(function(sub) {
+  var prevEnd = -1;
+  subtitles.forEach(function(sub, idx) {
+    if (prevEnd >= 0 && sub.s - prevEnd >= 2) {
+      html += '<div class="sub-item">' +
+        '<div class="sub-row" onclick="onGapClick(' + prevEnd + ')" style="color:#9CA3AF;font-style:italic">' +
+          '<div class="sub-num">♪</div>' +
+          '<div class="sub-text"><div class="sub-ko sub-primary" style="color:inherit;font-style:inherit">...</div></div>' +
+          '<div class="loop-badge"></div>' +
+          '<div class="sub-time">' + formatTime(prevEnd) + '</div>' +
+        '</div>' +
+      '</div>';
+    }
+    prevEnd = sub.e;
     var isEmpty = !sub.ko || sub.ko.trim() === '';
     if (!isEmpty) visNum++;
     if (isEmpty) {
@@ -1072,6 +1084,13 @@ function onSubClick(id) {
   if (el) el.classList.add('open');
   highlightSub(id);
   showBar('once');
+}
+
+function onGapClick(time) {
+  if (openDetailId !== -1) { closeDetail(openDetailId); openDetailId = -1; }
+  cancelLoop();
+  userPaused = false;
+  if (player && player.seekTo) { player.seekTo(time, true); player.playVideo(); }
 }
 
 function onEmptySubClick(id) {
