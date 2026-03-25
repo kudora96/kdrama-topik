@@ -387,6 +387,9 @@
     .wr-keyboard { margin-bottom: 4px; }
     .wr-kb-row { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 3px; justify-content: center; }
     .wr-kb-label { font-size: 0.55rem; color: #4B5563; text-align: center; margin-bottom: 1px; font-weight: 600; }
+    .wr-kb-desktop { display: none; }
+    .wr-kb-mobile { display: flex; }
+    .wr-kb-label.wr-kb-mobile { display: block; }
     .wr-kb-btn { border: none; border-radius: 5px; padding: 6px 0; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; min-width: 27px; text-align: center; }
     .wr-kb-btn.consonant { background: rgba(37,99,235,0.12); color: #1D4ED8; }
     .wr-kb-btn.vowel { background: rgba(22,163,74,0.12); color: #15803D; }
@@ -495,6 +498,9 @@
       .wr-cbtn { font-size: 18px; padding: 16px; }
       .wr-char-area { margin-bottom: 16px; }
       .wr-keyboard { margin-bottom: 8px; }
+      .wr-kb-mobile { display: none !important; }
+      .wr-kb-desktop { display: flex; }
+      .wr-kb-label.wr-kb-desktop { display: block; }
       .writing-overlay .qo-header { padding: 10px 14px; }
     }
 
@@ -1889,11 +1895,40 @@ function renderWriting() {
   for (var ci2 = 0; ci2 < ch.jamo.length; ci2++) { if (COMPOUND_VOWEL[ch.jamo[ci2]]) { hasCompound = true; break; } }
   if (hasCompound) { html += '<div class="wr-alt-hint">वा ' + escHtml(ch.jamo.join(' + ')) + '</div>'; }
   html += '</div>';
-  html += '<div class="wr-keyboard"><div class="wr-kb-label">' + L('consonants','자음 Consonants') + '</div><div class="wr-kb-row">';
+  var basicCho = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  var doubleCho = ['ㄲ','ㄸ','ㅃ','ㅆ','ㅉ'];
+  var basicVow = ['ㅏ','ㅑ','ㅓ','ㅕ','ㅗ','ㅛ','ㅜ','ㅠ','ㅡ','ㅣ'];
+  var compVow = ['ㅐ','ㅒ','ㅔ','ㅖ','ㅘ','ㅙ','ㅚ','ㅝ','ㅞ','ㅟ','ㅢ'];
+  html += '<div class="wr-keyboard">';
+  // Mobile: single row for all consonants
+  html += '<div class="wr-kb-label wr-kb-mobile">' + L('consonants','자음 Consonants') + '</div>';
+  html += '<div class="wr-kb-row wr-kb-mobile">';
   for (var i = 0; i < CHO.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + CHO[i] + '\')">' + CHO[i] + '</button>';
-  html += '</div><div class="wr-kb-label">' + L('vowels','모음 Vowels') + '</div><div class="wr-kb-row">';
+  html += '</div>';
+  // Desktop: split consonants
+  html += '<div class="wr-kb-label wr-kb-desktop">기본 자음 Basic Consonants</div>';
+  html += '<div class="wr-kb-row wr-kb-desktop">';
+  for (var i = 0; i < basicCho.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + basicCho[i] + '\')">' + basicCho[i] + '</button>';
+  html += '</div>';
+  html += '<div class="wr-kb-label wr-kb-desktop">쌍자음 Double Consonants</div>';
+  html += '<div class="wr-kb-row wr-kb-desktop">';
+  for (var i = 0; i < doubleCho.length; i++) html += '<button class="wr-kb-btn consonant" onclick="pressJamo(\'' + doubleCho[i] + '\')">' + doubleCho[i] + '</button>';
+  html += '</div>';
+  // Mobile: single row for all vowels
+  html += '<div class="wr-kb-label wr-kb-mobile">' + L('vowels','모음 Vowels') + '</div>';
+  html += '<div class="wr-kb-row wr-kb-mobile">';
   for (var i = 0; i < JUNG.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + JUNG[i] + '\')">' + JUNG[i] + '</button>';
-  html += '</div></div>';
+  html += '</div>';
+  // Desktop: split vowels
+  html += '<div class="wr-kb-label wr-kb-desktop">기본 모음 Basic Vowels</div>';
+  html += '<div class="wr-kb-row wr-kb-desktop">';
+  for (var i = 0; i < basicVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + basicVow[i] + '\')">' + basicVow[i] + '</button>';
+  html += '</div>';
+  html += '<div class="wr-kb-label wr-kb-desktop">복합 모음 Compound Vowels</div>';
+  html += '<div class="wr-kb-row wr-kb-desktop">';
+  for (var i = 0; i < compVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + compVow[i] + '\')">' + compVow[i] + '</button>';
+  html += '</div>';
+  html += '</div>';
   html += '<div class="wr-skip-row"><button class="wr-skip-btn" id="wr-skip-word-btn" onclick="wrSkipWord()">▶ ' + L('skip','शब्द स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-skip-all-btn" onclick="wrSkipAll()">⏭ ' + L('skip_all','सबै स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','शब्द सुन्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-kr-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div>';
   body.innerHTML = html;
 }
