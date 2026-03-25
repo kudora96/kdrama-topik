@@ -745,6 +745,7 @@ var explainActivePara = -1;
 var eoSeeking = false;
 var subtitleTimer = null;
 var lastSubId = -1;
+var gapIntervals = [];
 var openDetailId = -1;
 var currentSub = null;
 var loopSub = null;
@@ -980,10 +981,13 @@ function renderList() {
   var koFirst = getSubOrder() === 'ko';
   var html = '';
   var visNum = 0;
-  var prevEnd = -1;
+  var prevEnd = 0;
+  gapIntervals = [];
   subtitles.forEach(function(sub, idx) {
-    if (prevEnd >= 0 && sub.s - prevEnd >= 2) {
-      html += '<div class="sub-item">' +
+    if (sub.s - prevEnd >= 2) {
+      var gapId = 'gap-' + gapIntervals.length;
+      gapIntervals.push({ id: gapId, s: prevEnd, e: sub.s });
+      html += '<div class="sub-item" id="' + gapId + '">' +
         '<div class="sub-row" onclick="onGapClick(' + prevEnd + ')" style="color:#9CA3AF;font-style:italic">' +
           '<div class="sub-num">♪</div>' +
           '<div class="sub-text"><div class="sub-ko sub-primary" style="color:inherit;font-style:inherit">...</div></div>' +
@@ -1128,6 +1132,19 @@ function updateSubCount(activeId) {
 
 function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } updateSubCount(null); }
 
+var activeGapEl = null;
+function highlightGap(gap) {
+  if (activeGapEl) { activeGapEl.classList.remove('active'); activeGapEl = null; }
+  if (!gap) return;
+  var el = document.getElementById(gap.id);
+  if (el) {
+    el.classList.add('active');
+    activeGapEl = el;
+    var list = document.getElementById('sub-list');
+    if (list) list.scrollTop = el.offsetTop - list.offsetTop;
+  }
+}
+
 // ── Subtitle Sync ──
 function startSubtitleSync() { stopSubtitleSync(); subtitleTimer = setInterval(updateSubtitle, 200); }
 function stopSubtitleSync() { if (subtitleTimer) { clearInterval(subtitleTimer); subtitleTimer = null; } }
@@ -1145,8 +1162,13 @@ function updateSubtitle() {
   }
   var found = null;
   for (var i = 0; i < subtitles.length; i++) { if (t >= subtitles[i].s && t < subtitles[i].e) { found = subtitles[i]; break; } }
-  if (found && found.id !== lastSubId) { lastSubId = found.id; highlightSub(found.id); }
-  else if (!found && lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+  if (found && found.id !== lastSubId) { lastSubId = found.id; highlightGap(null); highlightSub(found.id); }
+  else if (!found) {
+    if (lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+    var gapFound = null;
+    for (var g = 0; g < gapIntervals.length; g++) { if (t >= gapIntervals[g].s && t < gapIntervals[g].e) { gapFound = gapIntervals[g]; break; } }
+    highlightGap(gapFound);
+  }
 }
 
 // ── Loop ──
@@ -1199,6 +1221,7 @@ function playAll() {
   lastSubId = -1;
   if (openDetailId !== -1) { closeDetail(openDetailId); openDetailId = -1; }
   if (activeEl) { activeEl.classList.remove('active'); activeEl = null; }
+  highlightGap(null);
   document.getElementById('loop-bar').classList.remove('active');
   if (player && player.playVideo) player.playVideo();
 }
