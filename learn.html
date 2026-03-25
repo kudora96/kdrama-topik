@@ -457,6 +457,19 @@
       .learn-bar-btn .lb-label { font-size: calc(0.56rem * var(--font-scale, 1)); }
       .btn-action { padding: 6px 10px; font-size: 0.72rem; }
     }
+    @media (min-width: 768px) {
+      .wr-sentence { font-size: 22px; }
+      .wr-char-box { width: 80px; height: 80px; }
+      .wr-target-char { font-size: 52px; }
+      .wr-composed { font-size: 52px; }
+      .wr-char-ne { font-size: 16px; }
+      .wr-kb-btn { min-width: 36px; padding: 10px 0; font-size: 16px; }
+      .wr-jamo-slots .wr-slot { min-width: 34px; height: 38px; font-size: 17px; }
+      .wr-skip-btn { font-size: 0.85rem; padding: 8px 14px; }
+      .wr-word-done { font-size: 24px; }
+      .wr-complete-words { font-size: 30px; }
+      .wr-complete-ne { font-size: 22px; }
+    }
 
     /* ── Page Dark Mode ── */
     .learn-theme-btn { border: none; width: 32px; height: 18px; border-radius: 100px; border: 1.5px solid #E5E7EB; background: rgba(0,0,0,0.04); cursor: pointer; padding: 0; position: relative; flex-shrink: 0; }
@@ -1819,16 +1832,7 @@ function renderWriting() {
   }
   var words = writingData.words; var html = '';
   var allDone = wrWordIdx >= words.length;
-  // Word progress bar (hide on completion screen only)
-  if (!allDone) {
-    html += '<div class="wr-progress">';
-    for (var pi = 0; pi < words.length; pi++) {
-      var pcls = 'wr-prog-btn';
-      if (pi === wrWordIdx && wrWordIdx < words.length) pcls += ' prog-active';
-      html += '<button class="' + pcls + '" onclick="wrGoToWord(' + pi + ')">' + (pi + 1) + '</button>';
-    }
-    html += '</div>';
-  }
+  // Word progress bar removed
   if (allDone) {
     html += '<div class="wr-complete"><div class="wr-complete-icon">🎉</div><div class="wr-complete-title">' + L('sentence_complete','문장 완성!') + '</div><div class="wr-complete-words" id="wr-complete-words">';
     for (var i = 0; i < words.length; i++) { html += '<span class="wr-cw" id="wr-cw-' + i + '">' + escHtml(words[i].word) + (words[i].meaning_ne ? '<span class="wr-cw-ne">' + escHtml(words[i].meaning_ne) + '</span>' : '') + '</span>'; }
