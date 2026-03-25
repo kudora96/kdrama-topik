@@ -1175,6 +1175,9 @@ function playAll() {
   closeExplainOverlay(); closeQuizOverlay(); closeWritingOverlay();
   cancelLoop(); resetSpeed();
   currentSub = null; loopPausing = false; userPaused = false;
+  lastSubId = -1;
+  if (openDetailId !== -1) { closeDetail(openDetailId); openDetailId = -1; }
+  if (activeEl) { activeEl.classList.remove('active'); activeEl = null; }
   document.getElementById('loop-bar').classList.remove('active');
   if (player && player.playVideo) player.playVideo();
 }
