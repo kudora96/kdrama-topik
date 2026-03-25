@@ -342,9 +342,9 @@
     .quiz-dark.explain-overlay .eo-sub-label { color: #9ba4b8 !important; }
 
     /* ── Writing Overlay ── */
-    .writing-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: #FFFFFF; border-radius: 0; flex-direction: column; margin-top: 0; border: none; z-index: 200; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .writing-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: #FFFFFF; border-radius: 0; flex-direction: column; margin-top: 0; border: none; z-index: 200; overflow: hidden; }
     .writing-overlay.open { display: flex; }
-    .writing-overlay .qo-header { padding: 6px 10px; }
+    .writing-overlay .qo-header { padding: 6px 10px; flex-shrink: 0; }
     .writing-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
     .writing-overlay .eo-btn:active { background: #E5E7EB; }
     .wr-progress { display: flex; gap: 4px; justify-content: center; padding: 4px 10px 2px; flex-wrap: wrap; }
@@ -352,7 +352,7 @@
     .wr-prog-btn:active { transform: scale(0.9); }
     .wr-prog-btn.prog-active { border-color: #2563EB; background: #2563EB; color: #fff; box-shadow: 0 0 8px rgba(37,99,235,0.5); }
     .wr-prog-btn.prog-done { border-color: #D1D5DB; background: #fff; color: #6B7280; }
-    .wr-body { padding: 4px 10px; }
+    .wr-body { padding: 4px 10px; flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .wr-sentence { font-size: 16px; font-weight: 800; text-align: center; padding: 4px 8px; border-bottom: 1px solid #E5E7EB; margin-bottom: 4px; line-height: 1.4; color: #1A1A1A; }
     .wr-sentence .wr-w { transition: color 0.2s; color: #6B7280; cursor: pointer; }
     .wr-sentence .wr-w-done { color: #16A34A; }
@@ -628,7 +628,7 @@
       <button class="eo-btn" onclick="closeWritingOverlay()">&#10005;</button>
     </div>
     <div class="wr-body" id="wr-body"></div>
-    <div style="padding:6px 14px 10px"><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()" style="width:100%">&#10005; बन्द गर्नुहोस्</button></div>
+    <div style="padding:6px 14px 10px;flex-shrink:0"><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()" style="width:100%">&#10005; बन्द गर्नुहोस्</button></div>
   </div>
 
   <div class="tip-banner" id="tip-banner" style="display:none">
@@ -1818,7 +1818,7 @@ function openWritingOverlay(subId) {
   document.getElementById('wr-nav-row').style.display = '';
   wrUpdateNavBtns();
   syncOverlayThemes(); renderWriting(); preloadJamoAudio();
-  var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  var el = document.getElementById('wr-body'); if (el) el.scrollTop = 0;
   document.body.style.overflow = 'hidden';
   // Preload KR audio on user gesture to avoid autoplay block
   var krPath = getWritingKrAudioPath();
@@ -1841,7 +1841,7 @@ function closeWritingOverlay() {
   highlightSub(wrWritingSubId);
 }
 
-function wrScrollToTop() { document.body.style.overflow = ''; var el = document.getElementById('writing-overlay'); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); document.body.style.overflow = 'hidden'; }
+function wrScrollToTop() { var el = document.getElementById('wr-body'); if (el) el.scrollTop = 0; }
 function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.disabled = !(ci > 0); bn.disabled = !(ci >= 0 && ci < ids.length - 1); var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = wrWritingSubId + '. ' + (writingData.sentence_ne || ''); }
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
 function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } wrUpdateNavBtns(); renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
