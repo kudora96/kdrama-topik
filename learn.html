@@ -612,6 +612,10 @@
   </div>
 
   <div class="sub-list-header">
+    <div style="display:flex;gap:2px">
+      <button class="nav-arrow" id="btn-sub-prev" onclick="navSub(-1)" disabled style="color:#1A1A1A">&#9664;</button>
+      <button class="nav-arrow" id="btn-sub-next" onclick="navSub(1)" style="color:#1A1A1A">&#9654;</button>
+    </div>
     <h2></h2>
     <button class="btn-sub-order" id="btn-sub-order" onclick="toggleSubOrder()"></button>
     <div class="font-controls">
@@ -746,6 +750,7 @@ var eoSeeking = false;
 var subtitleTimer = null;
 var lastSubId = -1;
 var gapIntervals = [];
+var allRows = [];
 var openDetailId = -1;
 var currentSub = null;
 var loopSub = null;
@@ -983,10 +988,12 @@ function renderList() {
   var visNum = 0;
   var prevEnd = 0;
   gapIntervals = [];
+  allRows = [];
   subtitles.forEach(function(sub, idx) {
     if (sub.s - prevEnd >= 2) {
       var gapId = 'gap-' + gapIntervals.length;
       gapIntervals.push({ id: gapId, s: prevEnd, e: sub.s });
+      allRows.push({ type: 'gap', elId: gapId, time: prevEnd });
       html += '<div class="sub-item" id="' + gapId + '">' +
         '<div class="sub-row" onclick="onGapClick(' + prevEnd + ')" style="color:#9CA3AF;font-style:italic">' +
           '<div class="sub-num">♪</div>' +
@@ -997,6 +1004,7 @@ function renderList() {
       '</div>';
     }
     prevEnd = sub.e;
+    allRows.push({ type: 'sub', elId: 'sub-' + sub.id, time: sub.s, subId: sub.id });
     var isEmpty = !sub.ko || sub.ko.trim() === '';
     if (!isEmpty) visNum++;
     if (isEmpty) {
@@ -1118,6 +1126,7 @@ function highlightSub(id) {
     if (list) list.scrollTop = el.offsetTop - list.offsetTop;
   }
   updateSubCount(id);
+  updateNavButtons();
 }
 
 function updateSubCount(activeId) {
@@ -1130,7 +1139,7 @@ function updateSubCount(activeId) {
   document.getElementById('sub-count').textContent = cur + '/' + totalPad + ' ' + L('count_unit','개');
 }
 
-function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } updateSubCount(null); }
+function clearHighlight() { if (activeEl) { activeEl.classList.remove('active'); activeEl = null; } updateSubCount(null); updateNavButtons(); }
 
 var activeGapEl = null;
 function highlightGap(gap) {
@@ -1142,6 +1151,49 @@ function highlightGap(gap) {
     activeGapEl = el;
     var list = document.getElementById('sub-list');
     if (list) list.scrollTop = el.offsetTop - list.offsetTop;
+  }
+  updateNavButtons();
+}
+
+function getCurrentRowIndex() {
+  var activeId = activeEl ? activeEl.id : (activeGapEl ? activeGapEl.id : null);
+  if (!activeId) return -1;
+  for (var i = 0; i < allRows.length; i++) { if (allRows[i].elId === activeId) return i; }
+  return -1;
+}
+
+function updateNavButtons() {
+  var idx = getCurrentRowIndex();
+  var prev = document.getElementById('btn-sub-prev');
+  var next = document.getElementById('btn-sub-next');
+  if (!prev || !next) return;
+  prev.disabled = (idx <= 0);
+  next.disabled = (idx >= allRows.length - 1);
+}
+
+function navSub(dir) {
+  if (allRows.length === 0) return;
+  var idx = getCurrentRowIndex();
+  var target;
+  if (idx === -1) {
+    target = dir === 1 ? 0 : allRows.length - 1;
+  } else {
+    target = idx + dir;
+  }
+  if (target < 0 || target >= allRows.length) return;
+  var row = allRows[target];
+  if (row.type === 'gap') {
+    if (lastSubId !== -1) { lastSubId = -1; clearHighlight(); }
+    var gap = null;
+    for (var g = 0; g < gapIntervals.length; g++) { if (gapIntervals[g].id === row.elId) { gap = gapIntervals[g]; break; } }
+    highlightGap(gap);
+    if (player && player.seekTo) { player.seekTo(row.time, true); player.playVideo(); }
+  } else {
+    highlightGap(null);
+    lastSubId = row.subId;
+    highlightSub(row.subId);
+    var sub = findSub(row.subId);
+    if (sub && player && player.seekTo) { player.seekTo(sub.s, true); player.playVideo(); }
   }
 }
 
