@@ -343,7 +343,9 @@
     .wr-sentence .wr-w-active { color: #2563EB; text-decoration: underline; text-underline-offset: 4px; }
     .wr-char-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
     .wr-char-inline { display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .wr-char-ne { font-size: 13px; font-weight: 700; color: #2563EB; max-width: 80px; line-height: 1.3; }
+    .wr-char-ne { font-size: 13px; font-weight: 700; color: #6B7280; max-width: 200px; line-height: 1.4; text-align: center; }
+    .wr-char-ne .wr-cn-hi { color: #2563EB; font-weight: 800; }
+    .wr-char-ne .wr-cn-ne { display: block; color: #2563EB; }
     .wr-char-box { position: relative; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; flex-shrink: 0; }
     .wr-target-char { font-size: 36px; color: #E5E7EB; position: absolute; font-weight: 700; }
     .wr-composed { font-size: 36px; color: #1A1A1A; position: relative; font-weight: 800; }
@@ -415,7 +417,9 @@
     .quiz-dark .wr-done-char { color: #4ADE80; }
     .quiz-dark .wr-sentence .wr-w-done { color: #4ADE80; }
     .quiz-dark .wr-sentence .wr-w-active { color: #60A5FA; }
-    .quiz-dark .wr-char-ne { color: #60A5FA; }
+    .quiz-dark .wr-char-ne { color: #9CA3AF; }
+    .quiz-dark .wr-char-ne .wr-cn-hi { color: #60A5FA; }
+    .quiz-dark .wr-char-ne .wr-cn-ne { color: #60A5FA; }
     .quiz-dark .wr-target-char { color: rgba(255,255,255,0.15); }
     .quiz-dark .wr-composed { color: #fff; }
     .quiz-dark .wr-composed.flash-correct { color: #4ADE80; }
@@ -1855,7 +1859,9 @@ function renderWriting() {
     return;
   }
   var ch = cc[wrCharIdx]; var exJamo = expandJamo(ch.jamo); var tJ = exJamo.length;
-  html += '<div class="wr-char-area"><div class="wr-char-inline"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-char-ne">' + escHtml(cw.meaning_ne || '') + '</div></div><div class="wr-jamo-slots">';
+  var wrWordHtml = ''; for (var ci = 0; ci < cc.length; ci++) { if (ci === wrCharIdx) wrWordHtml += '<span class="wr-cn-hi">' + escHtml(cc[ci].char) + '</span>'; else wrWordHtml += escHtml(cc[ci].char); }
+  var wrNeHtml = cw.meaning_ne ? '<span class="wr-cn-ne">' + escHtml(cw.meaning_ne) + '</span>' : '';
+  html += '<div class="wr-char-area"><div class="wr-char-inline"><div class="wr-char-box"><div class="wr-target-char">' + escHtml(ch.char) + '</div><div class="wr-composed" id="wr-composed">' + escHtml(composeFromExpanded(wrEnteredJamo)) + '</div></div><div class="wr-char-ne">' + wrWordHtml + wrNeHtml + '</div></div><div class="wr-jamo-slots">';
   for (var i = 0; i < tJ; i++) { var sc = 'wr-slot'; if (i < wrJamoIdx) sc += ' filled'; else if (i === wrJamoIdx) sc += ' current'; html += '<div class="' + sc + '">' + escHtml(exJamo[i]) + '</div>'; }
   html += '</div>';
   // Show compound vowel alternative hint
