@@ -427,6 +427,7 @@
     .quiz-dark.writing-overlay .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
     .quiz-dark.writing-overlay .qo-header-title { color: #fff; }
     .quiz-dark.writing-overlay .wr-nav-ne { color: #9ba4b8 !important; }
+    .quiz-dark.writing-overlay #wr-sub-num { color: #f0f0f5 !important; }
     .quiz-dark.writing-overlay .nav-arrow { background: rgba(255,255,255,0.08); color: #f0f0f5; }
     .quiz-dark.writing-overlay .qo-theme-btn { background: rgba(255,255,255,0.15); }
     .quiz-dark.writing-overlay .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
@@ -621,9 +622,9 @@
   <div class="writing-overlay" id="writing-overlay">
     <div style="max-width:960px;margin:0 auto;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden">
     <div class="qo-header">
-      <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)" disabled>&#9664;</button>
-      <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)" disabled>&#9654;</button>
-      <div class="qo-header-title">&#9997;&#65039; 쓰기연습</div>
+      <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)" disabled style="flex-shrink:0">&#9664;</button>
+      <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)" disabled style="flex-shrink:0">&#9654;</button>
+      <div id="wr-sub-num" style="flex-shrink:0;font-size:0.85rem;font-weight:800;color:#1A1A1A"></div>
       <div class="wr-nav-ne" id="wr-nav-ne" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;font-weight:700;color:#6B7280"></div>
     </div>
     <div class="wr-body" id="wr-body"></div>
@@ -1842,7 +1843,7 @@ function closeWritingOverlay() {
 }
 
 function wrScrollToTop() { var el = document.getElementById('wr-body'); if (el) el.scrollTop = 0; }
-function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.disabled = !(ci > 0); bn.disabled = !(ci >= 0 && ci < ids.length - 1); var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = wrWritingSubId + '. ' + (writingData.sentence_ne || ''); }
+function wrUpdateNavBtns() { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var bp = document.getElementById('btn-wr-prev'), bn = document.getElementById('btn-wr-next'); bp.disabled = !(ci > 0); bn.disabled = !(ci >= 0 && ci < ids.length - 1); var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; }); var visIdx = 0; for (var i = 0; i < visibleSubs.length; i++) { if (visibleSubs[i].id === wrWritingSubId) { visIdx = i + 1; break; } } var numEl = document.getElementById('wr-sub-num'); if (numEl) numEl.textContent = '#' + (visIdx < 10 ? '0' + visIdx : visIdx); var ne = document.getElementById('wr-nav-ne'); if (ne && writingData) ne.textContent = writingData.sentence_ne || ''; }
 function wrGetWritingSubIds() { var arr = clipData && clipData.writing ? clipData.writing : []; var ids = []; for (var i = 0; i < arr.length; i++) ids.push(arr[i].sub_id); return ids; }
 function wrGoToSentence(dir) { var ids = wrGetWritingSubIds(); var ci = -1; for (var i = 0; i < ids.length; i++) { if (ids[i] === wrWritingSubId) { ci = i; break; } } var ni = ci + dir; if (ni < 0 || ni >= ids.length) return; wrStopAll(); wrWritingSubId = ids[ni]; var arr = clipData.writing; writingData = null; for (var i = 0; i < arr.length; i++) { if (arr[i].sub_id === ids[ni]) { writingData = arr[i]; break; } } wrWordIdx = 0; wrCharIdx = 0; wrJamoIdx = 0; wrEnteredJamo = []; if (wrAdvanceTimer) { clearTimeout(wrAdvanceTimer); wrAdvanceTimer = null; } wrUpdateNavBtns(); renderWriting(); wrScrollToTop(); var krPath = getWritingKrAudioPath(); if (krPath) { try { wrPreloadReady = false; wrPreloadedAudio = new Audio(krPath); wrPreloadedAudio.preload = 'auto'; wrPreloadedAudio.volume = 0; wrPreloadedAudio.play().then(function(){ wrPreloadedAudio.pause(); wrPreloadedAudio.currentTime = 0; wrPreloadedAudio.volume = 1; wrPreloadReady = true; }).catch(function(){ wrPreloadedAudio = null; wrPreloadReady = false; }); } catch(e) { wrPreloadedAudio = null; wrPreloadReady = false; } } }
 
