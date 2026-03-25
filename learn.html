@@ -426,6 +426,8 @@
     .quiz-dark.writing-overlay { background: #1a1a2e; }
     .quiz-dark.writing-overlay .qo-header { border-bottom-color: rgba(255,255,255,0.1); }
     .quiz-dark.writing-overlay .qo-header-title { color: #fff; }
+    .quiz-dark.writing-overlay .wr-nav-ne { color: #9ba4b8 !important; }
+    .quiz-dark.writing-overlay .nav-arrow { background: rgba(255,255,255,0.08); color: #f0f0f5; }
     .quiz-dark.writing-overlay .qo-theme-btn { background: rgba(255,255,255,0.15); }
     .quiz-dark.writing-overlay .eo-btn { background: rgba(255,255,255,0.15); color: #fff; }
     .quiz-dark .wr-sentence { color: #E5E7EB; border-bottom-color: rgba(255,255,255,0.1); }
@@ -556,13 +558,7 @@
     <button class="nav-arrow" id="btn-prev-clip" onclick="goPrevClip()" disabled>&#9664;</button>
     <button class="nav-arrow" id="btn-next-clip" onclick="goNextClip()" disabled>&#9654;</button>
   </div>
-  <div class="wr-nav-row" id="wr-nav-row" style="display:none">
-    <div class="wr-nav-ne" id="wr-nav-ne"></div>
-    <div class="wr-nav-row-btns">
-      <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)">&#9664;</button>
-      <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)">&#9654;</button>
-    </div>
-  </div>
+  <div class="wr-nav-row" id="wr-nav-row" style="display:none"></div>
 </div>
 
 <div class="container">
@@ -624,8 +620,10 @@
 
   <div class="writing-overlay" id="writing-overlay">
     <div class="qo-header">
+      <button class="nav-arrow" id="btn-wr-prev" onclick="wrGoToSentence(-1)" disabled>&#9664;</button>
+      <button class="nav-arrow" id="btn-wr-next" onclick="wrGoToSentence(1)" disabled>&#9654;</button>
       <div class="qo-header-title">&#9997;&#65039; 쓰기연습</div>
-      <button class="eo-btn" onclick="closeWritingOverlay()">&#10005;</button>
+      <div class="wr-nav-ne" id="wr-nav-ne" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;font-weight:700;color:#6B7280"></div>
     </div>
     <div class="wr-body" id="wr-body"></div>
     <div style="padding:6px 14px 10px;flex-shrink:0"><button class="wr-cbtn wr-cbtn-close" onclick="closeWritingOverlay()" style="width:100%">&#10005; बन्द गर्नुहोस्</button></div>
