@@ -342,7 +342,7 @@
     .quiz-dark.explain-overlay .eo-sub-label { color: #9ba4b8 !important; }
 
     /* ── Writing Overlay ── */
-    .writing-overlay { display: none; position: relative; background: #FFFFFF; border-radius: 12px; flex-direction: column; margin-top: 10px; border: 1px solid #E5E7EB; max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .writing-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: #FFFFFF; border-radius: 0; flex-direction: column; margin-top: 0; border: none; z-index: 200; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .writing-overlay.open { display: flex; }
     .writing-overlay .qo-header { padding: 6px 10px; }
     .writing-overlay .eo-btn { background: #F8F9FA; color: #1A1A1A; }
