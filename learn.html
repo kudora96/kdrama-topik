@@ -1908,7 +1908,9 @@ function renderWriting() {
   html += '</div>';
   html += '<div class="wr-kb-label">복합 모음 Compound Vowels</div>';
   html += '<div class="wr-kb-row">';
-  for (var i = 0; i < compVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + compVow[i] + '\')">' + compVow[i] + '</button>';
+  for (var i = 0; i < 6; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + compVow[i] + '\')">' + compVow[i] + '</button>';
+  html += '</div><div class="wr-kb-row">';
+  for (var i = 6; i < compVow.length; i++) html += '<button class="wr-kb-btn vowel" onclick="pressJamo(\'' + compVow[i] + '\')">' + compVow[i] + '</button>';
   html += '</div>';
   html += '</div>';
   html += '<div class="wr-skip-row"><button class="wr-skip-btn" id="wr-skip-word-btn" onclick="wrSkipWord()">▶ ' + L('skip','शब्द स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-skip-all-btn" onclick="wrSkipAll()">⏭ ' + L('skip_all','सबै स्वतः पूरा') + '</button><button class="wr-skip-btn" id="wr-original-btn" onclick="toggleOriginalAudio()">🔊 ' + L('listen_original','शब्द सुन्नुहोस्') + '</button><button class="wr-skip-btn" id="wr-kr-btn" onclick="toggleKrSentenceAudio()">🔊 ' + L('listen_sentence','पूरा वाक्य मूल सुन्नुहोस्') + '</button></div>';
