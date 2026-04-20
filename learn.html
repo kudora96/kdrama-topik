@@ -1498,7 +1498,8 @@ function updateExplainHighlight() {
   document.getElementById('eo-cur-time').textContent = fmtAudioTime(t);
   document.getElementById('eo-dur-time').textContent = fmtAudioTime(dur);
   if (!explainAudio.paused) {
-    var adjustedTime = Math.max(0, explainAudio.currentTime - 1.0);
+    var offset = explainAudio.duration * 0.008;
+    var adjustedTime = Math.max(0, explainAudio.currentTime - offset);
     highlightPara(getParaIndexAtTime(adjustedTime, dur));
   }
 }
