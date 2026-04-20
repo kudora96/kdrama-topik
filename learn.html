@@ -793,6 +793,7 @@ var explainAudio = null;
 var explainAudioId = null;
 var explainAudioLang = null;
 var explainParas = [];
+var explainParasAudio = null;
 var explainHighlightTimer = null;
 var explainActivePara = -1;
 var eoSeeking = false;
@@ -1437,19 +1438,24 @@ function switchExplainLang(lang) {
   openExplainOverlay(explainCurrentSubId, lang);
 }
 
-function renderExplainParas(text) {
+function renderExplainParas(text, audioText) {
   var parts = text.split('\n\n'); explainParas = parts; explainActivePara = -1;
+  explainParasAudio = (audioText && audioText.trim()) ? audioText.split('\n\n') : null;
   var container = document.getElementById('eo-text'); var html = '';
   for (var i = 0; i < parts.length; i++) html += '<div class="eo-para" id="eo-para-' + i + '">' + escHtml(parts[i]) + '</div>';
   container.innerHTML = html;
   renderEoMarkers();
 }
 
+function explainParaLen(i) {
+  if (explainParasAudio && explainParasAudio.length === explainParas.length) return explainParasAudio[i].length;
+  return explainParas[i].replace(/\([^)]*\)/g, '').length;
+}
+
 function renderEoMarkers() {
   var mc = document.getElementById('eo-seek-markers'); if (!mc) return;
   if (explainParas.length <= 1) { mc.innerHTML = ''; return; }
-  function cleanLen(s) { return s.replace(/\([^)]*\)/g, '').length; }
-  var total = 0; for (var i = 0; i < explainParas.length; i++) total += cleanLen(explainParas[i]);
+  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
   if (total === 0) { mc.innerHTML = ''; return; }
   var html = ''; var cum = 0;
   for (var i = 0; i < explainParas.length; i++) {
@@ -1457,15 +1463,15 @@ function renderEoMarkers() {
       var pct = (cum / total * 100);
       html += '<div data-para="' + i + '" style="position:absolute;left:' + pct + '%;top:50%;transform:translate(-50%,-50%);width:16px;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto"><div style="width:2px;height:8px;background:#4A9EFF;border-radius:1px"></div></div>';
     }
-    cum += cleanLen(explainParas[i]);
+    cum += explainParaLen(i);
   }
   mc.innerHTML = html;
   mc.onclick = function(e) {
     var marker = e.target.closest('[data-para]'); if (!marker) return;
     var idx = parseInt(marker.getAttribute('data-para'), 10); if (isNaN(idx)) return;
     if (!explainAudio || !explainAudio.duration) return;
-    var r = 0; var t2 = 0; for (var j = 0; j < explainParas.length; j++) t2 += cleanLen(explainParas[j]);
-    if (t2 === 0) return; var c2 = 0; for (var j = 0; j < idx; j++) c2 += cleanLen(explainParas[j]);
+    var t2 = 0; for (var j = 0; j < explainParas.length; j++) t2 += explainParaLen(j);
+    if (t2 === 0) return; var c2 = 0; for (var j = 0; j < idx; j++) c2 += explainParaLen(j);
     explainAudio.currentTime = (c2 / t2) * explainAudio.duration;
     highlightPara(idx);
     if (explainAudio.paused) { try { explainAudio.play().catch(function(){}); } catch(e2) {} startExplainHighlight(); updateEoPlayToggle(true); }
@@ -1476,10 +1482,9 @@ function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer
 function stopExplainHighlight() { if (explainHighlightTimer) { clearInterval(explainHighlightTimer); explainHighlightTimer = null; } }
 
 function getParaIndexAtTime(t, dur) {
-  function cleanLen(s) { return s.replace(/\([^)]*\)/g, '').length; }
-  var total = 0; for (var i = 0; i < explainParas.length; i++) total += cleanLen(explainParas[i]);
+  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
   if (total === 0) return 0; var cum = 0;
-  for (var i = 0; i < explainParas.length; i++) { var cl = cleanLen(explainParas[i]); if (t < ((cum + cl) / total) * dur) return i; cum += cl; }
+  for (var i = 0; i < explainParas.length; i++) { var cl = explainParaLen(i); if (t < ((cum + cl) / total) * dur) return i; cum += cl; }
   return explainParas.length - 1;
 }
 
@@ -1498,8 +1503,7 @@ function updateExplainHighlight() {
   document.getElementById('eo-cur-time').textContent = fmtAudioTime(t);
   document.getElementById('eo-dur-time').textContent = fmtAudioTime(dur);
   if (!explainAudio.paused) {
-    var offset = explainAudio.duration * 0.008;
-    var adjustedTime = Math.max(0, explainAudio.currentTime - offset);
+    var adjustedTime = explainAudio.currentTime;
     highlightPara(getParaIndexAtTime(adjustedTime, dur));
   }
 }
@@ -1525,9 +1529,9 @@ function openExplainOverlay(id, lang) {
   document.querySelector('.nav-title').style.display = 'none';
   document.querySelector('.nav-btns').style.display = 'none';
   if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
-    renderExplainParas(data[lang]); try { explainAudio.play().catch(function(){}); } catch(e) {} updateEoPlayToggle(true); startExplainHighlight(); return;
+    renderExplainParas(data[lang], data[lang + '_audio_text']); try { explainAudio.play().catch(function(){}); } catch(e) {} updateEoPlayToggle(true); startExplainHighlight(); return;
   }
-  destroyExplainAudio(); renderExplainParas(data[lang]); explainAudioId = id; explainAudioLang = lang;
+  destroyExplainAudio(); renderExplainParas(data[lang], data[lang + '_audio_text']); explainAudioId = id; explainAudioLang = lang;
   var restorePara = _eoSwitchPara; var restoreRatio = _eoSwitchRatio;
   _eoSwitchPara = -1; _eoSwitchRatio = -1;
   if (restorePara >= 0 && restorePara < explainParas.length) { highlightPara(restorePara); }
@@ -1584,10 +1588,9 @@ function closeExplainOverlay() {
   var touchY = 0; var wasTouched = false;
   body.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; wasTouched = true; }, { passive: true });
   function getParaTime(idx) {
-    function cleanLen(s) { return s.replace(/\([^)]*\)/g, '').length; }
-    var total = 0; for (var i = 0; i < explainParas.length; i++) total += cleanLen(explainParas[i]);
+    var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
     if (total === 0) return 0; var cum = 0;
-    for (var i = 0; i < idx; i++) cum += cleanLen(explainParas[i]);
+    for (var i = 0; i < idx; i++) cum += explainParaLen(i);
     return cum / total;
   }
   function handleParaTap(target) {
@@ -1633,7 +1636,7 @@ function toggleModalAudio() {
 
 function destroyExplainAudio() {
   stopExplainHighlight(); if (explainAudio) { explainAudio.pause(); explainAudio = null; }
-  explainAudioId = null; explainAudioLang = null; explainParas = []; explainActivePara = -1;
+  explainAudioId = null; explainAudioLang = null; explainParas = []; explainParasAudio = null; explainActivePara = -1;
   updateEoPlayToggle(false);
 }
 
