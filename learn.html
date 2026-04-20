@@ -1497,7 +1497,10 @@ function updateExplainHighlight() {
   if (!eoSeeking) { var seek = document.getElementById('eo-seek'); seek.max = dur; seek.value = t; }
   document.getElementById('eo-cur-time').textContent = fmtAudioTime(t);
   document.getElementById('eo-dur-time').textContent = fmtAudioTime(dur);
-  if (!explainAudio.paused) highlightPara(getParaIndexAtTime(t, dur));
+  if (!explainAudio.paused) {
+    var adjustedTime = Math.max(0, explainAudio.currentTime - 1.0);
+    highlightPara(getParaIndexAtTime(adjustedTime, dur));
+  }
 }
 
 function padId(id) { var s = '' + id; while (s.length < 3) s = '0' + s; return s; }
