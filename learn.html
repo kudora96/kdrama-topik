@@ -794,6 +794,7 @@ var explainAudioId = null;
 var explainAudioLang = null;
 var explainParas = [];
 var explainParasAudio = null;
+var explainMarkTimes = null;
 var explainHighlightTimer = null;
 var explainActivePara = -1;
 var eoSeeking = false;
@@ -1441,6 +1442,7 @@ function switchExplainLang(lang) {
 function renderExplainParas(text, audioText) {
   var parts = text.split('\n\n'); explainParas = parts; explainActivePara = -1;
   explainParasAudio = (audioText && audioText.trim()) ? audioText.split('\n\n') : null;
+  explainMarkTimes = null;
   var container = document.getElementById('eo-text'); var html = '';
   for (var i = 0; i < parts.length; i++) html += '<div class="eo-para" id="eo-para-' + i + '">' + escHtml(parts[i]) + '</div>';
   container.innerHTML = html;
@@ -1450,6 +1452,19 @@ function renderExplainParas(text, audioText) {
 function explainParaLen(i) {
   if (explainParasAudio && explainParasAudio.length === explainParas.length) return explainParasAudio[i].length;
   return explainParas[i].replace(/\([^)]*\)/g, '').length;
+}
+
+function buildExplainMarkTimes(dur) {
+  if (!dur || !explainParas.length) return false;
+  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
+  if (total === 0) return false;
+  var arr = [0]; var cum = 0;
+  for (var i = 0; i < explainParas.length; i++) {
+    cum += explainParaLen(i);
+    arr.push((cum / total) * dur);
+  }
+  explainMarkTimes = arr;
+  return true;
 }
 
 function renderEoMarkers() {
@@ -1466,13 +1481,19 @@ function renderEoMarkers() {
     cum += explainParaLen(i);
   }
   mc.innerHTML = html;
+  if (explainAudio && explainAudio.duration) buildExplainMarkTimes(explainAudio.duration);
   mc.onclick = function(e) {
     var marker = e.target.closest('[data-para]'); if (!marker) return;
     var idx = parseInt(marker.getAttribute('data-para'), 10); if (isNaN(idx)) return;
     if (!explainAudio || !explainAudio.duration) return;
-    var t2 = 0; for (var j = 0; j < explainParas.length; j++) t2 += explainParaLen(j);
-    if (t2 === 0) return; var c2 = 0; for (var j = 0; j < idx; j++) c2 += explainParaLen(j);
-    explainAudio.currentTime = (c2 / t2) * explainAudio.duration;
+    if (!explainMarkTimes) buildExplainMarkTimes(explainAudio.duration);
+    if (explainMarkTimes && idx < explainMarkTimes.length) {
+      explainAudio.currentTime = explainMarkTimes[idx];
+    } else {
+      var t2 = 0; for (var j = 0; j < explainParas.length; j++) t2 += explainParaLen(j);
+      if (t2 === 0) return; var c2 = 0; for (var j = 0; j < idx; j++) c2 += explainParaLen(j);
+      explainAudio.currentTime = (c2 / t2) * explainAudio.duration;
+    }
     highlightPara(idx);
     if (explainAudio.paused) { try { explainAudio.play().catch(function(){}); } catch(e2) {} startExplainHighlight(); updateEoPlayToggle(true); }
   };
@@ -1482,6 +1503,13 @@ function startExplainHighlight() { stopExplainHighlight(); explainHighlightTimer
 function stopExplainHighlight() { if (explainHighlightTimer) { clearInterval(explainHighlightTimer); explainHighlightTimer = null; } }
 
 function getParaIndexAtTime(t, dur) {
+  if (!explainMarkTimes) buildExplainMarkTimes(dur);
+  if (explainMarkTimes && explainMarkTimes.length > 1) {
+    for (var i = 0; i < explainMarkTimes.length - 1; i++) {
+      if (t < explainMarkTimes[i + 1]) return i;
+    }
+    return explainParas.length - 1;
+  }
   var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
   if (total === 0) return 0; var cum = 0;
   for (var i = 0; i < explainParas.length; i++) { var cl = explainParaLen(i); if (t < ((cum + cl) / total) * dur) return i; cum += cl; }
@@ -1587,11 +1615,13 @@ function closeExplainOverlay() {
   var body = document.getElementById('eo-body');
   var touchY = 0; var wasTouched = false;
   body.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; wasTouched = true; }, { passive: true });
-  function getParaTime(idx) {
+  function getParaSeekTime(idx) {
+    if (!explainMarkTimes) buildExplainMarkTimes(explainAudio ? explainAudio.duration : 0);
+    if (explainMarkTimes && idx < explainMarkTimes.length) return explainMarkTimes[idx];
     var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
-    if (total === 0) return 0; var cum = 0;
-    for (var i = 0; i < idx; i++) cum += explainParaLen(i);
-    return cum / total;
+    if (total === 0 || !explainAudio || !explainAudio.duration) return 0;
+    var cum = 0; for (var i = 0; i < idx; i++) cum += explainParaLen(i);
+    return (cum / total) * explainAudio.duration;
   }
   function handleParaTap(target) {
     var el = target.closest('.eo-para'); if (!el) return;
@@ -1599,8 +1629,7 @@ function closeExplainOverlay() {
     if (isNaN(idx)) return;
     if (idx === explainActivePara) { toggleModalAudio(); return; }
     if (!explainAudio || !explainAudio.duration) return;
-    var ratio = getParaTime(idx);
-    explainAudio.currentTime = ratio * explainAudio.duration;
+    explainAudio.currentTime = getParaSeekTime(idx);
     highlightPara(idx);
     if (explainAudio.paused) { try { explainAudio.play().catch(function(){}); } catch(e) {} startExplainHighlight(); updateEoPlayToggle(true); }
   }
@@ -1636,7 +1665,7 @@ function toggleModalAudio() {
 
 function destroyExplainAudio() {
   stopExplainHighlight(); if (explainAudio) { explainAudio.pause(); explainAudio = null; }
-  explainAudioId = null; explainAudioLang = null; explainParas = []; explainParasAudio = null; explainActivePara = -1;
+  explainAudioId = null; explainAudioLang = null; explainParas = []; explainParasAudio = null; explainMarkTimes = null; explainActivePara = -1;
   updateEoPlayToggle(false);
 }
 
