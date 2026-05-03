@@ -1525,6 +1525,19 @@ function renderEoMarkers() {
   if (explainParas.length <= 1) { mc.innerHTML = ''; return; }
   var dur = (explainAudio && explainAudio.duration) ? explainAudio.duration : 0;
   if (dur > 0) buildExplainMarkTimes(dur);
+  console.log('=== renderEoMarkers DEBUG ===');
+  console.log('explainCurrentSubId:', explainCurrentSubId);
+  console.log('explainAudioLang:', explainAudioLang);
+  console.log('explainParas.length:', explainParas.length);
+  console.log('dur (audio.duration):', dur);
+  console.log('explainMarkTimes:', explainMarkTimes);
+  if (typeof explanationsMap !== 'undefined' && explainCurrentSubId != null) {
+    var dbgData = explanationsMap[String(explainCurrentSubId)];
+    if (dbgData) {
+      console.log('JSON kr_para_times:', dbgData.kr_para_times);
+      console.log('JSON np_para_times:', dbgData.np_para_times);
+    }
+  }
   var useTimes = false;
   if (dur > 0 && explainMarkTimes && explainMarkTimes.length >= explainParas.length + 1) {
     useTimes = true;
@@ -1536,6 +1549,7 @@ function renderEoMarkers() {
   if (useTimes) {
     for (var i = 1; i < explainParas.length; i++) {
       var pct = (explainMarkTimes[i] / dur) * 100;
+      console.log('Marker i=' + i + ', time=' + explainMarkTimes[i] + ', pct=' + pct + '%');
       html += '<div data-para="' + i + '" style="position:absolute;left:' + pct + '%;top:50%;transform:translate(-50%,-50%);width:16px;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto"><div style="width:2px;height:8px;background:#4A9EFF;border-radius:1px"></div></div>';
     }
   } else {
