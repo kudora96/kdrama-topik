@@ -1523,18 +1523,34 @@ function buildExplainMarkTimes(dur) {
 function renderEoMarkers() {
   var mc = document.getElementById('eo-seek-markers'); if (!mc) return;
   if (explainParas.length <= 1) { mc.innerHTML = ''; return; }
-  var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
-  if (total === 0) { mc.innerHTML = ''; return; }
-  var html = ''; var cum = 0;
-  for (var i = 0; i < explainParas.length; i++) {
-    if (i > 0) {
-      var pct = (cum / total * 100);
+  var dur = (explainAudio && explainAudio.duration) ? explainAudio.duration : 0;
+  if (dur > 0) buildExplainMarkTimes(dur);
+  var useTimes = false;
+  if (dur > 0 && explainMarkTimes && explainMarkTimes.length >= explainParas.length + 1) {
+    useTimes = true;
+    for (var k = 0; k < explainParas.length + 1; k++) {
+      if (typeof explainMarkTimes[k] !== 'number' || !isFinite(explainMarkTimes[k])) { useTimes = false; break; }
+    }
+  }
+  var html = '';
+  if (useTimes) {
+    for (var i = 1; i < explainParas.length; i++) {
+      var pct = (explainMarkTimes[i] / dur) * 100;
       html += '<div data-para="' + i + '" style="position:absolute;left:' + pct + '%;top:50%;transform:translate(-50%,-50%);width:16px;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto"><div style="width:2px;height:8px;background:#4A9EFF;border-radius:1px"></div></div>';
     }
-    cum += explainParaLen(i);
+  } else {
+    var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
+    if (total === 0) { mc.innerHTML = ''; return; }
+    var cum = 0;
+    for (var i = 0; i < explainParas.length; i++) {
+      if (i > 0) {
+        var pct = (cum / total * 100);
+        html += '<div data-para="' + i + '" style="position:absolute;left:' + pct + '%;top:50%;transform:translate(-50%,-50%);width:16px;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto"><div style="width:2px;height:8px;background:#4A9EFF;border-radius:1px"></div></div>';
+      }
+      cum += explainParaLen(i);
+    }
   }
   mc.innerHTML = html;
-  if (explainAudio && explainAudio.duration) buildExplainMarkTimes(explainAudio.duration);
   mc.onclick = function(e) {
     var marker = e.target.closest('[data-para]'); if (!marker) return;
     var idx = parseInt(marker.getAttribute('data-para'), 10); if (isNaN(idx)) return;
