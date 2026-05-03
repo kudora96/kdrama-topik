@@ -794,6 +794,7 @@ var explanationsMap = {};
 var explainAudio = null;
 var explainAudioId = null;
 var explainAudioLang = null;
+var explainDisplayLang = null;
 var explainParas = [];
 var explainParasAudio = null;
 var explainMarkTimes = null;
@@ -1392,9 +1393,27 @@ function updateEoLangBtns(lang) {
 }
 
 function selectExplainMode(mode) {
+  if (!explainCurrentSubId) return;
+  if (explainCurrentMode === mode) return;
+  var newAudio = (mode === 'krkr' || mode === 'krnp') ? 'kr' : 'np';
+  var newDisplay = (mode === 'krkr' || mode === 'npkr') ? 'kr' : 'np';
   explainCurrentMode = mode;
-  var lang = (mode === 'krkr' || mode === 'krnp') ? 'kr' : 'np';
-  switchExplainLang(lang);
+  if (explainAudioLang === newAudio && explainAudioId === explainCurrentSubId) {
+    var data = explanationsMap[String(explainCurrentSubId)];
+    if (data) {
+      var prevActive = explainActivePara;
+      renderExplainParas(data[newDisplay], data[newAudio + '_audio_text']);
+      if (prevActive >= 0 && prevActive < explainParas.length) highlightPara(prevActive);
+    }
+    explainDisplayLang = newDisplay;
+    updateEoHeader(explainCurrentSubId, newAudio, newDisplay);
+    updateEoLangBtns(newAudio);
+    return;
+  }
+  _eoSwitchPara = explainActivePara;
+  _eoSwitchRatio = (explainAudio && explainAudio.duration > 0) ? (explainAudio.currentTime / explainAudio.duration) : -1;
+  destroyExplainAudio();
+  openExplainOverlay(explainCurrentSubId, newAudio, newDisplay);
 }
 
 function getExplainSubs() {
@@ -1402,14 +1421,15 @@ function getExplainSubs() {
   return visibleSubs.filter(function(s) { return explanationsMap[String(s.id)]; });
 }
 
-function updateEoHeader(id, lang) {
+function updateEoHeader(id, audioLang, displayLang) {
+  if (displayLang == null) displayLang = audioLang;
   var title = document.getElementById('eo-title');
-  title.textContent = lang === 'kr' ? '🎧 KR' : '🎧 NP';
+  title.textContent = audioLang === 'kr' ? '🎧 KR' : '🎧 NP';
   var label = document.getElementById('eo-sub-label');
   var visibleSubs = subtitles.filter(function(s) { return s.ko && s.ko.trim() !== ''; });
   var visIdx = 0; for (var i = 0; i < visibleSubs.length; i++) { if (visibleSubs[i].id === id) { visIdx = i + 1; break; } }
   var sub = null; for (var i = 0; i < subtitles.length; i++) { if (subtitles[i].id === id) { sub = subtitles[i]; break; } }
-  var text = sub ? (lang === 'np' ? sub.ne : stripParen(sub.ko)) : '';
+  var text = sub ? (displayLang === 'np' ? sub.ne : stripParen(sub.ko)) : '';
   document.getElementById('eo-sub-num').textContent = '#' + (visIdx < 10 ? '0' + visIdx : visIdx);
   label.textContent = text;
   var eSubs = getExplainSubs();
@@ -1423,9 +1443,10 @@ function eoNavPrev() {
   var sid = explainCurrentSubId;
   var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(sid)) { curIdx = i; break; } }
   if (curIdx <= 0) return;
-  var lang = explainAudioLang || 'np';
+  var aLang = explainAudioLang || 'np';
+  var dLang = explainDisplayLang || aLang;
   destroyExplainAudio();
-  openExplainOverlay(eSubs[curIdx - 1].id, lang);
+  openExplainOverlay(eSubs[curIdx - 1].id, aLang, dLang);
 }
 
 function eoNavNext() {
@@ -1433,9 +1454,10 @@ function eoNavNext() {
   var sid = explainCurrentSubId;
   var curIdx = -1; for (var i = 0; i < eSubs.length; i++) { if (String(eSubs[i].id) === String(sid)) { curIdx = i; break; } }
   if (curIdx < 0 || curIdx >= eSubs.length - 1) return;
-  var lang = explainAudioLang || 'np';
+  var aLang = explainAudioLang || 'np';
+  var dLang = explainDisplayLang || aLang;
   destroyExplainAudio();
-  openExplainOverlay(eSubs[curIdx + 1].id, lang);
+  openExplainOverlay(eSubs[curIdx + 1].id, aLang, dLang);
 }
 
 var _eoSwitchPara = -1;
@@ -1443,11 +1465,11 @@ var _eoSwitchRatio = -1;
 
 function switchExplainLang(lang) {
   if (!explainCurrentSubId) return;
-  if (explainAudioLang === lang && explainAudioId === explainCurrentSubId) return;
+  if (explainAudioLang === lang && explainDisplayLang === lang && explainAudioId === explainCurrentSubId) return;
   _eoSwitchPara = explainActivePara;
   _eoSwitchRatio = (explainAudio && explainAudio.duration > 0) ? (explainAudio.currentTime / explainAudio.duration) : -1;
   destroyExplainAudio();
-  openExplainOverlay(explainCurrentSubId, lang);
+  openExplainOverlay(explainCurrentSubId, lang, lang);
 }
 
 function renderExplainParas(text, audioText) {
@@ -1549,17 +1571,18 @@ function updateExplainHighlight() {
 
 function padId(id) { var s = '' + id; while (s.length < 3) s = '0' + s; return s; }
 
-function openExplainOverlay(id, lang) {
+function openExplainOverlay(id, audioLang, displayLang) {
   if (isLocked) { showLockOverlay(); return; }
+  if (displayLang == null) displayLang = audioLang;
   var data = explanationsMap[String(id)]; if (!data) return;
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
   explainCurrentSubId = id;
-  if (!explainCurrentMode || (lang === 'kr' && explainCurrentMode.indexOf('np') === 0) || (lang === 'np' && explainCurrentMode.indexOf('kr') === 0)) {
-    explainCurrentMode = (lang === 'kr') ? 'krkr' : 'npnp';
+  if (!explainCurrentMode || (audioLang === 'kr' && explainCurrentMode.indexOf('np') === 0) || (audioLang === 'np' && explainCurrentMode.indexOf('kr') === 0)) {
+    explainCurrentMode = (audioLang === 'kr') ? (displayLang === 'np' ? 'krnp' : 'krkr') : (displayLang === 'kr' ? 'npkr' : 'npnp');
   }
-  updateEoHeader(id, lang);
-  updateEoLangBtns(lang);
+  updateEoHeader(id, audioLang, displayLang);
+  updateEoLangBtns(audioLang);
   document.getElementById('player-wrap').style.display = 'none';
   document.getElementById('sub-list').classList.add('disabled');
   document.getElementById('loop-bar').classList.add('disabled');
@@ -1570,15 +1593,15 @@ function openExplainOverlay(id, lang) {
   document.querySelector('.nav-back').style.display = 'none';
   document.querySelector('.nav-title').style.display = 'none';
   document.querySelector('.nav-btns').style.display = 'none';
-  if (explainAudio && explainAudioId === id && explainAudioLang === lang) {
-    renderExplainParas(data[lang], data[lang + '_audio_text']); try { explainAudio.play().catch(function(){}); } catch(e) {} updateEoPlayToggle(true); startExplainHighlight(); return;
+  if (explainAudio && explainAudioId === id && explainAudioLang === audioLang) {
+    renderExplainParas(data[displayLang], data[audioLang + '_audio_text']); explainDisplayLang = displayLang; try { explainAudio.play().catch(function(){}); } catch(e) {} updateEoPlayToggle(true); startExplainHighlight(); return;
   }
-  destroyExplainAudio(); renderExplainParas(data[lang], data[lang + '_audio_text']); explainAudioId = id; explainAudioLang = lang;
+  destroyExplainAudio(); renderExplainParas(data[displayLang], data[audioLang + '_audio_text']); explainAudioId = id; explainAudioLang = audioLang; explainDisplayLang = displayLang;
   var restorePara = _eoSwitchPara; var restoreRatio = _eoSwitchRatio;
   _eoSwitchPara = -1; _eoSwitchRatio = -1;
   if (restorePara >= 0 && restorePara < explainParas.length) { highlightPara(restorePara); }
-  var audioFile = data['audio_' + lang];
-  var path = (audioFile ? 'audio/' + lang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + lang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + lang + '.mp3') + '?v=20260305b';
+  var audioFile = data['audio_' + audioLang];
+  var path = (audioFile ? 'audio/' + audioLang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + audioLang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + audioLang + '.mp3') + '?v=20260305b';
   try { explainAudio = new Audio(path); } catch(e) { return; }
   updateEoPlayToggle(true);
   explainAudio.onended = function() { stopExplainHighlight(); updateEoPlayToggle(false); };
@@ -1679,7 +1702,7 @@ function toggleModalAudio() {
 
 function destroyExplainAudio() {
   stopExplainHighlight(); if (explainAudio) { explainAudio.pause(); explainAudio = null; }
-  explainAudioId = null; explainAudioLang = null; explainParas = []; explainParasAudio = null; explainMarkTimes = null; explainActivePara = -1;
+  explainAudioId = null; explainAudioLang = null; explainDisplayLang = null; explainParas = []; explainParasAudio = null; explainMarkTimes = null; explainActivePara = -1;
   updateEoPlayToggle(false);
 }
 
