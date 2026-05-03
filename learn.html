@@ -599,8 +599,10 @@
       <button class="btn-font eo-font-btn" onclick="changeEoFontSize(-1)" style="font-weight:800;border-color:#9CA3AF">A-</button>
       <button class="btn-font eo-font-btn" onclick="changeEoFontSize(1)" style="font-weight:800;border-color:#9CA3AF">A+</button>
       <div style="flex:1"></div>
-      <button class="learn-bar-btn eo-lang-btn" id="eo-lang-np" onclick="switchExplainLang('np')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127475;&#127477;</span><span class="lb-label">NP</span></button>
-      <button class="learn-bar-btn eo-lang-btn" id="eo-lang-kr" onclick="switchExplainLang('kr')" style="flex:none;flex-direction:row;padding:6px 14px;gap:4px;"><span class="lb-icon">&#127472;&#127479;</span><span class="lb-label">KR</span></button>
+      <button class="learn-bar-btn eo-lang-btn" id="eo-mode-krkr" onclick="selectExplainMode('krkr')" style="flex:none;flex-direction:row;padding:6px 10px;gap:4px;"><span class="lb-label">KR/KR</span></button>
+      <button class="learn-bar-btn eo-lang-btn" id="eo-mode-krnp" onclick="selectExplainMode('krnp')" style="flex:none;flex-direction:row;padding:6px 10px;gap:4px;"><span class="lb-label">KR/NP</span></button>
+      <button class="learn-bar-btn eo-lang-btn" id="eo-mode-npnp" onclick="selectExplainMode('npnp')" style="flex:none;flex-direction:row;padding:6px 10px;gap:4px;"><span class="lb-label">NP/NP</span></button>
+      <button class="learn-bar-btn eo-lang-btn" id="eo-mode-npkr" onclick="selectExplainMode('npkr')" style="flex:none;flex-direction:row;padding:6px 10px;gap:4px;"><span class="lb-label">NP/KR</span></button>
       <div style="flex:1"></div>
     </div>
     <div class="eo-seekbar">
@@ -1380,10 +1382,19 @@ function changeEoFontSize(dir) {
 }
 var explainCurrentSubId = null;
 
+var explainCurrentMode = null; // 'krkr'|'krnp'|'npnp'|'npkr'
+
 function updateEoLangBtns(lang) {
-  var np = document.getElementById('eo-lang-np'); var kr = document.getElementById('eo-lang-kr');
-  if (lang === 'np') { np.classList.add('active'); kr.classList.remove('active'); }
-  else { kr.classList.add('active'); np.classList.remove('active'); }
+  var ids = ['eo-mode-krkr','eo-mode-krnp','eo-mode-npnp','eo-mode-npkr'];
+  for (var i = 0; i < ids.length; i++) { var b = document.getElementById(ids[i]); if (b) b.classList.remove('active'); }
+  var activeId = explainCurrentMode ? ('eo-mode-' + explainCurrentMode) : ((lang === 'kr') ? 'eo-mode-krkr' : 'eo-mode-npnp');
+  var ab = document.getElementById(activeId); if (ab) ab.classList.add('active');
+}
+
+function selectExplainMode(mode) {
+  explainCurrentMode = mode;
+  var lang = (mode === 'krkr' || mode === 'krnp') ? 'kr' : 'np';
+  switchExplainLang(lang);
 }
 
 function getExplainSubs() {
@@ -1544,6 +1555,9 @@ function openExplainOverlay(id, lang) {
   closeQuizOverlay();
   if (player && player.pauseVideo) player.pauseVideo();
   explainCurrentSubId = id;
+  if (!explainCurrentMode || (lang === 'kr' && explainCurrentMode.indexOf('np') === 0) || (lang === 'np' && explainCurrentMode.indexOf('kr') === 0)) {
+    explainCurrentMode = (lang === 'kr') ? 'krkr' : 'npnp';
+  }
   updateEoHeader(id, lang);
   updateEoLangBtns(lang);
   document.getElementById('player-wrap').style.display = 'none';
