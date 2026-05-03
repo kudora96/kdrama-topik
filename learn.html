@@ -1489,6 +1489,26 @@ function explainParaLen(i) {
 
 function buildExplainMarkTimes(dur) {
   if (!dur || !explainParas.length) return false;
+  try {
+    var data = (typeof explanationsMap !== 'undefined' && explainCurrentSubId != null)
+      ? explanationsMap[String(explainCurrentSubId)] : null;
+    if (data) {
+      var pt = (explainAudioLang === 'kr') ? data.kr_para_times
+             : (explainAudioLang === 'np') ? data.np_para_times : null;
+      if (pt && Object.prototype.toString.call(pt) === '[object Array]' && pt.length === explainParas.length) {
+        var allNum = true;
+        for (var k = 0; k < pt.length; k++) {
+          if (typeof pt[k] !== 'number' || !isFinite(pt[k])) { allNum = false; break; }
+        }
+        if (allNum) {
+          var arr2 = pt.slice();
+          arr2.push(dur);
+          explainMarkTimes = arr2;
+          return true;
+        }
+      }
+    }
+  } catch (e) { /* fallback to length-proportional */ }
   var total = 0; for (var i = 0; i < explainParas.length; i++) total += explainParaLen(i);
   if (total === 0) return false;
   var arr = [0]; var cum = 0;
