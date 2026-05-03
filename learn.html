@@ -1653,6 +1653,9 @@ function openExplainOverlay(id, audioLang, displayLang) {
   var audioFile = data['audio_' + audioLang];
   var path = (audioFile ? 'audio/' + audioLang + '/' + CLIP_ID + '/' + audioFile : 'audio/' + audioLang + '/' + CLIP_ID + '/S01E01_' + padId(id) + '_' + audioLang + '.mp3') + '?v=20260305b';
   try { explainAudio = new Audio(path); } catch(e) { return; }
+  explainAudio.addEventListener('loadedmetadata', function() {
+    renderEoMarkers();
+  });
   updateEoPlayToggle(true);
   explainAudio.onended = function() { stopExplainHighlight(); updateEoPlayToggle(false); };
   explainAudio.onerror = function() { stopExplainHighlight(); updateEoPlayToggle(false); };
