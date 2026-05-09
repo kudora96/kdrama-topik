@@ -83,6 +83,34 @@ kdrama-topik/
 }
 ```
 
+## audio_kr / audio_np 필드 형식 규칙
+
+JSON의 audio_kr, audio_np 필드는 반드시 **단순 파일명**만 사용해야 함.
+
+### 올바른 예
+```json
+"audio_kr": "E01-C08_21_kr.mp3"
+"audio_np": "E01-C08_21_np.mp3"
+```
+
+### 잘못된 예 (경로 포함 금지)
+```json
+"audio_kr": "audio/cloy/E01-C08/E01-C08_21_kr.mp3"  ❌
+```
+
+### 이유
+스크립트들(`apply_alignment.py`, `batch_apply_alignment.py`)이 base path (`audio/kr/{clip_id}/` 또는 `audio/np/{clip_id}/`)에 이 값을 그대로 붙여서 경로를 생성함. 경로가 포함되면 이중 경로가 되어 파일을 못 찾음.
+
+### 발생 시 증상
+`batch_apply_alignment.py` 또는 `apply_alignment.py` 실행 시 "음성 파일 없음" 에러 발생.
+
+### 해결
+JSON에서 해당 자막의 `audio_kr` / `audio_np` 값을 단순 파일명으로 수정 후 재실행.
+
+### 참고
+- E01-C08 sub_id 31~40번에서 이 실수가 발생했었음 (commit `d6ea9a1`에서 정규화 완료)
+- 새 자막 작업 시 이 형식 반드시 준수
+
 ## 오디오 재사용 규칙
 
 1. 새 오디오 목록 만들 때, **먼저 기존 chars/와 words_common/ 확인**
