@@ -961,6 +961,7 @@ function goBack() { location.href = 'index.html'; }
 
 // ── Lock / Unlock ──
 function checkLocked(episode) {
+  return false; // DEV: 런칭 전 전체 잠금 해제 (복구 시 이 줄 삭제)
   if (episode <= 1) return false;
   // Check PRO subscription
   try { if (localStorage.getItem('kt-pro') === '1') return false; } catch(e) {}
